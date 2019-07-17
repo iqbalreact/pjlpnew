@@ -6,6 +6,8 @@
 
 @section('content_header')
     <h1>Dashboard</h1>
+
+    {{ Breadcrumbs::render('about') }}
 @stop
 
 @section('content')
