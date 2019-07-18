@@ -22,3 +22,9 @@ Route::get('/dashboard', function () {
 Route::get('/about', function () {
     return view('dashboard');
 })->name('about');
+
+Route::resource('employee', 'EmployeeController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
