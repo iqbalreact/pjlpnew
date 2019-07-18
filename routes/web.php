@@ -11,19 +11,27 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
-    return view('dashboard');
+    return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('home');
+Route::group(['middleware' => ['auth']], function () {
 
-Route::get('/about', function () {
-    return view('dashboard');
-})->name('about');
 
-Route::resource('employee', 'EmployeeController');
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('home');
+
+    Route::get('/about', function () {
+        return view('dashboard');
+    })->name('about');
+
+    Route::resource('employee', 'EmployeeController');
+
+    // Route::get('/home', 'HomeController@index')->name('home');
+});
 
 Auth::routes();
 
