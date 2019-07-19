@@ -17,12 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 
     Route::get('/dashboard', function () {
         return view('dashboard');
-    })->name('home');
+    })->name('dashboard');
 
     Route::get('/about', function () {
         return view('dashboard');

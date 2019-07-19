@@ -7,7 +7,7 @@
 @section('content_header')
     <h1>Dashboard</h1>
 
-    {{ Breadcrumbs::render('about') }}
+    {{ Breadcrumbs::render('dashboard') }}
 @stop
 
 @section('content')

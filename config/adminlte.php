@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'skin' => 'purple',
+    'skin' => 'blue',
 
     /*
     |--------------------------------------------------------------------------
@@ -114,8 +114,9 @@ return [
             'url'  => '#'
         ],
         [
-            'text' => 'Pegawai Kontrak',
-            'url'  => '#'
+            'text'  => 'Pegawai Kontrak',
+            'route' => 'employee',
+            'url'   => 'admin/employee'
         ],
         [
             'text' => 'Kontrak Kerja',

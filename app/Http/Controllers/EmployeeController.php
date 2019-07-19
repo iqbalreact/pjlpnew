@@ -16,9 +16,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $activity = Activity::all();
-
-        return response()->json($activity);
+        return view('admin.employee.index');
     }
 
     /**
@@ -28,12 +26,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        $employee = Employee::create([
-            'name' => 'original name',
-            'address' => 'Lorum'
-        ]);
-
-        return response()->json($employee);
+        return view('admin.employee.create');
     }
 
     /**
@@ -44,7 +37,17 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->avatar);
+        $data = Employee::create([
+            'name' => $request->name,
+            'address' => $request->address
+        ]);
+
+        if (isset($request->avatar)) {
+            $data->addMediaFromRequest('avatar')->toMediaCollection('avatars');
+        }
+
+        return redirect()->route('employee.index');
     }
 
     /**
@@ -67,10 +70,8 @@ class EmployeeController extends Controller
     public function edit($id)
     {
         $data = Employee::find($id);
-        $data->name = 'updated';
-        $data->update();
 
-        return response()->json($data);
+        return view('admin.employee.edit', compact('data'));
     }
 
     /**
@@ -82,7 +83,16 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        $data = Employee::find($id);
+        $data->name = $request->name;
+        $data->address = $request->address;
+        $data->update();
+
+        if (isset($request->avatar)) {
+            $data->addMediaFromRequest('avatar')->toMediaCollection('avatars');
+        }
+
+        return redirect()->route('employee.index');
     }
 
     /**
