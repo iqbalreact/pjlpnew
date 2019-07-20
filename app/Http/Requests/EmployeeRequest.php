@@ -24,9 +24,9 @@ class EmployeeRequest extends FormRequest
     public function rules()
     {
         return [
-            'nik'       => 'required|numeric',
+            'nik'       => 'required|numeric|unique:employees',
             'name'      => 'required|max:255',
-            'ktp'       => 'required|max:255',
+            'ktp'       => 'required|max:255|unique:employees',
             'avatar'    => 'image'
         ];
     }

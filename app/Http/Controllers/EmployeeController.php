@@ -6,11 +6,17 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests\EmployeeRequest;
 
-use App\Models\Employee;
+use App\Bussiness\Contracts\EmployeeBussInterface;
+
 use Spatie\Activitylog\Models\Activity;
 
 class EmployeeController extends Controller
 {
+    public function __construct(EmployeeBussInterface $employee) 
+    {
+        $this->employee = $employee;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -39,15 +45,7 @@ class EmployeeController extends Controller
      */
     public function store(EmployeeRequest $request)
     {
-        // dd($request->avatar);
-        // $data = Employee::create([
-        //     'name' => $request->name,
-        //     'address' => $request->address
-        // ]);
-
-        // if (isset($request->avatar)) {
-        //     $data->addMediaFromRequest('avatar')->toMediaCollection('avatars');
-        // }
+        $data = $this->employee->store($request);
 
         return redirect()->route('employee.index');
     }
@@ -71,7 +69,7 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        $data = Employee::find($id);
+        // $data = Employee::find($id);
 
         return view('admin.employee.edit', compact('data'));
     }
@@ -85,14 +83,14 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = Employee::find($id);
-        $data->name = $request->name;
-        $data->address = $request->address;
-        $data->update();
+        // $data = Employee::find($id);
+        // $data->name = $request->name;
+        // $data->address = $request->address;
+        // $data->update();
 
-        if (isset($request->avatar)) {
-            $data->addMediaFromRequest('avatar')->toMediaCollection('avatars');
-        }
+        // if (isset($request->avatar)) {
+        //     $data->addMediaFromRequest('avatar')->toMediaCollection('avatars');
+        // }
 
         return redirect()->route('employee.index');
     }

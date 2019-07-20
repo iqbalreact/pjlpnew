@@ -48,7 +48,7 @@
     </div>
 
     <div class="form-group {{ $errors->has('account_number') ? 'has-error' : '' }}">
-        <label for="inputAccountNumber" class="col-sm-2 control-label">NPWP</label>
+        <label for="inputAccountNumber" class="col-sm-2 control-label">Rekening</label>
 
         <div class="col-sm-10">
             {!! Form::text('account_number', $edit ? $data->account_number : old('account_number'), ['class' => 'form-control', 'placeholder'=> __('No Rekening')] ) !!}

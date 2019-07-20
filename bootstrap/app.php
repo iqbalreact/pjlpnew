@@ -41,6 +41,8 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
+$app->register(App\Providers\RepositoryServiceProvider::class);
+$app->register(App\Providers\BussinessServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Return The Application
