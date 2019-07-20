@@ -69,7 +69,7 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        // $data = Employee::find($id);
+        $data = $this->employee->find($id);
 
         return view('admin.employee.edit', compact('data'));
     }
@@ -81,16 +81,9 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EmployeeRequest $request, $id)
     {
-        // $data = Employee::find($id);
-        // $data->name = $request->name;
-        // $data->address = $request->address;
-        // $data->update();
-
-        // if (isset($request->avatar)) {
-        //     $data->addMediaFromRequest('avatar')->toMediaCollection('avatars');
-        // }
+        $data = $this->employee->update($request, $id);
 
         return redirect()->route('employee.index');
     }

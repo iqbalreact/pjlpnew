@@ -14,9 +14,22 @@ class EmployeeBuss implements EmployeeBussInterface
         $this->employeeRepo = $employeeRepo;
     }
 
+    public function find($id)
+    {
+        return $this->employeeRepo->find($id);
+    }
+
     public function store(Request $request)
     {
         $data = $this->employeeRepo->store($request);
+        
+        return $data;
+    }
+
+    public function update(Request $request, $id)
+    {
+        $data = $this->employeeRepo->update($request, $id);
+        
         return $data;
     }
 }
