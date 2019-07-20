@@ -23,6 +23,12 @@ Breadcrumbs::for('employee_edit', function ($trail) {
     $trail->push('Edit');
 });
 
+// Home > Employee > Show
+Breadcrumbs::for('employee_show', function ($trail, $employee) {
+    $trail->parent('employee');
+    $trail->push($employee->name);
+});
+
 
 // // Home > About
 // Breadcrumbs::for('about', function ($trail) {

@@ -3,9 +3,9 @@
 @section('title', 'Detail Pegawai - PJLP Pontianak')
 
 @section('content_header')
-    <h1>Pegawai Kontrak</h1>
+    <h1>Detail Pegawai Kontrak</h1>
 
-    {{ Breadcrumbs::render('employee') }}
+    {{ Breadcrumbs::render('employee_show', $data) }}
 @stop
 
 @section('content')
