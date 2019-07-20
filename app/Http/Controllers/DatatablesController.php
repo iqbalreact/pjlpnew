@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Bussiness\Contracts\DatatablesBLLInterface;
+use App\Bussiness\Contracts\DatatablesBussInterface;
 
 class DatatablesController extends Controller
 {
-    public function __construct(DatatablesBLLInterface $datatables)
+    public function __construct(DatatablesBussInterface $datatables)
 	{
 		$this->datatables = $datatables;
     }

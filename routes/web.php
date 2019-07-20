@@ -30,6 +30,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::resource('employee', 'EmployeeController');
 
+    Route::group(['prefix' => 'data'], function() {
+        Route::get('employee', 'DatatablesController@fetchEmployeeDatas')->name('fetch.employee');
+    });
+
     // Route::get('/home', 'HomeController@index')->name('home');
 });
 

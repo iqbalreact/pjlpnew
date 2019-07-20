@@ -4,7 +4,7 @@ namespace App\Bussiness\Contracts;
 
 use Illuminate\Http\Request;
 
-interface EmployeeBussInterface
+interface DatatablesBussInterface
 {
     public function fetchEmployeeDatas(Request $request);    
 }
