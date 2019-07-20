@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Http\Requests\EmployeeRequest;
+
 use App\Models\Employee;
 use Spatie\Activitylog\Models\Activity;
 
@@ -35,17 +37,17 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EmployeeRequest $request)
     {
         // dd($request->avatar);
-        $data = Employee::create([
-            'name' => $request->name,
-            'address' => $request->address
-        ]);
+        // $data = Employee::create([
+        //     'name' => $request->name,
+        //     'address' => $request->address
+        // ]);
 
-        if (isset($request->avatar)) {
-            $data->addMediaFromRequest('avatar')->toMediaCollection('avatars');
-        }
+        // if (isset($request->avatar)) {
+        //     $data->addMediaFromRequest('avatar')->toMediaCollection('avatars');
+        // }
 
         return redirect()->route('employee.index');
     }

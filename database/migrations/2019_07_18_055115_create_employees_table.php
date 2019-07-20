@@ -16,8 +16,13 @@ class CreateEmployeesTable extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->integer('nik')->unique();
             $table->string('name');
-            $table->text('address')->nullable();
+            $table->string('ktp')->unique();
+            $table->string('npwp')->nullable();
+            $table->string('account_number')->nullable();
+            $table->string('bpjs_heathcare')->nullable();
+            $table->string('bpjs_social_security')->nullable();
         });
     }
 
