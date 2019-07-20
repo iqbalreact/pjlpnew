@@ -31,4 +31,9 @@ class Employee extends Model implements HasMedia
         'bpjs_healthcare',
         'bpjs_social_security'
     ];
+
+    public function getAvatar()
+    {
+        return $this->getMedia('avatars')->last() ? $this->getMedia('avatars')->last()->getFullUrl() : '/img/avatar.png';
+    }
 }

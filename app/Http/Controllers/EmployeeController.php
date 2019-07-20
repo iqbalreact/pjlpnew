@@ -58,7 +58,9 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = $this->employee->find($id);
+
+        return view('admin.employee.show', compact('data'));
     }
 
     /**
