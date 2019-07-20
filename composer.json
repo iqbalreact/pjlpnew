@@ -17,7 +17,8 @@
         "laravelcollective/html": "^5.8",
         "spatie/laravel-activitylog": "^3.2",
         "spatie/laravel-medialibrary": "^7.0.0",
-        "spatie/laravel-permission": "^2.37"
+        "spatie/laravel-permission": "^2.37",
+        "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
