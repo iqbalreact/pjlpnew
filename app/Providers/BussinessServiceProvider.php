@@ -10,6 +10,8 @@ use App\Bussiness\DatatablesBuss;
 use App\Bussiness\Contracts\EmployeeBussInterface;
 use App\Bussiness\EmployeeBuss;
 
+use App\Bussiness\Contracts\SkpdBussInterface;
+use App\Bussiness\SkpdBuss;
 
 class BussinessServiceProvider extends ServiceProvider
 {
@@ -32,5 +34,6 @@ class BussinessServiceProvider extends ServiceProvider
     {
         $this->app->bind(DatatablesBussInterface::class, DatatablesBuss::class);
         $this->app->bind(EmployeeBussInterface::class, EmployeeBuss::class);
+        $this->app->bind(SkpdBussInterface::class, SkpdBuss::class);
     }
 }

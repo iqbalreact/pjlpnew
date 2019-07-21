@@ -35,8 +35,20 @@ Breadcrumbs::for('skpd', function ($trail) {
     $trail->push('SKPD', route('skpd.index'));
 });
 
-// Home > Employee > New
+// Home > SKPD > New
 Breadcrumbs::for('skpd_new', function ($trail) {
     $trail->parent('skpd');
     $trail->push('Tambah');
+});
+
+// Home > SKPD > Edit
+Breadcrumbs::for('skpd_edit', function ($trail) {
+    $trail->parent('skpd');
+    $trail->push('Edit');
+});
+
+// Home > SKPD > Show
+Breadcrumbs::for('skpd_show', function ($trail, $skpd) {
+    $trail->parent('skpd');
+    $trail->push($skpd->name);
 });

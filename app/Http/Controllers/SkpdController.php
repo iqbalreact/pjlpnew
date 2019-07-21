@@ -6,8 +6,16 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests\SkpdRequest;
 
+use App\Bussiness\Contracts\SkpdBussInterface;
+
 class SkpdController extends Controller
 {
+    public function __construct(SkpdBussInterface $skpd) 
+    {
+        $this->skpd = $skpd;
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -36,7 +44,11 @@ class SkpdController extends Controller
      */
     public function store(SkpdRequest $request)
     {
-        //
+        $data = $this->skpd->store($request);
+
+        notify()->success('Skpd berhasil dibuat');
+        
+        return redirect()->route('skpd.index');
     }
 
     /**
@@ -47,7 +59,14 @@ class SkpdController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = $this->skpd->find($id);
+
+        if (!$data) {
+            notify()->warning('Skpd tidak ditemukan');
+            return redirect()->back();
+        }
+
+        return view('admin.skpd.show', compact('data'));
     }
 
     /**
@@ -58,7 +77,14 @@ class SkpdController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = $this->skpd->find($id);
+
+        if (!$data) {
+            notify()->warning('Skpd tidak ditemukan');
+            return redirect()->back();
+        }
+
+        return view('admin.skpd.edit', compact('data'));
     }
 
     /**
@@ -70,7 +96,11 @@ class SkpdController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $this->skpd->update($request, $id);
+
+        notify()->success('Skpd berhasil diupdate');
+
+        return redirect()->route('skpd.show', ['id' => $data->id]);
     }
 
     /**

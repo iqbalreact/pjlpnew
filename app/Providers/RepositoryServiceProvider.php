@@ -10,6 +10,9 @@ use App\Repository\DatatablesRepo;
 use App\Repository\Contracts\EmployeeRepoInterface;
 use App\Repository\EmployeeRepo;
 
+use App\Repository\Contracts\SkpdRepoInterface;
+use App\Repository\SkpdRepo;
+
 class RepositoryServiceProvider extends ServiceProvider
 {
 	/**
@@ -31,5 +34,6 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->app->bind(DatatablesRepoInterface::class, DatatablesRepo::class);
         $this->app->bind(EmployeeRepoInterface::class, EmployeeRepo::class);    
+        $this->app->bind(SkpdRepoInterface::class, SkpdRepo::class);    
     }
 }

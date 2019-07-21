@@ -4,7 +4,7 @@ namespace App\Repository\Contracts;
 
 use Illuminate\Http\Request;
 
-interface EmployeeRepoInterface
+interface SkpdRepoInterface
 {
     public function find($id);
     

@@ -32,7 +32,7 @@
                     {{ $edit ? 'Update' : 'Simpan' }}
             </button>
             
-            <a href="{{ route('employee.index') }}" 
+            <a href="{{ route('skpd.index') }}" 
                 class="btn btn-danger">
                     Batal
             </a>
