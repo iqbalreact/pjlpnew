@@ -17,4 +17,9 @@ class DatatablesController extends Controller
 	{
 		return $this->datatables->fetchEmployeeDatas($request);
 	}
+
+	public function fetchSkpdDatas(Request $request)
+	{
+		return $this->datatables->fetchSkpdDatas($request);
+	}
 }

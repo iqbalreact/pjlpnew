@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'AdminLTE')
+@section('title', 'Edit Pegawai | '.env('APP_NAME'))
 
 @section('content_header')
     <h1>Pegawai Kontrak</h1>

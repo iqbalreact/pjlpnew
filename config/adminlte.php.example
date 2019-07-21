@@ -30,9 +30,9 @@ return [
     |
     */
 
-    'logo' => '<b>E-PJLP</b> PONTIANAK',
+    'logo' => '<b>Admin</b>LTE',
 
-    'logo_mini' => '<b>PJLP</B>',
+    'logo_mini' => '<b>A</b>LT',
 
     /*
     |--------------------------------------------------------------------------
@@ -85,7 +85,7 @@ return [
     |
     */
 
-    'dashboard_url' => 'dashboard',
+    'dashboard_url' => 'home',
 
     'logout_url' => 'logout',
 
@@ -93,7 +93,7 @@ return [
 
     'login_url' => 'login',
 
-    'register_url' => null,
+    'register_url' => 'register',
 
     /*
     |--------------------------------------------------------------------------
@@ -110,48 +110,78 @@ return [
     'menu' => [
         'MAIN NAVIGATION',
         [
-            'text' => 'Dashboard',
-            'url'  => '#'
+            'text' => 'Blog',
+            'url'  => 'admin/blog',
+            'can'  => 'manage-blog',
         ],
         [
-            'text'  => 'Pegawai Kontrak',
-            'route' => 'employee',
-            'url'   => 'admin/employee'
+            'text'        => 'Pages',
+            'url'         => 'admin/pages',
+            'icon'        => 'file',
+            'label'       => 4,
+            'label_color' => 'success',
+        ],
+        'ACCOUNT SETTINGS',
+        [
+            'text' => 'Profile',
+            'url'  => 'admin/settings',
+            'icon' => 'user',
         ],
         [
-            'text' => 'Kontrak Kerja',
-            'url'  => '#'
+            'text' => 'Change Password',
+            'url'  => 'admin/settings',
+            'icon' => 'lock',
         ],
         [
-            'text' => 'Penilaian Kinerja',
-            'url'  => '#'
-        ],
-        [
-            'text' => 'Penggajian',
-            'url'  => '#'
-        ],
-        'SISTEM',
-        [
-            'text' => 'Master Data',
+            'text'    => 'Multilevel',
             'icon'    => 'share',
             'submenu' => [
                 [
-                    'text' => 'SKPD',
-                    'url'  => 'admin/skpd',
-                ]
-            ]
+                    'text' => 'Level One',
+                    'url'  => '#',
+                ],
+                [
+                    'text'    => 'Level One',
+                    'url'     => '#',
+                    'submenu' => [
+                        [
+                            'text' => 'Level Two',
+                            'url'  => '#',
+                        ],
+                        [
+                            'text'    => 'Level Two',
+                            'url'     => '#',
+                            'submenu' => [
+                                [
+                                    'text' => 'Level Three',
+                                    'url'  => '#',
+                                ],
+                                [
+                                    'text' => 'Level Three',
+                                    'url'  => '#',
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+                [
+                    'text' => 'Level One',
+                    'url'  => '#',
+                ],
+            ],
+        ],
+        'LABELS',
+        [
+            'text'       => 'Important',
+            'icon_color' => 'red',
         ],
         [
-            'text' => 'API',
-            'url'  => '#'
+            'text'       => 'Warning',
+            'icon_color' => 'yellow',
         ],
         [
-            'text' => 'Pengaturan',
-            'url'  => '#'
-        ],
-        [
-            'text' => 'Log & Status',
-            'url'  => '#'
+            'text'       => 'Information',
+            'icon_color' => 'aqua',
         ],
     ],
 
@@ -189,7 +219,6 @@ return [
     'plugins' => [
         'datatables' => true,
         'select2'    => true,
-        'chartjs'    => true
+        'chartjs'    => true,
     ],
-    
 ];

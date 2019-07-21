@@ -29,9 +29,14 @@ Breadcrumbs::for('employee_show', function ($trail, $employee) {
     $trail->push($employee->name);
 });
 
+// Home > SKPD
+Breadcrumbs::for('skpd', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('SKPD', route('skpd.index'));
+});
 
-// // Home > About
-// Breadcrumbs::for('about', function ($trail) {
-//     $trail->parent('home');
-//     $trail->push('About', route('about'));
-// });
+// Home > Employee > New
+Breadcrumbs::for('skpd_new', function ($trail) {
+    $trail->parent('skpd');
+    $trail->push('Tambah');
+});

@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Detail Pegawai - PJLP Pontianak')
+@section('title', 'Detail Pegawai | '.env('APP_NAME'))
 
 @section('content_header')
     <h1>Detail Pegawai Kontrak</h1>
