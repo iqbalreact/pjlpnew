@@ -16,7 +16,7 @@ class CreateEmployeesTable extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->integer('nik')->unique();
+            $table->bigInteger('nik')->unique();
             $table->string('name');
             $table->string('ktp')->unique();
             $table->string('npwp')->nullable();
