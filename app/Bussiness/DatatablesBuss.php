@@ -16,6 +16,18 @@ class DatatablesBuss implements DatatablesBussInterface
         $this->datatablesRepo = $datatablesRepo;
     }
 
+    public function fetchAccountDatas(Request $request)
+    {
+        $query = $this->datatablesRepo->fetchAccountDatas($request);
+
+        return Datatables::of($query)
+                        // ->addColumn('actions', 
+                        //         ' <a href="{{ URL::route( \'employee.show\', array( $id )) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
+                        //           <a href="{{ URL::route( \'employee.edit\', array( $id )) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')
+                        // ->rawColumns(['actions'])
+                        ->make(true);
+    }
+
     public function fetchEmployeeDatas(Request $request)
     {
         $query = $this->datatablesRepo->fetchEmployeeDatas($request);

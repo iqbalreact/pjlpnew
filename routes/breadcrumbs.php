@@ -5,6 +5,10 @@ Breadcrumbs::for('dashboard', function ($trail) {
     $trail->push('Dashboard', route('dashboard'));
 });
 
+/**
+ * Employee ====================================================================
+ */
+
 // Home > Employee
 Breadcrumbs::for('employee', function ($trail) {
     $trail->parent('dashboard');
@@ -29,6 +33,10 @@ Breadcrumbs::for('employee_show', function ($trail, $employee) {
     $trail->push($employee->name);
 });
 
+/**
+ * SKPD ========================================================================
+ */
+
 // Home > SKPD
 Breadcrumbs::for('skpd', function ($trail) {
     $trail->parent('dashboard');
@@ -51,4 +59,32 @@ Breadcrumbs::for('skpd_edit', function ($trail) {
 Breadcrumbs::for('skpd_show', function ($trail, $skpd) {
     $trail->parent('skpd');
     $trail->push($skpd->name);
+});
+
+/**
+ * Account ========================================================================
+ */
+
+ // Home > Account
+Breadcrumbs::for('account', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Pengguna', route('account.index'));
+});
+
+// Home > Account > New
+Breadcrumbs::for('account_new', function ($trail) {
+    $trail->parent('account');
+    $trail->push('Tambah');
+});
+
+// Home > Account > Edit
+Breadcrumbs::for('account_edit', function ($trail) {
+    $trail->parent('account');
+    $trail->push('Edit');
+});
+
+// Home > Account > Show
+Breadcrumbs::for('account_show', function ($trail, $account) {
+    $trail->parent('account');
+    $trail->push($account->name);
 });

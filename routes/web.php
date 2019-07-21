@@ -28,10 +28,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         return view('dashboard');
     })->name('about');
 
+    Route::resource('account', 'AccountController');
     Route::resource('employee', 'EmployeeController');
     Route::resource('skpd', 'SkpdController');
 
     Route::group(['prefix' => 'data'], function() {
+        Route::get('account', 'DatatablesController@fetchAccountDatas')->name('fetch.account');
         Route::get('employee', 'DatatablesController@fetchEmployeeDatas')->name('fetch.employee');
         Route::get('skpd', 'DatatablesController@fetchSkpdDatas')->name('fetch.skpd');
     });

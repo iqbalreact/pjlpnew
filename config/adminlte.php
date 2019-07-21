@@ -132,6 +132,11 @@ return [
         ],
         'SISTEM',
         [
+            'text' => 'Pengguna',
+            'icon' => 'user',
+            'url'  => 'admin/account'
+        ],
+        [
             'text' => 'Master Data',
             'icon'    => 'share',
             'submenu' => [

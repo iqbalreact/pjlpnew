@@ -13,7 +13,12 @@ class DatatablesController extends Controller
 		$this->datatables = $datatables;
     }
     
-    public function fetchEmployeeDatas(Request $request)
+    public function fetchAccountDatas(Request $request)
+	{
+		return $this->datatables->fetchAccountDatas($request);
+	}
+
+	public function fetchEmployeeDatas(Request $request)
 	{
 		return $this->datatables->fetchEmployeeDatas($request);
 	}
