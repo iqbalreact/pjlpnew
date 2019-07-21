@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+use App\Bussiness\Contracts\AccountBussInterface;
+use App\Bussiness\AccountBuss;
+
 use App\Bussiness\Contracts\DatatablesBussInterface;
 use App\Bussiness\DatatablesBuss;
 
@@ -32,6 +35,7 @@ class BussinessServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->bind(AccountBussInterface::class, AccountBuss::class);
         $this->app->bind(DatatablesBussInterface::class, DatatablesBuss::class);
         $this->app->bind(EmployeeBussInterface::class, EmployeeBuss::class);
         $this->app->bind(SkpdBussInterface::class, SkpdBuss::class);

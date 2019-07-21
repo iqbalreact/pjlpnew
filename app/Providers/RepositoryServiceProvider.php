@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+use App\Repository\Contracts\AccountRepoInterface;
+use App\Repository\AccountRepo;
+
 use App\Repository\Contracts\DatatablesRepoInterface;
 use App\Repository\DatatablesRepo;
 
@@ -32,6 +35,7 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->bind(AccountRepoInterface::class, AccountRepo::class);
         $this->app->bind(DatatablesRepoInterface::class, DatatablesRepo::class);
         $this->app->bind(EmployeeRepoInterface::class, EmployeeRepo::class);    
         $this->app->bind(SkpdRepoInterface::class, SkpdRepo::class);    

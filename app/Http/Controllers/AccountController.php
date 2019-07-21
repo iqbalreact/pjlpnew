@@ -6,10 +6,15 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests\AccountRequest;
 
-use Spatie\Permission\Models\Role;
+use App\Bussiness\Contracts\AccountBussInterface;
 
 class AccountController extends Controller
 {
+    public function __construct(AccountBussInterface $account) 
+    {
+        $this->account = $account;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -27,8 +32,9 @@ class AccountController extends Controller
      */
     public function create()
     {
-        return Role::all();
-        return view('admin.account.create');
+        $roles = $this->account->pluckRoles();
+
+        return view('admin.account.create', compact('roles'));
     }
 
     /**
@@ -39,7 +45,11 @@ class AccountController extends Controller
      */
     public function store(AccountRequest $request)
     {
-        //
+        $data = $this->account->store($request);
+
+        notify()->success('Pengguna berhasil dibuat');
+        
+        return redirect()->route('account.index');
     }
 
     /**
@@ -50,7 +60,14 @@ class AccountController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = $this->account->find($id);
+
+        if (!$data) {
+            notify()->warning('Pengguna tidak ditemukan');
+            return redirect()->back();
+        }
+
+        return view('admin.account.show', compact('data'));
     }
 
     /**
@@ -61,7 +78,16 @@ class AccountController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = $this->account->find($id);
+
+        if (!$data) {
+            notify()->warning('Pengguna tidak ditemukan');
+            return redirect()->back();
+        }
+
+        $roles = $this->account->pluckRoles();
+
+        return view('admin.account.edit', compact('data', 'roles'));
     }
 
     /**
@@ -71,9 +97,13 @@ class AccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AccountRequest $request, $id)
     {
-        //
+        $data = $this->account->update($request, $id);
+
+        notify()->success('Pengguna berhasil diupdate');
+
+        return redirect()->route('account.show', ['id' => $data->id]);
     }
 
     /**

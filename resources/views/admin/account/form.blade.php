@@ -46,6 +46,18 @@
         </div>
     </div>
 
+    <div class="form-group {{ $errors->has('role') ? 'has-error' : '' }}">
+            <label for="inputEmail" class="col-sm-2 control-label">Role @include('components.required')</label>
+    
+            <div class="col-sm-10">
+                {!! Form::select('role', $roles, $edit ? $data->rolename : old('role') ,['class' => 'form-control'])!!}
+
+                @if ($errors->has('role'))
+                    <span class="help-block">{{ $errors->first('role') }}</span>
+                @endif
+            </div>
+        </div>
+
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
             <button 

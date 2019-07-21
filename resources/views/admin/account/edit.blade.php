@@ -5,7 +5,7 @@
 @section('content_header')
     <h1>Pengguna</h1>
 
-    {{ Breadcrumbs::render('account_new') }}
+    {{ Breadcrumbs::render('account_edit') }}
 @stop
 
 @section('content')
@@ -14,8 +14,8 @@
         <h3 class="box-title">Buat Baru</h3>
     </div>
 
-    {!! Form::open([ 'url' => route('account.store'), 'files' => true, 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
-        @include('admin.account.form', ['edit' => false])   
+    {!! Form::open([ 'url' => route('account.update', ['id' => $data->id ]), 'files' => true, 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
+        @include('admin.account.form', ['edit' => true, 'data' => $data])        
     {!! Form::close() !!}
 </div>
 @stop

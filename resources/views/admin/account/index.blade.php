@@ -24,7 +24,7 @@
                                 <th>NIK</th>
                                 <th>Name</th>
                                 {{-- <th>KTP</th> --}}
-                                {{-- <th width="15%">Action</th> --}}
+                                <th width="15%">Action</th>
                             </tr>
                         </thead>
                     </table>                
@@ -47,9 +47,9 @@
             columns: [
                 { data: 'id', name: 'id', class:'hide' },
                 { data: 'nik', name: 'nik', searchable:'true'},
-                { data: 'name', name: 'name', searchable:'true'}
+                { data: 'name', name: 'name', searchable:'true'},
                 // { data: 'ktp', name: 'ktp', searchable:'true'},
-                // { data: 'actions', name: 'actions', searchable: 'false', 'orderable': 'false', 'class': 'text-center'}
+                { data: 'actions', name: 'actions', searchable: 'false', 'orderable': 'false', 'class': 'text-center'}
             ]
         });
 
