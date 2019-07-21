@@ -19,14 +19,14 @@
                     <h3 class="profile-username text-center">{{ $data->name }}</h3>
                     <ul class="list-group list-group-unbordered">
                         <li class="list-group-item">
-                        <b>NIK</b> <a class="pull-right">{{ $data->nik }}</a>
-                    </li>
-                    <li class="list-group-item">
-                        <b>KTP</b> <a class="pull-right">{{ $data->ktp }}</a>
-                    </li>
-                    <li class="list-group-item">
-                        <b>NPWP</b> <a class="pull-right">{{ $data->npwp ?? '-' }}</a>
-                    </li>
+                            <b>NIK</b> <a class="pull-right">{{ $data->nik }}</a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>KTP</b> <a class="pull-right">{{ $data->ktp }}</a>
+                        </li>
+                        <li class="list-group-item">
+                            <b>NPWP</b> <a class="pull-right">{{ $data->npwp ?? '-' }}</a>
+                        </li>
                     </ul>
 
                     <a href="{{ route('employee.edit', ['id' => $data->id ]) }}" class="btn btn-success btn-block"><i class="fa fa-pencil"></i> <b>Edit</b></a>
