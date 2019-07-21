@@ -101,7 +101,7 @@ class EmployeeController extends Controller
 
         notify()->success('Pegawai berhasil diupdate');
 
-        return redirect()->route('employee.index');
+        return redirect()->route('employee.show', ['id' => $data->id]);
     }
 
     /**
