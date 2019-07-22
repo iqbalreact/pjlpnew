@@ -5,25 +5,24 @@ namespace App\Repository;
 use Illuminate\Http\Request;
 
 use App\Repository\Contracts\AccountRepoInterface;
+use App\Services\Contracts\RoleServiceInterface;
 
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 
 class AccountRepo implements AccountRepoInterface
 {
-    protected $roleTransform = [
-        'superadmin'    => 'Superadmin',
-        'adminppk'      => 'Admin PPK',
-        'adminskpd'     => 'Admin SKPD',
-        'operator'      => 'Operator'
-    ]; 
+    public function __construct(RoleServiceInterface $roleService)
+    {   
+        $this->roleService = $roleService;
+    }
 
     public function getRoles()
     {
         $roles = Role::all();
 
         $roles->each(function ($roles) { 
-            $roles->description = $this->roleTransform[$roles->name]; 
+            $roles->description = $this->roleService->roleNameTransform($roles->name); 
         });
 
         return $roles;
@@ -38,7 +37,7 @@ class AccountRepo implements AccountRepoInterface
         }
 
         $data->rolename             = !is_null($data->roles->first()) ? $data->roles->first()->name : '';
-        $data->rolenametransform    = !is_null($data->rolename) ? $this->roleTransform[$data->rolename] : '';
+        $data->rolenametransform    = !is_null($data->rolename) ? $this->roleService->roleNameTransform($data->rolename) : '';
         
         return $data;
     }
