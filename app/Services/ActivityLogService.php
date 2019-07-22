@@ -29,4 +29,15 @@ class ActivityLogService implements ActivityLogServiceInterface
 
         return $activity;
     }
+
+    public function find($id)
+    {
+        $data = Activity::with('subject', 'causer')->find($id);
+
+        if (is_null($data)) {
+            return false;
+        }
+
+        return $data;
+    }
 }

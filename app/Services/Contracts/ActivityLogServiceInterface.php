@@ -8,5 +8,7 @@ interface ActivityLogServiceInterface
 {
     public function getSubjectRoute($subject);
 
+    public function find($id);
+
     public function all();
 }

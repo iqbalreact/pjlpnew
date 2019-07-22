@@ -41,7 +41,7 @@ class DatatablesBuss implements DatatablesBussInterface
                             return '-';
                         })
                         ->addColumn('actions', 
-                                ' <a href="{{ URL::route( \'account.show\', array( $id )) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a> ')
+                                ' <a href="{{ URL::route( \'log.show\', array( $id )) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a> ')
                         ->rawColumns(['actions', 'causer_name', 'subject_name'])
                         ->make(true);
     }

@@ -98,3 +98,9 @@ Breadcrumbs::for('log', function ($trail) {
     $trail->parent('dashboard');
     $trail->push('Log', route('log.index'));
 });
+
+// Home > Log > Show
+Breadcrumbs::for('log_show', function ($trail) {
+    $trail->parent('log');
+    $trail->push('Detail');
+});
