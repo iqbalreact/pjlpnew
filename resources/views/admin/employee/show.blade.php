@@ -39,19 +39,14 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#about" data-toggle="tab" aria-expanded="true">Tentang</a></li>
-                    <li class=""><a href="#timeline" data-toggle="tab" aria-expanded="false">Timeline</a></li>
-                    <li class=""><a href="#settings" data-toggle="tab" aria-expanded="false">Settings</a></li>
+                    <li class=""><a href="#log" data-toggle="tab" aria-expanded="false">Change Log</a></li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="about">
                         @include('admin.employee.show.about')
                     </div>
-                    <div class="tab-pane" id="timeline">
-                        
-                    </div>
-        
-                    <div class="tab-pane" id="settings">
-                        
+                    <div class="tab-pane" id="log">
+                        @include('admin.partials.activityLog', ['subject_id' => $data->id, 'models' => 'App\Models\Employee'])
                     </div>
                 </div>
             </div>

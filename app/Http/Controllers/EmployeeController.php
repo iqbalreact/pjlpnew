@@ -9,12 +9,14 @@ use App\Http\Requests\EmployeeRequest;
 use App\Bussiness\Contracts\EmployeeBussInterface;
 
 use Spatie\Activitylog\Models\Activity;
+use App\Services\Contracts\ActivityLogServiceInterface;
 
 class EmployeeController extends Controller
 {
-    public function __construct(EmployeeBussInterface $employee) 
+    public function __construct(EmployeeBussInterface $employee, ActivityLogServiceInterface $activityLog) 
     {
-        $this->employee = $employee;
+        $this->activityLog  = $activityLog;
+        $this->employee     = $employee;
     }
 
     /**

@@ -30,11 +30,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::resource('account', 'AccountController');
     Route::resource('employee', 'EmployeeController');
+    Route::resource('log', 'LogController')->only('index', 'show');
     Route::resource('skpd', 'SkpdController');
+
 
     // Datatables
     Route::group(['prefix' => 'data'], function() {
         Route::get('account', 'DatatablesController@fetchAccountDatas')->name('fetch.account');
+        Route::get('activity', 'DatatablesController@fetchActivityLog')->name('fetch.activity');
         Route::get('employee', 'DatatablesController@fetchEmployeeDatas')->name('fetch.employee');
         Route::get('skpd', 'DatatablesController@fetchSkpdDatas')->name('fetch.skpd');
     });

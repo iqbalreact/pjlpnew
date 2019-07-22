@@ -65,7 +65,7 @@ Breadcrumbs::for('skpd_show', function ($trail, $skpd) {
  * Account ========================================================================
  */
 
- // Home > Account
+// Home > Account
 Breadcrumbs::for('account', function ($trail) {
     $trail->parent('dashboard');
     $trail->push('Pengguna', route('account.index'));
@@ -87,4 +87,14 @@ Breadcrumbs::for('account_edit', function ($trail) {
 Breadcrumbs::for('account_show', function ($trail, $account) {
     $trail->parent('account');
     $trail->push($account->name);
+});
+
+/**
+ * Log ========================================================================
+ */
+
+// Home > Log
+Breadcrumbs::for('log', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Log', route('log.index'));
 });
