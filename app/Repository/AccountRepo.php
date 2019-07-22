@@ -31,7 +31,7 @@ class AccountRepo implements AccountRepoInterface
 
     public function find($id)
     {
-        $data = User::find($id);
+        $data = User::with('skpd')->find($id);
 
         if (is_null($data)) {
             return false;
@@ -50,6 +50,7 @@ class AccountRepo implements AccountRepoInterface
         $data->name     = $request->name; 
         $data->email    = $request->email;
         $data->password = bcrypt('pjlppontianak');
+        $data->skpd_id  = $request->skpd_id;
         $data->save();
 
         if (isset($request->role)) {
@@ -74,6 +75,7 @@ class AccountRepo implements AccountRepoInterface
         $data->nik      = $request->nik;
         $data->name     = $request->name; 
         $data->email    = $request->email;
+        $data->skpd_id  = $request->skpd_id;
         $data->update();
         
         if (isset($request->role)) {

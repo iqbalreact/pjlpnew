@@ -27,6 +27,7 @@ class AccountRequest extends FormRequest
             'nik'       => 'required|numeric|unique:users,nik,'.$this->segment(3),
             'name'      => 'required|max:255',
             'email'     => 'email|unique:users,email,'.$this->segment(3),
+            'skpd_id'   => 'required',
             'avatar'    => 'image'
         ];
     }

@@ -113,4 +113,17 @@ class SkpdController extends Controller
     {
         //
     }
+
+    /**
+     * Select2 API
+     * 
+     */
+    public function selectList(Request $request)
+    {
+        $name = $request->q;
+
+        $res = $this->skpd->getByName($name);
+
+        return response()->json($res);
+    }
 }

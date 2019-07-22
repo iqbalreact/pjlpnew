@@ -21,6 +21,15 @@ class SkpdRepo implements SkpdRepoInterface
         return $data;
     }
 
+    public function getByName($name)
+    {
+        $query = Skpd::query();
+
+        $query = $query->where('name', 'LIKE', '%'.$name.'%')->take(20)->get();
+
+        return $query;
+    }
+
     public function store(Request $request)
     {
         $data = new Skpd();

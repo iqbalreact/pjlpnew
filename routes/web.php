@@ -32,10 +32,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('employee', 'EmployeeController');
     Route::resource('skpd', 'SkpdController');
 
+    // Datatables
     Route::group(['prefix' => 'data'], function() {
         Route::get('account', 'DatatablesController@fetchAccountDatas')->name('fetch.account');
         Route::get('employee', 'DatatablesController@fetchEmployeeDatas')->name('fetch.employee');
         Route::get('skpd', 'DatatablesController@fetchSkpdDatas')->name('fetch.skpd');
+    });
+
+    // Select2
+    Route::group(['prefix' => 'select'], function(){
+        Route::get('skpd', 'SkpdController@selectList')->name('select.skpd');
     });
 
     // Route::get('/home', 'HomeController@index')->name('home');

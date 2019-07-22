@@ -14,7 +14,7 @@
         <h3 class="box-title">Buat Baru</h3>
     </div>
 
-    {!! Form::open([ 'url' => route('account.store'), 'files' => true, 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
+    {!! Form::open([ 'url' => route('account.store'), 'files' => true, 'method' => 'POST', 'class' => 'form-horizontal']) !!}
         @include('admin.account.form', ['edit' => false])   
     {!! Form::close() !!}
 </div>

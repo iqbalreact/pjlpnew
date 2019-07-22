@@ -20,5 +20,12 @@
             <input class="form-control" value="{{ $data->rolenametransform }}" readonly>
         </div>
     </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">SKPD</label>
+
+        <div class="col-sm-10">
+            <input class="form-control" value="{{ $data->skpd->name ?? '' }}" readonly>
+        </div>
+    </div>
     
 </form>

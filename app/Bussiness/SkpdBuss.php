@@ -19,6 +19,11 @@ class SkpdBuss implements SkpdBussInterface
         return $this->skpdRepo->find($id);
     }
 
+    public function getByName($name)
+    {
+        return $this->skpdRepo->getByName($name);
+    }
+
     public function store(Request $request)
     {
         $data = $this->skpdRepo->store($request);

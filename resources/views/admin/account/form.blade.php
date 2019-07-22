@@ -47,16 +47,29 @@
     </div>
 
     <div class="form-group {{ $errors->has('role') ? 'has-error' : '' }}">
-            <label for="inputEmail" class="col-sm-2 control-label">Role @include('components.required')</label>
-    
-            <div class="col-sm-10">
-                {!! Form::select('role', $roles, $edit ? $data->rolename : old('role') ,['class' => 'form-control'])!!}
+        <label for="inputEmail" class="col-sm-2 control-label">Role @include('components.required')</label>
 
-                @if ($errors->has('role'))
-                    <span class="help-block">{{ $errors->first('role') }}</span>
-                @endif
-            </div>
+        <div class="col-sm-10">
+            {!! Form::select('role', $roles, $edit ? $data->rolename : old('role') ,['class' => 'form-control','id' => 'roleSelect', 'style'=>"width: 100%;"])!!}
+
+            @if ($errors->has('role'))
+                <span class="help-block">{{ $errors->first('role') }}</span>
+            @endif
         </div>
+    </div>
+
+    <div class="form-group {{ $errors->has('skpd_id') ? 'has-error' : '' }}">
+        <label for="inputEmail" class="col-sm-2 control-label">SKPD @include('components.required')</label>
+
+        <div class="col-sm-10">
+            <select name="skpd_id" id="skpdSelect" class="form-control"></select>
+            {{-- {!! Form::select('skpd_id', '', $edit ? $data->skpd_id : old('skpd_id') ,['class' => 'form-control','id' => 'skpdSelect', 'style'=>"width: 100%;"])!!} --}}
+
+            @if ($errors->has('skpd_id'))
+                <span class="help-block">{{ $errors->first('skpd_id') }}</span>
+            @endif
+        </div>
+    </div>
 
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
@@ -73,4 +86,53 @@
         </div>
     </div>
 </div>
+
+@section('js')
+<script>
+    $(function() {
+        $("#roleSelect").select2({});
+        
+        $("#skpdSelect").select2({
+            dropdownAutoWidth : true,
+            width: '100%',
+            placeholder: "Pilih SKPD",
+            ajax: {
+                url: "{{ route('select.skpd') }}",
+                dataType: 'json',
+                data: function (params) {
+                    return {
+                        q: params.term,
+                    };
+                },
+                processResults: function (data) {
+
+                    var res = data.map(function (item) {
+                        return {id: item.id, text: item.name};
+                    });
+                    
+                    return {
+                        results: res
+                    };
+                }
+            }
+        });
+    });
+</script>
+
+@if($edit and isset($skpd) and !empty($skpd))
+    <script>
+        $(function(){
+            
+            var data = {
+                id: "{{ $skpd->id }}",
+                name: "{{ $skpd->name }}"
+            };
+            
+            var newOption = new Option(data.name, data.id, false, false);
+            $('#skpdSelect').append(newOption).trigger('change');
+        });
+    </script>
+@endif
+
+@stop
     

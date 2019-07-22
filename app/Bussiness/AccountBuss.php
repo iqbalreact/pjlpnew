@@ -21,11 +21,6 @@ class AccountBuss implements AccountBussInterface
 
     public function find($id)
     {
-        // $data = $this->accountRepo->find($id);
-        
-        // if (!is_null($data)) {
-        //     $data->role = $data->hasAnyRoles();
-        // }
         return $this->accountRepo->find($id);
     }
 

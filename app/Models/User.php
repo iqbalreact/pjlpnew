@@ -11,6 +11,8 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 use Spatie\Permission\Traits\HasRoles;
 
+use App\Models\Skpd;
+
 class User extends Authenticatable implements HasMedia
 {
     use Notifiable, HasRoles, HasMediaTrait;
@@ -46,6 +48,11 @@ class User extends Authenticatable implements HasMedia
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function skpd()
+    {
+        return $this->belongsTo(Skpd::class);
+    }
 
     public function getAvatar()
     {

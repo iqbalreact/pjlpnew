@@ -7,12 +7,14 @@ use Illuminate\Http\Request;
 use App\Http\Requests\AccountRequest;
 
 use App\Bussiness\Contracts\AccountBussInterface;
+use App\Bussiness\Contracts\SkpdBussInterface;
 
 class AccountController extends Controller
 {
-    public function __construct(AccountBussInterface $account) 
+    public function __construct(AccountBussInterface $account, SkpdBussInterface $skpd) 
     {
-        $this->account = $account;
+        $this->account  = $account;
+        $this->skpd     = $skpd;
     }
 
     /**
@@ -85,9 +87,10 @@ class AccountController extends Controller
             return redirect()->back();
         }
 
-        $roles = $this->account->pluckRoles();
+        $roles  = $this->account->pluckRoles();
+        $skpd   = $this->skpd->find($data->skpd_id);
 
-        return view('admin.account.edit', compact('data', 'roles'));
+        return view('admin.account.edit', compact('data', 'roles', 'skpd'));
     }
 
     /**
