@@ -11,7 +11,8 @@ use Spatie\Activitylog\Models\Activity;
 class ActivityLogService implements ActivityLogServiceInterface
 {
     protected $subjectRoute = [
-        'App\Models\Employee'    => '/admin/employee/'
+        'App\Models\Employee' => '/admin/employee/',
+        'App\Models\User'     => '/admin/account/',
     ]; 
 
     public function getSubjectRoute($subject)
