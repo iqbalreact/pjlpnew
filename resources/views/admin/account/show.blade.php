@@ -36,15 +36,15 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#about" data-toggle="tab" aria-expanded="true">Tentang</a></li>
-                    <li class=""><a href="#timeline" data-toggle="tab" aria-expanded="false">Timeline</a></li>
+                    <li class=""><a href="#log" data-toggle="tab" aria-expanded="false">Log</a></li>
                     <li class=""><a href="#settings" data-toggle="tab" aria-expanded="false">Settings</a></li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="about">
                         @include('admin.account.show.about')
                     </div>
-                    <div class="tab-pane" id="timeline">
-                        
+                    <div class="tab-pane" id="log">
+                        @include('admin.partials.userActivityLog', ['causer_id' => $data->id, 'models' => ''])
                     </div>
         
                     <div class="tab-pane" id="settings">

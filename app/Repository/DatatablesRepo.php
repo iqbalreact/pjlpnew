@@ -32,6 +32,10 @@ class DatatablesRepo implements DatatablesRepoInterface
             $datas->where('subject_id', $request->subject_id);
         }
 
+        if(!is_null($request->causer_id)) {
+            $datas->where('causer_id', $request->causer_id);
+        }
+
         $datas->with('subject', 'causer');
 
         return $datas;

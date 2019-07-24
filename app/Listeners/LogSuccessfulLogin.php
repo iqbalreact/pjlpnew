@@ -30,7 +30,7 @@ class LogSuccessfulLogin
     {
         activity('login')
             ->performedOn(\Auth()->user())
-            ->causedBy($event->user)
+            ->causedBy($event->user->id)
             ->log('login');
 
         \Log::alert(json_encode($event));
