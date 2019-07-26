@@ -20,6 +20,11 @@ class CreateEmployeesTable extends Migration
             $table->string('name');
             $table->string('ktp')->unique();
             $table->string('npwp')->nullable();
+            $table->string('gender');
+            $table->text('address')->nullable();
+            $table->string('religion');
+            $table->string('phone_number')->nullable();
+            $table->string('bank_name')->nullable();
             $table->string('account_number')->nullable();
             $table->string('bpjs_healthcare')->nullable();
             $table->string('bpjs_social_security')->nullable();

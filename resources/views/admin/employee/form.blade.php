@@ -25,7 +25,7 @@
     </div>
 
     <div class="form-group {{ $errors->has('ktp') ? 'has-error' : '' }}">
-        <label for="inputKTPNumber" class="col-sm-2 control-label">No. KTP @include('components.required')</label>
+        <label for="inputKTPNumber" class="col-sm-2 control-label">No KTP @include('components.required')</label>
 
         <div class="col-sm-10">
             {!! Form::text('ktp', $edit ? $data->ktp : old('ktp'), ['class' => 'form-control', 'placeholder'=> __('No KTP')] ) !!}
@@ -43,6 +43,63 @@
             {!! Form::text('npwp', $edit ? $data->npwp : old('npwp'), ['class' => 'form-control', 'placeholder'=> __('NPWP')] ) !!}
             @if ($errors->has('npwp'))
                 <span class="help-block">{{ $errors->first('npwp') }}</span>
+            @endif
+        </div>
+    </div>
+
+    <div class="form-group {{ $errors->has('gender') ? 'has-error' : '' }}">
+        <label for="inputGender" class="col-sm-2 control-label">Jenis Kelamin @include('components.required')</label>
+
+        <div class="col-sm-10">
+            {!! Form::select('gender', $genders, $edit ? $data->gender : old('gender') ,['class' => 'form-control'])!!}
+
+            @if ($errors->has('gender'))
+                <span class="help-block">{{ $errors->first('gender') }}</span>
+            @endif
+        </div>
+    </div>
+
+    <div class="form-group {{ $errors->has('address') ? 'has-error' : '' }}">
+        <label for="inputAddress" class="col-sm-2 control-label">Address</label>
+
+        <div class="col-sm-10">
+            {!! Form::textarea('address', $edit ? $data->address : old('address'), ['class' => 'form-control', 'placeholder'=> __('Alamat'), 'rows' => 3] ) !!}
+            @if ($errors->has('address'))
+                <span class="help-block">{{ $errors->first('address') }}</span>
+            @endif
+        </div>
+    </div>
+
+    <div class="form-group {{ $errors->has('religion') ? 'has-error' : '' }}">
+        <label for="inputReligion" class="col-sm-2 control-label">Agama @include('components.required')</label>
+
+        <div class="col-sm-10">
+            {!! Form::select('religion', $religions, $edit ? $data->religion : old('religion') ,['class' => 'form-control'])!!}
+
+            @if ($errors->has('religion'))
+                <span class="help-block">{{ $errors->first('religion') }}</span>
+            @endif
+        </div>
+    </div>
+
+    <div class="form-group {{ $errors->has('phone_number') ? 'has-error' : '' }}">
+        <label for="inputPhoneNumber" class="col-sm-2 control-label">No Telepon</label>
+
+        <div class="col-sm-10">
+            {!! Form::text('phone_number', $edit ? $data->phone_number : old('phone_number'), ['class' => 'form-control', 'placeholder'=> __('No Telepon')] ) !!}
+            @if ($errors->has('phone_number'))
+                <span class="help-block">{{ $errors->first('phone_number') }}</span>
+            @endif
+        </div>
+    </div>
+
+    <div class="form-group {{ $errors->has('bank_name') ? 'has-error' : '' }}">
+        <label for="inputBankName" class="col-sm-2 control-label">Bank</label>
+
+        <div class="col-sm-10">
+            {!! Form::text('bank_name', $edit ? $data->bank_name : old('bank_name'), ['class' => 'form-control', 'placeholder'=> __('Bank')] ) !!}
+            @if ($errors->has('bank_name'))
+                <span class="help-block">{{ $errors->first('bank_name') }}</span>
             @endif
         </div>
     </div>

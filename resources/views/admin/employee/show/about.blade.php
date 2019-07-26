@@ -21,6 +21,41 @@
         </div>
     </div>
     <div class="form-group">
+        <label class="col-sm-2 control-label">Jenis Kelamin</label>
+
+        <div class="col-sm-10">
+            <input class="form-control" value="{{ $data->gender }}" readonly>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Alamat</label>
+
+        <div class="col-sm-10">
+            <input class="form-control" value="{{ $data->address }}" readonly>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Agama</label>
+
+        <div class="col-sm-10">
+            <input class="form-control" value="{{ $data->religion }}" readonly>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">No Telepon</label>
+
+        <div class="col-sm-10">
+            <input class="form-control" value="{{ $data->phone_number }}" readonly>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Bank</label>
+
+        <div class="col-sm-10">
+            <input class="form-control" value="{{ $data->bank_name }}" readonly>
+        </div>
+    </div>
+    <div class="form-group">
         <label class="col-sm-2 control-label">NPWP</label>
 
         <div class="col-sm-10">

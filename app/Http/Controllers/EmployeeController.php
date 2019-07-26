@@ -8,15 +8,25 @@ use App\Http\Requests\EmployeeRequest;
 
 use App\Bussiness\Contracts\EmployeeBussInterface;
 
-use Spatie\Activitylog\Models\Activity;
 use App\Services\Contracts\ActivityLogServiceInterface;
+use App\Services\Contracts\GenderServiceInterface;
+use App\Services\Contracts\ReligionServiceInterface;
+
+use Spatie\Activitylog\Models\Activity;
+
 
 class EmployeeController extends Controller
 {
-    public function __construct(EmployeeBussInterface $employee, ActivityLogServiceInterface $activityLog) 
-    {
+    public function __construct(
+        EmployeeBussInterface $employee,
+        ActivityLogServiceInterface $activityLog, 
+        GenderServiceInterface $gender,
+        ReligionServiceInterface $religion
+    ) {
         $this->activityLog  = $activityLog;
         $this->employee     = $employee;
+        $this->gender       = $gender;
+        $this->religion     = $religion;
     }
 
     /**
@@ -36,7 +46,10 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('admin.employee.create');
+        $religions  = $this->religion->religionTransfrom;
+        $genders    = $this->gender->genderTransfrom;
+
+        return view('admin.employee.create', compact('religions', 'genders'));
     }
 
     /**
@@ -87,7 +100,10 @@ class EmployeeController extends Controller
             return redirect()->back();
         }
 
-        return view('admin.employee.edit', compact('data'));
+        $religions  = $this->religion->religionTransfrom;
+        $genders    = $this->gender->genderTransfrom;
+
+        return view('admin.employee.edit', compact('data', 'religions', 'genders'));
     }
 
     /**
