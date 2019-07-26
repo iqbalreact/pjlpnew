@@ -45,7 +45,7 @@ class AccountRepo implements AccountRepoInterface
     public function store(Request $request)
     {
         $data = new User();
-        $data->nik      = $request->nik;
+        $data->nip      = $request->nip;
         $data->name     = $request->name; 
         $data->email    = $request->email;
         $data->password = bcrypt('pjlppontianak');
@@ -71,7 +71,7 @@ class AccountRepo implements AccountRepoInterface
             return false;
         }
 
-        $data->nik      = $request->nik;
+        $data->nip      = $request->nip;
         $data->name     = $request->name; 
         $data->email    = $request->email;
         $data->skpd_id  = $request->skpd_id;

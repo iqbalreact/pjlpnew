@@ -22,7 +22,7 @@
                     
                     <ul class="list-group list-group-unbordered">
                         <li class="list-group-item">
-                            <b>NIK</b> <a class="pull-right">{{ $data->nik }}</a>
+                            <b>NIP</b> <a class="pull-right">{{ $data->nip }}</a>
                         </li>
                     </ul>
 

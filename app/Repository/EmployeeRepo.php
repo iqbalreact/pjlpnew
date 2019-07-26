@@ -24,7 +24,7 @@ class EmployeeRepo implements EmployeeRepoInterface
     public function store(Request $request)
     {
         $data = new Employee();
-        $data->nik                  = $request->nik;
+        $data->nip                  = $request->nip;
         $data->name                 = $request->name;
         $data->ktp                  = $request->ktp;
         $data->npwp                 = $request->npwp;
@@ -49,7 +49,7 @@ class EmployeeRepo implements EmployeeRepoInterface
             return false;
         }
 
-        $data->nik                  = $request->nik;
+        $data->nip                  = $request->nip;
         $data->name                 = $request->name;
         $data->ktp                  = $request->ktp;
         $data->npwp                 = $request->npwp;

@@ -14,7 +14,7 @@ class ModifyUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->bigInteger('nik')->nullable();
+            $table->bigInteger('nip')->nullable();
             $table->integer('skpd_id')->nullable();
             $table->integer('ppk_id')->nullable();
             $table->string('email')->nullable()->change();
@@ -30,7 +30,7 @@ class ModifyUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('nik');
+            $table->dropColumn('nip');
             $table->dropColumn('skpd_id');
             $table->dropColumn('ppk_id');
             $table->string('email')->required()->change();

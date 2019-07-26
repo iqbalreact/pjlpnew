@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Employee::class, function (Faker $faker) {
     return [
-        'nik'                   => $faker->unique()->randomNumber($nbDigits = 7, $strict = false),
+        'nip'                   => $faker->unique()->randomNumber($nbDigits = 7, $strict = false),
         'name'                  => $faker->name,
         'ktp'                   => $faker->unique()->randomNumber($nbDigits = 7, $strict = false),
         'npwp'                  => $faker->randomNumber($nbDigits = 7, $strict = false),

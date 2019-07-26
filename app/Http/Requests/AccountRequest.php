@@ -24,7 +24,7 @@ class AccountRequest extends FormRequest
     public function rules()
     {
         return [
-            'nik'       => 'required|numeric|unique:users,nik,'.$this->segment(3),
+            'nip'       => 'required|numeric|unique:users,nip,'.$this->segment(3),
             'name'      => 'required|max:255',
             'email'     => 'email|unique:users,email,'.$this->segment(3),
             'skpd_id'   => 'required',

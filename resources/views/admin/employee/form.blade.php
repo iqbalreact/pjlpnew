@@ -1,12 +1,12 @@
 <div class="box-body">
-    <div class="form-group {{ $errors->has('nik') ? 'has-error' : '' }}">
-        <label for="inputNIK" class="col-sm-2 control-label">NIK @include('components.required')</label>
+    <div class="form-group {{ $errors->has('nip') ? 'has-error' : '' }}">
+        <label for="inputNIP" class="col-sm-2 control-label">NIP @include('components.required')</label>
 
         <div class="col-sm-10">
-            {!! Form::text('nik', $edit ? $data->nik : old('name'), ['class' => 'form-control', 'placeholder'=> __('NIK')] ) !!}
+            {!! Form::text('nip', $edit ? $data->nip : old('nip'), ['class' => 'form-control', 'placeholder'=> __('NIP')] ) !!}
             
-            @if ($errors->has('nik'))
-                <span class="help-block">{{ $errors->first('nik') }}</span>
+            @if ($errors->has('nip'))
+                <span class="help-block">{{ $errors->first('nip') }}</span>
             @endif
         </div>
         
