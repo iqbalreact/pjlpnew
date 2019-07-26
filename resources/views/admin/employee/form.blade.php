@@ -94,10 +94,11 @@
     </div>
 
     <div class="form-group {{ $errors->has('bank_name') ? 'has-error' : '' }}">
-        <label for="inputBankName" class="col-sm-2 control-label">Bank</label>
+        <label for="inputBank" class="col-sm-2 control-label">Bank</label>
 
         <div class="col-sm-10">
-            {!! Form::text('bank_name', $edit ? $data->bank_name : old('bank_name'), ['class' => 'form-control', 'placeholder'=> __('Bank')] ) !!}
+            {!! Form::select('bank_name', $banks, $edit ? $data->bank_name : old('bank_name') ,['class' => 'form-control'])!!}
+
             @if ($errors->has('bank_name'))
                 <span class="help-block">{{ $errors->first('bank_name') }}</span>
             @endif

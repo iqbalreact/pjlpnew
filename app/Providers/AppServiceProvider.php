@@ -7,6 +7,9 @@ use Illuminate\Support\ServiceProvider;
 use App\Services\Contracts\ActivityLogServiceInterface;
 use App\Services\ActivityLogService;
 
+use App\Services\Contracts\BankServiceInterface;
+use App\Services\BankService;
+
 use App\Services\Contracts\GenderServiceInterface;
 use App\Services\GenderService;
 
@@ -26,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(ActivityLogServiceInterface::class, ActivityLogService::class);        
+        $this->app->bind(BankServiceInterface::class, BankService::class);        
         $this->app->bind(GenderServiceInterface::class, GenderService::class);        
         $this->app->bind(ReligionServiceInterface::class, ReligionService::class);        
         $this->app->bind(RoleServiceInterface::class, RoleService::class);        

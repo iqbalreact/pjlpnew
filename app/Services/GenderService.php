@@ -8,13 +8,13 @@ use App\Services\Contracts\GenderServiceInterface;
 
 class GenderService implements GenderServiceInterface
 {
-    public $genderTransfrom = [
+    public $genderTransform = [
         'laki-laki' => 'Laki-Laki', 
         'perempuan' => 'Perempuan'
     ];
 
     public function genderNameTransform($gender)
     {
-        return $this->genderTransfrom[$gender];
+        return $this->genderTransform[$gender];
     }
 }

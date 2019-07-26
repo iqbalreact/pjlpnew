@@ -9,6 +9,7 @@ use App\Http\Requests\EmployeeRequest;
 use App\Bussiness\Contracts\EmployeeBussInterface;
 
 use App\Services\Contracts\ActivityLogServiceInterface;
+use App\Services\Contracts\BankServiceInterface;
 use App\Services\Contracts\GenderServiceInterface;
 use App\Services\Contracts\ReligionServiceInterface;
 
@@ -20,10 +21,12 @@ class EmployeeController extends Controller
     public function __construct(
         EmployeeBussInterface $employee,
         ActivityLogServiceInterface $activityLog, 
+        BankServiceInterface $bank, 
         GenderServiceInterface $gender,
         ReligionServiceInterface $religion
     ) {
         $this->activityLog  = $activityLog;
+        $this->bank         = $bank;
         $this->employee     = $employee;
         $this->gender       = $gender;
         $this->religion     = $religion;
@@ -46,10 +49,11 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        $religions  = $this->religion->religionTransfrom;
-        $genders    = $this->gender->genderTransfrom;
+        $banks      = $this->bank->bankTransform;
+        $religions  = $this->religion->religionTransform;
+        $genders    = $this->gender->genderTransform;
 
-        return view('admin.employee.create', compact('religions', 'genders'));
+        return view('admin.employee.create', compact('religions', 'genders', 'banks'));
     }
 
     /**
@@ -99,11 +103,12 @@ class EmployeeController extends Controller
             notify()->warning('PJLP tidak ditemukan');
             return redirect()->back();
         }
+        
+        $banks      = $this->bank->bankTransform;
+        $religions  = $this->religion->religionTransform;
+        $genders    = $this->gender->genderTransform;
 
-        $religions  = $this->religion->religionTransfrom;
-        $genders    = $this->gender->genderTransfrom;
-
-        return view('admin.employee.edit', compact('data', 'religions', 'genders'));
+        return view('admin.employee.edit', compact('data', 'religions', 'genders', 'banks'));
     }
 
     /**

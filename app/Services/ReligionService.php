@@ -8,17 +8,17 @@ use App\Services\Contracts\ReligionServiceInterface;
 
 class ReligionService implements ReligionServiceInterface
 {
-    public $religionTransfrom = [
-        'budha'         => 'Budha', 
+    public $religionTransform = [
         'islam'         => 'Islam', 
-        'kristen'       => 'Kristen', 
         'katolik'       => 'Katolik', 
-        'khong_hu_cu'   => 'Kong hu cu', 
-        'kristen'       => 'Kristen'
+        'protestan'     => 'Protestan',
+        'hindu'         => 'Hindu', 
+        'budha'         => 'Budha', 
+        'khong_hu_cu'   => 'Kong hu cu' 
     ];
 
     public function religionNameTransform($religionName)
     {
-        return $this->religionTransfrom[$religionName];
+        return $this->religionTransform[$religionName];
     }
 }
