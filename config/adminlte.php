@@ -111,23 +111,28 @@ return [
         'MAIN NAVIGATION',
         [
             'text' => 'Dashboard',
-            'url'  => '/admin/dashboard'
+            'icon' => 'dashboard',
+            'url'  => 'admin/dashboard'
         ],
         [
             'text'  => 'Pegawai Kontrak',
+            'icon'  => 'user',
             'route' => 'employee',
             'url'   => 'admin/employee'
         ],
         [
             'text' => 'Kontrak Kerja',
+            'icon' => 'book',
             'url'  => '#'
         ],
         [
             'text' => 'Penilaian Kinerja',
+            'icon' => 'check-circle-o',
             'url'  => '#'
         ],
         [
             'text' => 'Penggajian',
+            'icon' => 'dollar',
             'url'  => '#'
         ],
         'SISTEM',
@@ -148,15 +153,18 @@ return [
         ],
         [
             'text' => 'API',
+            'icon' => 'fire',
             'url'  => '#'
         ],
         [
             'text' => 'Pengaturan',
+            'icon' => 'gear',
             'url'  => '#'
         ],
         [
             'text' => 'Log & Status',
-            'url'  => '#'
+            'icon' => 'history',
+            'url'  => 'admin/log'
         ],
     ],
 

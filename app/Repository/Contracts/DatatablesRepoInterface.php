@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 interface DatatablesRepoInterface
 {
     public function fetchAccountDatas(Request $request);
+
+    public function fetchActivityLog(Request $request);
     
     public function fetchEmployeeDatas(Request $request);
 

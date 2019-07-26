@@ -8,6 +8,8 @@ use Spatie\Activitylog\Traits\CausesActivity;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
+// use Spatie\Activitylog\Models\Activity;
+
 class Employee extends Model implements HasMedia
 {
     use LogsActivity, CausesActivity, HasMediaTrait;
