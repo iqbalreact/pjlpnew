@@ -15,6 +15,6 @@ class BankService implements BankServiceInterface
 
     public function bankNameTransform($bank)
     {
-        return $this->bankTransfrom[$bank];
+        return $this->bankTransform[$bank];
     }
 }

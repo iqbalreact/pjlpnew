@@ -6,10 +6,24 @@ use Illuminate\Http\Request;
 
 use App\Repository\Contracts\EmployeeRepoInterface;
 
+use App\Services\Contracts\BankServiceInterface;
+use App\Services\Contracts\GenderServiceInterface;
+use App\Services\Contracts\ReligionServiceInterface;
+
 use App\Models\Employee;
 
 class EmployeeRepo implements EmployeeRepoInterface
 {
+    public function __construct(
+        BankServiceInterface $bankService, 
+        GenderServiceInterface $genderService,
+        ReligionServiceInterface $religionService
+    ) {
+        $this->bankService         = $bankService;
+        $this->genderService       = $genderService;
+        $this->religionService     = $religionService;
+    }
+
     public function find($id)
     {
         $data = Employee::find($id);
@@ -17,6 +31,10 @@ class EmployeeRepo implements EmployeeRepoInterface
         if (is_null($data)) {
             return false;
         }
+
+        $data->bankNameTransform        = !is_null($data->bank_name) ? $this->bankService->bankNameTransform($data->bank_name) : '';
+        $data->genderNameTransform      = !is_null($data->gender) ? $this->genderService->genderNameTransform($data->gender) : '';
+        $data->religionNameTransform    = !is_null($data->religion) ? $this->religionService->religionNameTransform($data->religion) : '';
 
         return $data;
     }

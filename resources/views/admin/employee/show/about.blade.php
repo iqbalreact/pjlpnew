@@ -24,7 +24,7 @@
         <label class="col-sm-2 control-label">Jenis Kelamin</label>
 
         <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->gender }}" readonly>
+            <input class="form-control" value="{{ $data->genderNameTransform }}" readonly>
         </div>
     </div>
     <div class="form-group">
@@ -38,7 +38,7 @@
         <label class="col-sm-2 control-label">Agama</label>
 
         <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->religion }}" readonly>
+            <input class="form-control" value="{{ $data->religionNameTransform }}" readonly>
         </div>
     </div>
     <div class="form-group">
@@ -52,7 +52,7 @@
         <label class="col-sm-2 control-label">Bank</label>
 
         <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->bank_name }}" readonly>
+            <input class="form-control" value="{{ $data->bankNameTransform }}" readonly>
         </div>
     </div>
     <div class="form-group">
