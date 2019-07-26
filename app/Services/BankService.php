@@ -10,7 +10,7 @@ class BankService implements BankServiceInterface
 {
     public $bankTransform = [
         'kalbar'    => 'Bank Kalbar', 
-        'pasar'     => 'Pasar'
+        'pasar'     => 'Bank Pasar'
     ];
 
     public function bankNameTransform($bank)
