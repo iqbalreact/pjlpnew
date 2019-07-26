@@ -12,7 +12,7 @@ Breadcrumbs::for('dashboard', function ($trail) {
 // Home > Employee
 Breadcrumbs::for('employee', function ($trail) {
     $trail->parent('dashboard');
-    $trail->push('Pegawai Kontrak', route('employee.index'));
+    $trail->push('PJLP', route('employee.index'));
 });
 
 // Home > Employee > New

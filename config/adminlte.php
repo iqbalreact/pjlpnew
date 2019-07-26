@@ -115,7 +115,7 @@ return [
             'url'  => 'admin/dashboard'
         ],
         [
-            'text'  => 'Pegawai Kontrak',
+            'text'  => 'PJLP',
             'icon'  => 'user',
             'route' => 'employee',
             'url'   => 'admin/employee'

@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Pegawai | '.env('APP_NAME'))
+@section('title', 'PJLP | '.env('APP_NAME'))
 
 @section('content_header')
-    <h1>Pegawai Kontrak</h1>
+    <h1>PJLP</h1>
 
     {{ Breadcrumbs::render('employee') }}
 @stop
@@ -13,7 +13,7 @@
         <div class="col-xs-12">
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">List Pegawai</h3>
+                    <h3 class="box-title">List PJLP</h3>
                     <a href="{{ route('employee.create') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Tambah</a>
                 </div>
                 <div class="box-body">

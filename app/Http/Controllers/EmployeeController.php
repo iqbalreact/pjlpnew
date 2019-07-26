@@ -49,7 +49,7 @@ class EmployeeController extends Controller
     {
         $data = $this->employee->store($request);
 
-        notify()->success('Pegawai berhasil dibuat');
+        notify()->success('PJLP berhasil dibuat');
         
         return redirect()->route('employee.index');
     }
@@ -65,7 +65,7 @@ class EmployeeController extends Controller
         $data = $this->employee->find($id);
 
         if (!$data) {
-            notify()->warning('Pegawai tidak ditemukan');
+            notify()->warning('PJLP tidak ditemukan');
             return redirect()->back();
         }
 
@@ -83,7 +83,7 @@ class EmployeeController extends Controller
         $data = $this->employee->find($id);
 
         if (!$data) {
-            notify()->warning('Pegawai tidak ditemukan');
+            notify()->warning('PJLP tidak ditemukan');
             return redirect()->back();
         }
 
@@ -101,7 +101,7 @@ class EmployeeController extends Controller
     {
         $data = $this->employee->update($request, $id);
 
-        notify()->success('Pegawai berhasil diupdate');
+        notify()->success('PJLP berhasil diupdate');
 
         return redirect()->route('employee.show', ['id' => $data->id]);
     }

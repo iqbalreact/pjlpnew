@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Edit Pegawai | '.env('APP_NAME'))
+@section('title', 'Edit PJLP | '.env('APP_NAME'))
 
 @section('content_header')
-    <h1>Pegawai Kontrak</h1>
+    <h1>PJLP</h1>
 
     {{ Breadcrumbs::render('employee_edit') }}
 @stop
