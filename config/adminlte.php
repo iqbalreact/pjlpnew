@@ -85,7 +85,7 @@ return [
     |
     */
 
-    'dashboard_url' => 'dashboard',
+    'dashboard_url' => '/admin/dashboard',
 
     'logout_url' => 'logout',
 
@@ -111,7 +111,7 @@ return [
         'MAIN NAVIGATION',
         [
             'text' => 'Dashboard',
-            'url'  => '#'
+            'url'  => '/admin/dashboard'
         ],
         [
             'text'  => 'Pegawai Kontrak',

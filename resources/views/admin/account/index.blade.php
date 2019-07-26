@@ -23,7 +23,7 @@
                                 <th>Id</th>
                                 <th>NIK</th>
                                 <th>Name</th>
-                                {{-- <th>KTP</th> --}}
+                                <th>Role</th>
                                 <th width="15%">Action</th>
                             </tr>
                         </thead>
@@ -48,7 +48,7 @@
                 { data: 'id', name: 'id', class:'hide' },
                 { data: 'nik', name: 'nik', searchable:'true'},
                 { data: 'name', name: 'name', searchable:'true'},
-                // { data: 'ktp', name: 'ktp', searchable:'true'},
+                { data: 'role', name: 'role', searchable:'false', orderable: 'false'},
                 { data: 'actions', name: 'actions', searchable: 'false', 'orderable': 'false', 'class': 'text-center'}
             ]
         });

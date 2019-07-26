@@ -6,14 +6,16 @@ use Illuminate\Http\Request;
 
 use App\Bussiness\Contracts\DatatablesBussInterface;
 use App\Repository\Contracts\DatatablesRepoInterface;
+use App\Services\Contracts\RoleServiceInterface;
 
 use DataTables;
 
 class DatatablesBuss implements DatatablesBussInterface
 {
-    public function __construct(DatatablesRepoInterface $datatablesRepo)
+    public function __construct(DatatablesRepoInterface $datatablesRepo, RoleServiceInterface $roleService)
     {
-        $this->datatablesRepo = $datatablesRepo;
+        $this->datatablesRepo   = $datatablesRepo;
+        $this->roleService      = $roleService;
     }
 
     public function fetchAccountDatas(Request $request)
@@ -21,6 +23,11 @@ class DatatablesBuss implements DatatablesBussInterface
         $query = $this->datatablesRepo->fetchAccountDatas($request);
 
         return Datatables::of($query)
+                        ->addColumn('role', function($data) {
+                            $roleName = !is_null($data->roles->first()) ? $data->roles->first()->name : '';
+
+                            return $this->roleService->roleNameTransform($roleName);
+                        })
                         ->addColumn('actions', 
                                 ' <a href="{{ URL::route( \'account.show\', array( $id )) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
                                 <a href="{{ URL::route( \'account.edit\', array( $id )) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')
