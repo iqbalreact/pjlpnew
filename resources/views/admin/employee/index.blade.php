@@ -21,7 +21,7 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>NIP</th>
+                                <th>NIPJ</th>
                                 <th>Name</th>
                                 <th>KTP</th>
                                 <th width="15%">Action</th>
@@ -46,7 +46,7 @@
             ajax: '{!! route('fetch.employee') !!}',
             columns: [
                 { data: 'id', name: 'id', class:'hide' },
-                { data: 'nip', name: 'nip', searchable:'true'},
+                { data: 'nipj', name: 'nipj', searchable:'true'},
                 { data: 'name', name: 'name', searchable:'true'},
                 { data: 'ktp', name: 'ktp', searchable:'true'},
                 { data: 'actions', name: 'actions', searchable: 'false', 'orderable': 'false', 'class': 'text-center'}

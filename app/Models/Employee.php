@@ -15,7 +15,7 @@ class Employee extends Model implements HasMedia
     use LogsActivity, CausesActivity, HasMediaTrait;
 
     protected $fillable = [
-        'nip', 
+        'nipj', 
         'name', 
         'ktp', 
         'npwp',
@@ -30,7 +30,7 @@ class Employee extends Model implements HasMedia
     ];
     
     protected static $logAttributes = [
-        'nip', 
+        'nipj', 
         'name', 
         'ktp', 
         'npwp', 

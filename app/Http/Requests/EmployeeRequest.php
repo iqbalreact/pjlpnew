@@ -24,7 +24,7 @@ class EmployeeRequest extends FormRequest
     public function rules()
     {
         return [
-            'nip'       => 'required|numeric|unique:employees,nip,'.$this->segment(3),
+            'nipj'       => 'required|numeric|unique:employees,nipj,'.$this->segment(3),
             'name'      => 'required|max:255',
             'ktp'       => 'required|max:255|unique:employees,ktp,'.$this->segment(3),
             'gender'    => 'required',
