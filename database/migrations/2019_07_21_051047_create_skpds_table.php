@@ -18,6 +18,12 @@ class CreateSkpdsTable extends Migration
             $table->timestamps();
             $table->string('number')->unique();
             $table->string('name');
+            $table->text('address')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->string('fax')->nullable();
+            $table->string('post_code')->nullable();
+            $table->string('website')->nullable();
+            $table->string('email')->nullable();
         });
     }
 

@@ -24,8 +24,9 @@ class SkpdRequest extends FormRequest
     public function rules()
     {
         return [
-            'number'    => 'required|unique:skpds,number,'.$this->segment(3),
-            'name'      => 'required|max:255',
+            'number'        => 'required|unique:skpds,number,'.$this->segment(3),
+            'name'          => 'required|max:255',
+            'postal_code'   => 'numeric'
         ];
     }
 }

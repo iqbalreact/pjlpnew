@@ -33,8 +33,14 @@ class SkpdRepo implements SkpdRepoInterface
     public function store(Request $request)
     {
         $data = new Skpd();
-        $data->number = $request->number;
-        $data->name   = $request->name;
+        $data->number       = $request->number;
+        $data->name         = $request->name;
+        $data->address      = $request->address; 
+        $data->phone_number = $request->phone_number;
+        $data->fax          = $request->fax;
+        $data->post_code    = $request->post_code;
+        $data->website      = $request->website;
+        $data->email        = $request->email;
         $data->save();
 
         return $data;
@@ -48,8 +54,14 @@ class SkpdRepo implements SkpdRepoInterface
             return false;
         }
 
-        $data->number   = $request->number;
-        $data->name     = $request->name;
+        $data->number       = $request->number;
+        $data->name         = $request->name;
+        $data->address      = $request->address; 
+        $data->phone_number = $request->phone_number;
+        $data->fax          = $request->fax;
+        $data->post_code    = $request->post_code;
+        $data->website      = $request->website;
+        $data->email        = $request->email;
         $data->update();
 
         return $data;
