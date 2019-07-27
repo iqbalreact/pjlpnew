@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Program;
+
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\Traits\CausesActivity;
 
@@ -32,4 +34,9 @@ class Skpd extends Model
         'website',
         'email'
     ];
+
+    public function programs()
+    {
+        return $this->hasMany(Program::class);
+    }
 }

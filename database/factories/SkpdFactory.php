@@ -17,3 +17,7 @@ $factory->define(Skpd::class, function (Faker $faker) {
         'email'         => $faker->email
     ];
 });
+
+$factory->afterCreating(Skpd::class, function ($skpd, $faker) {
+    $skpd->programs()->saveMany(factory(App\Models\Program::class, 10)->make());
+});

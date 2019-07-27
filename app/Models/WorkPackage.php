@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Activity;
+
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\Traits\CausesActivity;
 
@@ -22,4 +24,9 @@ class WorkPackage extends Model
         'name', 
         'activity_id'
     ];
+
+    public function activity()
+    {
+        return $this->belongsTo(Activity::class)
+    }
 }
