@@ -58,8 +58,20 @@ Breadcrumbs::for('skpd_edit', function ($trail) {
 // Home > SKPD > Show
 Breadcrumbs::for('skpd_show', function ($trail, $skpd) {
     $trail->parent('skpd');
-    $trail->push($skpd->name);
+    $trail->push($skpd->name, route('skpd.show', ['id' => $skpd->id]));
 });
+
+/**
+ * Program =======================================================================
+ * 
+ */
+
+ // Home > SKPD > Program > Create
+ Breadcrumbs::for('program_new', function ($trail, $skpd) {
+    $trail->parent('skpd_show', $skpd);
+    $trail->push('Program');
+    $trail->push('Tambah');
+ });
 
 /**
  * Account ========================================================================

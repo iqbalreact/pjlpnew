@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EmployeeRequest extends FormRequest
+class ProgramRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,9 @@ class EmployeeRequest extends FormRequest
     public function rules()
     {
         return [
-            'nipj'      => 'required|numeric|unique:employees,nipj,'.$this->segment(3),
+            'code'      => 'required|unique:programs,code,'.$this->segment(3),
             'name'      => 'required|max:255',
-            'ktp'       => 'required|max:255|unique:employees,ktp,'.$this->segment(3),
-            'gender'    => 'required',
-            'religion'  => 'required',
-            'avatar'    => 'image',
+            'skpd_id'   => 'required'
         ];
     }
 }

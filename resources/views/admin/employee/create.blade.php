@@ -3,7 +3,7 @@
 @section('title', 'Buat PJLP Baru | '.env('APP_NAME'))
 
 @section('content_header')
-    <h1>PJLPk</h1>
+    <h1>PJLP</h1>
 
     {{ Breadcrumbs::render('employee_new') }}
 @stop

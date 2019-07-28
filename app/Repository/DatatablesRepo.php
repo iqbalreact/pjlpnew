@@ -9,6 +9,7 @@ use App\Repository\Contracts\DatatablesRepoInterface;
 use Spatie\Activitylog\Models\Activity;
 use App\Models\Employee;
 use App\Models\Skpd;
+use App\Models\Program;
 use App\Models\User;
 
 class DatatablesRepo implements DatatablesRepoInterface
@@ -44,6 +45,17 @@ class DatatablesRepo implements DatatablesRepoInterface
     public function fetchEmployeeDatas(Request $request)
     {
     	$datas = Employee::query();
+
+        return $datas;
+    }
+
+    public function fetchProgramDatas(Request $request)
+    {
+        $datas = Program::query();
+
+        if(!is_null($request->skpd_id)) {
+            $datas->where('skpd_id', $request->skpd_id);
+        }
 
         return $datas;
     }

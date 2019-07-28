@@ -12,5 +12,7 @@ interface DatatablesRepoInterface
     
     public function fetchEmployeeDatas(Request $request);
 
+    public function fetchProgramDatas(Request $request);
+
     public function fetchSkpdDatas(Request $request);
 }
