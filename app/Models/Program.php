@@ -28,7 +28,7 @@ class Program extends Model
     
     public function activities()
     {
-        return $this->hasMany(Activty::class);
+        return $this->hasMany(Activity::class);
     }
 
     public function skpd()
