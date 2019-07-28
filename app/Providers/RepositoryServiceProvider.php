@@ -50,6 +50,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(EmployeeRepoInterface::class, EmployeeRepo::class);    
         $this->app->bind(ProgramRepoInterface::class, ProgramRepo::class);    
         $this->app->bind(SkpdRepoInterface::class, SkpdRepo::class);    
-        $this->app->bind(WorkPacakgeRepoInterface::class, WorkPacakgeRepo::class);    
+        $this->app->bind(WorkPackageRepoInterface::class, WorkPackageRepo::class);    
     }
 }

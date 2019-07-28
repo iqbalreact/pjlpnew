@@ -46,7 +46,7 @@ class ActivityController extends Controller
 
         // Check Null SKPD
         if (!$program) {
-            notify()->warning('Proram tidak ditemukan');
+            notify()->warning('Program tidak ditemukan');
             return redirect()->back();
         }
 
