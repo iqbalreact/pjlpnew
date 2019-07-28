@@ -23,15 +23,15 @@
         </div>
     </div>
 
-    <div class="form-group {{ $errors->has('skpd_id') ? 'has-error' : '' }}"">
-        <label for="inputSKPD" class="col-sm-2 control-label">SKPD</label>
+    <div class="form-group {{ $errors->has('program_id') ? 'has-error' : '' }}"">
+        <label for="inputProgram" class="col-sm-2 control-label">Kegiatan</label>
 
         <div class="col-sm-10">
-            <input type="text" value="{{ $skpd->name }}" class="form-control" readonly>
-            <input name="skpd_id" type="hidden" value="{{ $skpd->id }}">
+            <input type="text" value="{{ $program->name }}" class="form-control" readonly>
+            <input name="program_id" type="hidden" value="{{ $program->id }}">
 
-            @if ($errors->has('skpd_id'))
-                <span class="help-block">{{ $errors->first('skpd_id') }}</span>
+            @if ($errors->has('program_id'))
+                <span class="help-block">{{ $errors->first('program_id') }}</span>
             @endif
         </div>
     </div>

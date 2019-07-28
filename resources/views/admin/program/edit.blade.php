@@ -5,7 +5,7 @@
 @section('content_header')
     <h1>SKPD - Program</h1>
 
-    {{ Breadcrumbs::render('skpd_new') }}
+    {{ Breadcrumbs::render('program_edit', $skpd, $data) }}
 @stop
 
 @section('content')

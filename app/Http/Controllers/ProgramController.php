@@ -74,9 +74,30 @@ class ProgramController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, Request $request)
     {
-        //
+        //  // Validate SKPD ID
+        //  if (!$request->skpd_id) {
+        //     notify()->warning('SKPD ID tidak ditemukan');
+        //     return redirect()->back();
+        // }
+
+        $data = $this->program->find($id);
+
+        if (!$data) {
+            notify()->warning('Program tidak ditemukan');
+            return redirect()->back();
+        }
+
+        $skpd = $this->skpd->find($data->skpd_id);
+
+        // Check Null SKPD
+        if (!$skpd) {
+            notify()->warning('Skpd tidak ditemukan');
+            return redirect()->back();
+        }
+
+        return view('admin.program.show', compact('data', 'skpd'));
     }
 
     /**

@@ -28,20 +28,24 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         return view('dashboard');
     })->name('about');
 
+    Route::resource('activity', 'ActivityController');
     Route::resource('account', 'AccountController');
     Route::resource('employee', 'EmployeeController');
     Route::resource('log', 'LogController')->only('index', 'show');
     Route::resource('program', 'ProgramController');
     Route::resource('skpd', 'SkpdController');
+    Route::resource('workPackage', 'WorkPackageController');
 
 
     // Datatables
     Route::group(['prefix' => 'data'], function() {
         Route::get('account', 'DatatablesController@fetchAccountDatas')->name('fetch.account');
-        Route::get('activity', 'DatatablesController@fetchActivityLog')->name('fetch.activity');
+        Route::get('activity', 'DatatablesController@fetchActivityDatas')->name('fetch.activity');
+        Route::get('activitylog', 'DatatablesController@fetchActivityLog')->name('fetch.activityLog');
         Route::get('employee', 'DatatablesController@fetchEmployeeDatas')->name('fetch.employee');
         Route::get('program', 'DatatablesController@fetchProgramDatas')->name('fetch.program');
         Route::get('skpd', 'DatatablesController@fetchSkpdDatas')->name('fetch.skpd');
+        Route::get('workPackage', 'DatatablesController@fetchWorkPackageDatas')->name('fetch.workPackage');
     });
 
     // Select2

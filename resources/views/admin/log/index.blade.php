@@ -44,7 +44,7 @@
             responsive: true,
             order: [[ 0, 'desc' ]],
             deferRender:    true,
-            ajax: '{!! route('fetch.activity') !!}',
+            ajax: '{!! route('fetch.activityLog') !!}',
             columns: [
                 { data: 'id', name: 'id', class:'hide' },
                 { data: 'created_at', name: 'created_at', searchable:'true'},

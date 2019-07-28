@@ -73,6 +73,21 @@ Breadcrumbs::for('skpd_show', function ($trail, $skpd) {
     $trail->push('Tambah');
  });
 
+ // Home > SKPD > Program > Edit
+ Breadcrumbs::for('program_edit', function ($trail, $skpd, $program) {
+    $trail->parent('skpd_show', $skpd);
+    $trail->push('Program');
+    $trail->push('Edit');
+    $trail->push($program->name, route('program.show', ['id' => $program->id, 'skpd_id' => $skpd->id]));
+ });
+
+ // Home > SKPD > Program > show
+ Breadcrumbs::for('program_show', function ($trail, $skpd, $program) {
+    $trail->parent('skpd_show', $skpd);
+    $trail->push('Program');
+    $trail->push($program->name, route('program.show', ['id' => $program->id, 'skpd_id' => $skpd->id]));
+ });
+
 /**
  * Account ========================================================================
  */

@@ -13,7 +13,12 @@ class DatatablesController extends Controller
 		$this->datatables = $datatables;
     }
     
-    public function fetchActivityLog(Request $request)
+    public function fetchActivityDatas(Request $request)
+	{
+		return $this->datatables->fetchActivityDatas($request);
+	}
+
+	public function fetchActivityLog(Request $request)
 	{
 		return $this->datatables->fetchActivityLog($request);
 	}
@@ -36,5 +41,10 @@ class DatatablesController extends Controller
 	public function fetchSkpdDatas(Request $request)
 	{
 		return $this->datatables->fetchSkpdDatas($request);
+	}
+
+	public function fetchWorkPackageDatas(Request $request)
+	{
+		return $this->datatables->fetchWorkPackageDatas($request);
 	}
 }

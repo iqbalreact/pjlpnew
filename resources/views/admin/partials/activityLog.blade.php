@@ -1,4 +1,4 @@
-<table id="activity-table" class="table" width="100%">
+<table id="activitylog-table" class="table" width="100%">
     <thead>
         <tr>
             <th>Id</th>
@@ -13,13 +13,13 @@
 @section('js')
 <script>
     $(function() {
-        var oTable = $('#activity-table').dataTable({
+        var oTable = $('#activitylog-table').dataTable({
             processing: true,
             serverSide: true,
             responsive: true,
             order: [[ 0, 'desc' ]],
             deferRender:    true,
-            ajax: '{!! route('fetch.activity', ['subject_id' => $subject_id, 'models' => $models ]) !!}',
+            ajax: '{!! route('fetch.activityLog', ['subject_id' => $subject_id, 'models' => $models ]) !!}',
             columns: [
                 { data: 'id', name: 'id', class:'hide' },
                 { data: 'created_at', name: 'created_at', searchable:'true'},

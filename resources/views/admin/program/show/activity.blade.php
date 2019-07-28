@@ -2,15 +2,14 @@
     <thead>
         <tr>
             <th>Id</th>
-            <th>Tanggal</th>
-            <th>Aksi</th>
-            <th>Objek</th>
-            <th width="15%">Detail</th>
+            <th>Kode Kegiatan</th>
+            <th>Nama</th>
+            <th width="15%">Action</th>
         </tr>
     </thead>
 </table>         
 
-@section('js')
+@section('js2')
 <script>
     $(function() {
         var oTable = $('#activity-table').dataTable({
@@ -19,12 +18,11 @@
             responsive: true,
             order: [[ 0, 'desc' ]],
             deferRender:    true,
-            ajax: '{!! route('fetch.activityLog', ['causer_id' => $causer_id, 'models' => $models ]) !!}',
+            ajax: '{!! route('fetch.activity', ['program_id' => $program_id]) !!}',
             columns: [
                 { data: 'id', name: 'id', class:'hide' },
-                { data: 'created_at', name: 'created_at', searchable:'true'},
-                { data: 'description', name: 'description', searchable:'true'},
-                { data: 'subject_name', name: 'subject_name', searchable:'false', 'orderable': 'false'},
+                { data: 'code', name: 'code', searchable:'true'},
+                { data: 'name', name: 'name', searchable:'true'},
                 { data: 'actions', name: 'actions', searchable: 'false', 'orderable': 'false', 'class': 'text-center'}
             ]
         });

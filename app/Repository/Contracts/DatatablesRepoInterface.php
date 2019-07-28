@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 interface DatatablesRepoInterface
 {
+    public function fetchActivityDatas(Request $request);
+
     public function fetchAccountDatas(Request $request);
 
     public function fetchActivityLog(Request $request);
@@ -15,4 +17,6 @@ interface DatatablesRepoInterface
     public function fetchProgramDatas(Request $request);
 
     public function fetchSkpdDatas(Request $request);
+
+    public function fetchWorkPackageDatas(Request $request);
 }

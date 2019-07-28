@@ -23,6 +23,18 @@ class DatatablesBuss implements DatatablesBussInterface
         $this->roleService      = $roleService;
     }
 
+    public function fetchActivityDatas(Request $request)
+    {
+        $query = $this->datatablesRepo->fetchActivityDatas($request);
+
+        return Datatables::of($query)
+                        ->addColumn('actions', 
+                                ' <a href="{{ URL::route( \'activity.show\', array( $id)) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
+                                <a href="{{ URL::route( \'activity.edit\', array( $id)) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')
+                        ->rawColumns(['actions'])
+                        ->make(true);
+    }
+
     public function fetchActivityLog(Request $request)
     {
         $query = $this->datatablesRepo->fetchActivityLog($request);
@@ -96,8 +108,20 @@ class DatatablesBuss implements DatatablesBussInterface
 
         return Datatables::of($query)
                         ->addColumn('actions', 
-                                ' <a href="{{ URL::route( \'program.show\', array( $id )) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
+                                ' <a href="{{ URL::route( \'program.show\', array( $id, "skpd_id" => $skpd_id)) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
                                 <a href="{{ URL::route( \'program.edit\', array( $id, "skpd_id" => $skpd_id )) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')
+                        ->rawColumns(['actions'])
+                        ->make(true);
+    }
+
+    public function fetchWorkPackageDatas(Request $request)
+    {
+        $query = $this->datatablesRepo->fetchWorkPackageDatas($request);
+
+        return Datatables::of($query)
+                        ->addColumn('actions', 
+                                ' <a href="{{ URL::route( \'workPackage.show\', array( $id)) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
+                                <a href="{{ URL::route( \'workPackage.edit\', array( $id)) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')
                         ->rawColumns(['actions'])
                         ->make(true);
     }

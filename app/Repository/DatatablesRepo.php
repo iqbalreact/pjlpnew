@@ -6,11 +6,14 @@ use Illuminate\Http\Request;
 
 use App\Repository\Contracts\DatatablesRepoInterface;
 
-use Spatie\Activitylog\Models\Activity;
+use Spatie\Activitylog\Models\Activity as ActivityLog;
+
+use App\Models\Activity; 
 use App\Models\Employee;
 use App\Models\Skpd;
 use App\Models\Program;
 use App\Models\User;
+use App\Models\WorkPackage;
 
 class DatatablesRepo implements DatatablesRepoInterface
 {
@@ -21,9 +24,20 @@ class DatatablesRepo implements DatatablesRepoInterface
         return $datas;
     }
 
-    public function fetchActivityLog(Request $request)
+    public function fetchActivityDatas(Request $request)
     {
         $datas = Activity::query();
+
+        if(!is_null($request->program_id)) {
+            $datas->where('program_id', $request->program_id);
+        }
+
+        return $datas;
+    }
+
+    public function fetchActivityLog(Request $request)
+    {
+        $datas = ActivityLog::query();
 
         if(!is_null($request->models)) {
             $datas->where('subject_type', $request->models);
@@ -63,6 +77,17 @@ class DatatablesRepo implements DatatablesRepoInterface
     public function fetchSkpdDatas(Request $request)
     {
     	$datas = Skpd::query();
+
+        return $datas;
+    }
+
+    public function fetchWorkPackageDatas(Request $request)
+    {
+        $datas = WorkPackage::query();
+
+        if(!is_null($request->activity_id)) {
+            $datas->where('activity_id', $request->activity_id);
+        }
 
         return $datas;
     }
