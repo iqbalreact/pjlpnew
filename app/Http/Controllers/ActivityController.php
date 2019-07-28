@@ -65,7 +65,7 @@ class ActivityController extends Controller
 
         notify()->success('Kegiatan berhasil dibuat');
 
-        return redirect()->route('program.show', $data->program_id);
+        return redirect()->route('activity.show', $data->id);
     }
 
     /**
@@ -127,7 +127,7 @@ class ActivityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ActivityRequest $request, $id)
     {
         $data = $this->activity->update($request, $id);
 

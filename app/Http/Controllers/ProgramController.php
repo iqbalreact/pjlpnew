@@ -65,7 +65,7 @@ class ProgramController extends Controller
 
         notify()->success('Program berhasil dibuat');
 
-        return redirect()->route('skpd.show', $data->skpd_id);
+        return redirect()->route('program.show', $data->id);
     }
 
     /**
@@ -76,12 +76,6 @@ class ProgramController extends Controller
      */
     public function show($id, Request $request)
     {
-        //  // Validate SKPD ID
-        //  if (!$request->skpd_id) {
-        //     notify()->warning('SKPD ID tidak ditemukan');
-        //     return redirect()->back();
-        // }
-
         $data = $this->program->find($id);
 
         if (!$data) {
@@ -108,24 +102,18 @@ class ProgramController extends Controller
      */
     public function edit($id, Request $request)
     {
-        // Validate SKPD ID
-        if (!$request->skpd_id) {
-            notify()->warning('SKPD ID tidak ditemukan');
-            return redirect()->back();
-        }
-
-        $skpd = $this->skpd->find($request->skpd_id);
-
-        // Check Null SKPD
-        if (!$skpd) {
-            notify()->warning('Skpd tidak ditemukan');
-            return redirect()->back();
-        }
-
         $data = $this->program->find($id);
 
         if (!$data) {
             notify()->warning('Program tidak ditemukan');
+            return redirect()->back();
+        }
+
+        $skpd = $this->skpd->find($data->skpd_id);
+
+        // Check Null SKPD
+        if (!$skpd) {
+            notify()->warning('Skpd tidak ditemukan');
             return redirect()->back();
         }
 
@@ -145,7 +133,7 @@ class ProgramController extends Controller
 
         notify()->success('Program berhasil diupdate');
 
-        return redirect()->route('skpd.show', $data->skpd_id);
+        return redirect()->route('program.show', $data->id);
     }
 
     /**

@@ -66,27 +66,91 @@ Breadcrumbs::for('skpd_show', function ($trail, $skpd) {
  * 
  */
 
- // Home > SKPD > Program > Create
- Breadcrumbs::for('program_new', function ($trail, $skpd) {
-    $trail->parent('skpd_show', $skpd);
-    $trail->push('Program');
+ // Home > Program
+ Breadcrumbs::for('program', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Program', route('program.index'));
+});
+
+ // Home > Program > Create
+ Breadcrumbs::for('program_new', function ($trail) {
+    $trail->parent('program');
     $trail->push('Tambah');
  });
 
- // Home > SKPD > Program > Edit
- Breadcrumbs::for('program_edit', function ($trail, $skpd, $program) {
-    $trail->parent('skpd_show', $skpd);
-    $trail->push('Program');
+ // Home > Program > Edit
+ Breadcrumbs::for('program_edit', function ($trail, $program) {
+    $trail->parent('program');
+    $trail->push($program->name, route('program.show', ['id' => $program->id]));
     $trail->push('Edit');
-    $trail->push($program->name, route('program.show', ['id' => $program->id, 'skpd_id' => $skpd->id]));
  });
 
- // Home > SKPD > Program > show
- Breadcrumbs::for('program_show', function ($trail, $skpd, $program) {
-    $trail->parent('skpd_show', $skpd);
-    $trail->push('Program');
-    $trail->push($program->name, route('program.show', ['id' => $program->id, 'skpd_id' => $skpd->id]));
+ // Home > Program > show
+ Breadcrumbs::for('program_show', function ($trail, $program) {
+    $trail->parent('program');
+    $trail->push($program->name, route('program.show', ['id' => $program->id]));
  });
+
+/**
+ * Activity =======================================================================
+ * 
+ */
+
+// Home > Activity
+Breadcrumbs::for('activity', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Kegiatan', route('activity.index'));
+});
+
+ // Home > Activity > Create
+ Breadcrumbs::for('activity_new', function ($trail) {
+    $trail->parent('activity');
+    $trail->push('Tambah');
+ });
+
+ // Home > Activity > Edit
+ Breadcrumbs::for('activity_edit', function ($trail, $activity) {
+    $trail->parent('activity');
+    $trail->push($activity->name, route('activity.show', ['id' => $activity->id]));
+    $trail->push('Edit');
+ });
+
+ // Home > Activity > show
+ Breadcrumbs::for('activity_show', function ($trail, $activity) {
+    $trail->parent('activity');
+    $trail->push($activity->name, route('activity.show', ['id' => $activity->id]));
+ });
+
+/**
+ * Work Package =======================================================================
+ * 
+ */
+
+// Home > Work Package
+Breadcrumbs::for('workPackage', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Paket Pekerjaan', route('workPackage.index'));
+});
+
+ // Home > Work Package > Create
+ Breadcrumbs::for('workPackage_new', function ($trail) {
+    $trail->parent('workPackage');
+    $trail->push('Tambah');
+ });
+
+ // Home > Work Package > Edit
+ Breadcrumbs::for('workPackage_edit', function ($trail, $workPackage) {
+    $trail->parent('workPackage');
+    $trail->push($workPackage->name, route('workPackage.show', ['id' => $workPackage->id]));
+    $trail->push('Edit');
+ });
+
+ // Home > Work Package > show
+ Breadcrumbs::for('workPackage_show', function ($trail, $workPackage) {
+    $trail->parent('workPackage');
+    $trail->push($workPackage->name, route('workPackage.show', ['id' => $workPackage->id]));
+ });
+ 
 
 /**
  * Account ========================================================================

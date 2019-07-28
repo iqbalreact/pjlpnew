@@ -1,11 +1,11 @@
 @extends('adminlte::page')
 
-@section('title', 'Detail Program | '.env('APP_NAME'))
+@section('title', 'Detail Kegiatan | '.env('APP_NAME'))
 
 @section('content_header')
     <h1>Detail Kegiatan</h1>
 
-    {{ Breadcrumbs::render('program_show', $program, $data) }}
+    {{ Breadcrumbs::render('activity_show', $data) }}
 @stop
 
 @section('content')

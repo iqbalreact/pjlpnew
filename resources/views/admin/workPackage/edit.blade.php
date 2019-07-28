@@ -5,7 +5,7 @@
 @section('content_header')
     <h1>Kegiatan - Paket Pekerjaan</h1>
 
-    {{ Breadcrumbs::render('program_edit', $activity, $data) }}
+    {{ Breadcrumbs::render('workPackage_edit', $data) }}
 @stop
 
 @section('content')
