@@ -147,7 +147,19 @@ return [
             'submenu' => [
                 [
                     'text' => 'SKPD',
-                    'url'  => 'admin/skpd',
+                    'url'  => 'admin/skpd'
+                ],
+                [
+                    'text' => 'Program',
+                    'url'  => 'admin/program'
+                ],
+                [
+                    'text' => 'Kegiatan',
+                    'url'  => 'admin/activity'
+                ],
+                [
+                    'text' => 'Paket Pekerjaan',
+                    'url'  => 'admin/workPackage'
                 ]
             ]
         ],

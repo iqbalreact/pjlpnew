@@ -4,7 +4,7 @@
             <th>Id</th>
             <th>Kode Program</th>
             <th>Nama</th>
-            <th width="15%">Detail</th>
+            <th width="15%">Action</th>
         </tr>
     </thead>
 </table>         
