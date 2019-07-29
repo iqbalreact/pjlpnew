@@ -9,6 +9,11 @@ use App\Repository\Contracts\DatatablesRepoInterface;
 use App\Services\Contracts\RoleServiceInterface;
 use App\Services\Contracts\ActivityLogServiceInterface;
 
+use App\Models\Skpd;
+use App\Models\Program;
+use App\Models\Activity;
+use App\Models\WorkPackage;
+
 use DataTables;
 
 class DatatablesBuss implements DatatablesBussInterface
@@ -28,6 +33,9 @@ class DatatablesBuss implements DatatablesBussInterface
         $query = $this->datatablesRepo->fetchActivityDatas($request);
 
         return Datatables::of($query)
+                        ->addColumn('program', function (Activity $activity) {
+                            return $activity->program->name;
+                        })
                         ->addColumn('actions', 
                                 ' <a href="{{ URL::route( \'activity.show\', array( $id)) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
                                 <a href="{{ URL::route( \'activity.edit\', array( $id)) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')
@@ -90,6 +98,21 @@ class DatatablesBuss implements DatatablesBussInterface
                         ->make(true);
     }
 
+    public function fetchProgramDatas(Request $request)
+    {
+        $query = $this->datatablesRepo->fetchProgramDatas($request);
+
+        return Datatables::of($query)
+                        ->addColumn('skpd', function (Program $program) {
+                            return $program->skpd->name;
+                        })
+                        ->addColumn('actions', 
+                                ' <a href="{{ URL::route( \'program.show\', array( $id)) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
+                                <a href="{{ URL::route( \'program.edit\', array( $id)) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')
+                        ->rawColumns(['actions'])
+                        ->make(true);
+    }
+
     public function fetchSkpdDatas(Request $request)
     {
         $query = $this->datatablesRepo->fetchSkpdDatas($request);
@@ -102,23 +125,14 @@ class DatatablesBuss implements DatatablesBussInterface
                         ->make(true);
     }
 
-    public function fetchProgramDatas(Request $request)
-    {
-        $query = $this->datatablesRepo->fetchProgramDatas($request);
-
-        return Datatables::of($query)
-                        ->addColumn('actions', 
-                                ' <a href="{{ URL::route( \'program.show\', array( $id)) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
-                                <a href="{{ URL::route( \'program.edit\', array( $id)) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')
-                        ->rawColumns(['actions'])
-                        ->make(true);
-    }
-
     public function fetchWorkPackageDatas(Request $request)
     {
         $query = $this->datatablesRepo->fetchWorkPackageDatas($request);
 
         return Datatables::of($query)
+                        ->addColumn('workPackage', function (WorkPackage $workPackage) {
+                            return $workPackage->activity->name;
+                        })
                         ->addColumn('actions', 
                                 ' <a href="{{ URL::route( \'workPackage.show\', array( $id)) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
                                 <a href="{{ URL::route( \'workPackage.edit\', array( $id)) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')

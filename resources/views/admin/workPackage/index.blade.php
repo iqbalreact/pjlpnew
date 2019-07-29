@@ -23,6 +23,7 @@
                                 <th>Id</th>
                                 <th>Kode Paket Pekerjaan</th>
                                 <th>Nama</th>
+                                <th>Kegiatan</th>
                                 <th width="15%">Action</th>
                             </tr>
                         </thead>
@@ -47,6 +48,7 @@
                 { data: 'id', name: 'id', class:'hide' },
                 { data: 'code', name: 'code', searchable:'true'},
                 { data: 'name', name: 'name', searchable:'true'},
+                { data: 'workPackage', name: 'activity_id', searchable:'true'},
                 { data: 'actions', name: 'actions', searchable: 'false', 'orderable': 'false', 'class': 'text-center'}
             ]
         });
