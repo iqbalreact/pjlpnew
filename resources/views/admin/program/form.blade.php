@@ -23,18 +23,32 @@
         </div>
     </div>
 
-    <div class="form-group {{ $errors->has('skpd_id') ? 'has-error' : '' }}"">
-        <label for="inputSKPD" class="col-sm-2 control-label">SKPD</label>
+    @if(isset($skpd))
+        <div class="form-group {{ $errors->has('skpd_id') ? 'has-error' : '' }}"">
+            <label for="inputSKPD" class="col-sm-2 control-label">SKPD</label>
 
-        <div class="col-sm-10">
-            <input type="text" value="{{ $skpd->name }}" class="form-control" readonly>
-            <input name="skpd_id" type="hidden" value="{{ $skpd->id }}">
+            <div class="col-sm-10">
+                <input type="text" value="{{ $skpd->name }}" class="form-control" readonly>
+                <input name="skpd_id" type="hidden" value="{{ $skpd->id }}">
 
-            @if ($errors->has('skpd_id'))
-                <span class="help-block">{{ $errors->first('skpd_id') }}</span>
-            @endif
+                @if ($errors->has('skpd_id'))
+                    <span class="help-block">{{ $errors->first('skpd_id') }}</span>
+                @endif
+            </div>
         </div>
-    </div>
+    @else
+        <div class="form-group {{ $errors->has('skpd_id') ? 'has-error' : '' }}">
+            <label for="inputEmail" class="col-sm-2 control-label">SKPD @include('components.required')</label>
+
+            <div class="col-sm-10">
+                <select name="skpd_id" id="skpdSelect" class="form-control"></select>
+                
+                @if ($errors->has('skpd_id'))
+                    <span class="help-block">{{ $errors->first('skpd_id') }}</span>
+                @endif
+            </div>
+        </div>
+    @endif
 
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
@@ -51,3 +65,34 @@
         </div>
     </div>
 </div>
+
+@section('js')
+    <script>
+        $(function() {
+            $("#skpdSelect").select2({
+                dropdownAutoWidth : true,
+                width: '100%',
+                placeholder: "Pilih SKPD",
+                ajax: {
+                    url: "{{ route('select.skpd') }}",
+                    dataType: 'json',
+                    data: function (params) {
+                        return {
+                            q: params.term,
+                        };
+                    },
+                    processResults: function (data) {
+
+                        var res = data.map(function (item) {
+                            return {id: item.id, text: item.name};
+                        });
+                        
+                        return {
+                            results: res
+                        };
+                    }
+                }
+            });
+        });
+    </script>
+@endsection

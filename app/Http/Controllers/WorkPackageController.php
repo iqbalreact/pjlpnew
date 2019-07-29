@@ -38,8 +38,7 @@ class WorkPackageController extends Controller
     {
         // Validate SKPD ID
         if (!$request->activity_id) {
-            notify()->warning('Kegiatan ID tidak ditemukan');
-            return redirect()->back();
+            return view('admin.workPackage.create');
         }
 
         $activity = $this->activity->find($request->activity_id);

@@ -23,18 +23,35 @@
         </div>
     </div>
 
-    <div class="form-group {{ $errors->has('activity_id') ? 'has-error' : '' }}"">
-        <label for="inputActivity" class="col-sm-2 control-label">Kegiatan</label>
+    @if(isset($activity))
+        <div class="form-group {{ $errors->has('activity_id') ? 'has-error' : '' }}"">
+            <label for="inputActivity" class="col-sm-2 control-label">Kegiatan</label>
 
-        <div class="col-sm-10">
-            <input type="text" value="{{ $activity->name }}" class="form-control" readonly>
-            <input name="activity_id" type="hidden" value="{{ $activity->id }}">
+            <div class="col-sm-10">
+                <input type="text" value="{{ $activity->name }}" class="form-control" readonly>
+                <input name="activity_id" type="hidden" value="{{ $activity->id }}">
 
-            @if ($errors->has('activity_id'))
-                <span class="help-block">{{ $errors->first('activity_id') }}</span>
-            @endif
+                @if ($errors->has('activity_id'))
+                    <span class="help-block">{{ $errors->first('activity_id') }}</span>
+                @endif
+            </div>
         </div>
-    </div>
+    @else
+        <div class="form-group {{ $errors->has('activity_id') ? 'has-error' : '' }}">
+            <label for="inputProgram" class="col-sm-2 control-label">Kegiatan @include('components.required')</label>
+
+            <div class="col-sm-10">
+                <select name="activity_id" id="activitySelect" class="form-control"></select>
+                
+                @if ($errors->has('activity_id'))
+                    <span class="help-block">{{ $errors->first('activity_id') }}</span>
+                @endif
+            </div>
+        </div>
+    @endif
+
+
+   
 
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
@@ -51,3 +68,34 @@
         </div>
     </div>
 </div>
+
+@section('js')
+    <script>
+        $(function() {
+            $("#activitySelect").select2({
+                dropdownAutoWidth : true,
+                width: '100%',
+                placeholder: "Pilih Paket Pekerjaan",
+                ajax: {
+                    url: "{{ route('select.activity') }}",
+                    dataType: 'json',
+                    data: function (params) {
+                        return {
+                            q: params.term,
+                        };
+                    },
+                    processResults: function (data) {
+
+                        var res = data.map(function (item) {
+                            return {id: item.id, text: item.name};
+                        });
+                        
+                        return {
+                            results: res
+                        };
+                    }
+                }
+            });
+        });
+    </script>
+@endsection

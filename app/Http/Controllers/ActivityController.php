@@ -38,8 +38,7 @@ class ActivityController extends Controller
     {
         // Validate SKPD ID
         if (!$request->program_id) {
-            notify()->warning('Program ID tidak ditemukan');
-            return redirect()->back();
+            return view('admin.activity.create');            
         }
 
         $program = $this->program->find($request->program_id);
@@ -145,5 +144,18 @@ class ActivityController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+        /**
+     * Select2 API
+     * 
+     */
+    public function selectList(Request $request)
+    {
+        $name = $request->q;
+
+        $res = $this->activity->getByName($name);
+
+        return response()->json($res);
     }
 }

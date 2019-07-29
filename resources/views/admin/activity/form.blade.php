@@ -23,18 +23,32 @@
         </div>
     </div>
 
-    <div class="form-group {{ $errors->has('program_id') ? 'has-error' : '' }}"">
-        <label for="inputProgram" class="col-sm-2 control-label">Kegiatan</label>
+    @if(isset($program))
+        <div class="form-group {{ $errors->has('program_id') ? 'has-error' : '' }}"">
+            <label for="inputProgram" class="col-sm-2 control-label">Kegiatan</label>
 
-        <div class="col-sm-10">
-            <input type="text" value="{{ $program->name }}" class="form-control" readonly>
-            <input name="program_id" type="hidden" value="{{ $program->id }}">
+            <div class="col-sm-10">
+                <input type="text" value="{{ $program->name }}" class="form-control" readonly>
+                <input name="program_id" type="hidden" value="{{ $program->id }}">
 
-            @if ($errors->has('program_id'))
-                <span class="help-block">{{ $errors->first('program_id') }}</span>
-            @endif
+                @if ($errors->has('program_id'))
+                    <span class="help-block">{{ $errors->first('program_id') }}</span>
+                @endif
+            </div>
         </div>
-    </div>
+    @else
+        <div class="form-group {{ $errors->has('program_id') ? 'has-error' : '' }}">
+            <label for="inputProgram" class="col-sm-2 control-label">Kegiatan @include('components.required')</label>
+
+            <div class="col-sm-10">
+                <select name="program_id" id="programSelect" class="form-control"></select>
+                
+                @if ($errors->has('program_id'))
+                    <span class="help-block">{{ $errors->first('program_id') }}</span>
+                @endif
+            </div>
+        </div>
+    @endif
 
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
@@ -51,3 +65,34 @@
         </div>
     </div>
 </div>
+
+@section('js')
+    <script>
+        $(function() {
+            $("#programSelect").select2({
+                dropdownAutoWidth : true,
+                width: '100%',
+                placeholder: "Pilih Program",
+                ajax: {
+                    url: "{{ route('select.program') }}",
+                    dataType: 'json',
+                    data: function (params) {
+                        return {
+                            q: params.term,
+                        };
+                    },
+                    processResults: function (data) {
+
+                        var res = data.map(function (item) {
+                            return {id: item.id, text: item.name};
+                        });
+                        
+                        return {
+                            results: res
+                        };
+                    }
+                }
+            });
+        });
+    </script>
+@endsection

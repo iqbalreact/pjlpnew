@@ -14,7 +14,7 @@
             <div class="box box-primary">
                 <div class="box-header">
                     <h3 class="box-title">List Kegiatan</h3>
-                    {{-- <a href="{{ route('program.create') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Tambah</a> --}}
+                    <a href="{{ route('activity.create') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Tambah</a>
                 </div>
                 <div class="box-body">
                     <table id="activity-table" class="table">

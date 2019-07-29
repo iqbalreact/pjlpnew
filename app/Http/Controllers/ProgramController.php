@@ -38,8 +38,7 @@ class ProgramController extends Controller
     {
         // Validate SKPD ID
         if (!$request->skpd_id) {
-            notify()->warning('SKPD ID tidak ditemukan');
-            return redirect()->back();
+            return view('admin.program.create');        
         }
 
         $skpd = $this->skpd->find($request->skpd_id);
@@ -145,5 +144,18 @@ class ProgramController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Select2 API
+     * 
+     */
+    public function selectList(Request $request)
+    {
+        $name = $request->q;
+
+        $res = $this->program->getByName($name);
+
+        return response()->json($res);
     }
 }
