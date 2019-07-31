@@ -10,6 +10,7 @@ use App\Services\Contracts\RoleServiceInterface;
 use App\Services\Contracts\ActivityLogServiceInterface;
 
 use App\Models\Skpd;
+use App\Models\Position;
 use App\Models\Program;
 use App\Models\Activity;
 use App\Models\WorkPackage;
@@ -115,6 +116,9 @@ class DatatablesBuss implements DatatablesBussInterface
         $query = $this->datatablesRepo->fetchPositionDatas($request);
 
         return Datatables::of($query)
+                        ->addColumn('category', function (Position $position) {
+                            return $position->positionCategory->name;
+                        })
                         ->addColumn('actions', 
                                 ' <a href="{{ URL::route( \'position.show\', array( $id)) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
                                 <a href="{{ URL::route( \'position.edit\', array( $id)) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')

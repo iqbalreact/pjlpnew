@@ -22,6 +22,7 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Name</th>
+                                <th>Kategrori</th>
                                 <th width="15%">Action</th>
                             </tr>
                         </thead>
@@ -45,6 +46,7 @@
             columns: [
                 { data: 'id', name: 'id', class:'hide' },
                 { data: 'name', name: 'name', searchable:'true'},
+                { data: 'category', name: 'position_category_id', searchable:'true'},
                 { data: 'actions', name: 'actions', searchable: 'false', 'orderable': 'false', 'class': 'text-center'}
             ]
         });
