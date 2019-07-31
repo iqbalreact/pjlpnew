@@ -34,6 +34,34 @@ Breadcrumbs::for('employee_show', function ($trail, $employee) {
 });
 
 /**
+ * Functionary ====================================================================
+ */
+
+// Home > Functionary
+Breadcrumbs::for('functionary', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Pejabat', route('functionary.index'));
+});
+
+// Home > Functionary > New
+Breadcrumbs::for('functionary_new', function ($trail) {
+    $trail->parent('functionary');
+    $trail->push('Tambah');
+});
+
+// Home > Functionary > Edit
+Breadcrumbs::for('functionary_edit', function ($trail) {
+    $trail->parent('functionary');
+    $trail->push('Edit');
+});
+
+// Home > Functionary > Show
+Breadcrumbs::for('functionary_show', function ($trail, $functionary) {
+    $trail->parent('functionary');
+    $trail->push($functionary->name);
+});
+
+/**
  * SKPD ========================================================================
  */
 

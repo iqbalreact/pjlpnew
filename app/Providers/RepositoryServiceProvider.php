@@ -16,6 +16,9 @@ use App\Repository\DatatablesRepo;
 use App\Repository\Contracts\EmployeeRepoInterface;
 use App\Repository\EmployeeRepo;
 
+use App\Repository\Contracts\FunctionaryRepoInterface;
+use App\Repository\FunctionaryRepo;
+
 use App\Repository\Contracts\ProgramRepoInterface;
 use App\Repository\ProgramRepo;
 
@@ -48,6 +51,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(AccountRepoInterface::class, AccountRepo::class);
         $this->app->bind(DatatablesRepoInterface::class, DatatablesRepo::class);
         $this->app->bind(EmployeeRepoInterface::class, EmployeeRepo::class);    
+        $this->app->bind(FunctionaryRepoInterface::class, FunctionaryRepo::class);    
         $this->app->bind(ProgramRepoInterface::class, ProgramRepo::class);    
         $this->app->bind(SkpdRepoInterface::class, SkpdRepo::class);    
         $this->app->bind(WorkPackageRepoInterface::class, WorkPackageRepo::class);    

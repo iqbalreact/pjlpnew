@@ -31,6 +31,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('activity', 'ActivityController');
     Route::resource('account', 'AccountController');
     Route::resource('employee', 'EmployeeController');
+    Route::resource('functionary', 'FunctionaryController');
     Route::resource('log', 'LogController')->only('index', 'show');
     Route::resource('program', 'ProgramController');
     Route::resource('skpd', 'SkpdController');
@@ -43,6 +44,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::get('activity', 'DatatablesController@fetchActivityDatas')->name('fetch.activity');
         Route::get('activitylog', 'DatatablesController@fetchActivityLog')->name('fetch.activityLog');
         Route::get('employee', 'DatatablesController@fetchEmployeeDatas')->name('fetch.employee');
+        Route::get('functionary', 'DatatablesController@fetchFunctionaryDatas')->name('fetch.functionary');
         Route::get('program', 'DatatablesController@fetchProgramDatas')->name('fetch.program');
         Route::get('skpd', 'DatatablesController@fetchSkpdDatas')->name('fetch.skpd');
         Route::get('workPackage', 'DatatablesController@fetchWorkPackageDatas')->name('fetch.workPackage');

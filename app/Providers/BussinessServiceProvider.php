@@ -16,6 +16,9 @@ use App\Bussiness\DatatablesBuss;
 use App\Bussiness\Contracts\EmployeeBussInterface;
 use App\Bussiness\EmployeeBuss;
 
+use App\Bussiness\Contracts\FunctionaryBussInterface;
+use App\Bussiness\FunctionaryBuss;
+
 use App\Bussiness\Contracts\ProgramBussInterface;
 use App\Bussiness\ProgramBuss;
 
@@ -48,6 +51,7 @@ class BussinessServiceProvider extends ServiceProvider
         $this->app->bind(ActivityBussInterface::class, ActivityBuss::class);
         $this->app->bind(DatatablesBussInterface::class, DatatablesBuss::class);
         $this->app->bind(EmployeeBussInterface::class, EmployeeBuss::class);
+        $this->app->bind(FunctionaryBussInterface::class, FunctionaryBuss::class);
         $this->app->bind(ProgramBussInterface::class, ProgramBuss::class);
         $this->app->bind(SkpdBussInterface::class, SkpdBuss::class);
         $this->app->bind(WorkPackageBussInterface::class, WorkPackageBuss::class);

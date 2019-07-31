@@ -160,6 +160,10 @@ return [
                 [
                     'text' => 'Paket Pekerjaan',
                     'url'  => 'admin/workPackage'
+                ],
+                [
+                    'text' => 'Pejabat',
+                    'url'  => 'admin/functionary'
                 ]
             ]
         ],
