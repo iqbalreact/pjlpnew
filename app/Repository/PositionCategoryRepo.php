@@ -12,7 +12,7 @@ class PositionCategoryRepo implements PositionCategoryRepoInterface
 {
     public function all()
     {
-        return PositionCategory::all();
+        return PositionCategory::orderBy('name', 'asc')->get();
     }
 
     public function find($id)
