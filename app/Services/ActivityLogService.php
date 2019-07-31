@@ -11,11 +11,15 @@ use Spatie\Activitylog\Models\Activity;
 class ActivityLogService implements ActivityLogServiceInterface
 {
     protected $subjectRoute = [
-        'App\Models\Employee'       => '/admin/employee/',
-        'App\Models\Functionary'    => '/admin/functionary/',
-        'App\Models\User'           => '/admin/account/',
-        'App\Models\Program'        => '/admin/program/',
-        'App\Models\Skpd'           => '/admin/skpd/'
+        'App\Models\Activity'           => '/admin/activity/',
+        'App\Models\Employee'           => '/admin/employee/',
+        'App\Models\Functionary'        => '/admin/functionary/',
+        'App\Models\User'               => '/admin/account/',
+        'App\Models\Position'           => '/admin/position/',
+        'App\Models\PositionCategory'   => '/admin/positionCategory/',
+        'App\Models\Program'            => '/admin/program/',
+        'App\Models\Skpd'               => '/admin/skpd/',
+        'App\Models\WorkPackage'        => '/admin/workPackage/',
         // 'App\Models\WorkPackage'    => '/admin/workpackage/',
     ]; 
 

@@ -21,7 +21,7 @@
                         @include('admin.activity.show.about')
                     </div>
                     <div class="tab-pane" id="log">
-                        @include('admin.partials.activityLog', ['subject_id' => $data->id, 'models' => 'App\Models\Program'])
+                        @include('admin.partials.activityLog', ['subject_id' => $data->id, 'models' => 'App\Models\Activity'])
                     </div>
                 </div>
             </div>

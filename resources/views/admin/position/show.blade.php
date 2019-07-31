@@ -21,7 +21,7 @@
                         @include('admin.position.show.about')
                     </div>
                     <div class="tab-pane" id="log">
-                        {{-- @include('admin.partials.activityLog', ['subject_id' => $data->id, 'models' => 'App\Models\Skpd']) --}}
+                        @include('admin.partials.activityLog', ['subject_id' => $data->id, 'models' => 'App\Models\Position'])
                     </div>
                 </div>
             </div>
