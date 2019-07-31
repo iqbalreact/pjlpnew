@@ -4,20 +4,15 @@ namespace App\Repository;
 
 use Illuminate\Http\Request;
 
-use App\Repository\Contracts\PositionCategoryRepoInterface;
+use App\Repository\Contracts\PositionRepoInterface;
 
-use App\Models\PositionCategory;
+use App\Models\Position;
 
-class PositionCategoryRepo implements PositionCategoryRepoInterface
+class PositionRepo implements PositionRepoInterface
 {
-    public function all()
-    {
-        return PositionCategory::all();
-    }
-
     public function find($id)
     {
-        $data = PositionCategory::find($id);
+        $data = Position::find($id);
         
         if (is_null($data)) {
             return false;
@@ -28,8 +23,9 @@ class PositionCategoryRepo implements PositionCategoryRepoInterface
 
     public function store(Request $request)
     {
-        $data = new PositionCategory();
-        $data->name         = $request->name;
+        $data = new Position();
+        $data->name                 = $request->name;
+        $data->position_category_id = $request->position_category_id;
         $data->save();
 
         return $data;
@@ -37,13 +33,14 @@ class PositionCategoryRepo implements PositionCategoryRepoInterface
 
     public function update(Request $request, $id)
     {
-        $data = PositionCategory::find($id);
+        $data = Position::find($id);
 
         if (is_null($data)) {
             return false;
         }
 
         $data->name         = $request->name;
+        $data->position_category_id = $request->position_category_id;
         $data->update();
 
         return $data;

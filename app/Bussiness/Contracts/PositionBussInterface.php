@@ -4,13 +4,9 @@ namespace App\Bussiness\Contracts;
 
 use Illuminate\Http\Request;
 
-interface PositionCategoryBussInterface
+interface PositionBussInterface
 {
-    public function all();
-
     public function find($id);
-
-    public function pluckCategory();
 
     public function store(Request $request);    
 

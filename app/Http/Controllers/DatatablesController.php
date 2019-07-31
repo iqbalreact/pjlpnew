@@ -38,14 +38,19 @@ class DatatablesController extends Controller
 		return $this->datatables->fetchFunctionaryDatas($request);
 	}
 
-	public function fetchProgramDatas(Request $request)
+	public function fetchPositionDatas(Request $request)
 	{
-		return $this->datatables->fetchProgramDatas($request);
+		return $this->datatables->fetchPositionDatas($request);
 	}
 
 	public function fetchPositionCategoryDatas(Request $request)
 	{
 		return $this->datatables->fetchPositionCategoryDatas($request);
+	}
+
+	public function fetchProgramDatas(Request $request)
+	{
+		return $this->datatables->fetchProgramDatas($request);
 	}
 
 	public function fetchSkpdDatas(Request $request)

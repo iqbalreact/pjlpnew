@@ -110,17 +110,14 @@ class DatatablesBuss implements DatatablesBussInterface
                         ->make(true);
     }
 
-    public function fetchProgramDatas(Request $request)
+    public function fetchPositionDatas(Request $request)
     {
-        $query = $this->datatablesRepo->fetchProgramDatas($request);
+        $query = $this->datatablesRepo->fetchPositionDatas($request);
 
         return Datatables::of($query)
-                        ->addColumn('skpd', function (Program $program) {
-                            return $program->skpd->name;
-                        })
                         ->addColumn('actions', 
-                                ' <a href="{{ URL::route( \'program.show\', array( $id)) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
-                                <a href="{{ URL::route( \'program.edit\', array( $id)) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')
+                                ' <a href="{{ URL::route( \'position.show\', array( $id)) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
+                                <a href="{{ URL::route( \'position.edit\', array( $id)) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')
                         ->rawColumns(['actions'])
                         ->make(true);
     }
@@ -133,6 +130,21 @@ class DatatablesBuss implements DatatablesBussInterface
                         ->addColumn('actions', 
                                 ' <a href="{{ URL::route( \'positionCategory.show\', array( $id)) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
                                 <a href="{{ URL::route( \'positionCategory.edit\', array( $id)) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')
+                        ->rawColumns(['actions'])
+                        ->make(true);
+    }
+
+    public function fetchProgramDatas(Request $request)
+    {
+        $query = $this->datatablesRepo->fetchProgramDatas($request);
+
+        return Datatables::of($query)
+                        ->addColumn('skpd', function (Program $program) {
+                            return $program->skpd->name;
+                        })
+                        ->addColumn('actions', 
+                                ' <a href="{{ URL::route( \'program.show\', array( $id)) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
+                                <a href="{{ URL::route( \'program.edit\', array( $id)) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')
                         ->rawColumns(['actions'])
                         ->make(true);
     }

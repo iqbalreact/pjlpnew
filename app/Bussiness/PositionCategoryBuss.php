@@ -14,9 +14,19 @@ class PositionCategoryBuss implements PositionCategoryBussInterface
         $this->positionCategoryRepo = $positionCategoryRepo;
     }
 
+    public function all()
+    {
+        return $this->positionCategoryRepo->all();
+    }
+
     public function find($id)
     {
         return $this->positionCategoryRepo->find($id);
+    }
+
+    public function pluckCategory()
+    {
+        return $this->all()->pluck('name', 'id');
     }
 
     public function store(Request $request)

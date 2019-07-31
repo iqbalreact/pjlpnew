@@ -4,10 +4,8 @@ namespace App\Repository\Contracts;
 
 use Illuminate\Http\Request;
 
-interface PositionCategoryRepoInterface
+interface PositionRepoInterface
 {
-    public function all();
-    
     public function find($id);
 
     public function store(Request $request);    

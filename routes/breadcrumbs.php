@@ -119,6 +119,36 @@ Breadcrumbs::for('skpd_show', function ($trail, $skpd) {
     $trail->push($program->name, route('program.show', ['id' => $program->id]));
  });
 
+  /**
+ * Position =======================================================================
+ * 
+ */
+
+ // Home > Position
+ Breadcrumbs::for('position', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Posisi', route('position.index'));
+});
+
+ // Home > Position > Create
+ Breadcrumbs::for('position_new', function ($trail) {
+    $trail->parent('position');
+    $trail->push('Tambah');
+ });
+
+ // Home > Position > Edit
+ Breadcrumbs::for('position_edit', function ($trail, $position) {
+    $trail->parent('position');
+    $trail->push($position->name, route('position.show', ['id' => $position->id]));
+    $trail->push('Edit');
+ });
+
+ // Home > Position > show
+ Breadcrumbs::for('position_show', function ($trail, $position) {
+    $trail->parent('position');
+    $trail->push($position->name);
+ });
+
  /**
  * Position Category =======================================================================
  * 

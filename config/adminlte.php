@@ -168,6 +168,10 @@ return [
                 [
                     'text' => 'Kategori Posisi',
                     'url'  => 'admin/positionCategory'
+                ],
+                [
+                    'text' => 'Posisi',
+                    'url'  => 'admin/position'
                 ]
             ]
         ],
