@@ -40,7 +40,7 @@
             processing: true,
             serverSide: true,
             responsive: true,
-            order: [[ 0, 'desc' ]],
+            order: [[ 0, 'asc' ]],
             deferRender:    true,
             ajax: '{!! route('fetch.skpd') !!}',
             columns: [
