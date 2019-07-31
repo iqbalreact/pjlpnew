@@ -125,6 +125,18 @@ class DatatablesBuss implements DatatablesBussInterface
                         ->make(true);
     }
 
+    public function fetchPositionCategoryDatas(Request $request)
+    {
+        $query = $this->datatablesRepo->fetchPositionCategoryDatas($request);
+
+        return Datatables::of($query)
+                        ->addColumn('actions', 
+                                ' <a href="{{ URL::route( \'positionCategory.show\', array( $id)) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
+                                <a href="{{ URL::route( \'positionCategory.edit\', array( $id)) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')
+                        ->rawColumns(['actions'])
+                        ->make(true);
+    }
+
     public function fetchSkpdDatas(Request $request)
     {
         $query = $this->datatablesRepo->fetchSkpdDatas($request);

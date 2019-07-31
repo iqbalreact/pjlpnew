@@ -22,6 +22,9 @@ use App\Repository\FunctionaryRepo;
 use App\Repository\Contracts\ProgramRepoInterface;
 use App\Repository\ProgramRepo;
 
+use App\Repository\Contracts\PositionCategoryRepoInterface;
+use App\Repository\PositionCategoryRepo;
+
 use App\Repository\Contracts\SkpdRepoInterface;
 use App\Repository\SkpdRepo;
 
@@ -53,6 +56,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(EmployeeRepoInterface::class, EmployeeRepo::class);    
         $this->app->bind(FunctionaryRepoInterface::class, FunctionaryRepo::class);    
         $this->app->bind(ProgramRepoInterface::class, ProgramRepo::class);    
+        $this->app->bind(PositionCategoryRepoInterface::class, PositionCategoryRepo::class);    
         $this->app->bind(SkpdRepoInterface::class, SkpdRepo::class);    
         $this->app->bind(WorkPackageRepoInterface::class, WorkPackageRepo::class);    
     }

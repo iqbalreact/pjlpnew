@@ -22,6 +22,9 @@ use App\Bussiness\FunctionaryBuss;
 use App\Bussiness\Contracts\ProgramBussInterface;
 use App\Bussiness\ProgramBuss;
 
+use App\Bussiness\Contracts\PositionCategoryBussInterface;
+use App\Bussiness\PositionCategoryBuss;
+
 use App\Bussiness\Contracts\SkpdBussInterface;
 use App\Bussiness\SkpdBuss;
 
@@ -53,6 +56,7 @@ class BussinessServiceProvider extends ServiceProvider
         $this->app->bind(EmployeeBussInterface::class, EmployeeBuss::class);
         $this->app->bind(FunctionaryBussInterface::class, FunctionaryBuss::class);
         $this->app->bind(ProgramBussInterface::class, ProgramBuss::class);
+        $this->app->bind(PositionCategoryBussInterface::class, PositionCategoryBuss::class);
         $this->app->bind(SkpdBussInterface::class, SkpdBuss::class);
         $this->app->bind(WorkPackageBussInterface::class, WorkPackageBuss::class);
     }

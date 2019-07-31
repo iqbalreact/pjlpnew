@@ -13,6 +13,7 @@ use App\Models\Employee;
 use App\Models\Functionary;
 use App\Models\Skpd;
 use App\Models\Program;
+use App\Models\PositionCategory;
 use App\Models\User;
 use App\Models\WorkPackage;
 
@@ -67,6 +68,13 @@ class DatatablesRepo implements DatatablesRepoInterface
     public function fetchFunctionaryDatas(Request $request)
     {
     	$datas = Functionary::query();
+
+        return $datas;
+    }
+
+    public function fetchPositionCategoryDatas(Request $request)
+    {
+    	$datas = PositionCategory::query();
 
         return $datas;
     }

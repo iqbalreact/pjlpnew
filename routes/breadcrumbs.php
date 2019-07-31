@@ -119,6 +119,36 @@ Breadcrumbs::for('skpd_show', function ($trail, $skpd) {
     $trail->push($program->name, route('program.show', ['id' => $program->id]));
  });
 
+ /**
+ * Position Category =======================================================================
+ * 
+ */
+
+ // Home > Position Category
+ Breadcrumbs::for('positionCategory', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Kategori Posisi', route('positionCategory.index'));
+});
+
+ // Home > Position Category > Create
+ Breadcrumbs::for('positionCategory_new', function ($trail) {
+    $trail->parent('positionCategory');
+    $trail->push('Tambah');
+ });
+
+ // Home > Position Category > Edit
+ Breadcrumbs::for('positionCategory_edit', function ($trail, $program) {
+    $trail->parent('positionCategory');
+    $trail->push($program->name, route('program.show', ['id' => $program->id]));
+    $trail->push('Edit');
+ });
+
+ // Home > Position Category > show
+ Breadcrumbs::for('positionCategory_show', function ($trail, $positionCategory) {
+    $trail->parent('positionCategory');
+    $trail->push($positionCategory->name);
+ });
+
 /**
  * Activity =======================================================================
  * 
