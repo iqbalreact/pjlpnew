@@ -13,7 +13,7 @@ class SkpdTableSeeder extends Seeder
      */
     public function run()
     {
-       // Real Content
+        // Real Content
         $realdata = [
             ['number'=> '001', 'name' => 'Sekretariat Daerah Kota Pontianak'],
             ['number'=> '002', 'name' => 'Sekretariat DPRD Kota Pontianak'],
