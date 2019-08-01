@@ -18,6 +18,11 @@ class OwnWorkPackageScope implements Scope
     public function apply(Builder $builder, Model $model)
     {
         $user = \Auth::user();
+
+        if (empty($user)) {
+            return;
+        }
+        
         $role = $user->getRoleNames()->toArray();
 
         if (!in_array('superadmin', $role)) {

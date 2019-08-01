@@ -18,11 +18,15 @@ class SkpdScope implements Scope
     public function apply(Builder $builder, Model $model)
     {
         $user = \Auth::user();
-        $role = $user->getRoleNames()->toArray();
+        
+        if (empty($user)) {
+            return;
+        }
 
+        $role = $user->getRoleNames()->toArray();
+        
         if (!in_array('superadmin', $role)) {
             $builder->where('id', $user->skpd_id);
         }
-
     }
 }
