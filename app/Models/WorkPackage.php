@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Activity;
 
+use App\Scopes\OwnWorkPackageScope;
+
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\Traits\CausesActivity;
 
@@ -24,6 +26,13 @@ class WorkPackage extends Model
         'name', 
         'activity_id'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new OwnWorkPackageScope);
+    }
 
     public function activity()
     {

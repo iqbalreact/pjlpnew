@@ -10,4 +10,20 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function isAdmin()
+    {
+        $roles = \Auth::user()->getRoleNames()->toArray();
+
+        if(!in_array('superadmin', $roles)) {
+            return false;
+        };
+
+        return true;
+    }
+
+    public function getSkpdId()
+    {
+        return \Auth::user()->skpd_id;
+    }
 }

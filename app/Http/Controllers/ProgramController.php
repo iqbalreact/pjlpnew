@@ -37,11 +37,13 @@ class ProgramController extends Controller
     public function create(Request $request)
     {
         // Validate SKPD ID
-        if (!$request->skpd_id) {
+        if ($this->isAdmin()) {
             return view('admin.program.create');        
         }
 
-        $skpd = $this->skpd->find($request->skpd_id);
+        $skpd_id = !is_null($this->getSkpdId()) ? $this->getSkpdId() : $request->skpd_id; 
+
+        $skpd = $this->skpd->find($skpd_id);
 
         // Check Null SKPD
         if (!$skpd) {

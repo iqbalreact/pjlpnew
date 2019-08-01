@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Activty;
 use App\Models\Skpd;
 
+use App\Scopes\OwnProgramScope;
+
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\Traits\CausesActivity;
 
@@ -25,6 +27,13 @@ class Program extends Model
         'name', 
         'skpd_id'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new OwnProgramScope);
+    }
     
     public function activities()
     {

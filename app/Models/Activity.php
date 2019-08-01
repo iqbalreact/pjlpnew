@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Program;
 use App\Models\WorkPackage;
 
+use App\Scopes\OwnActivityScope;
+
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\Traits\CausesActivity;
 
@@ -25,6 +27,13 @@ class Activity extends Model
         'name', 
         'program_id'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new OwnActivityScope);
+    }
 
     public function program()
     {

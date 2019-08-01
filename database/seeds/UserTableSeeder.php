@@ -25,6 +25,7 @@ class UserTableSeeder extends Seeder
         $user->name         = 'Admin SKPD';
         $user->email        = 'skpd@pjlp.dev'; 
         $user->password     = bcrypt('secret');
+        $user->skpd_id      = 1;
         $user->save();
 
         $user->assignRole('adminskpd');
@@ -33,6 +34,7 @@ class UserTableSeeder extends Seeder
         $user->name         = 'Admin PPK';
         $user->email        = 'ppk@pjlp.dev'; 
         $user->password     = bcrypt('secret');
+        $user->skpd_id      = 1;
         $user->save();
 
         $user->assignRole('adminppk');
@@ -41,6 +43,7 @@ class UserTableSeeder extends Seeder
         $user->name         = 'Operator';
         $user->email        = 'operator@pjlp.dev'; 
         $user->password     = bcrypt('secret');
+        $user->skpd_id      = 1;
         $user->save();
 
         $user->assignRole('operator');

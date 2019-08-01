@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Program;
 
+use App\Scopes\SkpdScope;
+
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\Traits\CausesActivity;
 
@@ -34,6 +36,13 @@ class Skpd extends Model
         'website',
         'email'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new SkpdScope);
+    }
 
     public function programs()
     {

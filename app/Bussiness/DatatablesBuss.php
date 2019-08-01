@@ -35,7 +35,7 @@ class DatatablesBuss implements DatatablesBussInterface
 
         return Datatables::of($query)
                         ->addColumn('program', function (Activity $activity) {
-                            return $activity->program->name;
+                            return $activity->program->name ?? '';
                         })
                         ->addColumn('actions', 
                                 ' <a href="{{ URL::route( \'activity.show\', array( $id)) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
