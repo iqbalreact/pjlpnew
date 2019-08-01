@@ -16,6 +16,8 @@ interface DatatablesRepoInterface
 
     public function fetchFunctionaryDatas(Request $request);
 
+    public function fetchOccupationDatas(Request $request);
+
     public function fetchPositionDatas(Request $request);
     
     public function fetchPositionCategoryDatas(Request $request);

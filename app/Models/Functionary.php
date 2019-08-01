@@ -10,6 +10,8 @@ use Spatie\Activitylog\Traits\CausesActivity;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
+use App\Models\Occupation;
+
 class Functionary extends Model implements HasMedia
 {
     use LogsActivity, CausesActivity, HasMediaTrait;
@@ -29,5 +31,10 @@ class Functionary extends Model implements HasMedia
     public function getAvatar()
     {
         return $this->getMedia('avatars')->last() ? $this->getMedia('avatars')->last()->getFullUrl() : '/img/avatar.png';
+    }
+
+    public function occupations()
+    {
+        return $this->hasMany(Occupation::class);
     }
 }

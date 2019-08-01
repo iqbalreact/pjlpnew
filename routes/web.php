@@ -33,6 +33,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('employee', 'EmployeeController');
     Route::resource('functionary', 'FunctionaryController');
     Route::resource('log', 'LogController')->only('index', 'show');
+    Route::resource('occupation', 'OccupationController');
     Route::resource('program', 'ProgramController');
     Route::resource('position', 'PositionController');
     Route::resource('positionCategory', 'PositionCategoryController');
@@ -47,6 +48,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::get('activitylog', 'DatatablesController@fetchActivityLog')->name('fetch.activityLog');
         Route::get('employee', 'DatatablesController@fetchEmployeeDatas')->name('fetch.employee');
         Route::get('functionary', 'DatatablesController@fetchFunctionaryDatas')->name('fetch.functionary');
+        Route::get('occupation', 'DatatablesController@fetchOccupationDatas')->name('fetch.occupation');
         Route::get('program', 'DatatablesController@fetchProgramDatas')->name('fetch.program');
         Route::get('position', 'DatatablesController@fetchPositionDatas')->name('fetch.position');
         Route::get('positionCategory', 'DatatablesController@fetchPositionCategoryDatas')->name('fetch.positionCategory');

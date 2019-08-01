@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Program;
+use App\Models\Occupation;
 
 use App\Scopes\SkpdScope;
 
@@ -42,6 +43,11 @@ class Skpd extends Model
         parent::boot();
 
         static::addGlobalScope(new SkpdScope);
+    }
+
+    public function occupations()
+    {
+        return $this->hasMany(Occupation::class);
     }
 
     public function programs()

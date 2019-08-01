@@ -111,6 +111,18 @@ class DatatablesBuss implements DatatablesBussInterface
                         ->make(true);
     }
 
+    public function fetchOccupationDatas(Request $request)
+    {
+        $query = $this->datatablesRepo->fetchOccupationDatas($request);
+
+        return Datatables::of($query)
+                        ->addColumn('actions', 
+                                ' <a href="{{ URL::route( \'occupation.show\', array( $id )) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
+                                <a href="{{ URL::route( \'occupation.edit\', array( $id )) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')
+                        ->rawColumns(['actions'])
+                        ->make(true);
+    }
+
     public function fetchPositionDatas(Request $request)
     {
         $query = $this->datatablesRepo->fetchPositionDatas($request);

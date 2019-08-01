@@ -11,10 +11,11 @@ use Spatie\Activitylog\Models\Activity as ActivityLog;
 use App\Models\Activity; 
 use App\Models\Employee;
 use App\Models\Functionary;
-use App\Models\Skpd;
+use App\Models\Occupation;
 use App\Models\Position;
 use App\Models\PositionCategory;
 use App\Models\Program;
+use App\Models\Skpd;
 use App\Models\User;
 use App\Models\WorkPackage;
 
@@ -69,6 +70,13 @@ class DatatablesRepo implements DatatablesRepoInterface
     public function fetchFunctionaryDatas(Request $request)
     {
     	$datas = Functionary::query();
+
+        return $datas;
+    }
+
+    public function fetchOccupationDatas(Request $request)
+    {
+    	$datas = Occupation::query();
 
         return $datas;
     }

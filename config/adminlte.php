@@ -166,6 +166,10 @@ return [
                     'url'  => 'admin/functionary'
                 ],
                 [
+                    'text' => 'Jabatan',
+                    'url'  => 'admin/occupation'
+                ],
+                [
                     'text' => 'Kategori Posisi',
                     'url'  => 'admin/positionCategory'
                 ],
