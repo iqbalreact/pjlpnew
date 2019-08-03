@@ -19,6 +19,11 @@ class LocationBuss implements LocationBussInterface
         return $this->locationRepo->find($id);
     }
 
+    public function getByName($name, $skpd_id = null)
+    {
+        return $this->locationRepo->getByName($name, $skpd_id);
+    }
+
     public function store(Request $request)
     {
         $data = $this->locationRepo->store($request);

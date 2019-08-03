@@ -103,18 +103,6 @@
         </div>
     </div>
 
-    {{-- <div class="form-group {{ $errors->has('position_category_id') ? 'has-error' : '' }}">
-        <label for="inputEmail" class="col-sm-2 control-label">Kategori @include('components.required')</label>
-
-        <div class="col-sm-10">
-            {!! Form::select('position_category_id', $categories, $edit ? $data->position_category_id : old('position_category_id') ,['class' => 'form-control'])!!}
-
-            @if ($errors->has('position_category_id'))
-                <span class="help-block">{{ $errors->first('position_category_id') }}</span>
-            @endif
-        </div>
-    </div> --}}
-
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
             <button 

@@ -19,6 +19,11 @@ class PositionBuss implements PositionBussInterface
         return $this->positionRepo->find($id);
     }
 
+    public function getByName($name)
+    {
+        return $this->positionRepo->getByName($name);
+    }
+
     public function store(Request $request)
     {
         $data = $this->positionRepo->store($request);

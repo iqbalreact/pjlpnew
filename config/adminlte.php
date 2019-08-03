@@ -123,7 +123,7 @@ return [
         [
             'text' => 'Kontrak Kerja',
             'icon' => 'book',
-            'url'  => '#'
+            'url'  => 'admin/contract'
         ],
         [
             'text' => 'Penilaian Kinerja',

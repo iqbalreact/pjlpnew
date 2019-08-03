@@ -8,7 +8,7 @@ use App\Repository\Contracts\LocationRepoInterface;
 
 use App\Models\Location;
 
-class LocationRepo implements ContractRepoInterface
+class LocationRepo implements LocationRepoInterface
 {
     public function find($id)
     {
@@ -19,6 +19,19 @@ class LocationRepo implements ContractRepoInterface
         }
         
         return $data;
+    }
+
+    public function getByName($name, $skpd_id = null)
+    {
+        $query = Location::query();
+
+        if (!is_null($skpd_id)) {
+            $query = $query->where('skpd_id', $skpd_id);
+        }
+
+        $query = $query->where('name', 'LIKE', '%'.$name.'%')->take(20)->get();
+
+        return $query;
     }
 
     public function store(Request $request)

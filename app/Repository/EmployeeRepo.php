@@ -39,6 +39,13 @@ class EmployeeRepo implements EmployeeRepoInterface
         return $data;
     }
 
+    public function getByName($name)
+    {
+        $query = Employee::where('name', 'LIKE', '%'.$name.'%')->take(20)->get();
+
+        return $query;
+    }
+
     public function store(Request $request)
     {
         $data = new Employee();

@@ -60,6 +60,9 @@ class SkpdTableSeeder extends Seeder
                             $activity->workPackages()->saveMany(factory(App\Models\WorkPackage::class, 2)->make() );
                         });
                 });
+
+            $u->locations()
+                ->saveMany( factory(App\Models\Location::class, 3)->make() );
         });
     }
 }

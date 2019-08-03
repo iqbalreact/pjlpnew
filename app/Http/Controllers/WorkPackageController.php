@@ -145,4 +145,17 @@ class WorkPackageController extends Controller
     {
         //
     }
+
+    /**
+     * Select2 API
+     * 
+     */
+    public function selectList(Request $request)
+    {
+        $name = $request->q;
+
+        $res = $this->workPackage->getByName($name);
+
+        return response()->json($res);
+    }
 }

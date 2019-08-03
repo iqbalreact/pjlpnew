@@ -4,8 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Bussiness\Contracts\LocationBussInterface;
+
 class LocationController extends Controller
 {
+    public function __construct(LocationBussInterface $location)
+    {
+        $this->location = $location;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -80,5 +87,18 @@ class LocationController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Select2 API
+     * 
+     */
+    public function selectList(Request $request)
+    {
+        $name = $request->q;
+
+        $res = $this->location->getByName($name);
+
+        return response()->json($res);
     }
 }

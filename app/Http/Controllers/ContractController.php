@@ -4,8 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Services\Contracts\StatusServiceInterface;
+
 class ContractController extends Controller
 {
+    public function __construct(
+        StatusServiceInterface $status
+    ) {
+        $this->status       = $status;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +20,7 @@ class ContractController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.contract.index');
     }
 
     /**
@@ -23,7 +30,9 @@ class ContractController extends Controller
      */
     public function create()
     {
-        //
+        $status    = $this->status->statusTransform;
+
+        return view('admin.contract.create', compact('status'));
     }
 
     /**

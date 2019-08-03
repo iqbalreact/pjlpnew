@@ -21,6 +21,13 @@ class PositionRepo implements PositionRepoInterface
         return $data;
     }
 
+    public function getByName($name)
+    {
+        $query = Position::where('name', 'LIKE', '%'.$name.'%')->take(20)->get();
+
+        return $query;
+    }
+
     public function store(Request $request)
     {
         $data = new Position();

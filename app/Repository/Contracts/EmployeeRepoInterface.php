@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 interface EmployeeRepoInterface
 {
     public function find($id);
+
+    public function getByName($name);
     
     public function store(Request $request);    
 

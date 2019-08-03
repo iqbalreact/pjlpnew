@@ -30,8 +30,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::resource('activity', 'ActivityController');
     Route::resource('account', 'AccountController');
+    Route::resource('contract', 'ContractController');
     Route::resource('employee', 'EmployeeController');
     Route::resource('functionary', 'FunctionaryController');
+    Route::resource('location', 'LocationController');
     Route::resource('log', 'LogController')->only('index', 'show');
     Route::resource('occupation', 'OccupationController');
     Route::resource('program', 'ProgramController');
@@ -46,6 +48,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::get('account', 'DatatablesController@fetchAccountDatas')->name('fetch.account');
         Route::get('activity', 'DatatablesController@fetchActivityDatas')->name('fetch.activity');
         Route::get('activitylog', 'DatatablesController@fetchActivityLog')->name('fetch.activityLog');
+        // Route::get('employee', 'DatatablesController@fetchEmployeeDatas')->name('fetch.employee');
         Route::get('employee', 'DatatablesController@fetchEmployeeDatas')->name('fetch.employee');
         Route::get('functionary', 'DatatablesController@fetchFunctionaryDatas')->name('fetch.functionary');
         Route::get('occupation', 'DatatablesController@fetchOccupationDatas')->name('fetch.occupation');
@@ -59,9 +62,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     // Select2
     Route::group(['prefix' => 'select'], function(){
         Route::get('activity', 'ActivityController@selectList')->name('select.activity');
+        Route::get('employee', 'EmployeeController@selectList')->name('select.employee');
         Route::get('functionary', 'FunctionaryController@selectList')->name('select.functionary');
+        Route::get('location', 'LocationController@selectList')->name('select.location');
+        Route::get('position', 'PositionController@selectList')->name('select.position');
         Route::get('program', 'ProgramController@selectList')->name('select.program');
         Route::get('skpd', 'SkpdController@selectList')->name('select.skpd');
+        Route::get('workPackage', 'WorkPackageController@selectList')->name('select.workPackage');
     });
 
     // Route::get('/home', 'HomeController@index')->name('home');

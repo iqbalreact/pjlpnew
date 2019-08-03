@@ -6,6 +6,34 @@ Breadcrumbs::for('dashboard', function ($trail) {
 });
 
 /**
+ * Contract ====================================================================
+ */
+
+// Home > Contract
+Breadcrumbs::for('contract', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Kontrak', route('contract.index'));
+});
+
+// Home > Contract > New
+Breadcrumbs::for('contract_new', function ($trail) {
+    $trail->parent('contract');
+    $trail->push('Tambah');
+});
+
+// Home > Contract > Edit
+Breadcrumbs::for('contract_edit', function ($trail) {
+    $trail->parent('contract');
+    $trail->push('Edit');
+});
+
+// Home > Contract > Show
+Breadcrumbs::for('contract_show', function ($trail) {
+    $trail->parent('contract');
+    $trail->push('Detail');
+});
+
+/**
  * Employee ====================================================================
  */
 
