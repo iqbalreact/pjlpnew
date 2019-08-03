@@ -4,22 +4,30 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Bussiness\Contracts\FunctionaryBussInterface;
 use App\Bussiness\Contracts\OccupationBussInterface;
+use App\Bussiness\Contracts\SkpdBussInterface;
 
 use App\Http\Requests\OccupationRequest;
 
 use App\Services\Contracts\OccupationServiceInterface;
 use App\Services\Contracts\StatusServiceInterface;
 
+use Carbon\Carbon;
+
 class OccupationController extends Controller
 {
     public function __construct(
+        FunctionaryBussInterface $functionary,
         OccupationBussInterface $occupation,
         OccupationServiceInterface $position,
+        SkpdBussInterface $skpd,
         StatusServiceInterface $status
     ) {
+        $this->functionary  = $functionary;
         $this->occupation   = $occupation;
         $this->position     = $position;
+        $this->skpd         = $skpd;
         $this->status       = $status;
     }
 
@@ -82,8 +90,14 @@ class OccupationController extends Controller
             notify()->warning('Jabatan tidak ditemukan');
             return redirect()->back();
         }
+
+        $functionary    = $this->functionary->find($data->functionary_id);
+        $skpd           = $this->skpd->find($data->skpd_id);
+
+        $position   = $this->position->occupationTransform($data->position);
+        $status     = $this->status->statusTransform($data->status);
         
-        return view('admin.occupation.show', compact('data'));
+        return view('admin.occupation.show', compact('data', 'position', 'status', 'functionary', 'skpd'));
     }
 
     /**
@@ -101,10 +115,16 @@ class OccupationController extends Controller
             return redirect()->back();
         }
 
+        $data->start_date   = Carbon::parse($data->start_date)->format('d-m-Y');
+        $data->end_date     = Carbon::parse($data->end_date)->format('d-m-Y');
+
+        $functionary    = $this->functionary->find($data->functionary_id);
+        $skpd           = $this->skpd->find($data->skpd_id);
+
         $positions  = $this->position->occupationTransform;
         $status     = $this->status->statusTransform;
         
-        return view('admin.occupation.edit', compact('data', 'positions', 'status'));
+        return view('admin.occupation.edit', compact('data', 'positions', 'status', 'functionary', 'skpd'));
     }
 
     /**
@@ -116,7 +136,7 @@ class OccupationController extends Controller
      */
     public function update(OccupationRequest $request, $id)
     {
-        $checkActiveOccupation = $this->occupation->checkOccupation($request->functionary_id, $request->start_date, $request->end_date);
+        $checkActiveOccupation = $this->occupation->checkOccupation($request->functionary_id, $request->start_date, $request->end_date, $id);
 
         if ($checkActiveOccupation) {
             notify()->warning('Pejabat masih mempunyai jabatan aktif di periode tersebut');

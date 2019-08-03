@@ -1,18 +1,49 @@
 <div class="box-body">
-    <div class="form-group {{ $errors->has('functionary_id') ? 'has-error' : '' }}">
-        <label for="inputFunctionaryId" class="col-sm-2 control-label">Pejabat @include('components.required')</label>
+    
 
-        <div class="col-sm-10">
-            <select name="functionary_id" id="functionarySelect" class="form-control"></select>
-            
-            @if ($errors->has('functionary_id'))
-                <span class="help-block">{{ $errors->first('functionary_id') }}</span>
-            @endif
+    @if(isset($functionary))
+        <div class="form-group {{ $errors->has('functionary_id') ? 'has-error' : '' }}"">
+            <label for="inputFuntionary" class="col-sm-2 control-label">Pejabat @include('components.required')</label>
+
+            <div class="col-sm-10">
+                <input type="text" value="{{ $functionary->name }}" class="form-control" readonly>
+                <input name="functionary_id" type="hidden" value="{{ $functionary->id }}">
+
+                @if ($errors->has('functionary_id'))
+                    <span class="help-block">{{ $errors->first('functionary_id') }}</span>
+                @endif
+            </div>
         </div>
-    </div>
+    @else
+        <div class="form-group {{ $errors->has('functionary_id') ? 'has-error' : '' }}">
+            <label for="inputFunctionaryId" class="col-sm-2 control-label">Pejabat @include('components.required')</label>
+    
+            <div class="col-sm-10">
+                <select name="functionary_id" id="functionarySelect" class="form-control"></select>
+                
+                @if ($errors->has('functionary_id'))
+                    <span class="help-block">{{ $errors->first('functionary_id') }}</span>
+                @endif
+            </div>
+        </div>
+    @endif
 
-    <div class="form-group {{ $errors->has('skpd_id') ? 'has-error' : '' }}">
-            <label for="inputEmail" class="col-sm-2 control-label">SKPD @include('components.required')</label>
+    @if(isset($functionary))
+        <div class="form-group {{ $errors->has('skpd_id') ? 'has-error' : '' }}"">
+            <label for="inputSKPD" class="col-sm-2 control-label">SKPD @include('components.required')</label>
+
+            <div class="col-sm-10">
+                <input type="text" value="{{ $skpd->name }}" class="form-control" readonly>
+                <input name="skpd_id" type="hidden" value="{{ $skpd->id }}">
+
+                @if ($errors->has('skpd_id'))
+                    <span class="help-block">{{ $errors->first('skpd_id') }}</span>
+                @endif
+            </div>
+        </div>
+    @else
+        <div class="form-group {{ $errors->has('skpd_id') ? 'has-error' : '' }}">
+            <label for="inputSKPD" class="col-sm-2 control-label">SKPD @include('components.required')</label>
     
             <div class="col-sm-10">
                 <select name="skpd_id" id="skpdSelect" class="form-control"></select>
@@ -22,12 +53,13 @@
                 @endif
             </div>
         </div>
+    @endif
 
     <div class="form-group {{ $errors->has('start_date') ? 'has-error' : '' }}">
         <label for="inputStartDate" class="col-sm-2 control-label">Tanggal Mulai @include('components.required')</label>
 
         <div class="col-sm-10">
-            {!! Form::text('start_date', $edit ? $data->name : old('start_date'), ['class' => 'form-control datepicker', 'placeholder'=> __('Tanggal mulai'), 'autocomplete' => 'off'] ) !!}
+            {!! Form::text('start_date', $edit ? $data->start_date : old('start_date'), ['class' => 'form-control datepicker', 'placeholder'=> __('Tanggal mulai'), 'autocomplete' => 'off'] ) !!}
             
             @if ($errors->has('start_date'))
                 <span class="help-block">{{ $errors->first('start_date') }}</span>
@@ -39,7 +71,7 @@
         <label for="inputEndDate" class="col-sm-2 control-label">Tanggal Selesai @include('components.required')</label>
 
         <div class="col-sm-10">
-            {!! Form::text('end_date', $edit ? $data->name : old('start_date'), ['class' => 'form-control datepicker', 'placeholder'=> __('Tanggal mulai'), 'autocomplete' => 'off'] ) !!}
+            {!! Form::text('end_date', $edit ? $data->end_date : old('start_date'), ['class' => 'form-control datepicker', 'placeholder'=> __('Tanggal mulai'), 'autocomplete' => 'off'] ) !!}
             
             @if ($errors->has('end_date'))
                 <span class="help-block">{{ $errors->first('end_date') }}</span>

@@ -8,7 +8,7 @@ interface OccupationRepoInterface
 {
     public function find($id);
 
-    public function checkOccupation($functionary_id, $start_date, $end_date, $status = 'active');
+    public function checkOccupation($functionary_id, $start_date, $end_date, $id = null);
 
     public function store(Request $request);    
 

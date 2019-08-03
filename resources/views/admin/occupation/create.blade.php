@@ -5,7 +5,7 @@
 @section('content_header')
     <h1>Jabatan</h1>
 
-    {{ Breadcrumbs::render('position_new') }}
+    {{ Breadcrumbs::render('occupation_new') }}
 @stop
 
 @section('content')

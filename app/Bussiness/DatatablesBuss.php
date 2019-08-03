@@ -6,13 +6,15 @@ use Illuminate\Http\Request;
 
 use App\Bussiness\Contracts\DatatablesBussInterface;
 use App\Repository\Contracts\DatatablesRepoInterface;
+use App\Services\Contracts\OccupationServiceInterface;
 use App\Services\Contracts\RoleServiceInterface;
 use App\Services\Contracts\ActivityLogServiceInterface;
 
-use App\Models\Skpd;
+use App\Models\Activity;
+use App\Models\Occupation;
 use App\Models\Position;
 use App\Models\Program;
-use App\Models\Activity;
+use App\Models\Skpd;
 use App\Models\WorkPackage;
 
 use DataTables;
@@ -22,11 +24,13 @@ class DatatablesBuss implements DatatablesBussInterface
     public function __construct(
         ActivityLogServiceInterface $activityLog,
         DatatablesRepoInterface $datatablesRepo,
+        OccupationServiceInterface $occupationService,
         RoleServiceInterface $roleService
     ) {
-        $this->activityLog      = $activityLog;
-        $this->datatablesRepo   = $datatablesRepo;
-        $this->roleService      = $roleService;
+        $this->activityLog          = $activityLog;
+        $this->datatablesRepo       = $datatablesRepo;
+        $this->occupationService    = $occupationService;
+        $this->roleService          = $roleService;
     }
 
     public function fetchActivityDatas(Request $request)
@@ -116,6 +120,15 @@ class DatatablesBuss implements DatatablesBussInterface
         $query = $this->datatablesRepo->fetchOccupationDatas($request);
 
         return Datatables::of($query)
+                        ->addColumn('functionary', function(Occupation $occupation) {
+                            return $occupation->functionary->name;                            
+                        })
+                        ->addColumn('skpd', function(Occupation $occupation) {
+                            return $occupation->skpd->name;                            
+                        })
+                        ->addColumn('position', function($data) {
+                            return $this->occupationService->occupationTransform($data->position);
+                        })
                         ->addColumn('actions', 
                                 ' <a href="{{ URL::route( \'occupation.show\', array( $id )) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
                                 <a href="{{ URL::route( \'occupation.edit\', array( $id )) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')

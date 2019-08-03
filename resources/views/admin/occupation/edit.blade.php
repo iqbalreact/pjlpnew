@@ -5,7 +5,7 @@
 @section('content_header')
     <h1>Posisi</h1>
 
-    {{ Breadcrumbs::render('positionCategory_edit', $data) }}
+    {{ Breadcrumbs::render('occupation_edit') }}
 @stop
 
 @section('content')
@@ -14,8 +14,8 @@
         <h3 class="box-title">Edit</h3>
     </div>
 
-    {!! Form::open([ 'url' => route('position.update', ['id' => $data->id ]), 'files' => true, 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
-        @include('admin.position.form', ['edit' => true, 'data' => $data])        
+    {!! Form::open([ 'url' => route('occupation.update', ['id' => $data->id ]), 'files' => true, 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
+        @include('admin.occupation.form', ['edit' => true, 'data' => $data])        
     {!! Form::close() !!}
 </div>
 @stop

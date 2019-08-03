@@ -90,6 +90,35 @@ Breadcrumbs::for('skpd_show', function ($trail, $skpd) {
 });
 
 /**
+ * Occupation =======================================================================
+ * 
+ */
+
+ // Home > Occupation
+ Breadcrumbs::for('occupation', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Jabatan', route('occupation.index'));
+});
+
+ // Home > Occupation > Create
+ Breadcrumbs::for('occupation_new', function ($trail) {
+    $trail->parent('occupation');
+    $trail->push('Tambah');
+ });
+
+ // Home > Occupation > Edit
+ Breadcrumbs::for('occupation_edit', function ($trail) {
+    $trail->parent('occupation');
+    $trail->push('Edit');
+ });
+
+ // Home > Occupation > show
+ Breadcrumbs::for('occupation_show', function ($trail) {
+    $trail->parent('occupation');
+    $trail->push('Detail');
+});
+
+/**
  * Program =======================================================================
  * 
  */
@@ -119,7 +148,7 @@ Breadcrumbs::for('skpd_show', function ($trail, $skpd) {
     $trail->push($program->name, route('program.show', ['id' => $program->id]));
  });
 
-  /**
+/**
  * Position =======================================================================
  * 
  */

@@ -15,6 +15,7 @@ class ActivityLogService implements ActivityLogServiceInterface
         'App\Models\Employee'           => '/admin/employee/',
         'App\Models\Functionary'        => '/admin/functionary/',
         'App\Models\User'               => '/admin/account/',
+        'App\Models\Occupation'         => '/admin/occupation/',
         'App\Models\Position'           => '/admin/position/',
         'App\Models\PositionCategory'   => '/admin/positionCategory/',
         'App\Models\Program'            => '/admin/program/',

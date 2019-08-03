@@ -23,15 +23,21 @@ class OccupationRepo implements OccupationRepoInterface
         return $data;
     }
 
-    public function checkOccupation($functionary_id, $start_date, $end_date, $status = 'active')
+    public function checkOccupation($functionary_id, $start_date, $end_date, $id = null)
     {
         $from = Carbon::parse($start_date);
         $to   = Carbon::parse($end_date);
 
-        $data = Occupation::where('functionary_id', $functionary_id)
-                            ->where('end_date', '>=', $from)
-                            ->where('status', $status)
-                            ->first();
+        $data = Occupation::query();
+
+        if (!empty($id)) {
+            $data = $data->where('id', '!=', $id);
+        }
+
+        $data = $data->where('functionary_id', $functionary_id)
+                    ->where('end_date', '>=', $from)
+                    ->where('status', 'active')
+                    ->first();
 
         return $data;
     }
@@ -60,8 +66,8 @@ class OccupationRepo implements OccupationRepoInterface
 
         $data->functionary_id   = $request->functionary_id;
         $data->skpd_id          = $request->skpd_id;
-        $data->start_date       = $request->start_date;
-        $data->end_date         = $request->end_date;
+        $data->start_date       = Carbon::parse($request->start_date);
+        $data->end_date         = Carbon::parse($request->end_date);
         $data->position         = $request->position;
         $data->status           = $request->status;
         $data->update();

@@ -3,9 +3,9 @@
 @section('title', 'Detail Posisi | '.env('APP_NAME'))
 
 @section('content_header')
-    <h1>Detail Posisi</h1>
+    <h1>Detail Jabatan</h1>
 
-    {{ Breadcrumbs::render('positionCategory_show', $data) }}
+    {{ Breadcrumbs::render('occupation_show') }}
 @stop
 
 @section('content')
@@ -18,10 +18,10 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="about">
-                        @include('admin.position.show.about')
+                        @include('admin.occupation.show.about')
                     </div>
                     <div class="tab-pane" id="log">
-                        @include('admin.partials.activityLog', ['subject_id' => $data->id, 'models' => 'App\Models\Position'])
+                        @include('admin.partials.activityLog', ['subject_id' => $data->id, 'models' => 'App\Models\Occupation'])
                     </div>
                 </div>
             </div>

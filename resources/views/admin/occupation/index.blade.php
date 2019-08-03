@@ -5,7 +5,7 @@
 @section('content_header')
     <h1>Jabatan</h1>
 
-    {{ Breadcrumbs::render('position') }}
+    {{ Breadcrumbs::render('occupation') }}
 @stop
 
 @section('content')
@@ -21,8 +21,11 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Name</th>
-                                <th>Kategrori</th>
+                                <th>Pejabat</th>
+                                <th>SKPD</th>
+                                <th>Jabatan</th>
+                                <th>Tanggal Mulai</th>
+                                <th>Tanggal Selesai</th>
                                 <th width="15%">Action</th>
                             </tr>
                         </thead>
@@ -45,8 +48,11 @@
             ajax: '{!! route('fetch.occupation') !!}',
             columns: [
                 { data: 'id', name: 'id', class:'hide' },
-                { data: 'name', name: 'name', searchable:'true'},
-                { data: 'category', name: 'position_category_id', searchable:'true'},
+                { data: 'functionary', functionary_id: 'name', searchable:'true'},
+                { data: 'skpd', skpd_id: 'name', searchable:'true'},
+                { data: 'position', skpd_id: 'position', searchable:'true'},
+                { data: 'start_date', name: 'start_date', searchable:'true'},
+                { data: 'end_date', name: 'end_date', searchable:'true'},
                 { data: 'actions', name: 'actions', searchable: 'false', 'orderable': 'false', 'class': 'text-center'}
             ]
         });
