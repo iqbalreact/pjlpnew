@@ -10,6 +10,9 @@ use App\Bussiness\ActivityBuss;
 use App\Bussiness\Contracts\AccountBussInterface;
 use App\Bussiness\AccountBuss;
 
+use App\Bussiness\Contracts\ContractBussInterface;
+use App\Bussiness\ContractBuss;
+
 use App\Bussiness\Contracts\DatatablesBussInterface;
 use App\Bussiness\DatatablesBuss;
 
@@ -18,6 +21,9 @@ use App\Bussiness\EmployeeBuss;
 
 use App\Bussiness\Contracts\FunctionaryBussInterface;
 use App\Bussiness\FunctionaryBuss;
+
+use App\Bussiness\Contracts\LocationBussInterface;
+use App\Bussiness\LocationBuss;
 
 use App\Bussiness\Contracts\OccupationBussInterface;
 use App\Bussiness\OccupationBuss;
@@ -58,9 +64,11 @@ class BussinessServiceProvider extends ServiceProvider
     {
         $this->app->bind(AccountBussInterface::class, AccountBuss::class);
         $this->app->bind(ActivityBussInterface::class, ActivityBuss::class);
+        $this->app->bind(ContractBussInterface::class, ContractBuss::class);
         $this->app->bind(DatatablesBussInterface::class, DatatablesBuss::class);
         $this->app->bind(EmployeeBussInterface::class, EmployeeBuss::class);
         $this->app->bind(FunctionaryBussInterface::class, FunctionaryBuss::class);
+        $this->app->bind(LocationBussInterface::class, LocationBuss::class);
         $this->app->bind(OccupationBussInterface::class, OccupationBuss::class);
         $this->app->bind(PositionBussInterface::class, PositionBuss::class);
         $this->app->bind(PositionCategoryBussInterface::class, PositionCategoryBuss::class);
