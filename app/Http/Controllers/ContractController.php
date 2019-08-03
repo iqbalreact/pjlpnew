@@ -4,13 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Http\Requests\ContractRequest;
+
+use App\Bussiness\Contracts\ContractBussInterface;
+
 use App\Services\Contracts\StatusServiceInterface;
 
 class ContractController extends Controller
 {
     public function __construct(
+        ContractBussInterface $contract,
         StatusServiceInterface $status
     ) {
+        $this->contract     = $contract;
         $this->status       = $status;
     }
     /**
@@ -43,7 +49,11 @@ class ContractController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $this->contract->store($request);
+
+        notify()->success('Kontrak kerja berhasil dibuat');
+
+        return redirect()->route('contract.index');
     }
 
     /**
@@ -75,7 +85,7 @@ class ContractController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ContractRequest $request, $id)
     {
         //
     }
