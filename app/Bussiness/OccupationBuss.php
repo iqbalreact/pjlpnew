@@ -19,6 +19,11 @@ class OccupationBuss implements OccupationBussInterface
         return $this->occupationRepo->find($id);
     }
 
+    public function checkOccupation($functionary_id, $start_date, $end_date, $status = 'active')
+    {
+        return $this->occupationRepo->checkOccupation($functionary_id, $start_date, $end_date, $status);
+    }
+
     public function store(Request $request)
     {
         $data = $this->occupationRepo->store($request);

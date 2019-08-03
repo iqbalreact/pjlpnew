@@ -58,9 +58,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     // Select2
     Route::group(['prefix' => 'select'], function(){
-        Route::get('skpd', 'SkpdController@selectList')->name('select.skpd');
-        Route::get('program', 'ProgramController@selectList')->name('select.program');
         Route::get('activity', 'ActivityController@selectList')->name('select.activity');
+        Route::get('functionary', 'FunctionaryController@selectList')->name('select.functionary');
+        Route::get('program', 'ProgramController@selectList')->name('select.program');
+        Route::get('skpd', 'SkpdController@selectList')->name('select.skpd');
     });
 
     // Route::get('/home', 'HomeController@index')->name('home');

@@ -19,6 +19,11 @@ class FunctionaryBuss implements FunctionaryBussInterface
         return $this->functionaryRepo->find($id);
     }
 
+    public function getByName($name)
+    {
+        return $this->functionaryRepo->getByName($name);
+    }
+
     public function store(Request $request)
     {
         $data = $this->functionaryRepo->store($request);

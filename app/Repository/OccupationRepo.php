@@ -8,6 +8,8 @@ use App\Repository\Contracts\OccupationRepoInterface;
 
 use App\Models\Occupation;
 
+use Carbon\Carbon;
+
 class OccupationRepo implements OccupationRepoInterface
 {
     public function find($id)
@@ -21,13 +23,26 @@ class OccupationRepo implements OccupationRepoInterface
         return $data;
     }
 
+    public function checkOccupation($functionary_id, $start_date, $end_date, $status = 'active')
+    {
+        $from = Carbon::parse($start_date);
+        $to   = Carbon::parse($end_date);
+
+        $data = Occupation::where('functionary_id', $functionary_id)
+                            ->where('end_date', '>=', $from)
+                            ->where('status', $status)
+                            ->first();
+
+        return $data;
+    }
+
     public function store(Request $request)
     {
         $data = new Occupation();
         $data->functionary_id   = $request->functionary_id;
         $data->skpd_id          = $request->skpd_id;
-        $data->start_date       = $request->start_date;
-        $data->end_date         = $request->end_date;
+        $data->start_date       = Carbon::parse($request->start_date);
+        $data->end_date         = Carbon::parse($request->end_date);
         $data->position         = $request->position;
         $data->status           = $request->status;
         $data->save();

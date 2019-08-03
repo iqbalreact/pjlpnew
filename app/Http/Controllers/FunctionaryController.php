@@ -111,4 +111,17 @@ class FunctionaryController extends Controller
     {
         //
     }
+
+    /**
+     * Select2 API
+     * 
+     */
+    public function selectList(Request $request)
+    {
+        $name = $request->q;
+
+        $res = $this->functionary->getByName($name);
+
+        return response()->json($res);
+    }
 }

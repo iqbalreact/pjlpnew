@@ -6,11 +6,21 @@ use Illuminate\Http\Request;
 
 use App\Bussiness\Contracts\OccupationBussInterface;
 
+use App\Http\Requests\OccupationRequest;
+
+use App\Services\Contracts\OccupationServiceInterface;
+use App\Services\Contracts\StatusServiceInterface;
+
 class OccupationController extends Controller
 {
-    public function __construct(OccupationBussInterface $occupation) 
-    {
-        $this->occupation   = $occupation;;
+    public function __construct(
+        OccupationBussInterface $occupation,
+        OccupationServiceInterface $position,
+        StatusServiceInterface $status
+    ) {
+        $this->occupation   = $occupation;
+        $this->position     = $position;
+        $this->status       = $status;
     }
 
     /**
@@ -30,7 +40,10 @@ class OccupationController extends Controller
      */
     public function create()
     {
-        return view('admin.occupation.create');
+        $positions = $this->position->occupationTransform;
+        $status    = $this->status->statusTransform;
+
+        return view('admin.occupation.create', compact('positions', 'status'));
     }
 
     /**
@@ -39,8 +52,15 @@ class OccupationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OccupationRequest $request)
     {
+        $checkActiveOccupation = $this->occupation->checkOccupation($request->functionary_id, $request->start_date, $request->end_date);
+
+        if ($checkActiveOccupation) {
+            notify()->warning('Pejabat masih mempunyai jabatan aktif di periode tersebut');
+            return redirect()->back();
+        }
+
         $data = $this->occupation->store($request);
 
         notify()->success('Jabatan berhasil dibuat');
@@ -80,8 +100,11 @@ class OccupationController extends Controller
             notify()->warning('Jabatan tidak ditemukan');
             return redirect()->back();
         }
+
+        $positions  = $this->position->occupationTransform;
+        $status     = $this->status->statusTransform;
         
-        return view('admin.occupation.edit', compact('data'));
+        return view('admin.occupation.edit', compact('data', 'positions', 'status'));
     }
 
     /**
@@ -91,8 +114,15 @@ class OccupationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(OccupationRequest $request, $id)
     {
+        $checkActiveOccupation = $this->occupation->checkOccupation($request->functionary_id, $request->start_date, $request->end_date);
+
+        if ($checkActiveOccupation) {
+            notify()->warning('Pejabat masih mempunyai jabatan aktif di periode tersebut');
+            return redirect()->back();
+        }
+
         $data = $this->occupation->update($request, $id);
 
         notify()->success('Jabatan berhasil diupdate');

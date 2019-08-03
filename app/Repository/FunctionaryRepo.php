@@ -21,6 +21,15 @@ class FunctionaryRepo implements FunctionaryRepoInterface
         return $data;
     }
 
+    public function getByName($name)
+    {
+        $query = Functionary::query();
+
+        $query = $query->where('name', 'LIKE', '%'.$name.'%')->take(20)->get();
+
+        return $query;
+    }
+
     public function store(Request $request)
     {
         $data = new Functionary();

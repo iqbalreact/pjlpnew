@@ -13,11 +13,17 @@ use App\Services\BankService;
 use App\Services\Contracts\GenderServiceInterface;
 use App\Services\GenderService;
 
+use App\Services\Contracts\OccupationServiceInterface;
+use App\Services\OccupationService;
+
 use App\Services\Contracts\ReligionServiceInterface;
 use App\Services\ReligionService;
 
 use App\Services\Contracts\RoleServiceInterface;
 use App\Services\RoleService;
+
+use App\Services\Contracts\StatusServiceInterface;
+use App\Services\StatusService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,8 +37,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ActivityLogServiceInterface::class, ActivityLogService::class);        
         $this->app->bind(BankServiceInterface::class, BankService::class);        
         $this->app->bind(GenderServiceInterface::class, GenderService::class);        
+        $this->app->bind(OccupationServiceInterface::class, OccupationService::class);        
         $this->app->bind(ReligionServiceInterface::class, ReligionService::class);        
         $this->app->bind(RoleServiceInterface::class, RoleService::class);        
+        $this->app->bind(StatusServiceInterface::class, StatusService::class);        
     }
 
     /**

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 interface FunctionaryRepoInterface
 {
     public function find($id);
+
+    public function getByName($name);
     
     public function store(Request $request);    
 
