@@ -27,7 +27,7 @@ class ContractBuss implements ContractBussInterface
     public function store(Request $request)
     {
         $workPackageInfo = $this->workPackage->findWorkPackageInformation($request->work_package_id);
-        // dd($workPackageInfo['work_package_id']);
+        
         // assign working package info
         $request->working_package_id    = $workPackageInfo['work_package_id'];
         $request->activity_id           = $workPackageInfo['activity_id'];
