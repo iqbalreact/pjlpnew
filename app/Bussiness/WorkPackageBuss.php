@@ -51,12 +51,12 @@ class WorkPackageBuss implements WorkPackageBussInterface
         $workPackage = $this->workPackageRepo->find($id);
         $activity    = $this->activity->find($workPackage->activity_id);
         $program     = $this->program->find($activity->program_id);
-
+       
         $data = [
-            'work_package_id'       => $workPackage->id,
-            'activity_id'           => $activity->id,
-            'program_id'            => $program->id,
-            'skpd_id'               => $program->skpd_id
+            'work_package_id'       => $workPackage->id ?? null,
+            'activity_id'           => $activity->id ?? null,
+            'program_id'            => $program->id ?? null,
+            'skpd_id'               => $program->skpd_id ?? null
         ];
 
         return $data;

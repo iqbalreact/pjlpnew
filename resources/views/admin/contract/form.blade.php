@@ -39,7 +39,7 @@
     @endif
 
     @if(isset($workPackage))
-        <div class="form-group {{ $errors->has('work_package_id') ? 'has-error' : '' }}"">
+        <div class="form-group {{ $errors->has('work_package_id') ? 'has-error' : '' }}">
             <label for="inputWorkPackage" class="col-sm-2 control-label">Paket Pekerjaan @include('components.required')</label>
 
             <div class="col-sm-10">
@@ -65,8 +65,21 @@
         </div>
     @endif
 
+    <div class="form-group {{ $errors->has('occupation_id') ? 'has-error' : '' }} hidden" id="occupationArea">
+        <label for="inputPosition" class="col-sm-2 control-label">Pejabat @include('components.required')</label>
+
+        <div class="col-sm-10">
+            <select name="occupation_id" id="occupationSelect" class="form-control"></select>
+            
+            @if ($errors->has('occupation_id'))
+                <span class="help-block">{{ $errors->first('occupation_id') }}</span>
+            @endif
+        </div>
+    </div>
+
+
     @if(isset($position))
-        <div class="form-group {{ $errors->has('position_id') ? 'has-error' : '' }}"">
+        <div class="form-group {{ $errors->has('position_id') ? 'has-error' : '' }}">
             <label for="inputPosition" class="col-sm-2 control-label">Posisi @include('components.required')</label>
 
             <div class="col-sm-10">
@@ -93,7 +106,7 @@
     @endif
 
     @if(isset($location))
-        <div class="form-group {{ $errors->has('location_id') ? 'has-error' : '' }}"">
+        <div class="form-group {{ $errors->has('location_id') ? 'has-error' : '' }}">
             <label for="inputLocation" class="col-sm-2 control-label">Lokasi @include('components.required')</label>
 
             <div class="col-sm-10">
@@ -185,7 +198,10 @@
 
 @section('js')
 <script>
+    var workPackageId = '';
+
     $(function() {
+
         //Date picker
         $('.datepicker').datepicker({
             autoclose: true,
@@ -228,6 +244,32 @@
                 data: function (params) {
                     return {
                         q: params.term,
+                    };
+                },
+                processResults: function (data) {
+
+                    var res = data.map(function (item) {
+                        return {id: item.id, text: item.name};
+                    });
+                    
+                    return {
+                        results: res
+                    };
+                }
+            }
+        });
+
+        $("#occupationSelect").select2({
+            dropdownAutoWidth : true,
+            width: '100%',
+            placeholder: "Pilih Pejabat",
+            ajax: {
+                url: "{{ route('select.occupation') }}",
+                dataType: 'json',
+                data: function (params) {
+                    return {
+                        q: params.term,
+                        work_package_id: workPackageId
                     };
                 },
                 processResults: function (data) {
@@ -292,6 +334,23 @@
                 }
             }
         });
+
+        onChangeWorkPackage();
+
     });
+
+    $('#workPackageSelect').change( function() {
+        onChangeWorkPackage()
+    });
+
+    function onChangeWorkPackage() {
+        workPackageId = $('#workPackageSelect').val();
+
+        if (workPackageId !== '') {
+            $('#occupationArea').removeClass("hidden");
+        } else {
+            $('#occupationArea').addClass("hidden");
+        }
+    }
 </script>
 @stop

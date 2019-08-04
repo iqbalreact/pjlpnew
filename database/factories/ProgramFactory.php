@@ -11,7 +11,3 @@ $factory->define(Program::class, function (Faker $faker) {
         'name'   => $faker->words($nb = 3, $asText = true),
     ];
 });
-
-$factory->afterCreating(Program::class, function ($program, $faker) {
-    $program->activities()->saveMany(factory(App\Models\Activity::class, 10)->make());
-});

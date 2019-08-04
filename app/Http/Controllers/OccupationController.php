@@ -158,6 +158,20 @@ class OccupationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+    }
+
+    /**
+     * Select2 API
+     * 
+     */
+    public function selectList(Request $request)
+    {
+        $name           = $request->q;
+        $workPackageId  = $request->work_package_id;
+
+        $res = $this->occupation->getByName($name, $workPackageId);
+
+        return response()->json($res);
     }
 }

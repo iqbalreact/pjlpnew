@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Repository\Contracts\OccupationRepoInterface;
 
+use App\Models\Functionary;
 use App\Models\Occupation;
 
 use Carbon\Carbon;
@@ -40,6 +41,24 @@ class OccupationRepo implements OccupationRepoInterface
                     ->first();
 
         return $data;
+    }
+
+    public function getByName($name, $skpd_id = null)
+    {
+        $query = Functionary::query();
+
+        if (!is_null($skpd_id)) {
+            $query = $query->whereHas('occupations', function($q) use ($skpd_id) {
+                                $q->where('skpd_id', $skpd_id)
+                                ->where('status', 'active');
+                            });
+        }
+
+        $query = $query->where('name', 'LIKE', '%'.$name.'%')
+                        ->take(20)
+                        ->get();
+
+        return $query;
     }
 
     public function store(Request $request)

@@ -63,6 +63,12 @@ class SkpdTableSeeder extends Seeder
 
             $u->locations()
                 ->saveMany( factory(App\Models\Location::class, 3)->make() );
+
+            $u->occupations()
+                ->saveMany( factory(App\Models\Occupation::class, 2)->make() );
+                // ->each(function($occupation){
+                //     $occupation->functionary()->saveMany(factory(App\Models\Functionary::class, 1)->make() );
+                // });             
         });
     }
 }

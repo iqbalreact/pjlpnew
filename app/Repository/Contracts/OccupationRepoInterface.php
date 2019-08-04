@@ -8,6 +8,8 @@ interface OccupationRepoInterface
 {
     public function find($id);
 
+    public function getByName($name, $skpd_id = null);
+
     public function checkOccupation($functionary_id, $start_date, $end_date, $id = null);
 
     public function store(Request $request);    

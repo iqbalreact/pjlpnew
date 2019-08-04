@@ -65,6 +65,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::get('employee', 'EmployeeController@selectList')->name('select.employee');
         Route::get('functionary', 'FunctionaryController@selectList')->name('select.functionary');
         Route::get('location', 'LocationController@selectList')->name('select.location');
+        Route::get('occupation', 'OccupationController@selectList')->name('select.occupation');
         Route::get('position', 'PositionController@selectList')->name('select.position');
         Route::get('program', 'ProgramController@selectList')->name('select.program');
         Route::get('skpd', 'SkpdController@selectList')->name('select.skpd');
