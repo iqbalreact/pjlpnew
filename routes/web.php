@@ -42,6 +42,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('skpd', 'SkpdController');
     Route::resource('workPackage', 'WorkPackageController');
 
+    Route::get('/contract/detail/{id}', 'ContractController@detail')->name('contract.detail');
 
     // Datatables
     Route::group(['prefix' => 'data'], function() {

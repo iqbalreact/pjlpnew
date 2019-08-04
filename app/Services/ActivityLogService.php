@@ -12,6 +12,7 @@ class ActivityLogService implements ActivityLogServiceInterface
 {
     protected $subjectRoute = [
         'App\Models\Activity'           => '/admin/activity/',
+        'App\Models\Contract'           => '/admin/contract/detail/',
         'App\Models\Employee'           => '/admin/employee/',
         'App\Models\Functionary'        => '/admin/functionary/',
         'App\Models\User'               => '/admin/account/',

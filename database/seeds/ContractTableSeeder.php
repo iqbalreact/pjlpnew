@@ -34,7 +34,7 @@ class ContractTableSeeder extends Seeder
             $request->work_package_id  = $employee->id;
             $request->location_id      = rand(1, count($employees));
             $request->position_id      = rand(1, 40);
-            $request->salary           = array_rand([1000000, 2000000, 3000000, 4000000, 5000000]);
+            $request->salary           = 1000000;
             $request->start_date       = Carbon::now();
             $request->end_date         = Carbon::now()->addYear(1);
             $request->status           = 'active';

@@ -139,7 +139,7 @@ class DatatablesBuss implements DatatablesBussInterface
                             return '<label class="label label-success">Aktif</label>';
                         })
                         ->addColumn('actions', 
-                                ' <a href="{{ URL::route( \'contract.show\', array( $id )) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a> ')
+                                ' <a href="{{ URL::route( \'contract.detail\', array( $id )) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a> ')
                         ->rawColumns(['actions', 'status_transform'])
                         ->make(true);
     }

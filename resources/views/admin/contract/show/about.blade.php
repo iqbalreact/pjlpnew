@@ -3,84 +3,70 @@
         <label class="col-sm-2 control-label">NIPJ</label>
 
         <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->nipj }}" readonly>
+            <input class="form-control" value="{{ $employee->nipj }}" readonly>
         </div>
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label">Nama</label>
 
         <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->name }}" readonly>
+            <input class="form-control" value="{{ $employee->name }}" readonly>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">No KTP</label>
+        <label class="col-sm-2 control-label">Paket Pekerjaan</label>
 
         <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->ktp }}" readonly>
+            <input class="form-control" value="{{ $workPackage->name }}" readonly>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">Jenis Kelamin</label>
+        <label class="col-sm-2 control-label">Posisi</label>
 
         <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->genderNameTransform }}" readonly>
+            <input class="form-control" value="{{ $position->name }}" readonly>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">Alamat</label>
+        <label class="col-sm-2 control-label">Lokasi</label>
 
         <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->address }}" readonly>
+            <input class="form-control" value="{{ $location->name }}" readonly>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">Agama</label>
+        <label class="col-sm-2 control-label">Pejabat</label>
 
         <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->religionNameTransform }}" readonly>
+            <input class="form-control" value="{{ $functionary->name }}" readonly>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">No Telepon</label>
+        <label class="col-sm-2 control-label">Gaji</label>
 
         <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->phone_number }}" readonly>
+            <input class="form-control" value="{{ $data->salary }}" readonly>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">Bank</label>
+        <label class="col-sm-2 control-label">Tanggal Mulai</label>
 
         <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->bankNameTransform }}" readonly>
+            <input class="form-control" value="{{ $data->start_date }}" readonly>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">NPWP</label>
+        <label class="col-sm-2 control-label">Tanggal Selesai</label>
 
         <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->npwp }}" readonly>
+            <input class="form-control" value="{{ $data->end_date }}" readonly>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">Rekening</label>
+        <label class="col-sm-2 control-label">Status</label>
 
         <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->account_number }}" readonly>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label">BPJS Kesehatan</label>
-
-        <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->bpjs_healthcare }}" readonly>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label">BPJS Ketenagakerjaan</label>
-
-        <div class="col-sm-10">
-            <input class="form-control" value='{{ $data->bpjs_social_security }}' readonly>
+            <input class="form-control" value="{{ $data->status }}" readonly>
         </div>
     </div>
 </form>
