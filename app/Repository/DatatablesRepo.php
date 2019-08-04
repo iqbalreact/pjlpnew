@@ -10,6 +10,7 @@ use Spatie\Activitylog\Models\Activity as ActivityLog;
 
 use App\Models\Activity; 
 use App\Models\Employee;
+use App\Models\Contract;
 use App\Models\Functionary;
 use App\Models\Occupation;
 use App\Models\Position;
@@ -58,6 +59,24 @@ class DatatablesRepo implements DatatablesRepoInterface
         }
 
         $datas->with('subject', 'causer');
+
+        return $datas;
+    }
+
+    public function fetchContractIndexDatas(Request $request)
+    {
+        $datas = WorkPackage::query();
+
+        $datas->with('activity.program');
+
+        return $datas;
+    }
+
+    public function fetchContractDetailDatas(Request $request)
+    {
+        $datas = Contract::query();
+
+        $datas->with('position', 'location', 'employee');
 
         return $datas;
     }

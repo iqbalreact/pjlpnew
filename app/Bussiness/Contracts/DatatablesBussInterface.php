@@ -11,6 +11,10 @@ interface DatatablesBussInterface
     public function fetchActivityLog(Request $request);    
 
     public function fetchAccountDatas(Request $request);    
+
+    public function fetchContractIndexDatas(Request $request);
+
+    public function fetchContractDetailDatas(Request $request);
     
     public function fetchEmployeeDatas(Request $request); 
 

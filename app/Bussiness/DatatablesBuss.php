@@ -11,12 +11,14 @@ use App\Services\Contracts\RoleServiceInterface;
 use App\Services\Contracts\ActivityLogServiceInterface;
 
 use App\Models\Activity;
+use App\Models\Contract;
 use App\Models\Occupation;
 use App\Models\Position;
 use App\Models\Program;
 use App\Models\Skpd;
 use App\Models\WorkPackage;
 
+use Carbon\Carbon;
 use DataTables;
 
 class DatatablesBuss implements DatatablesBussInterface
@@ -88,6 +90,57 @@ class DatatablesBuss implements DatatablesBussInterface
                                 ' <a href="{{ URL::route( \'account.show\', array( $id )) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
                                 <a href="{{ URL::route( \'account.edit\', array( $id )) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')
                         ->rawColumns(['actions'])
+                        ->make(true);
+    }
+
+    public function fetchContractIndexDatas(Request $request)
+    {
+        $query = $this->datatablesRepo->fetchContractIndexDatas($request);
+
+        return Datatables::of($query)
+                        ->addColumn('activity', function(WorkPackage $workPackage) {
+                            return $workPackage->activity->name;
+                        })
+                        ->addColumn('program', function(WorkPackage $workPackage) {
+                            return $workPackage->activity->program->name;
+                        })
+                        ->addColumn('actions', 
+                                ' <a href="{{ URL::route( \'contract.show\', array( $id )) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a> ')
+                        ->rawColumns(['actions'])
+                        ->make(true);
+    }
+
+    public function fetchContractDetailDatas(Request $request)
+    {
+        $query = $this->datatablesRepo->fetchContractDetailDatas($request);
+
+        return Datatables::of($query)
+                        ->addColumn('employee_nipj', function(Contract $contract) {
+                            return $contract->employee->nipj;
+                        })
+                        ->addColumn('employee_name', function(Contract $contract) {
+                            return $contract->employee->name;
+                        })
+                        ->addColumn('position', function(Contract $contract) {
+                            return $contract->position->name;
+                        })
+                        ->addColumn('location', function(Contract $contract) {
+                            return $contract->location->name;
+                        })
+                        ->addColumn('year', function($data) {
+                            return Carbon::parse($data->start_date)->format('Y');
+                        })
+                        ->addColumn('status_transform', function($data) {
+                            
+                            if ($data->status == "non_active") {
+                                return '<label class="label label-danger">Non aktif</label>';
+                            }
+
+                            return '<label class="label label-success">Aktif</label>';
+                        })
+                        ->addColumn('actions', 
+                                ' <a href="{{ URL::route( \'contract.show\', array( $id )) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a> ')
+                        ->rawColumns(['actions', 'status_transform'])
                         ->make(true);
     }
 

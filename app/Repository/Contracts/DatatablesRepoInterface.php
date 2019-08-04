@@ -11,6 +11,10 @@ interface DatatablesRepoInterface
     public function fetchAccountDatas(Request $request);
 
     public function fetchActivityLog(Request $request);
+
+    public function fetchContractIndexDatas(Request $request);
+
+    public function fetchContractDetailDatas(Request $request);
     
     public function fetchEmployeeDatas(Request $request);
 

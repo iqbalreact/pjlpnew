@@ -17,13 +17,14 @@
                     <a href="{{ route('contract.create') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Tambah</a>
                 </div>
                 <div class="box-body">
-                    <table id="employee-table" class="table">
+                    <table id="contract-table" class="table">
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>NIPJ</th>
-                                <th>Name</th>
-                                <th>KTP</th>
+                                <th>Program</th>
+                                <th>Kegiatan</th>
+                                <th>Paket Pekerjaan</th>
+                                {{-- <th>KTP</th> --}}
                                 <th width="15%">Action</th>
                             </tr>
                         </thead>
@@ -35,20 +36,21 @@
 @stop
 
 @section('js')
-{{-- <script>
+<script>
     $(function() {
-        var oTable = $('#employee-table').dataTable({
+        var oTable = $('#contract-table').dataTable({
             processing: true,
             serverSide: true,
             responsive: true,
             order: [[ 0, 'desc' ]],
             deferRender:    true,
-            ajax: '{!! route('fetch.employee') !!}',
+            ajax: '{!! route('fetch.contract') !!}',
             columns: [
                 { data: 'id', name: 'id', class:'hide' },
-                { data: 'nipj', name: 'nipj', searchable:'true'},
+                { data: 'program', name: 'activity.program.name', searchable:'true'},
+                { data: 'activity', name: 'activity.name', searchable:'true'},
                 { data: 'name', name: 'name', searchable:'true'},
-                { data: 'ktp', name: 'ktp', searchable:'true'},
+                // { data: 'ktp', name: 'ktp', searchable:'true'},
                 { data: 'actions', name: 'actions', searchable: 'false', 'orderable': 'false', 'class': 'text-center'}
             ]
         });
@@ -57,5 +59,5 @@
             oTable.ajax.reload();
         }
     });
-</script> --}}
+</script>
 @stop

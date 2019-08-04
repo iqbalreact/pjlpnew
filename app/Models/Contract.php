@@ -7,6 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\Traits\CausesActivity;
 
+use App\Models\Activity;
+use App\Models\Employee;
+use App\Models\Location;
+use App\Models\Position;
+use App\Models\Program;
+use App\Models\Skdp;
+use App\Models\WorkPackage;
+
 class Contract extends Model
 {
     use LogsActivity, CausesActivity;
@@ -42,4 +50,39 @@ class Contract extends Model
         'status',
         'occupation_id'
     ];
+
+    public function activity()
+    {
+        return $this->belongsTo(Activity::class);
+    }
+
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class);
+    }
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
+    }
+
+    public function position()
+    {
+        return $this->belongsTo(Position::class);
+    }
+
+    public function program()
+    {
+        return $this->belongsTo(Program::class);
+    }
+
+    public function skpd()
+    {
+        return $this->belongsTo(Skpd::class);
+    }
+
+    public function workPackage()
+    {
+        return $this->belongsTo(WorkPackage::class);
+    }
 }

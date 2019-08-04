@@ -28,6 +28,16 @@ class DatatablesController extends Controller
 		return $this->datatables->fetchAccountDatas($request);
 	}
 
+	public function fetchContractIndexDatas(Request $request)
+	{
+		return $this->datatables->fetchContractIndexDatas($request);
+	}
+
+    public function fetchContractDetailDatas(Request $request)
+	{
+		return $this->datatables->fetchContractDetailDatas($request);
+	}
+
 	public function fetchEmployeeDatas(Request $request)
 	{
 		return $this->datatables->fetchEmployeeDatas($request);

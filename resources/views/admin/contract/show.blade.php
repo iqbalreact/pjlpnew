@@ -1,58 +1,67 @@
 @extends('adminlte::page')
 
-@section('title', 'Detail PJLP | '.env('APP_NAME'))
+@section('title', 'Detail Kontrak | '.env('APP_NAME'))
 
 @section('content_header')
-    <h1>Detail PJLP</h1>
+    <h1>Kontrak Detail</h1>
 
-    {{ Breadcrumbs::render('employee_show', $data) }}
+    {{ Breadcrumbs::render('contract') }}
 @stop
 
 @section('content')
     <div class="row">
-        <div class="col-md-3">
-            <!-- Profile Image -->
+        <div class="col-xs-12">
             <div class="box box-primary">
-                <div class="box-body box-profile">
-                    <img class="profile-user-img img-responsive img-circle" src="{{ $data->getAvatar() }}" alt="User profile picture">
-        
-                    <h3 class="profile-username text-center">{{ $data->name }}</h3>
-                    <ul class="list-group list-group-unbordered">
-                        <li class="list-group-item">
-                            <b>NIPJ</b> <a class="pull-right">{{ $data->nipj }}</a>
-                        </li>
-                        <li class="list-group-item">
-                            <b>KTP</b> <a class="pull-right">{{ $data->ktp }}</a>
-                        </li>
-                        <li class="list-group-item">
-                            <b>NPWP</b> <a class="pull-right">{{ $data->npwp ?? '-' }}</a>
-                        </li>
-                    </ul>
-
-                    <a href="{{ route('employee.edit', ['id' => $data->id ]) }}" class="btn btn-success btn-block"><i class="fa fa-pencil"></i> <b>Edit</b></a>
-    
-                    </div>
-            </div>
-        </div>
-
-        <div class="col-md-9">
-            <div class="nav-tabs-custom">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#about" data-toggle="tab" aria-expanded="true">Tentang</a></li>
-                    <li class=""><a href="#log" data-toggle="tab" aria-expanded="false">Change Log</a></li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane active" id="about">
-                        @include('admin.employee.show.about')
-                    </div>
-                    <div class="tab-pane" id="log">
-                        @include('admin.partials.activityLog', ['subject_id' => $data->id, 'models' => 'App\Models\Employee'])
-                    </div>
+                <div class="box-header">
+                    <h3 class="box-title">List Kontrak</h3>
+                    {{-- <a href="{{ route('contract.create') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Tambah</a> --}}
+                </div>
+                <div class="box-body">
+                    <table id="contractdetail-table" class="table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>NIPJ</th>
+                                <th>Nama</th>
+                                <th>Posisi</th>
+                                <th>Lokasi</th>
+                                <th>Status</th>
+                                <th>Tahun</th>
+                                <th width="15%">Action</th>
+                            </tr>
+                        </thead>
+                    </table>                
                 </div>
             </div>
-            </div>
+        </div>
     </div>
 @stop
 
 @section('js')
+<script>
+    $(function() {
+        var oTable = $('#contractdetail-table').dataTable({
+            processing: true,
+            serverSide: true,
+            responsive: true,
+            order: [[ 0, 'desc' ]],
+            deferRender:    true,
+            ajax: '{!! route('fetch.contract.detail') !!}',
+            columns: [
+                { data: 'id', name: 'id', class:'hide' },
+                { data: 'employee_nipj', name: 'employee.nipj', searchable:'true'},
+                { data: 'employee_name', name: 'employee.name', searchable:'true'},
+                { data: 'position', name: 'position.name', searchable:'true'},
+                { data: 'location', name: 'location.name', searchable:'true'},
+                { data: 'status_transform', name: 'status', searchable:'true'},
+                { data: 'year', name: 'start_date', searchable:'true'},
+                { data: 'actions', name: 'actions', searchable: 'false', 'orderable': 'false', 'class': 'text-center'}
+            ]
+        });
+
+        function reloadTable(){
+            oTable.ajax.reload();
+        }
+    });
+</script>
 @stop
