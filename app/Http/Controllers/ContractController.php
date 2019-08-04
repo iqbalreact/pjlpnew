@@ -91,7 +91,9 @@ class ContractController extends Controller
      */
     public function show($id)
     {
-        return view('admin.contract.show');
+        // $data = $this->contract->find($id);
+        // return response()->json($data);
+        return view('admin.contract.show', compact('id'));
     }
 
     /**

@@ -14,7 +14,6 @@
             <div class="box box-primary">
                 <div class="box-header">
                     <h3 class="box-title">List Kontrak</h3>
-                    {{-- <a href="{{ route('contract.create') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Tambah</a> --}}
                 </div>
                 <div class="box-body">
                     <table id="contractdetail-table" class="table">
@@ -40,13 +39,14 @@
 @section('js')
 <script>
     $(function() {
+        
         var oTable = $('#contractdetail-table').dataTable({
             processing: true,
             serverSide: true,
             responsive: true,
             order: [[ 0, 'desc' ]],
             deferRender:    true,
-            ajax: '{!! route('fetch.contract.detail') !!}',
+            ajax: '{!! route('fetch.contract.detail', ['work_package_id' => $id]) !!}',
             columns: [
                 { data: 'id', name: 'id', class:'hide' },
                 { data: 'employee_nipj', name: 'employee.nipj', searchable:'true'},

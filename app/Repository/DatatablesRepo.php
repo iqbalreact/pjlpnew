@@ -74,7 +74,12 @@ class DatatablesRepo implements DatatablesRepoInterface
 
     public function fetchContractDetailDatas(Request $request)
     {
-        $datas = Contract::query();
+        $datas          = Contract::query();
+        $workPackageId  = $request->work_package_id; 
+
+        if (!empty($workPackageId)) {
+            $datas->where('work_package_id', $workPackageId);
+        }
 
         $datas->with('position', 'location', 'employee');
 

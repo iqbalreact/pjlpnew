@@ -105,7 +105,7 @@ class DatatablesBuss implements DatatablesBussInterface
                             return $workPackage->activity->program->name;
                         })
                         ->addColumn('actions', 
-                                ' <a href="{{ URL::route( \'contract.show\', array( $id )) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a> ')
+                            ' <a href="{{ URL::route( \'contract.show\', array( $id )) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a> ')
                         ->rawColumns(['actions'])
                         ->make(true);
     }

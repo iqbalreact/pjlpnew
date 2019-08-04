@@ -3,7 +3,7 @@
 @section('title', 'Detail Kontrak | '.env('APP_NAME'))
 
 @section('content_header')
-    <h1>Detail Jabatan</h1>
+    <h1>Detail Kontrak</h1>
 
     {{ Breadcrumbs::render('contract_show') }}
 @stop
