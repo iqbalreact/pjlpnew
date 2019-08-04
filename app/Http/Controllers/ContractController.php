@@ -63,11 +63,19 @@ class ContractController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $status    = $this->status->statusTransform;
+        $employee_id = $request->employee_id;
 
-        return view('admin.contract.create', compact('status'));
+        $employee   = null;
+
+        if (!empty($employee_id)) {
+            $employee = $this->employee->find($employee_id);
+        }
+
+        $status     = $this->status->statusTransform;
+
+        return view('admin.contract.create', compact('status', 'employee'));
     }
 
     /**
@@ -82,7 +90,7 @@ class ContractController extends Controller
 
         notify()->success('Kontrak kerja berhasil dibuat');
 
-        return redirect()->route('contract.index');
+        return redirect()->route('contract.detail', ['id' => $data->id]);
     }
 
     /**
