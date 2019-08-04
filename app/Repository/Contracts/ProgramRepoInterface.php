@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 interface ProgramRepoInterface
 {
+    public function count($skpd_id = null);
+
     public function find($id);
 
     public function getByName($name, $skpd_id = null);

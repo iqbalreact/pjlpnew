@@ -8,6 +8,8 @@ interface WorkPackageRepoInterface
 {
     public function find($id);
 
+    public function count($activity_id = null);
+
     public function getByName($name, $activity_id = null);
     
     public function store(Request $request);    

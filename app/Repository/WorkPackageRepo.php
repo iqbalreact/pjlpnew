@@ -21,6 +21,19 @@ class WorkPackageRepo implements WorkPackageRepoInterface
         return $data;
     }
 
+    public function count($activity_id = null)
+    {
+        $data = WorkPackage::query();
+
+        if (!empty($activity_id)) {
+            $data = $data->where('activity_id', $activity_id);
+        }
+
+        $data = $data->count();
+
+        return $data;
+    }
+
     public function getByName($name, $activity_id = null)
     {
         $query = WorkPackage::query();

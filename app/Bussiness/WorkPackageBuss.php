@@ -27,6 +27,14 @@ class WorkPackageBuss implements WorkPackageBussInterface
         return $this->workPackageRepo->find($id);
     }
 
+    public function generateCode($activity_id)
+    {
+        $activity           = $this->activity->find($activity_id);
+        $countWorkPackage   = $this->workPackageRepo->count($activity_id) + 1;
+
+        return $activity->code.'.'.$countWorkPackage;
+    }
+
     public function getByName($name, $activity_id = null)
     {
         return $this->workPackageRepo->getByName($name, $activity_id);
@@ -34,6 +42,8 @@ class WorkPackageBuss implements WorkPackageBussInterface
 
     public function store(Request $request)
     {
+        $request->code = $this->generateCode($request->activity_id);
+
         $data = $this->workPackageRepo->store($request);
         
         return $data;

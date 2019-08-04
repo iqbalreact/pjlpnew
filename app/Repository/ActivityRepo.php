@@ -21,6 +21,19 @@ class ActivityRepo implements ActivityRepoInterface
         return $data;
     }
 
+    public function count($program_id = null)
+    {
+        $data = Activity::query();
+
+        if (!empty($program_id)) {
+            $data = $data->where('program_id', $program_id);
+        }
+
+        $data = $data->count();
+
+        return $data;
+    }
+
     public function getByName($name, $program_id = null)
     {
         $query = Activity::query();

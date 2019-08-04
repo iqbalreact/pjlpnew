@@ -24,7 +24,6 @@ class ActivityRequest extends FormRequest
     public function rules()
     {
         return [
-            'code'      => 'required|unique:activities,code,'.$this->segment(3),
             'name'      => 'required|max:255',
             'program_id'=> 'required'
         ];

@@ -27,17 +27,19 @@
         </div>
     @endif
 
-    <div class="form-group {{ $errors->has('code') ? 'has-error' : '' }}">
-        <label for="inputCode" class="col-sm-2 control-label">Kode @include('components.required')</label>
+    @if($edit)
+        <div class="form-group {{ $errors->has('code') ? 'has-error' : '' }}">
+            <label for="inputCode" class="col-sm-2 control-label">Kode @include('components.required')</label>
 
-        <div class="col-sm-10">
-            {!! Form::text('code', $edit ? $data->code : old('code'), ['class' => 'form-control', 'placeholder'=> __('Kode program')] ) !!}
-            
-            @if ($errors->has('code'))
-                <span class="help-block">{{ $errors->first('code') }}</span>
-            @endif
+            <div class="col-sm-10">
+                {!! Form::text('code', $edit ? $data->code : old('code'), ['class' => 'form-control', 'placeholder'=> __('Kode program'), 'readonly' => true] ) !!}
+                
+                @if ($errors->has('code'))
+                    <span class="help-block">{{ $errors->first('code') }}</span>
+                @endif
+            </div>
         </div>
-    </div>
+    @endif
 
     <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
         <label for="inputName" class="col-sm-2 control-label">Nama @include('components.required')</label>
@@ -94,6 +96,9 @@
                     }
                 }
             });
+
+            onChangeSkpd();
         });
+
     </script>
 @endsection

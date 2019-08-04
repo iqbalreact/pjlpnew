@@ -10,6 +10,19 @@ use App\Models\Program;
 
 class ProgramRepo implements ProgramRepoInterface
 {
+    public function count($skpd_id = null)
+    {
+        $data = Program::query();
+
+        if (!empty($skpd_id)) {
+            $data = $data->where('skpd_id', $skpd_id);
+        }
+
+        $data = $data->count();
+
+        return $data;
+    }
+
     public function find($id)
     {
         $data = Program::find($id);

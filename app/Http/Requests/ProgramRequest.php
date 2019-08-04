@@ -24,7 +24,6 @@ class ProgramRequest extends FormRequest
     public function rules()
     {
         return [
-            'code'      => 'required|unique:programs,code,'.$this->segment(3),
             'name'      => 'required|max:255',
             'skpd_id'   => 'required'
         ];

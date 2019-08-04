@@ -5,18 +5,30 @@ namespace App\Bussiness;
 use Illuminate\Http\Request;
 
 use App\Bussiness\Contracts\ProgramBussInterface;
+use App\Bussiness\Contracts\SkpdBussInterface;
 use App\Repository\Contracts\ProgramRepoInterface;
 
 class ProgramBuss implements ProgramBussInterface
 {
-    public function __construct(ProgramRepoInterface $programRepo)
-    {
-        $this->programRepo = $programRepo;
+    public function __construct(
+        ProgramRepoInterface $programRepo,
+        SkpdBussInterface $skpd
+    ) {
+        $this->programRepo  = $programRepo;
+        $this->skpd         = $skpd;
     }
 
     public function find($id)
     {
         return $this->programRepo->find($id);
+    }
+
+    public function generateCode($skpd_id)
+    {
+        $skpd           = $this->skpd->find($skpd_id);
+        $countProgram   = $this->programRepo->count($skpd_id) + 1;
+
+        return $skpd->number.'.'.$countProgram;
     }
 
     public function getByName($name, $skpd_id = null)
@@ -26,6 +38,8 @@ class ProgramBuss implements ProgramBussInterface
 
     public function store(Request $request)
     {
+        $request->code = $this->generateCode($request->skpd_id);
+
         $data = $this->programRepo->store($request);
         
         return $data;

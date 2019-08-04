@@ -24,7 +24,6 @@ class WorkPackageRequest extends FormRequest
     public function rules()
     {
         return [
-            'code'          => 'required|unique:work_packages,code,'.$this->segment(3),
             'name'          => 'required|max:255',
             'activity_id'   => 'required'
         ];

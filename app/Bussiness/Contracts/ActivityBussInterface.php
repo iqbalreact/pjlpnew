@@ -8,6 +8,8 @@ interface ActivityBussInterface
 {
     public function find($id);
 
+    public function generateCode($program_id);
+
     public function getByName($name, $program_id = null);
 
     public function store(Request $request);    

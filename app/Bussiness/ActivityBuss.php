@@ -5,18 +5,30 @@ namespace App\Bussiness;
 use Illuminate\Http\Request;
 
 use App\Bussiness\Contracts\ActivityBussInterface;
+use App\Bussiness\Contracts\ProgramBussInterface;
 use App\Repository\Contracts\ActivityRepoInterface;
 
 class ActivityBuss implements ActivityBussInterface
 {
-    public function __construct(ActivityRepoInterface $activityRepo)
-    {
+    public function __construct(
+        ActivityRepoInterface $activityRepo,
+        ProgramBussInterface $program
+    ) {
         $this->activityRepo = $activityRepo;
+        $this->program      = $program;
     }
 
     public function find($id)
     {
         return $this->activityRepo->find($id);
+    }
+
+    public function generateCode($program_id)
+    {
+        $program            = $this->program->find($program_id);
+        $countActivity      = $this->activityRepo->count($program_id) + 1;
+
+        return $program->code.'.'.$countActivity;
     }
 
     public function getByName($name, $program_id = null)
@@ -26,6 +38,8 @@ class ActivityBuss implements ActivityBussInterface
 
     public function store(Request $request)
     {
+        $request->code = $this->generateCode($request->program_id);
+
         $data = $this->activityRepo->store($request);
         
         return $data;
