@@ -36,6 +36,8 @@ class DatatablesRepo implements DatatablesRepoInterface
             $datas->where('program_id', $request->program_id);
         }
 
+        $datas->with('program');
+
         return $datas;
     }
 
@@ -76,7 +78,9 @@ class DatatablesRepo implements DatatablesRepoInterface
 
     public function fetchOccupationDatas(Request $request)
     {
-    	$datas = Occupation::query();
+        $datas = Occupation::query();
+        
+        $datas->with('functionary', 'skpd');
 
         return $datas;
     }
@@ -84,6 +88,8 @@ class DatatablesRepo implements DatatablesRepoInterface
     public function fetchPositionDatas(Request $request)
     {
     	$datas = Position::query();
+
+        $datas->with('positionCategory');
 
         return $datas;
     }
@@ -103,6 +109,8 @@ class DatatablesRepo implements DatatablesRepoInterface
             $datas->where('skpd_id', $request->skpd_id);
         }
 
+        $datas->with('skpd');
+
         return $datas;
     }
 
@@ -120,6 +128,8 @@ class DatatablesRepo implements DatatablesRepoInterface
         if(!is_null($request->activity_id)) {
             $datas->where('activity_id', $request->activity_id);
         }
+
+        $datas->with('activity');
 
         return $datas;
     }

@@ -48,7 +48,7 @@
                 { data: 'id', name: 'id', class:'hide' },
                 { data: 'code', name: 'code', searchable:'true'},
                 { data: 'name', name: 'name', searchable:'true'},
-                { data: 'skpd', name: 'skpd_id', searchable:'true'},
+                { data: 'skpd', name: 'skpd.name', searchable:'true'},
                 { data: 'actions', name: 'actions', searchable: 'false', 'orderable': 'false', 'class': 'text-center'}
             ]
         });

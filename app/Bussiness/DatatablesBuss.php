@@ -126,7 +126,7 @@ class DatatablesBuss implements DatatablesBussInterface
                         ->addColumn('skpd', function(Occupation $occupation) {
                             return $occupation->skpd->name;                            
                         })
-                        ->addColumn('position', function($data) {
+                        ->addColumn('position_transform', function($data) {
                             return $this->occupationService->occupationTransform($data->position);
                         })
                         ->addColumn('actions', 
@@ -195,7 +195,7 @@ class DatatablesBuss implements DatatablesBussInterface
         $query = $this->datatablesRepo->fetchWorkPackageDatas($request);
 
         return Datatables::of($query)
-                        ->addColumn('workPackage', function (WorkPackage $workPackage) {
+                        ->addColumn('activity', function (WorkPackage $workPackage) {
                             return $workPackage->activity->name;
                         })
                         ->addColumn('actions', 

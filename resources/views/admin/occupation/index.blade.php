@@ -48,9 +48,9 @@
             ajax: '{!! route('fetch.occupation') !!}',
             columns: [
                 { data: 'id', name: 'id', class:'hide' },
-                { data: 'functionary', functionary_id: 'name', searchable:'true'},
-                { data: 'skpd', skpd_id: 'name', searchable:'true'},
-                { data: 'position', skpd_id: 'position', searchable:'true'},
+                { data: 'functionary', name: 'functionary.name', searchable:'true'},
+                { data: 'skpd', name: 'skpd.name', searchable:'true'},
+                { data: 'position_transform', name: 'position', searchable:'true'},
                 { data: 'start_date', name: 'start_date', searchable:'true'},
                 { data: 'end_date', name: 'end_date', searchable:'true'},
                 { data: 'actions', name: 'actions', searchable: 'false', 'orderable': 'false', 'class': 'text-center'}
