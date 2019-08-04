@@ -8,7 +8,7 @@ interface LocationBussInterface
 {
     public function find($id);
 
-    public function getByName($name, $skpd_id = null);
+    public function getByName($name, $workPackageId = null);
 
     public function store(Request $request);    
 

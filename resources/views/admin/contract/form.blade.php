@@ -77,6 +77,33 @@
         </div>
     </div>
 
+    @if(isset($location))
+        <div class="form-group {{ $errors->has('location_id') ? 'has-error' : '' }}">
+            <label for="inputLocation" class="col-sm-2 control-label">Lokasi @include('components.required')</label>
+
+            <div class="col-sm-10">
+                <input type="text" value="{{ $location->name }}" class="form-control" readonly>
+                <input name="location_id" type="hidden" value="{{ $location->id }}">
+
+                @if ($errors->has('location_id'))
+                    <span class="help-block">{{ $errors->first('location_id') }}</span>
+                @endif
+            </div>
+        </div>
+    @else
+        <div class="form-group {{ $errors->has('position_id') ? 'has-error' : '' }} hidden" id="locationArea">
+            <label for="inputLocation" class="col-sm-2 control-label">Lokasi @include('components.required')</label>
+    
+            <div class="col-sm-10">
+                <select name="location_id" id="locationSelect" class="form-control"></select>
+                
+                @if ($errors->has('location_id'))
+                    <span class="help-block">{{ $errors->first('location_id') }}</span>
+                @endif
+            </div>
+        </div>
+    @endif
+
 
     @if(isset($position))
         <div class="form-group {{ $errors->has('position_id') ? 'has-error' : '' }}">
@@ -100,33 +127,6 @@
                 
                 @if ($errors->has('position_id'))
                     <span class="help-block">{{ $errors->first('position_id') }}</span>
-                @endif
-            </div>
-        </div>
-    @endif
-
-    @if(isset($location))
-        <div class="form-group {{ $errors->has('location_id') ? 'has-error' : '' }}">
-            <label for="inputLocation" class="col-sm-2 control-label">Lokasi @include('components.required')</label>
-
-            <div class="col-sm-10">
-                <input type="text" value="{{ $location->name }}" class="form-control" readonly>
-                <input name="location_id" type="hidden" value="{{ $location->id }}">
-
-                @if ($errors->has('location_id'))
-                    <span class="help-block">{{ $errors->first('location_id') }}</span>
-                @endif
-            </div>
-        </div>
-    @else
-        <div class="form-group {{ $errors->has('position_id') ? 'has-error' : '' }}">
-            <label for="inputLocation" class="col-sm-2 control-label">Lokasi @include('components.required')</label>
-    
-            <div class="col-sm-10">
-                <select name="location_id" id="locationSelect" class="form-control"></select>
-                
-                @if ($errors->has('location_id'))
-                    <span class="help-block">{{ $errors->first('location_id') }}</span>
                 @endif
             </div>
         </div>
@@ -244,6 +244,7 @@
                 data: function (params) {
                     return {
                         q: params.term,
+                        work_package_id: workPackageId
                     };
                 },
                 processResults: function (data) {
@@ -345,11 +346,15 @@
 
     function onChangeWorkPackage() {
         workPackageId = $('#workPackageSelect').val();
+        $('#locationSelect').val('').trigger('change');
+        $('#occupationSelect').val('').trigger('change');
 
-        if (workPackageId !== '') {
+        if (workPackageId !== null) {
             $('#occupationArea').removeClass("hidden");
+            $('#locationArea').removeClass("hidden");
         } else {
             $('#occupationArea').addClass("hidden");
+            $('#locationArea').addClass("hidden");
         }
     }
 </script>

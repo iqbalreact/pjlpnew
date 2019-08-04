@@ -95,9 +95,10 @@ class LocationController extends Controller
      */
     public function selectList(Request $request)
     {
-        $name = $request->q;
+        $name           = $request->q;
+        $workPackageId  = $request->work_package_id; 
 
-        $res = $this->location->getByName($name);
+        $res = $this->location->getByName($name, $workPackageId);
 
         return response()->json($res);
     }
