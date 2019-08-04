@@ -24,6 +24,16 @@ class ContractBuss implements ContractBussInterface
         return $this->contractRepo->find($id);
     }
 
+    public function findActiveContract($employee_id)
+    {
+        return $this->contractRepo->findActiveContract($employee_id);
+    }
+
+    public function contractInformation($id)
+    {
+        return $this->contractRepo->contractInformation($id);
+    }
+
     public function store(Request $request)
     {
         $workPackageInfo = $this->workPackage->findWorkPackageInformation($request->work_package_id);

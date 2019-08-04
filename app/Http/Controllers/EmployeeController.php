@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\EmployeeRequest;
 
 use App\Bussiness\Contracts\EmployeeBussInterface;
+use App\Bussiness\Contracts\ContractBussInterface;
 
 use App\Services\Contracts\ActivityLogServiceInterface;
 use App\Services\Contracts\BankServiceInterface;
@@ -20,6 +21,7 @@ class EmployeeController extends Controller
 {
     public function __construct(
         EmployeeBussInterface $employee,
+        ContractBussInterface $contract,
         ActivityLogServiceInterface $activityLog, 
         BankServiceInterface $bank, 
         GenderServiceInterface $gender,
@@ -27,6 +29,7 @@ class EmployeeController extends Controller
     ) {
         $this->activityLog  = $activityLog;
         $this->bank         = $bank;
+        $this->contract     = $contract;
         $this->employee     = $employee;
         $this->gender       = $gender;
         $this->religion     = $religion;
@@ -86,7 +89,14 @@ class EmployeeController extends Controller
             return redirect()->back();
         }
 
-        return view('admin.employee.show', compact('data'));
+        $contract = $this->contract->findActiveContract($data->id);
+
+        $contractInformation = null;
+        if ($contract) {
+            $contractInformation = $this->contract->contractInformation($contract->id);
+        }
+
+        return view('admin.employee.show', compact('data', 'contract', 'contractInformation'));
     }
 
     /**

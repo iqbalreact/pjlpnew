@@ -23,6 +23,24 @@ class ContractRepo implements ContractRepoInterface
         return $data;
     }
 
+    public function findActiveContract($employee_id)
+    {
+        $data = Contract::where('employee_id', $employee_id)
+                        ->where('status', 'active')
+                        ->first();
+
+        return $data;
+    }
+
+    public function contractInformation($id)
+    {
+        $data = Contract::with('skpd', 'program', 'activity', 'workPackage', 'position')->find($id);
+
+        // dd($data);
+
+        return $data;
+    }
+
     public function store(Request $request)
     {
         $data = new Contract();

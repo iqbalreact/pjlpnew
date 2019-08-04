@@ -16,21 +16,28 @@
                 <div class="box-body box-profile">
                     <img class="profile-user-img img-responsive img-circle" src="{{ $data->getAvatar() }}" alt="User profile picture">
         
-                    <h3 class="profile-username text-center">{{ $data->name }}</h3>
+                    <br>
                     <ul class="list-group list-group-unbordered">
+                        <li class="list-group-item">
+                            <b>Nama</b> <a class="pull-right">{{ $data->name }}</a>
+                        </li>
                         <li class="list-group-item">
                             <b>NIPJ</b> <a class="pull-right">{{ $data->nipj }}</a>
                         </li>
                         <li class="list-group-item">
-                            <b>KTP</b> <a class="pull-right">{{ $data->ktp }}</a>
+                            <b>No Telepon</b> <a class="pull-right">{{ $data->phone_number }}</a>
                         </li>
                         <li class="list-group-item">
-                            <b>NPWP</b> <a class="pull-right">{{ $data->npwp ?? '-' }}</a>
+                            <b>Status</b> <a class="pull-right">{{ $contract ? 'Aktif' : 'Non Aktif' }}</a>
                         </li>
                     </ul>
 
                     <a href="{{ route('employee.edit', ['id' => $data->id ]) }}" class="btn btn-success btn-block"><i class="fa fa-pencil"></i> <b>Edit</b></a>
-    
+
+                    @if(!$contract)
+                        <a href="{{ route('contract.create', ['employee_id' => $data->id ]) }}" class="btn btn-primary btn-block"><i class="fa fa-plus"></i> <b>Tambah Kontrak</b></a>
+                    @endif
+
                     </div>
             </div>
         </div>
