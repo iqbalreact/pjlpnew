@@ -26,9 +26,6 @@ class ContractRequest extends FormRequest
         return [
             'number'            => 'required|unique:contracts,number,'.$this->segment(3), 
             'employee_id'       => 'required|numeric',
-            'skpd_id'           => 'required|numeric',          
-            'program_id'        => 'required|numeric',   
-            'activity_id'       => 'required|numeric',
             'work_package_id'   => 'required|numeric',
             'location_id'       => 'required|numeric',
             'position_id'       => 'required|numeric',

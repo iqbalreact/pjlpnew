@@ -1,3 +1,7 @@
+@foreach ($errors as $error)
+    {{ $errro }}
+@endforeach
+
 <div class="box-body">
     <div class="form-group {{ $errors->has('number') ? 'has-error' : '' }}">
         <label for="inputNumber" class="col-sm-2 control-label">Nomer @include('components.required')</label>
@@ -52,7 +56,7 @@
             </div>
         </div>
     @else
-        <div class="form-group {{ $errors->has('employee_id') ? 'has-error' : '' }}">
+        <div class="form-group {{ $errors->has('work_package_id') ? 'has-error' : '' }}">
             <label for="inputWorkPackage" class="col-sm-2 control-label">Paket Pekerjaan @include('components.required')</label>
     
             <div class="col-sm-10">
@@ -65,17 +69,32 @@
         </div>
     @endif
 
-    <div class="form-group {{ $errors->has('occupation_id') ? 'has-error' : '' }} hidden" id="occupationArea">
-        <label for="inputPosition" class="col-sm-2 control-label">Pejabat @include('components.required')</label>
+    @if(isset($functionary))
+        <div class="form-group {{ $errors->has('occupation_id') ? 'has-error' : '' }}">
+            <label for="inputFunctionary" class="col-sm-2 control-label">Pejabat @include('components.required')</label>
 
-        <div class="col-sm-10">
-            <select name="occupation_id" id="occupationSelect" class="form-control"></select>
-            
-            @if ($errors->has('occupation_id'))
-                <span class="help-block">{{ $errors->first('occupation_id') }}</span>
-            @endif
+            <div class="col-sm-10">
+                <input type="text" value="{{ $functionary->name }}" class="form-control" readonly>
+                <input name="occupation_id" type="hidden" value="{{ $functionary->id }}">
+
+                @if ($errors->has('occupation_id'))
+                    <span class="help-block">{{ $errors->first('occupation_id') }}</span>
+                @endif
+            </div>
         </div>
-    </div>
+    @else
+        <div class="form-group {{ $errors->has('occupation_id') ? 'has-error' : '' }} hidden" id="occupationArea">
+            <label for="inputFunctionary" class="col-sm-2 control-label">Pejabat @include('components.required')</label>
+    
+            <div class="col-sm-10">
+                <select name="occupation_id" id="occupationSelect" class="form-control"></select>
+                
+                @if ($errors->has('occupation_id'))
+                    <span class="help-block">{{ $errors->first('occupation_id') }}</span>
+                @endif
+            </div>
+        </div>
+    @endif
 
     @if(isset($location))
         <div class="form-group {{ $errors->has('location_id') ? 'has-error' : '' }}">
@@ -91,7 +110,7 @@
             </div>
         </div>
     @else
-        <div class="form-group {{ $errors->has('position_id') ? 'has-error' : '' }} hidden" id="locationArea">
+        <div class="form-group {{ $errors->has('location_id') ? 'has-error' : '' }} hidden" id="locationArea">
             <label for="inputLocation" class="col-sm-2 control-label">Lokasi @include('components.required')</label>
     
             <div class="col-sm-10">

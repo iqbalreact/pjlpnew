@@ -69,4 +69,9 @@
             <input class="form-control" value="{{ $data->status }}" readonly>
         </div>
     </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <a href="{{ route('contract.edit', ['id' => $data->id]) }}" class="btn btn-success"><i class="fa fa-pencil"></i> Edit</a>
+        </div>
+    </div>
 </form>

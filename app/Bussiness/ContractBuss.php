@@ -42,6 +42,15 @@ class ContractBuss implements ContractBussInterface
 
     public function update(Request $request, $id)
     {
+        $workPackageInfo = $this->workPackage->findWorkPackageInformation($request->work_package_id);
+        
+        // assign working package info
+        $request->working_package_id    = $workPackageInfo['work_package_id'];
+        $request->activity_id           = $workPackageInfo['activity_id'];
+        $request->program_id            = $workPackageInfo['program_id']; 
+        $request->skpd_id               = $workPackageInfo['skpd_id']; 
+
+        // update contract
         $data = $this->contractRepo->update($request, $id);
         
         return $data;
