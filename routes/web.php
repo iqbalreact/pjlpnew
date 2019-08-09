@@ -28,6 +28,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         return view('dashboard');
     })->name('about');
 
+    Route::resource('attendace', 'AttendaceController');
     Route::resource('activity', 'ActivityController');
     Route::resource('account', 'AccountController');
     Route::resource('contract', 'ContractController');
@@ -46,6 +47,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     // Datatables
     Route::group(['prefix' => 'data'], function() {
+        Route::get('template', 'DatatablesController@fetchTemplateDatas')->name('fetch.template');
         Route::get('account', 'DatatablesController@fetchAccountDatas')->name('fetch.account');
         Route::get('activity', 'DatatablesController@fetchActivityDatas')->name('fetch.activity');
         Route::get('activitylog', 'DatatablesController@fetchActivityLog')->name('fetch.activityLog');

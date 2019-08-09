@@ -10,6 +10,9 @@ use App\Bussiness\ActivityBuss;
 use App\Bussiness\Contracts\AccountBussInterface;
 use App\Bussiness\AccountBuss;
 
+use App\Bussiness\Contracts\AttendanceDatatablesBussInterface;
+use App\Bussiness\AttendanceDatatablesBuss;
+
 use App\Bussiness\Contracts\ContractBussInterface;
 use App\Bussiness\ContractBuss;
 
@@ -64,6 +67,7 @@ class BussinessServiceProvider extends ServiceProvider
     {
         $this->app->bind(AccountBussInterface::class, AccountBuss::class);
         $this->app->bind(ActivityBussInterface::class, ActivityBuss::class);
+        $this->app->bind(AttendanceDatatablesBussInterface::class, AttendanceDatatablesBuss::class);
         $this->app->bind(ContractBussInterface::class, ContractBuss::class);
         $this->app->bind(DatatablesBussInterface::class, DatatablesBuss::class);
         $this->app->bind(EmployeeBussInterface::class, EmployeeBuss::class);
