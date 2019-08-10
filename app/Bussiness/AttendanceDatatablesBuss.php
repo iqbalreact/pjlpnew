@@ -40,8 +40,11 @@ class AttendanceDatatablesBuss implements AttendanceDatatablesBussInterface
         $query = $this->datatablesRepo->fetchEmployeeDatas($request);
         
         return Datatables::of($query)
-                        ->addColumn('textbox',  function($data) { 
-                            return $this->textBox($data->name);  
+                        ->addColumn('from',  function($data) { 
+                            return $this->from();  
+                        })
+                        ->addColumn('to',  function($data) { 
+                            return $this->to();  
                         })
                         ->addColumn('ceremony',  function($data) { 
                             return $this->ceremony();  
@@ -52,11 +55,17 @@ class AttendanceDatatablesBuss implements AttendanceDatatablesBussInterface
                         ->addColumn('save',  function($data) { 
                             return $this->saveButton();  
                         })
+                        ->addColumn('status',  function($data) { 
+                            return $this->status();  
+                        })
                         ->rawColumns([
                             'save', 
-                            'textbox', 
+                            'from',
+                            'to', 
                             'ceremony',
-                            'late'
+                            'late',
+                            'status',
+                            'plainTest'
                         ])
                         ->make(true);
     }
@@ -81,9 +90,27 @@ class AttendanceDatatablesBuss implements AttendanceDatatablesBussInterface
         return $select;
     }
 
-    private function textBox($value)
+    // private function textBox($value)
+    // {
+    //     return '<input type="textbox" class="form-control" value="80:80" style="width:60px;">';
+    // }
+
+    private function from($value = null)
     {
-        return '<input type="textbox" class="form-control" value="80:80" style="width:60px;">';
+        if (!is_null($value)) {
+            return '<input type="textbox" name="from" class="form-control time" value="'.$value.'" style="width:60px;">';
+        }
+
+        return '<input type="textbox" name="from" class="form-control time" value="08:00" style="width:60px;">';
+    }
+
+    private function to($value = null)
+    {
+        if (!is_null($value)) {
+            return '<input type="textbox" name="to" class="form-control time" value="'.$value.'" style="width:60px;">';
+        }
+
+        return '<input type="textbox" name="to" class="form-control time" value="17:00" style="width:60px;">';
     }
 
     private function saveButton()
@@ -91,5 +118,9 @@ class AttendanceDatatablesBuss implements AttendanceDatatablesBussInterface
         return '<button class="btn btn-sm btn-primary"><i class="fa fa-save"></i></button>';
     }
 
-   
+    private function status()
+    {
+        // return '<div class="stateStatus"><img src="/img/spinner.gif"></div>';
+        return '<div class="stateStatus"></div>';
+    }
 }
