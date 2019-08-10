@@ -10,6 +10,8 @@ use Spatie\Activitylog\Traits\CausesActivity;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
+use App\Models\Attendances;
+
 class Employee extends Model implements HasMedia
 {
     use LogsActivity, CausesActivity, HasMediaTrait;
@@ -43,6 +45,11 @@ class Employee extends Model implements HasMedia
         'bpjs_healthcare',
         'bpjs_social_security'
     ];
+
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
+    }
 
     public function getAvatar()
     {

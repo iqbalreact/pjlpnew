@@ -42,7 +42,10 @@ class ActivityRepo implements ActivityRepoInterface
             $query = $query->where('program_id', $program_id);
         }
 
-        $query = $query->where('name', 'LIKE', '%'.$name.'%')->take(20)->get();
+        $query = $query->where('name', 'LIKE', '%'.$name.'%')
+                    ->orderBy('name')
+                    ->take(20)
+                    ->get();
 
         return $query;
     }

@@ -8,6 +8,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\Traits\CausesActivity;
 
 use App\Models\Activity;
+use App\Models\Attendance;
 use App\Models\Employee;
 use App\Models\Location;
 use App\Models\Position;
@@ -54,6 +55,11 @@ class Contract extends Model
     public function activity()
     {
         return $this->belongsTo(Activity::class);
+    }
+
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
     }
 
     public function employee()

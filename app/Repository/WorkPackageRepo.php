@@ -42,7 +42,10 @@ class WorkPackageRepo implements WorkPackageRepoInterface
             $query = $query->where('activity_id', $activity_id);
         }
 
-        $query = $query->where('name', 'LIKE', '%'.$name.'%')->take(20)->get();
+        $query = $query->where('name', 'LIKE', '%'.$name.'%')
+                    ->orderBy('name')
+                    ->take(20)
+                    ->get();
 
         return $query;
     }

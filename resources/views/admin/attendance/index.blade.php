@@ -12,22 +12,44 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="box box-primary">
+                <div class="box-header">   
+                    <h3 class="box-title">Filter</h3>
+                </div>
                 <div class="box-body">
+                    <form class="form-horizontal">
                         <div class="form-group">
-                                <label for="inputNIPJ" class="col-sm-2 control-label">Tanggal @include('components.required')</label>
-        
-                                <div class="col-sm-10">
-                                    {!! Form::text('nipj', '', ['id' => 'date', 'class' => 'form-control datepicker', 'placeholder'=> __('Tanggal'), 'autocomplete' => 'off'] ) !!}
-                                </div>
+                            <label for="inputWorkPackage" class="col-sm-2 control-label">Paket Pekerjaan @include('components.required')</label>
+                    
+                            <div class="col-sm-10">
+                                <select name="work_package_id" id="workPackageSelect" class="form-control"></select>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputNIPJ" class="col-sm-2 control-label">Tanggal @include('components.required')</label>
+    
+                            <div class="col-sm-10">
+                                {!! Form::text('nipj', '', ['id' => 'date', 'class' => 'form-control datepicker', 'placeholder'=> __('Tanggal'), 'autocomplete' => 'off'] ) !!}
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button
+                                    id="findData" 
+                                    type="button" 
+                                    class="btn btn-primary">
+                                        <i class="fa fa-search"></i> Cari
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <div class="box box-primary">
+            <div class="box box-primary" id="inputAttendace">
                 <div class="box-header">   
                     <h3 class="box-title">Input Absensi</h3>
                 </div>
                 <div class="box-body">
-                    <table id="employee-table" class="table">
+                    <table id="employee-table" class="table" width="100%">
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -48,31 +70,36 @@
     </div>
 @stop
 
-@section('js')
+@section('js2')
 <script>
     var today = new Date();
+    var workPackageId = '';
 
-    $(function() {
-        $('.datepicker').datepicker({
-            autoclose: true,
-            orientation: 'bottom',
-            format: 'dd-mm-yyyy'
-        });    
+    $('.datepicker').datepicker({
+        autoclose: true,
+        orientation: 'bottom',
+        format: 'dd-mm-yyyy'
+    });    
 
-        $( '.datepicker' ).datepicker( 'setDate', today );
-    });
+    $( '.datepicker' ).datepicker( 'setDate', today );
 
     var oTable = $('#employee-table').dataTable({
         processing: true,
         serverSide: true,
         responsive: true,
-        order: [[ 0, 'desc' ]],
+        order: [[ 2, 'asc' ]],
         deferRender:    true,
-        ajax: '{!! route('fetch.template') !!}',
+        ajax: {
+            url: '{!! route('fetch.template') !!}',
+            data: function (d) {
+                d.workPackageId = $('#workPackageSelect').val(),
+                d.date = $('#date').val()
+            }
+        },
         columns: [
             { data: 'id', name: 'id', class:'hide' },
-            { data: 'nipj', name: 'nipj', searchable:'true'},
-            { data: 'name', name: 'name', searchable:'true'},
+            { data: 'employee_nipj', name: 'employee.nipj', searchable:'true'},
+            { data: 'employee_name', name: 'employee.name', searchable:'true'},
             { data: 'from', name: 'from', searchable:'false', orderable:'false', "width": "80px"},
             { data: 'to', name: 'to', searchable:'false', orderable:'false', "width": "80px"},
             { data: 'ceremony', name: 'ceremony', searchable:'false', orderable:'false', "width": "10%"},
@@ -98,13 +125,16 @@
         console.log( from, to, ceremony, late );
     } );
 
-    $('#date').change(function() {
+    $('#findData').click(function() {
         reloadTable();
-    }) ;
+    });
 
     function reloadTable(){
         oTable.api().ajax.reload();
     }
     
 </script>
+
+@include('admin.attendance.js.selectFilter')
+
 @stop

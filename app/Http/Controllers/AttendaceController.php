@@ -13,7 +13,7 @@ class AttendaceController extends Controller
      */
     public function index()
     {
-        return view('admin.attendace.index');
+        return view('admin.attendance.index');
     }
 
     /**

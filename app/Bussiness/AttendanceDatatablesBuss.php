@@ -12,11 +12,6 @@ use App\Services\Contracts\ActivityLogServiceInterface;
 
 use App\Models\Activity;
 use App\Models\Contract;
-use App\Models\Occupation;
-use App\Models\Position;
-use App\Models\Program;
-use App\Models\Skpd;
-use App\Models\WorkPackage;
 
 use Carbon\Carbon;
 use DataTables;
@@ -37,9 +32,15 @@ class AttendanceDatatablesBuss implements AttendanceDatatablesBussInterface
 
     public function fetchTemplate(Request $request)
     {
-        $query = $this->datatablesRepo->fetchEmployeeDatas($request);
+        $query = $this->datatablesRepo->fetchAttendanceData($request);
         
         return Datatables::of($query)
+                        ->addColumn('employee_nipj', function(Contract $contract) {
+                            return $contract->employee->nipj;
+                        })
+                        ->addColumn('employee_name', function(Contract $contract) {
+                            return $contract->employee->name;
+                        })
                         ->addColumn('from',  function($data) { 
                             return $this->from();  
                         })
@@ -89,11 +90,6 @@ class AttendanceDatatablesBuss implements AttendanceDatatablesBussInterface
 
         return $select;
     }
-
-    // private function textBox($value)
-    // {
-    //     return '<input type="textbox" class="form-control" value="80:80" style="width:60px;">';
-    // }
 
     private function from($value = null)
     {

@@ -42,7 +42,10 @@ class ProgramRepo implements ProgramRepoInterface
             $query = $query->where('skpd_id', $skpd_id);
         }
 
-        $query = $query->where('name', 'LIKE', '%'.$name.'%')->take(20)->get();
+        $query = $query->where('name', 'LIKE', '%'.$name.'%')
+                    ->orderBy('name')
+                    ->take(20)
+                    ->get();
 
         return $query;
     }
