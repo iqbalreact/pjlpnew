@@ -28,7 +28,7 @@
                             <label for="inputNIPJ" class="col-sm-2 control-label">Tanggal @include('components.required')</label>
     
                             <div class="col-sm-10">
-                                {!! Form::text('nipj', '', ['id' => 'date', 'class' => 'form-control datepicker', 'placeholder'=> __('Tanggal'), 'autocomplete' => 'off'] ) !!}
+                                {!! Form::text('date', '', ['id' => 'date', 'class' => 'form-control datepicker', 'placeholder'=> __('Tanggal'), 'autocomplete' => 'off'] ) !!}
                             </div>
                         </div>
                          <div class="form-group">
@@ -116,13 +116,33 @@
 
         var idx =  oTable.api().row( $(this).parents('tr') ).index();
         
+        var data = oTable.api().row( $(this).parents('tr') ).data();
+
+        var employee_id = data.employee.id;
+        var contract_id = data.id;
         var from        = oTable.api().cell(idx,3).nodes().to$().find('input').val();
         var to          = oTable.api().cell(idx,4).nodes().to$().find('input').val();
         var ceremony    = oTable.api().cell(idx,5).nodes().to$().find('select').val();
         var late        = oTable.api().cell(idx,6).nodes().to$().find('select').val();
+               
+        oTable.api().cell(idx, 8).nodes().to$().find('.stateStatus').html("<img src='/img/spinner.gif'>");
 
-        oTable.api().cell(idx, 8).nodes().to$().find('.stateStatus').html("<img src='/img/cancel.png'>");
-        console.log( from, to, ceremony, late );
+        $.post('{{ route('attendance.store') }}', {
+            employee_id: employee_id, 
+            contract_id: contract_id, 
+            work_package_id: $('#workPackageSelect').val(), 
+            date: $('#date').val(), 
+            from: from,
+            to: to,
+            ceremony: ceremony,
+            late: late
+        }, function(data, status) {
+            if (status == 'success') {
+                oTable.api().cell(idx, 8).nodes().to$().find('.stateStatus').html("<img src='/img/checked.png'>");
+            } else {
+                oTable.api().cell(idx, 8).nodes().to$().find('.stateStatus').html("<img src='/img/cancel.png'>");
+            }
+        });
     } );
 
     $('#findData').click(function() {

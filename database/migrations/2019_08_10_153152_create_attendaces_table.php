@@ -20,8 +20,8 @@ class CreateAttendacesTable extends Migration
             $table->integer('contract_id');
             $table->integer('work_package_id');
             $table->date('date');
-            $table->time('from');
-            $table->time('to');
+            $table->string('from');
+            $table->string('to');
             $table->boolean('ceremony');
             $table->boolean('late');
         });

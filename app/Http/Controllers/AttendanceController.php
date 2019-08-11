@@ -4,8 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class AttendaceController extends Controller
+use App\Bussiness\Contracts\AttendanceBussInterface;
+
+use Carbon\Carbon;
+
+class AttendanceController extends Controller
 {
+    public function __construct(AttendanceBussInterface $attendance)
+    {
+        $this->attendance = $attendance;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -21,9 +30,9 @@ class AttendaceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -34,7 +43,9 @@ class AttendaceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $this->attendance->store($request);
+
+        return response()->json($data);
     }
 
     /**

@@ -10,6 +10,9 @@ use App\Repository\AccountRepo;
 use App\Repository\Contracts\ActivityRepoInterface;
 use App\Repository\ActivityRepo;
 
+use App\Repository\Contracts\AttendanceRepoInterface;
+use App\Repository\AttendanceRepo;
+
 use App\Repository\Contracts\ContractRepoInterface;
 use App\Repository\ContractRepo;
 
@@ -64,6 +67,7 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->app->bind(ActivityRepoInterface::class, ActivityRepo::class);
         $this->app->bind(AccountRepoInterface::class, AccountRepo::class);
+        $this->app->bind(AttendanceRepoInterface::class, AttendanceRepo::class);
         $this->app->bind(ContractRepoInterface::class, ContractRepo::class);
         $this->app->bind(DatatablesRepoInterface::class, DatatablesRepo::class);
         $this->app->bind(EmployeeRepoInterface::class, EmployeeRepo::class);    

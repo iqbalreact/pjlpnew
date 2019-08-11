@@ -28,7 +28,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         return view('dashboard');
     })->name('about');
 
-    Route::resource('attendace', 'AttendaceController');
+    Route::resource('attendance', 'AttendanceController');
     Route::resource('activity', 'ActivityController');
     Route::resource('account', 'AccountController');
     Route::resource('contract', 'ContractController');

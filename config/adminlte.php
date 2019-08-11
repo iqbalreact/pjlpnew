@@ -135,6 +135,11 @@ return [
             'icon' => 'dollar',
             'url'  => '#'
         ],
+        [
+            'text' => 'Absensi',
+            'icon' => 'book',
+            'url'  => '/admin/attendance'
+        ],
         'SISTEM',
         [
             'text' => 'Pengguna',

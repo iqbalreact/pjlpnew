@@ -42,22 +42,22 @@ class AttendanceDatatablesBuss implements AttendanceDatatablesBussInterface
                             return $contract->employee->name;
                         })
                         ->addColumn('from',  function($data) { 
-                            return $this->from();  
+                            return $this->from($data);  
                         })
                         ->addColumn('to',  function($data) { 
-                            return $this->to();  
+                            return $this->to($data);  
                         })
                         ->addColumn('ceremony',  function($data) { 
-                            return $this->ceremony();  
+                            return $this->ceremony($data);  
                         })
                         ->addColumn('late',  function($data) { 
-                            return $this->late();  
+                            return $this->late($data);  
                         })
                         ->addColumn('save',  function($data) { 
                             return $this->saveButton();  
                         })
                         ->addColumn('status',  function($data) { 
-                            return $this->status();  
+                            return $this->status($data);  
                         })
                         ->rawColumns([
                             'save', 
@@ -71,39 +71,59 @@ class AttendanceDatatablesBuss implements AttendanceDatatablesBussInterface
                         ->make(true);
     }
 
-    private function ceremony()
+    private function ceremony($data)
     {
+        $data = $data->employee->attendances->first();
+
         $select = '<select name="ceremony" type="checkbox" class="form-control">';
-        $select .= '<option value="1" selected>Ya</option>';  
-        $select .= '<option value="0">Tidak</option>';  
+        
+        if(!isset($data) or $data->ceremony == "1") {
+            $select .= '<option value="1" selected>Ya</option>';  
+            $select .= '<option value="0">Tidak</option>';  
+        } else {
+            $select .= '<option value="1">Ya</option>';  
+            $select .= '<option value="0" selected>Tidak</option>';  
+        }
+
         $select .= '</select>';
 
         return $select;
     }
 
-    private function late()
+    private function late($data)
     {
+        $data = $data->employee->attendances->first();
+
         $select = '<select name="late" type="checkbox" class="form-control">';
-        $select .= '<option value="1">Ya</option>';  
-        $select .= '<option value="0" selected>Tidak</option>';  
+
+        if(isset($data) &&  $data->late == "1") {
+            $select .= '<option value="1" selected>Ya</option>';  
+            $select .= '<option value="0">Tidak</option>';  
+        } else {
+            $select .= '<option value="1">Ya</option>';  
+            $select .= '<option value="0" selected>Tidak</option>';  
+        }
+
         $select .= '</select>';
 
         return $select;
     }
 
-    private function from($value = null)
+    private function from($data)
     {
-        if (!is_null($value)) {
-            return '<input type="textbox" name="from" class="form-control time" value="'.$value.'" style="width:60px;">';
+        $data = $data->employee->attendances->first();
+        if (!empty($data)) {
+            return '<input type="textbox" name="from" class="form-control time" value="'.$data->from.'" style="width:60px;">';
         }
 
         return '<input type="textbox" name="from" class="form-control time" value="08:00" style="width:60px;">';
     }
 
-    private function to($value = null)
+    private function to($data)
     {
-        if (!is_null($value)) {
-            return '<input type="textbox" name="to" class="form-control time" value="'.$value.'" style="width:60px;">';
+        $data = $data->employee->attendances->first();
+        if (!empty($data)) {
+            return '<input type="textbox" name="to" class="form-control time" value="'.$data->to.'" style="width:60px;">';
         }
 
         return '<input type="textbox" name="to" class="form-control time" value="17:00" style="width:60px;">';
@@ -114,9 +134,12 @@ class AttendanceDatatablesBuss implements AttendanceDatatablesBussInterface
         return '<button class="btn btn-sm btn-primary"><i class="fa fa-save"></i></button>';
     }
 
-    private function status()
+    private function status($data)
     {
-        // return '<div class="stateStatus"><img src="/img/spinner.gif"></div>';
+        if (!empty($data->employee->attendances->first())) {
+            return '<div class="stateStatus"><img src="/img/checked.png"></div>';
+        }
+
         return '<div class="stateStatus"></div>';
     }
 }

@@ -10,7 +10,8 @@ use Spatie\Activitylog\Traits\CausesActivity;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
-use App\Models\Attendances;
+use App\Models\Attendance;
+use App\Models\Contract;
 
 class Employee extends Model implements HasMedia
 {
@@ -49,6 +50,11 @@ class Employee extends Model implements HasMedia
     public function attendances()
     {
         return $this->hasMany(Attendance::class);
+    }
+
+    public function contracts()
+    {
+        return $this->hasMany(Contract::class);
     }
 
     public function getAvatar()
