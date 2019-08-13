@@ -35,6 +35,9 @@ class AttendanceDatatablesBuss implements AttendanceDatatablesBussInterface
         $query = $this->datatablesRepo->fetchAttendanceData($request);
         
         return Datatables::of($query)
+                        ->addColumn('DT_RowId', function($data) { 
+                            return 'row-'.$data->id;  
+                        })
                         ->addColumn('employee_nipj', function(Contract $contract) {
                             return $contract->employee->nipj;
                         })

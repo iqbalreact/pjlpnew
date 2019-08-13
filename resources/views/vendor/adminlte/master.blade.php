@@ -16,6 +16,8 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/vendor/Ionicons/css/ionicons.min.css') }}">
 
+    <link rel="stylesheet" href="{{ '/vendor/datatable-checkbox/dataTables.checkboxes.css' }}">
+
     @if(config('adminlte.plugins.select2'))
         <!-- Select2 -->
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css">
@@ -72,6 +74,7 @@
 {{-- Datepicker --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script src="/js/inputmask.js"></script>
+<script src="/vendor/datatable-checkbox/dataTables.checkboxes.min.js"></script>
 
 <script>
 $(function() {

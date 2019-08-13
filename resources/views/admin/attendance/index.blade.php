@@ -52,6 +52,7 @@
                     <table id="employee-table" class="table" width="100%">
                         <thead>
                             <tr>
+                                <th></th>
                                 <th>Id</th>
                                 <th>NIPJ</th>
                                 <th>Name</th>
@@ -63,7 +64,19 @@
                                 <th>Status</th>
                             </tr>
                         </thead>
-                    </table>                
+                    </table> 
+                    
+                    <div class="row">
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-primary btn-block" id="btn-submit">Bulk Insert Absensi</button>
+                        </div>
+                        <div class="col-md-10">
+                                <div class="callout callout-info">
+                                    <h4>PERHATIAN!</h4>
+                                    <p>Bulk insert hanya bisa dilakukan setiap satu halaman</p>
+                                </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -96,7 +109,19 @@
                 d.date = $('#date').val()
             }
         },
+        'columnDefs': [
+            {
+                'targets': 0,
+                'checkboxes': {
+                'selectRow': true
+                }
+            }
+        ],
+        'select': {
+            'style': 'multi'
+        },
         columns: [
+            { data: 'id', name: 'id' },
             { data: 'id', name: 'id', class:'hide' },
             { data: 'employee_nipj', name: 'employee.nipj', searchable:'true'},
             { data: 'employee_name', name: 'employee.name', searchable:'true'},
@@ -112,20 +137,38 @@
         }
     });
 
+    // Handle form submission event
+    $('#btn-submit').on('click', function(e){
+        
+        var rows_selected = oTable.api().column(0).checkboxes.selected();
+        
+        $.each(rows_selected, function(idx, rowId){
+ 
+            var idx =  oTable.api().row( '#row-'+rowId ).index(); 
+            var data = oTable.api().row( '#row-'+rowId ).data();
+            
+            submitAttendace(idx, data);                    
+        });
+    });
+
     $('#employee-table tbody').on( 'click', 'button', function () {
 
         var idx =  oTable.api().row( $(this).parents('tr') ).index();
-        
         var data = oTable.api().row( $(this).parents('tr') ).data();
 
+        submitAttendace(idx, data);        
+    } );
+
+    function submitAttendace(idx, data) {
+        
         var employee_id = data.employee.id;
         var contract_id = data.id;
-        var from        = oTable.api().cell(idx,3).nodes().to$().find('input').val();
-        var to          = oTable.api().cell(idx,4).nodes().to$().find('input').val();
-        var ceremony    = oTable.api().cell(idx,5).nodes().to$().find('select').val();
-        var late        = oTable.api().cell(idx,6).nodes().to$().find('select').val();
+        var from        = oTable.api().cell(idx,4).nodes().to$().find('input').val();
+        var to          = oTable.api().cell(idx,5).nodes().to$().find('input').val();
+        var ceremony    = oTable.api().cell(idx,6).nodes().to$().find('select').val();
+        var late        = oTable.api().cell(idx,7).nodes().to$().find('select').val();
                
-        oTable.api().cell(idx, 8).nodes().to$().find('.stateStatus').html("<img src='/img/spinner.gif'>");
+        oTable.api().cell(idx, (9)).nodes().to$().find('.stateStatus').html("<img src='/img/spinner.gif'>");
 
         $.post('{{ route('attendance.store') }}', {
             employee_id: employee_id, 
@@ -138,12 +181,12 @@
             late: late
         }, function(data, status) {
             if (status == 'success') {
-                oTable.api().cell(idx, 8).nodes().to$().find('.stateStatus').html("<img src='/img/checked.png'>");
+                oTable.api().cell(idx, 9).nodes().to$().find('.stateStatus').html("<img src='/img/checked.png'>");
             } else {
-                oTable.api().cell(idx, 8).nodes().to$().find('.stateStatus').html("<img src='/img/cancel.png'>");
+                oTable.api().cell(idx, 9).nodes().to$().find('.stateStatus').html("<img src='/img/cancel.png'>");
             }
         });
-    } );
+    }
 
     $('#findData').click(function() {
         reloadTable();
