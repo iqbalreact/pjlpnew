@@ -43,7 +43,7 @@ class WorkPackageRepo implements WorkPackageRepoInterface
         }
 
         $query = $query->where('name', 'LIKE', '%'.$name.'%')
-                    ->orderBy('name')
+                    ->orderBy('id')
                     ->take(20)
                     ->get();
 
