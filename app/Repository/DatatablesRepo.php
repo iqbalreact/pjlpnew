@@ -20,6 +20,8 @@ use App\Models\Skpd;
 use App\Models\User;
 use App\Models\WorkPackage;
 
+use Carbon\Carbon;
+
 class DatatablesRepo implements DatatablesRepoInterface
 {
     public function fetchAccountDatas(Request $request)
@@ -67,7 +69,8 @@ class DatatablesRepo implements DatatablesRepoInterface
     {
         $datas = Contract::with(['employee' => function($q) use ($request) {
                             $q->with(['attendances' => function ($q) use ($request) {
-                                $q->where('work_package_id', $request->workPackageId);
+                                $q->where('work_package_id', $request->workPackageId)
+                                ->where('date', Carbon::parse($request->date));
                             }]);
                         }])
                         ->where('status', 'active')

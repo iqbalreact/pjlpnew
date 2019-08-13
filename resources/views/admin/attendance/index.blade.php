@@ -147,7 +147,9 @@
             var idx =  oTable.api().row( '#row-'+rowId ).index(); 
             var data = oTable.api().row( '#row-'+rowId ).data();
             
-            submitAttendace(idx, data);                    
+            submitAttendace(idx, data);
+
+            $('#row-'+rowId+' input[type="checkbox"]:checked').trigger('click');
         });
     });
 
@@ -156,7 +158,7 @@
         var idx =  oTable.api().row( $(this).parents('tr') ).index();
         var data = oTable.api().row( $(this).parents('tr') ).data();
 
-        submitAttendace(idx, data);        
+        submitAttendace(idx, data);
     } );
 
     function submitAttendace(idx, data) {
