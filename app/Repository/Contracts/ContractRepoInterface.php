@@ -10,6 +10,8 @@ interface ContractRepoInterface
 
     public function findActiveContract($employee_id);
 
+    public function distinctYear();
+
     public function contractInformation($id);
     
     public function store(Request $request);    

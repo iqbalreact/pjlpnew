@@ -24,7 +24,7 @@
                                 <th>Program</th>
                                 <th>Kegiatan</th>
                                 <th>Paket Pekerjaan</th>
-                                {{-- <th>KTP</th> --}}
+                                <th>Jumlah Kontrak</th>
                                 <th width="15%">Action</th>
                             </tr>
                         </thead>
@@ -50,7 +50,7 @@
                 { data: 'program', name: 'activity.program.name', searchable:'true'},
                 { data: 'activity', name: 'activity.name', searchable:'true'},
                 { data: 'name', name: 'name', searchable:'true'},
-                // { data: 'ktp', name: 'ktp', searchable:'true'},
+                { data: 'contracts_count', name: 'contracts_count', searchable:'false', orderable:'true'},
                 { data: 'actions', name: 'actions', searchable: 'false', 'orderable': 'false', 'class': 'text-center'}
             ]
         });

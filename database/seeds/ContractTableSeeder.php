@@ -51,7 +51,7 @@ class ContractTableSeeder extends Seeder
             $request->number           = rand(1, 2000);
             $request->employee_id      = $employee->id;
             $request->work_package_id  = 1;
-            $request->location_id      = rand(1, count($employees));
+            $request->location_id      = 1;
             $request->position_id      = rand(1, 40);
             $request->salary           = 1000000;
             $request->start_date       = Carbon::now();
@@ -69,7 +69,7 @@ class ContractTableSeeder extends Seeder
             $request->number           = rand(1, 2000);
             $request->employee_id      = $employee->id;
             $request->work_package_id  = 2;
-            $request->location_id      = rand(1, count($employees));
+            $request->location_id      = 1;
             $request->position_id      = rand(1, 40);
             $request->salary           = 1000000;
             $request->start_date       = Carbon::now();
@@ -87,7 +87,7 @@ class ContractTableSeeder extends Seeder
             $request->number           = rand(1, 2000);
             $request->employee_id      = $employee->id;
             $request->work_package_id  = 3;
-            $request->location_id      = rand(1, count($employees));
+            $request->location_id      = 1;
             $request->position_id      = rand(1, 40);
             $request->salary           = 1000000;
             $request->start_date       = Carbon::now();

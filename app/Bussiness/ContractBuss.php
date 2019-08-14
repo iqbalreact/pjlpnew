@@ -29,6 +29,11 @@ class ContractBuss implements ContractBussInterface
         return $this->contractRepo->findActiveContract($employee_id);
     }
 
+    public function distinctYear()
+    {
+        return $this->contractRepo->distinctYear();
+    }
+
     public function contractInformation($id)
     {
         return $this->contractRepo->contractInformation($id);

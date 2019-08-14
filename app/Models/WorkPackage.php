@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Activity;
+use App\Models\Contract;
 
 use App\Scopes\OwnWorkPackageScope;
 
@@ -37,5 +38,10 @@ class WorkPackage extends Model
     public function activity()
     {
         return $this->belongsTo(Activity::class);
+    }
+
+    public function contracts()
+    {
+        return $this->hasMany(Contract::class);
     }
 }

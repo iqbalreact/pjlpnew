@@ -32,11 +32,16 @@ class ContractRepo implements ContractRepoInterface
         return $data;
     }
 
+    public function distinctYear()
+    {
+        $data = Contract::selectRaw('YEAR(start_date) as year')->distinct()->get();
+
+        return $data;
+    }
+
     public function contractInformation($id)
     {
         $data = Contract::with('skpd', 'program', 'activity', 'workPackage', 'position')->find($id);
-
-        // dd($data);
 
         return $data;
     }

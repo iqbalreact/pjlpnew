@@ -13,6 +13,29 @@
         <div class="col-xs-12">
             <div class="box box-primary">
                 <div class="box-header">
+                    <h3 class="box-title">Filter</h3>
+                </div>
+                <div class="box-body">
+                    <div class="col-md-5">
+                        <select id="statusFilter" class="form-control">
+                            <option value="active">Aktif</option>
+                            <option value="non_active">Non Aktif</option>
+                        </select>
+                    </div>
+                    <div class="col-md-5">
+                        <select id="yearFilter" class="form-control">
+                            @foreach ($years as $year)
+                                <option value="{{ $year->year }}">{{ $year->year }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-primary" id="btnFilter">Filter</button>
+                    </div>
+                </div>
+            </div>
+            <div class="box box-primary">
+                <div class="box-header">
                     <h3 class="box-title">List Kontrak</h3>
                 </div>
                 <div class="box-body">
@@ -46,7 +69,13 @@
             responsive: true,
             order: [[ 0, 'desc' ]],
             deferRender:    true,
-            ajax: '{!! route('fetch.contract.detail', ['work_package_id' => $id]) !!}',
+            ajax: {
+                url: '{!! route('fetch.contract.detail', ['work_package_id' => $id]) !!}',
+                data: function (d) {
+                    d.year = $('#yearFilter').val(),
+                    d.status = $('#statusFilter').val()
+                }
+            },
             columns: [
                 { data: 'id', name: 'id', class:'hide' },
                 { data: 'employee_nipj', name: 'employee.nipj', searchable:'true'},
@@ -60,8 +89,12 @@
         });
 
         function reloadTable(){
-            oTable.ajax.reload();
+            oTable.api().ajax.reload();
         }
+
+        $('#btnFilter').click(function() {
+            reloadTable();
+        });
     });
 </script>
 @stop

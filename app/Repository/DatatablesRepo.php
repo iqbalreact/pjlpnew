@@ -83,7 +83,8 @@ class DatatablesRepo implements DatatablesRepoInterface
     {
         $datas = WorkPackage::query();
 
-        $datas->with('activity.program');
+        $datas->with('activity.program')
+            ->withCount('contracts');
 
         return $datas;
     }
@@ -91,10 +92,20 @@ class DatatablesRepo implements DatatablesRepoInterface
     public function fetchContractDetailDatas(Request $request)
     {
         $datas          = Contract::query();
-        $workPackageId  = $request->work_package_id; 
+        $status         = $request->status;
+        $workPackageId  = $request->work_package_id;
+        $year           = $request->year;
 
         if (!empty($workPackageId)) {
             $datas->where('work_package_id', $workPackageId);
+        }
+
+        if (!empty($status)) {
+            $datas->where('status', $status);
+        }
+
+        if (!empty($year)) {
+            $datas->whereYear('start_date', $year);
         }
 
         $datas->with('position', 'location', 'employee');

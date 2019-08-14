@@ -113,7 +113,7 @@ class DatatablesBuss implements DatatablesBussInterface
     public function fetchContractDetailDatas(Request $request)
     {
         $query = $this->datatablesRepo->fetchContractDetailDatas($request);
-
+        // dd($query);
         return Datatables::of($query)
                         ->addColumn('employee_nipj', function(Contract $contract) {
                             return $contract->employee->nipj;

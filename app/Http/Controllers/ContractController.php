@@ -101,7 +101,9 @@ class ContractController extends Controller
      */
     public function show($id)
     {
-        return view('admin.contract.show', compact('id'));
+        $years = $this->contract->distinctYear();
+        
+        return view('admin.contract.show', compact('id', 'years'));
     }
 
     /**
