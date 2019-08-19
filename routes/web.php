@@ -41,6 +41,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('position', 'PositionController');
     Route::resource('positionCategory', 'PositionCategoryController');
     Route::resource('skpd', 'SkpdController');
+    Route::resource('workDay', 'WorkDayController');
     Route::resource('workPackage', 'WorkPackageController');
 
     Route::get('/contract/detail/{id}', 'ContractController@detail')->name('contract.detail');

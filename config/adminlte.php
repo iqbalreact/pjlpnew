@@ -181,6 +181,10 @@ return [
                 [
                     'text' => 'Posisi',
                     'url'  => 'admin/position'
+                ],
+                [
+                    'text' => 'Hari Kerja',
+                    'url'  => 'admin/workDay'
                 ]
             ]
         ],

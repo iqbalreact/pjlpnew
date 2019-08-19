@@ -267,6 +267,36 @@ Breadcrumbs::for('activity', function ($trail) {
  });
 
 /**
+ * Work Day =======================================================================
+ * 
+ */
+
+// Home > Work Day
+Breadcrumbs::for('workDay', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Hari Kerja', route('workDay.index'));
+});
+
+// Home > Work Day > Create
+Breadcrumbs::for('workDay_new', function ($trail) {
+    $trail->parent('workDay');
+    $trail->push('Tambah');
+});
+
+// Home > Work Day > Edit
+Breadcrumbs::for('workDay_edit', function ($trail, $workPackage) {
+    $trail->parent('workDay');
+    $trail->push($workPackage->name, route('workDay.show', ['id' => $workPackage->id]));
+    $trail->push('Edit');
+});
+
+// Home > Work Day > show
+Breadcrumbs::for('workDay_show', function ($trail, $workPackage) {
+    $trail->parent('workDay');
+    $trail->push($workPackage->name, route('workPackage.show', ['id' => $workPackage->id]));
+});
+
+ /**
  * Work Package =======================================================================
  * 
  */
@@ -277,24 +307,24 @@ Breadcrumbs::for('workPackage', function ($trail) {
     $trail->push('Paket Pekerjaan', route('workPackage.index'));
 });
 
- // Home > Work Package > Create
- Breadcrumbs::for('workPackage_new', function ($trail) {
+// Home > Work Package > Create
+Breadcrumbs::for('workPackage_new', function ($trail) {
     $trail->parent('workPackage');
     $trail->push('Tambah');
- });
+});
 
- // Home > Work Package > Edit
- Breadcrumbs::for('workPackage_edit', function ($trail, $workPackage) {
+// Home > Work Package > Edit
+Breadcrumbs::for('workPackage_edit', function ($trail, $workPackage) {
     $trail->parent('workPackage');
     $trail->push($workPackage->name, route('workPackage.show', ['id' => $workPackage->id]));
     $trail->push('Edit');
- });
+});
 
- // Home > Work Package > show
- Breadcrumbs::for('workPackage_show', function ($trail, $workPackage) {
+// Home > Work Package > show
+Breadcrumbs::for('workPackage_show', function ($trail, $workPackage) {
     $trail->parent('workPackage');
     $trail->push($workPackage->name, route('workPackage.show', ['id' => $workPackage->id]));
- });
+});
  
 
 /**

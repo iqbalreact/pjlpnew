@@ -46,6 +46,9 @@ use App\Repository\SkpdRepo;
 use App\Repository\Contracts\WorkPackageRepoInterface;
 use App\Repository\WorkPackageRepo;
 
+use App\Repository\Contracts\WorkDayRepoInterface;
+use App\Repository\WorkDayRepo;
+
 class RepositoryServiceProvider extends ServiceProvider
 {
 	/**
@@ -78,6 +81,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(PositionRepoInterface::class, PositionRepo::class);    
         $this->app->bind(PositionCategoryRepoInterface::class, PositionCategoryRepo::class);    
         $this->app->bind(SkpdRepoInterface::class, SkpdRepo::class);    
+        $this->app->bind(WorkDayRepoInterface::class, WorkDayRepo::class);    
         $this->app->bind(WorkPackageRepoInterface::class, WorkPackageRepo::class);    
     }
 }
