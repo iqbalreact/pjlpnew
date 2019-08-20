@@ -30,5 +30,7 @@ interface DatatablesBussInterface
 
     public function fetchSkpdDatas(Request $request);    
 
+    public function fetchWorkDayDatas(Request $request);
+
     public function fetchWorkPackageDatas(Request $request);
 }

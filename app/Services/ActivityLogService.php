@@ -21,6 +21,7 @@ class ActivityLogService implements ActivityLogServiceInterface
         'App\Models\PositionCategory'   => '/admin/positionCategory/',
         'App\Models\Program'            => '/admin/program/',
         'App\Models\Skpd'               => '/admin/skpd/',
+        'App\Models\WorkDay'            => '/admin/workDay/',
         'App\Models\WorkPackage'        => '/admin/workPackage/',
         // 'App\Models\WorkPackage'    => '/admin/workpackage/',
     ]; 

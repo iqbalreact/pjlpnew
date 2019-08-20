@@ -12,12 +12,34 @@ class WorkDay extends Model
     use LogsActivity, CausesActivity;
 
     protected $fillable = [
-        'period', 
-        'total'
+        'year', 
+        'january',
+        'february',
+        'march',
+        'april',
+        'may',
+        'june',
+        'july',
+        'august',
+        'september',
+        'october',
+        'november',
+        'december'
     ];
     
     protected static $logAttributes = [
-        'period', 
-        'total'
+        'year', 
+        'january',
+        'february',
+        'march',
+        'april',
+        'may',
+        'june',
+        'july',
+        'august',
+        'september',
+        'october',
+        'november',
+        'december'
     ];
 }

@@ -284,16 +284,16 @@ Breadcrumbs::for('workDay_new', function ($trail) {
 });
 
 // Home > Work Day > Edit
-Breadcrumbs::for('workDay_edit', function ($trail, $workPackage) {
+Breadcrumbs::for('workDay_edit', function ($trail, $workDay) {
     $trail->parent('workDay');
-    $trail->push($workPackage->name, route('workDay.show', ['id' => $workPackage->id]));
+    $trail->push($workDay->year, route('workDay.show', ['id' => $workDay->id]));
     $trail->push('Edit');
 });
 
 // Home > Work Day > show
-Breadcrumbs::for('workDay_show', function ($trail, $workPackage) {
+Breadcrumbs::for('workDay_show', function ($trail, $workDay) {
     $trail->parent('workDay');
-    $trail->push($workPackage->name, route('workPackage.show', ['id' => $workPackage->id]));
+    $trail->push($workDay->year, route('workDay.show', ['id' => $workDay->id]));
 });
 
  /**

@@ -61,6 +61,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::get('position', 'DatatablesController@fetchPositionDatas')->name('fetch.position');
         Route::get('positionCategory', 'DatatablesController@fetchPositionCategoryDatas')->name('fetch.positionCategory');
         Route::get('skpd', 'DatatablesController@fetchSkpdDatas')->name('fetch.skpd');
+        Route::get('workDay', 'DatatablesController@fetchWorkDayDatas')->name('fetch.workDay');
         Route::get('workPackage', 'DatatablesController@fetchWorkPackageDatas')->name('fetch.workPackage');
     });
 

@@ -18,6 +18,7 @@ use App\Models\PositionCategory;
 use App\Models\Program;
 use App\Models\Skpd;
 use App\Models\User;
+use App\Models\WorkDay;
 use App\Models\WorkPackage;
 
 use Carbon\Carbon;
@@ -168,6 +169,13 @@ class DatatablesRepo implements DatatablesRepoInterface
     public function fetchSkpdDatas(Request $request)
     {
     	$datas = Skpd::query();
+
+        return $datas;
+    }
+
+    public function fetchWorkDayDatas(Request $request)
+    {
+        $datas = WorkDay::query();
 
         return $datas;
     }

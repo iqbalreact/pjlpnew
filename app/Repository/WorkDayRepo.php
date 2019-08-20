@@ -26,8 +26,19 @@ class WorkDayRepo implements WorkDayRepoInterface
     public function store(Request $request)
     {
         $data = new WorkDay();
-        $data->periode      = Carbon::parse($request->periode);
-        $data->total        = $request->total;
+        $data->year         = $request->year;
+        $data->january      = $request->january;
+        $data->february     = $request->february;
+        $data->march        = $request->march;
+        $data->april        = $request->april;
+        $data->may          = $request->may;
+        $data->june         = $request->june;
+        $data->july         = $request->july;
+        $data->august       = $request->august;
+        $data->september    = $request->september;
+        $data->october      = $request->october;
+        $data->november     = $request->november;
+        $data->december     = $request->december;
         $data->save();
 
         return $data;
@@ -41,8 +52,19 @@ class WorkDayRepo implements WorkDayRepoInterface
             return false;
         }
 
-        $data->periode      = Carbon::parse($request->periode);
-        $data->total        = $request->total;
+        $data->year         = $request->year;
+        $data->january      = $request->january;
+        $data->february     = $request->february;
+        $data->march        = $request->march;
+        $data->april        = $request->april;
+        $data->may          = $request->may;
+        $data->june         = $request->june;
+        $data->july         = $request->july;
+        $data->august       = $request->august;
+        $data->september    = $request->september;
+        $data->october      = $request->october;
+        $data->november     = $request->november;
+        $data->december     = $request->december;
         $data->update();
 
         return $data;
