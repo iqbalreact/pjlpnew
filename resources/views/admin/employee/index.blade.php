@@ -21,9 +21,11 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>NIPJ</th>
+                                <th width="8%">Foto</th>
+                                <th width="10%">NIPJ</th>
                                 <th>Name</th>
                                 <th>KTP</th>
+                                <th>Telepon</th>
                                 <th width="15%">Action</th>
                             </tr>
                         </thead>
@@ -46,9 +48,11 @@
             ajax: '{!! route('fetch.employee') !!}',
             columns: [
                 { data: 'id', name: 'id', class:'hide' },
+                { data: 'avatar', name: 'avatar', searchable:'false', orderable: 'false'},
                 { data: 'nipj', name: 'nipj', searchable:'true'},
                 { data: 'name', name: 'name', searchable:'true'},
                 { data: 'ktp', name: 'ktp', searchable:'true'},
+                { data: 'phone_number', name: 'phone_number', searchable:'true'},
                 { data: 'actions', name: 'actions', searchable: 'false', 'orderable': 'false', 'class': 'text-center'}
             ]
         });

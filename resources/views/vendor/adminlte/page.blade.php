@@ -5,6 +5,19 @@
           href="{{ asset('vendor/adminlte/dist/css/skins/skin-' . config('adminlte.skin', 'blue') . '.min.css')}} ">
     @stack('css')
     @yield('css')
+
+    <style>
+        .table > tbody > tr > td {
+            vertical-align: middle;
+        }
+
+        .profile-user-img {
+            margin: 0 auto;
+            width: 150px;
+            padding: 3px;
+            border: 3px solid #d2d6de;
+        }
+    </style>
 @stop
 
 @section('body_class', 'skin-' . config('adminlte.skin', 'blue') . ' sidebar-mini ' . (config('adminlte.layout') ? [
