@@ -80,24 +80,25 @@
         }
 
         var ctx = $('#religionChart');
-        window.myDoughnut = new Chart(ctx, config);
+        window.myDoughnut = new Chart(ctx, configReligion);
 
         var ctx = $('#genderChart');
-        window.myDoughnut = new Chart(ctx, config);
+        window.myDoughnut = new Chart(ctx, configGender);
 
         var ctx = $('#bankChart');
-        window.myDoughnut = new Chart(ctx, config);
+        window.myDoughnut = new Chart(ctx, configBank);
     });
 
     var randomScalingFactor = function() {
         return Math.round(Math.random() * 100);
     };
 
-    var config = {
+    var configReligion = {
         type: 'doughnut',
         data: {
             datasets: [{
                 data: [
+                    randomScalingFactor(),
                     randomScalingFactor(),
                     randomScalingFactor(),
                     randomScalingFactor(),
@@ -110,15 +111,17 @@
                     'orange',
                     'green',
                     'yellow',
+                    'purple'
                 ],
                 label: 'Dataset 1'
             }],
             labels: [
-                'Red',
-                'Orange',
-                'Yellow',
-                'Green',
-                'Blue'
+                'Islam',
+                'Katolik',
+                'Protestan',
+                'Hindu',
+                'Budha',
+                'Kong hu cu' 
             ]
         },
         options: {
@@ -135,7 +138,91 @@
             },
             title: {
                 display: true,
-                text: 'Chart.js Doughnut Chart'
+                text: 'Chart Agama'
+            },
+            animation: {
+                animateScale: true,
+                animateRotate: true
+            }
+        }
+    };
+
+    var configGender = {
+        type: 'doughnut',
+        data: {
+            datasets: [{
+                data: [
+                    randomScalingFactor(),
+                    randomScalingFactor()
+                ],
+                backgroundColor: [
+                    'red',
+                    'blue',
+                ],
+                label: 'Dataset 1'
+            }],
+            labels: [
+                'Laki-Laki',
+                'Perempuan'
+            ]
+        },
+        options: {
+            showAllTooltips: true,
+            responsive: true,
+            legend: {
+                position:'left',
+                fullWidth: false,
+                fontSize: 11
+                // display: false
+            },
+            tooltips: {
+                enabled: true
+            },
+            title: {
+                display: true,
+                text: 'Chart Gender'
+            },
+            animation: {
+                animateScale: true,
+                animateRotate: true
+            }
+        }
+    };
+
+    var configBank = {
+        type: 'doughnut',
+        data: {
+            datasets: [{
+                data: [
+                    randomScalingFactor(),
+                    randomScalingFactor()
+                ],
+                backgroundColor: [
+                    'green',
+                    'yellow',
+                ],
+                label: 'Dataset 1'
+            }],
+            labels: [
+                'Bank Kalbar',
+                'Bank Pasar'
+            ]
+        },
+        options: {
+            showAllTooltips: true,
+            responsive: true,
+            legend: {
+                position:'left',
+                fullWidth: false,
+                fontSize: 11
+                // display: false
+            },
+            tooltips: {
+                enabled: true
+            },
+            title: {
+                display: true,
+                text: 'Chart Bank'
             },
             animation: {
                 animateScale: true,
