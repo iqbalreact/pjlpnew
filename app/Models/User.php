@@ -61,6 +61,6 @@ class User extends Authenticatable implements HasMedia
 
     public function getSKPD()
     {
-        return $this->skpd()->first()->name ?? '';
+        return $this->skpd()->first()->name ?? 'Superadmin';
     }
 }
