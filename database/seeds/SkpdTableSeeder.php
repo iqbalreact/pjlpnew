@@ -49,23 +49,23 @@ class SkpdTableSeeder extends Seeder
             Skpd::create(['number' => $data['number'], 'name' => $data['name']]);
         }
 
-        $skpds = Skpd::all();
+        // $skpds = Skpd::all();
 
-        $skpds->each(function($u) {
-            $u->programs()
-                ->saveMany( factory(App\Models\Program::class, 1)->make() )
-                ->each(function($program){
-                    $program->activities()->saveMany(factory(App\Models\Activity::class, 1)->make() )
-                        ->each(function($activity) {
-                            $activity->workPackages()->saveMany(factory(App\Models\WorkPackage::class, 2)->make() );
-                        });
-                });
+        // $skpds->each(function($u) {
+        //     $u->programs()
+        //         ->saveMany( factory(App\Models\Program::class, 1)->make() )
+        //         ->each(function($program){
+        //             $program->activities()->saveMany(factory(App\Models\Activity::class, 1)->make() )
+        //                 ->each(function($activity) {
+        //                     $activity->workPackages()->saveMany(factory(App\Models\WorkPackage::class, 2)->make() );
+        //                 });
+        //         });
 
-            $u->locations()
-                ->saveMany( factory(App\Models\Location::class, 3)->make() );
+        //     $u->locations()
+        //         ->saveMany( factory(App\Models\Location::class, 3)->make() );
 
-            $u->occupations()
-                ->saveMany( factory(App\Models\Occupation::class, 2)->make() );
-        });
+        //     $u->occupations()
+        //         ->saveMany( factory(App\Models\Occupation::class, 2)->make() );
+        // });
     }
 }
