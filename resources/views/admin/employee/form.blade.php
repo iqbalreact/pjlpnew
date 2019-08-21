@@ -1,16 +1,47 @@
 <div class="box-body">
-    <div class="form-group {{ $errors->has('nipj') ? 'has-error' : '' }}">
-        <label for="inputNIPJ" class="col-sm-2 control-label">NIPJ @include('components.required')</label>
+    @if($edit)
+        <div class="form-group {{ $errors->has('nipj') ? 'has-error' : '' }}">
+            <label for="inputNIPJ" class="col-sm-2 control-label">NIPJ @include('components.required')</label>
 
-        <div class="col-sm-10">
-            {!! Form::text('nipj', $edit ? $data->nipj : old('nipj'), ['class' => 'form-control', 'placeholder'=> __('NIPJ')] ) !!}
-            
-            @if ($errors->has('nipj'))
-                <span class="help-block">{{ $errors->first('nipj') }}</span>
-            @endif
+            <div class="col-sm-10">
+                {!! Form::text('nipj', $edit ? $data->nipj : old('nipj'), ['class' => 'form-control', 'placeholder'=> __('NIPJ'), 'readonly' => true] ) !!}
+                
+                @if ($errors->has('nipj'))
+                    <span class="help-block">{{ $errors->first('nipj') }}</span>
+                @endif
+            </div>
+        </div>
+    @endif
+
+    @if(!isset($skpd) && \Auth::user()->getRoles() == 'superadmin')
+
+        <div class="form-group {{ $errors->has('skpd_id') ? 'has-error' : '' }}">
+            <label for="inputEmail" class="col-sm-2 control-label">SKPD @include('components.required')</label>
+
+            <div class="col-sm-10">
+                <select name="skpd_id" id="skpdSelect" class="form-control" required></select>
+                
+                @if ($errors->has('skpd_id'))
+                    <span class="help-block">{{ $errors->first('skpd_id') }}</span>
+                @endif
+            </div>
         </div>
         
-    </div>
+    @elseif($edit)
+        <div class="form-group {{ $errors->has('skpd_id') ? 'has-error' : '' }}"">
+            <label for="inputSKPD" class="col-sm-2 control-label">SKPD</label>
+
+            <div class="col-sm-10">
+                <input type="text" value="{{ $skpd->name }}" class="form-control" readonly>
+                <input name="skpd_id" type="hidden" value="{{ $skpd->id }}">
+
+                @if ($errors->has('skpd_id'))
+                    <span class="help-block">{{ $errors->first('skpd_id') }}</span>
+                @endif
+            </div>
+        </div>
+        
+    @endif
 
     <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
         <label for="inputName" class="col-sm-2 control-label">Nama @include('components.required')</label>
@@ -164,3 +195,34 @@
         </div>
     </div>
 </div>
+
+@section('js')
+    <script>
+        $(function() {
+            $("#skpdSelect").select2({
+                dropdownAutoWidth : true,
+                width: '100%',
+                placeholder: "Pilih SKPD",
+                ajax: {
+                    url: "{{ route('select.skpd') }}",
+                    dataType: 'json',
+                    data: function (params) {
+                        return {
+                            q: params.term,
+                        };
+                    },
+                    processResults: function (data) {
+
+                        var res = data.map(function (item) {
+                            return {id: item.id, text: item.name};
+                        });
+                        
+                        return {
+                            results: res
+                        };
+                    }
+                }
+            });
+        });
+    </script>
+@endsection

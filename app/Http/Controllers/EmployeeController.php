@@ -8,6 +8,7 @@ use App\Http\Requests\EmployeeRequest;
 
 use App\Bussiness\Contracts\EmployeeBussInterface;
 use App\Bussiness\Contracts\ContractBussInterface;
+use App\Bussiness\Contracts\SkpdBussInterface;
 
 use App\Services\Contracts\ActivityLogServiceInterface;
 use App\Services\Contracts\BankServiceInterface;
@@ -25,7 +26,8 @@ class EmployeeController extends Controller
         ActivityLogServiceInterface $activityLog, 
         BankServiceInterface $bank, 
         GenderServiceInterface $gender,
-        ReligionServiceInterface $religion
+        ReligionServiceInterface $religion,
+        SkpdBussInterface $skpd
     ) {
         $this->activityLog  = $activityLog;
         $this->bank         = $bank;
@@ -33,6 +35,7 @@ class EmployeeController extends Controller
         $this->employee     = $employee;
         $this->gender       = $gender;
         $this->religion     = $religion;
+        $this->skpd         = $skpd;
     }
 
     /**
@@ -115,10 +118,11 @@ class EmployeeController extends Controller
         }
         
         $banks      = $this->bank->bankTransform;
-        $religions  = $this->religion->religionTransform;
         $genders    = $this->gender->genderTransform;
+        $religions  = $this->religion->religionTransform;
+        $skpd       = $this->skpd->find($data->skpd_id);
 
-        return view('admin.employee.edit', compact('data', 'religions', 'genders', 'banks'));
+        return view('admin.employee.edit', compact('data', 'religions', 'genders', 'banks','skpd'));
     }
 
     /**

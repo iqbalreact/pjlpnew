@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 interface EmployeeRepoInterface
 {
+    public function countEmployee($skpd_id);
+
     public function find($id);
 
     public function getByName($name);

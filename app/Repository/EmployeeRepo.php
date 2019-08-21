@@ -24,6 +24,13 @@ class EmployeeRepo implements EmployeeRepoInterface
         $this->religionService     = $religionService;
     }
 
+    public function countEmployee($skpd_id)
+    {
+        $data = Employee::where('skpd_id', $skpd_id)->count();
+
+        return $data;
+    }
+
     public function find($id)
     {
         $data = Employee::find($id);
@@ -51,6 +58,7 @@ class EmployeeRepo implements EmployeeRepoInterface
         $data = new Employee();
         $data->nipj                 = $request->nipj;
         $data->name                 = $request->name;
+        $data->skpd_id              = $request->skpd_id;
         $data->ktp                  = $request->ktp;
         $data->npwp                 = $request->npwp;
         $data->gender               = $request->gender;
@@ -81,6 +89,7 @@ class EmployeeRepo implements EmployeeRepoInterface
 
         $data->nipj                 = $request->nipj;
         $data->name                 = $request->name;
+        $data->skpd_id              = $request->skpd_id;
         $data->ktp                  = $request->ktp;
         $data->npwp                 = $request->npwp;
         $data->address              = $request->address;

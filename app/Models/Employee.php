@@ -12,6 +12,9 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 use App\Models\Attendance;
 use App\Models\Contract;
+use App\Models\Skpd;
+
+use App\Scopes\OwnEmployeeScope;
 
 class Employee extends Model implements HasMedia
 {
@@ -19,6 +22,7 @@ class Employee extends Model implements HasMedia
 
     protected $fillable = [
         'nipj', 
+        'skpd_id', 
         'name', 
         'ktp', 
         'npwp',
@@ -34,6 +38,7 @@ class Employee extends Model implements HasMedia
     
     protected static $logAttributes = [
         'nipj', 
+        'skpd_id', 
         'name', 
         'ktp', 
         'npwp', 
@@ -47,6 +52,13 @@ class Employee extends Model implements HasMedia
         'bpjs_social_security'
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new OwnEmployeeScope);
+    }
+
     public function attendances()
     {
         return $this->hasMany(Attendance::class);
@@ -55,6 +67,11 @@ class Employee extends Model implements HasMedia
     public function contracts()
     {
         return $this->hasMany(Contract::class);
+    }
+
+    public function skpd()
+    {
+        return $this->belongsTo(Skpd::class);
     }
 
     public function getAvatar()

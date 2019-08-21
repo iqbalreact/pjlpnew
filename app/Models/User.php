@@ -53,10 +53,15 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->belongsTo(Skpd::class);
     }
-
+    
     public function getAvatar()
     {
         return $this->getMedia('avatars')->last() ? $this->getMedia('avatars')->last()->getFullUrl() : '/img/avatar.png';
+    }
+
+    public function getRoles()
+    {
+        return $this->roles->first()->name;
     }
 
     public function getSKPD()

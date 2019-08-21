@@ -21,31 +21,31 @@ class UserTableSeeder extends Seeder
 
         $user->assignRole('superadmin');
 
-        // $user = new User();
-        // $user->name         = 'Admin SKPD';
-        // $user->email        = 'skpd@pjlp.dev'; 
-        // $user->password     = bcrypt('secret');
-        // $user->skpd_id      = 1;
-        // $user->save();
+        $user = new User();
+        $user->name         = 'Admin SKPD';
+        $user->email        = 'skpd@pjlp.dev'; 
+        $user->password     = bcrypt('secret');
+        $user->skpd_id      = 1;
+        $user->save();
 
-        // $user->assignRole('adminskpd');
+        $user->assignRole('adminskpd');
 
-        // $user = new User();
-        // $user->name         = 'Admin PPK';
-        // $user->email        = 'ppk@pjlp.dev'; 
-        // $user->password     = bcrypt('secret');
-        // $user->skpd_id      = 1;
-        // $user->save();
+        $user = new User();
+        $user->name         = 'Admin PPK';
+        $user->email        = 'ppk@pjlp.dev'; 
+        $user->password     = bcrypt('secret');
+        $user->skpd_id      = 1;
+        $user->save();
 
-        // $user->assignRole('adminppk');
+        $user->assignRole('adminppk');
 
-        // $user = new User();
-        // $user->name         = 'Operator';
-        // $user->email        = 'operator@pjlp.dev'; 
-        // $user->password     = bcrypt('secret');
-        // $user->skpd_id      = 1;
-        // $user->save();
+        $user = new User();
+        $user->name         = 'Operator';
+        $user->email        = 'operator@pjlp.dev'; 
+        $user->password     = bcrypt('secret');
+        $user->skpd_id      = 1;
+        $user->save();
 
-        // $user->assignRole('operator');
+        $user->assignRole('operator');
     }
 }

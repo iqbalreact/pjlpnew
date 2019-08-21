@@ -9,6 +9,7 @@ $factory->define(Employee::class, function (Faker $faker) {
     return [
         'nipj'                  => $faker->unique()->randomNumber($nbDigits = 7, $strict = false),
         'name'                  => $faker->name,
+        'skpd_id'               => $faker->unique()->randomNumber($nbDigits = 7, $strict = false),
         'ktp'                   => $faker->unique()->randomNumber($nbDigits = 7, $strict = false),
         'npwp'                  => $faker->randomNumber($nbDigits = 7, $strict = false),
         'gender'                => $faker->randomElement(['laki-laki', 'perempuan']),
