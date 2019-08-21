@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\Traits\CausesActivity;
 
+use App\Models\Skpd;
+
 class Location extends Model
 {
     use LogsActivity, CausesActivity;
@@ -20,4 +22,9 @@ class Location extends Model
         'name', 
         'skpd_id'
     ];
+
+    public function skpd()
+    {
+        return $this->belongsTo(Skpd::class);
+    }
 }

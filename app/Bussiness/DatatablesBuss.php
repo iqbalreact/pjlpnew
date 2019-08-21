@@ -12,6 +12,7 @@ use App\Services\Contracts\ActivityLogServiceInterface;
 
 use App\Models\Activity;
 use App\Models\Contract;
+use App\Models\Location;
 use App\Models\Occupation;
 use App\Models\Position;
 use App\Models\Program;
@@ -165,6 +166,20 @@ class DatatablesBuss implements DatatablesBussInterface
                         ->addColumn('actions', 
                                 ' <a href="{{ URL::route( \'functionary.show\', array( $id )) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
                                 <a href="{{ URL::route( \'functionary.edit\', array( $id )) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')
+                        ->rawColumns(['actions'])
+                        ->make(true);
+    }
+
+    public function fetchLocationDatas(Request $request)
+    {
+        $query = $this->datatablesRepo->fetchLocationDatas($request);
+
+        return Datatables::of($query)
+                        ->addColumn('skpd', function(Location $location) {
+                            return $location->skpd->name;                            
+                        })
+                        ->addColumn('actions', 
+                                '<a href="{{ URL::route( \'location.edit\', array( $id )) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')
                         ->rawColumns(['actions'])
                         ->make(true);
     }

@@ -90,6 +90,34 @@ Breadcrumbs::for('functionary_show', function ($trail, $functionary) {
 });
 
 /**
+ * Location ====================================================================
+ */
+
+// Home > Location
+Breadcrumbs::for('location', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Lokasi', route('location.index'));
+});
+
+// Home > Location > New
+Breadcrumbs::for('location_new', function ($trail) {
+    $trail->parent('location');
+    $trail->push('Tambah');
+});
+
+// Home > Location > Edit
+Breadcrumbs::for('location_edit', function ($trail) {
+    $trail->parent('location');
+    $trail->push('Edit');
+});
+
+// Home > Location > Show
+Breadcrumbs::for('location_show', function ($trail, $location) {
+    $trail->parent('functionary');
+    $trail->push($location->name);
+});
+
+/**
  * SKPD ========================================================================
  */
 

@@ -37,7 +37,7 @@ class LocationRepo implements LocationRepoInterface
     public function store(Request $request)
     {
         $data = new Location();
-        $data->number       = $request->number;
+        $data->name         = $request->name;
         $data->skpd_id      = $request->skpd_id;
         $data->save();
 
@@ -52,8 +52,8 @@ class LocationRepo implements LocationRepoInterface
             return false;
         }
 
-        $data->number       = $request->number;
-        $data->skpd_id      = $request->skpd_id;
+        $data->name       = $request->name;
+        $data->skpd_id    = $request->skpd_id;
         $data->update();
 
         return $data;

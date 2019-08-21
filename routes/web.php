@@ -56,6 +56,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::get('contractDetail', 'DatatablesController@fetchContractDetailDatas')->name('fetch.contract.detail');
         Route::get('employee', 'DatatablesController@fetchEmployeeDatas')->name('fetch.employee');
         Route::get('functionary', 'DatatablesController@fetchFunctionaryDatas')->name('fetch.functionary');
+        Route::get('location', 'DatatablesController@fetchLocationDatas')->name('fetch.location');
         Route::get('occupation', 'DatatablesController@fetchOccupationDatas')->name('fetch.occupation');
         Route::get('program', 'DatatablesController@fetchProgramDatas')->name('fetch.program');
         Route::get('position', 'DatatablesController@fetchPositionDatas')->name('fetch.position');

@@ -12,6 +12,7 @@ use App\Models\Activity;
 use App\Models\Employee;
 use App\Models\Contract;
 use App\Models\Functionary;
+use App\Models\Location;
 use App\Models\Occupation;
 use App\Models\Position;
 use App\Models\PositionCategory;
@@ -138,6 +139,15 @@ class DatatablesRepo implements DatatablesRepoInterface
     public function fetchFunctionaryDatas(Request $request)
     {
     	$datas = Functionary::query();
+
+        return $datas;
+    }
+
+    public function fetchLocationDatas(Request $request)
+    {
+        $datas = Location::query();
+        
+        $datas->with('skpd');
 
         return $datas;
     }

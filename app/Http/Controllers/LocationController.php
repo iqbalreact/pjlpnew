@@ -4,13 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Http\Requests\LocationRequest;
+
 use App\Bussiness\Contracts\LocationBussInterface;
+use App\Bussiness\Contracts\SkpdBussInterface;
 
 class LocationController extends Controller
 {
-    public function __construct(LocationBussInterface $location)
-    {
+    public function __construct(
+        LocationBussInterface $location,
+        SkpdBussInterface $skpd
+    ) {
         $this->location = $location;
+        $this->skpd     = $skpd;
     }
 
     /**
@@ -20,7 +26,7 @@ class LocationController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.location.index');
     }
 
     /**
@@ -30,7 +36,7 @@ class LocationController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.location.create');        
     }
 
     /**
@@ -39,9 +45,13 @@ class LocationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LocationRequest $request)
     {
-        //
+        $data = $this->location->store($request);
+
+        notify()->success('Lokasi berhasil dibuat');
+        
+        return redirect()->route('location.index');
     }
 
     /**
@@ -63,7 +73,16 @@ class LocationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = $this->location->find($id);
+
+        if (!$data) {
+            notify()->warning('Lokasi tidak ditemukan');
+            return redirect()->back();
+        }
+
+        $skpd = $this->skpd->find($data->skpd_id);
+        
+        return view('admin.location.edit', compact('data', 'skpd'));
     }
 
     /**
@@ -73,9 +92,14 @@ class LocationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(LocationRequest $request, $id)
     {
-        //
+        $data = $this->location->update($request, $id);
+
+        notify()->success('Lokasi berhasil diupdate');
+
+        // return redirect()->route('location.show', ['id' => $data->id]);
+        return redirect()->route('location.index');
     }
 
     /**
