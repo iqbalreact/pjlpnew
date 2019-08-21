@@ -12,6 +12,8 @@ use App\Services\Contracts\ReligionServiceInterface;
 
 use App\Models\Employee;
 
+use Carbon\Carbon;
+
 class EmployeeRepo implements EmployeeRepoInterface
 {
     public function __construct(
@@ -26,7 +28,8 @@ class EmployeeRepo implements EmployeeRepoInterface
 
     public function countEmployee($skpd_id)
     {
-        $data = Employee::where('skpd_id', $skpd_id)->count();
+        $data = Employee::whereYear('created_at', Carbon::now()->year)
+                        ->where('skpd_id', $skpd_id)->count();
 
         return $data;
     }

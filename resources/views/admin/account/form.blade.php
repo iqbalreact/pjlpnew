@@ -35,6 +35,16 @@
         </div>
     </div>
 
+    @if(!$edit)
+        <div class="form-group">
+            <label for="inputEmail" class="col-sm-2 control-label">Password Default</label>
+            
+            <div class="col-sm-10">
+                <input type="text" class="form-control" value="pjlppontianak" disabled>    
+            </div>
+        </div>
+    @endif
+
     <div class="form-group {{ $errors->has('avatar') ? 'has-error' : '' }}">
         <label for="inputAvatar" class="col-sm-2 control-label">Foto</label>
         
