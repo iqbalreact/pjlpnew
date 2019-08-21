@@ -66,6 +66,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::get('workPackage', 'DatatablesController@fetchWorkPackageDatas')->name('fetch.workPackage');
     });
 
+    //Chart
+    Route::group(['prefix' => 'chart'], function() {
+        Route::get('religion', 'EmployeeController@chartReligion')->name('chart.religion');
+    });
+
     // Select2
     Route::group(['prefix' => 'select'], function(){
         Route::get('activity', 'ActivityController@selectList')->name('select.activity');

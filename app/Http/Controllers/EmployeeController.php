@@ -164,4 +164,9 @@ class EmployeeController extends Controller
 
         return response()->json($res);
     }
+
+    public function chartReligion()
+    {
+        
+    }
 }
