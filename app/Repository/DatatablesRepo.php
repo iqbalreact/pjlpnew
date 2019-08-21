@@ -84,6 +84,24 @@ class DatatablesRepo implements DatatablesRepoInterface
     {
         $datas = WorkPackage::query();
 
+        if (!is_null($request->programId)) {
+            $datas->whereHas('contracts', function($q) use ($request) {
+                $q->where('program_id', $request->programId);
+            });
+        }
+
+        if (!is_null($request->activityId)) {
+            $datas->whereHas('contracts', function($q) use ($request) {
+                $q->where('activity_id', $request->activityId);
+            });
+        }
+
+        if (!is_null($request->workPackageId)) {
+            $datas->whereHas('contracts', function($q) use ($request) {
+                $q->where('work_package_id', $request->workPackageId);
+            });
+        }
+
         $datas->with('activity.program')
             ->withCount('contracts');
 
