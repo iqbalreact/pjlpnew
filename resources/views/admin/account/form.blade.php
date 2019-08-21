@@ -24,7 +24,7 @@
     </div>
 
     <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
-        <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+        <label for="inputEmail" class="col-sm-2 control-label">Email @include('components.required')</label>
 
         <div class="col-sm-10">
             {!! Form::email('email', $edit ? $data->email : old('email'), ['class' => 'form-control', 'placeholder'=> __('Email pengguna')] ) !!}

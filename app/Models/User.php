@@ -58,4 +58,9 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->getMedia('avatars')->last() ? $this->getMedia('avatars')->last()->getFullUrl() : '/img/avatar.png';
     }
+
+    public function getSKPD()
+    {
+        return $this->skpd()->first()->name ?? '';
+    }
 }

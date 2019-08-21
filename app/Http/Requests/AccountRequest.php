@@ -26,7 +26,7 @@ class AccountRequest extends FormRequest
         return [
             'nip'       => 'required|numeric|unique:users,nip,'.$this->segment(3),
             'name'      => 'required|max:255',
-            'email'     => 'email|unique:users,email,'.$this->segment(3),
+            'email'     => 'required|email|unique:users,email,'.$this->segment(3),
             'skpd_id'   => 'required',
             'avatar'    => 'image'
         ];
