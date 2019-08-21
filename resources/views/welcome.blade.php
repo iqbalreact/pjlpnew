@@ -68,7 +68,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ route('dashboard') }}">Dashboard</a>
+                        <a href="{{ route('employee.index') }}">Go to admin panel</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
                     @endauth

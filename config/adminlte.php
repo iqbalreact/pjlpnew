@@ -85,7 +85,7 @@ return [
     |
     */
 
-    'dashboard_url' => '/admin/dashboard',
+    'dashboard_url' => '/admin/employee',
 
     'logout_url' => 'logout',
 
@@ -109,11 +109,11 @@ return [
 
     'menu' => [
         'MAIN NAVIGATION',
-        [
-            'text' => 'Dashboard',
-            'icon' => 'dashboard',
-            'url'  => 'admin/dashboard'
-        ],
+        // [
+        //     'text' => 'Dashboard',
+        //     'icon' => 'dashboard',
+        //     'url'  => 'admin/dashboard'
+        // ],
         [
             'text'  => 'PJLP',
             'icon'  => 'user',
