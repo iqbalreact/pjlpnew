@@ -4,7 +4,7 @@
         $("#workPackageSelect").select2({
             dropdownAutoWidth : true,
             width: '100%',
-            placeholder: "Pilih Paket Pekerjaan",
+            placeholder: "Ketik nama dan pilih paket pekerjaan",
             ajax: {
                 url: "{{ route('select.workPackage') }}",
                 dataType: 'json',

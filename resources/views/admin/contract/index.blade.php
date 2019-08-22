@@ -116,7 +116,7 @@
     $("#programSelect").select2({
         dropdownAutoWidth : true,
         width: '100%',
-        placeholder: "Pilih Program",
+        placeholder: "Ketik dan pilih nama program",
         ajax: {
             url: "{{ route('select.program') }}",
             dataType: 'json',
@@ -141,7 +141,7 @@
     $("#activitySelect").select2({
         dropdownAutoWidth : true,
         width: '100%',
-        placeholder: "Pilih kegiatan",
+        placeholder: "Ketik dan pilih nama kegiatan",
         ajax: {
             url: "{{ route('select.activity') }}",
             dataType: 'json',
@@ -166,7 +166,7 @@
     $("#workPackageSelect").select2({
         dropdownAutoWidth : true,
         width: '100%',
-        placeholder: "Pilih Paket Pekerjaan",
+        placeholder: "Ketik dan pilih nama paket pekerjaan",
         ajax: {
             url: "{{ route('select.workPackage') }}",
             dataType: 'json',

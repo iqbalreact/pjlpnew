@@ -73,8 +73,7 @@
 
         <div class="col-sm-10">
             <select name="skpd_id" id="skpdSelect" class="form-control"></select>
-            {{-- {!! Form::select('skpd_id', '', $edit ? $data->skpd_id : old('skpd_id') ,['class' => 'form-control','id' => 'skpdSelect', 'style'=>"width: 100%;"])!!} --}}
-
+            
             @if ($errors->has('skpd_id'))
                 <span class="help-block">{{ $errors->first('skpd_id') }}</span>
             @endif
@@ -105,7 +104,7 @@
         $("#skpdSelect").select2({
             dropdownAutoWidth : true,
             width: '100%',
-            placeholder: "Pilih SKPD",
+            placeholder: "Ketik dan pilih nama SKPD",
             ajax: {
                 url: "{{ route('select.skpd') }}",
                 dataType: 'json',

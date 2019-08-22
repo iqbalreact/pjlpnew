@@ -75,7 +75,7 @@
             $("#activitySelect").select2({
                 dropdownAutoWidth : true,
                 width: '100%',
-                placeholder: "Pilih kegiatan",
+                placeholder: "Ketik dan pilih nama kegiatan",
                 ajax: {
                     url: "{{ route('select.activity') }}",
                     dataType: 'json',

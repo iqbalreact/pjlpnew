@@ -1,7 +1,3 @@
-@foreach ($errors as $error)
-    {{ $errro }}
-@endforeach
-
 <div class="box-body">
     <div class="form-group {{ $errors->has('number') ? 'has-error' : '' }}">
         <label for="inputNumber" class="col-sm-2 control-label">Nomer @include('components.required')</label>
@@ -231,7 +227,7 @@
         $("#employeeSelect").select2({
             dropdownAutoWidth : true,
             width: '100%',
-            placeholder: "Pilih PJLP",
+            placeholder: "Ketik dan pilih nama PJLP",
             ajax: {
                 url: "{{ route('select.employee') }}",
                 dataType: 'json',
@@ -256,7 +252,7 @@
         $("#locationSelect").select2({
             dropdownAutoWidth : true,
             width: '100%',
-            placeholder: "Pilih Lokasi",
+            placeholder: "Ketik dan pilih nama lokasi",
             ajax: {
                 url: "{{ route('select.location') }}",
                 dataType: 'json',
@@ -308,7 +304,7 @@
         $("#positionSelect").select2({
             dropdownAutoWidth : true,
             width: '100%',
-            placeholder: "Pilih Posisi",
+            placeholder: "Ketik dan pilih nama posisi",
             ajax: {
                 url: "{{ route('select.position') }}",
                 dataType: 'json',
@@ -333,7 +329,7 @@
         $("#workPackageSelect").select2({
             dropdownAutoWidth : true,
             width: '100%',
-            placeholder: "Pilih Paket Pekerjaan",
+            placeholder: "Ketik dan pilih nama paket pekerjaan",
             ajax: {
                 url: "{{ route('select.workPackage') }}",
                 dataType: 'json',

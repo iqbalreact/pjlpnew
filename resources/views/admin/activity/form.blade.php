@@ -75,7 +75,7 @@
             $("#programSelect").select2({
                 dropdownAutoWidth : true,
                 width: '100%',
-                placeholder: "Pilih Program",
+                placeholder: "Ketik dan pilih nama program",
                 ajax: {
                     url: "{{ route('select.program') }}",
                     dataType: 'json',

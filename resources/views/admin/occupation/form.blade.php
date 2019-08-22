@@ -132,7 +132,7 @@
         $("#skpdSelect").select2({
             dropdownAutoWidth : true,
             width: '100%',
-            placeholder: "Pilih SKPD",
+            placeholder: "Ketik dan pilih nama SKPD",
             ajax: {
                 url: "{{ route('select.skpd') }}",
                 dataType: 'json',
@@ -157,7 +157,7 @@
         $("#functionarySelect").select2({
             dropdownAutoWidth : true,
             width: '100%',
-            placeholder: "Pilih Pejabat",
+            placeholder: "Ketik dan pilih nama pejabat",
             ajax: {
                 url: "{{ route('select.functionary') }}",
                 dataType: 'json',
