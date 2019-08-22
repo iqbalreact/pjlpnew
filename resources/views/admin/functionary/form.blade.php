@@ -16,7 +16,7 @@
         <label for="inputName" class="col-sm-2 control-label">Nama @include('components.required')</label>
 
         <div class="col-sm-10">
-            {!! Form::text('name', $edit ? $data->name : old('name'), ['class' => 'form-control', 'placeholder'=> __('Nama PJLP')] ) !!}
+            {!! Form::text('name', $edit ? $data->name : old('name'), ['class' => 'form-control', 'placeholder'=> __('Nama Pejabat')] ) !!}
             
             @if ($errors->has('name'))
                 <span class="help-block">{{ $errors->first('name') }}</span>
