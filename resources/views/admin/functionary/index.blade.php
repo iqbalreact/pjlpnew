@@ -21,7 +21,8 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>NIP</th>
+                                <th width="8%">Foto</th>
+                                <th width>NIP</th>
                                 <th>Name</th>
                                 <th>No Telepon</th>
                                 <th width="15%">Action</th>
@@ -46,6 +47,7 @@
             ajax: '{!! route('fetch.functionary') !!}',
             columns: [
                 { data: 'id', name: 'id', class:'hide' },
+                { data: 'avatar', name: 'avatar', searchable:'false', orderable: 'false'},
                 { data: 'nip', name: 'nip', searchable:'true'},
                 { data: 'name', name: 'name', searchable:'true'},
                 { data: 'phone_number', name: 'phone_number', searchable:'true'},

@@ -114,7 +114,7 @@ class DatatablesBuss implements DatatablesBussInterface
     public function fetchContractDetailDatas(Request $request)
     {
         $query = $this->datatablesRepo->fetchContractDetailDatas($request);
-        // dd($query);
+        
         return Datatables::of($query)
                         ->addColumn('employee_nipj', function(Contract $contract) {
                             return $contract->employee->nipj;
@@ -168,10 +168,15 @@ class DatatablesBuss implements DatatablesBussInterface
         $query = $this->datatablesRepo->fetchFunctionaryDatas($request);
 
         return Datatables::of($query)
+                        ->addColumn('avatar', function($data) {
+                            $avatar = $data->getAvatar();
+
+                            return '<img src='.$avatar.' class="img-circle" height="50px">';
+                        })
                         ->addColumn('actions', 
                                 ' <a href="{{ URL::route( \'functionary.show\', array( $id )) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
                                 <a href="{{ URL::route( \'functionary.edit\', array( $id )) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')
-                        ->rawColumns(['actions'])
+                        ->rawColumns(['actions', 'avatar'])
                         ->make(true);
     }
 
