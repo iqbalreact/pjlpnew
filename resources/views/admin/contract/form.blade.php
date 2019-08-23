@@ -147,18 +147,6 @@
         </div>
     @endif
 
-    <div class="form-group {{ $errors->has('salary') ? 'has-error' : '' }}">
-        <label for="inputSalary" class="col-sm-2 control-label">Gaji @include('components.required')</label>
-
-        <div class="col-sm-10">
-            {!! Form::text('salary', $edit ? $data->salary : old('salary'), ['class' => 'form-control', 'placeholder'=> __('Gaji')] ) !!}
-            
-            @if ($errors->has('salary'))
-                <span class="help-block">{{ $errors->first('salary') }}</span>
-            @endif
-        </div>
-    </div>
-
     <div class="form-group {{ $errors->has('start_date') ? 'has-error' : '' }}">
         <label for="inputStartDate" class="col-sm-2 control-label">Tanggal Mulai @include('components.required')</label>
 

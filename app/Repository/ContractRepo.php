@@ -57,7 +57,6 @@ class ContractRepo implements ContractRepoInterface
         $data->work_package_id  = $request->work_package_id;
         $data->location_id      = $request->location_id;
         $data->position_id      = $request->position_id;
-        $data->salary           = $request->salary;
         $data->start_date       = Carbon::parse($request->start_date);
         $data->end_date         = Carbon::parse($request->end_date);
         $data->status           = $request->status;

@@ -49,13 +49,6 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">Gaji</label>
-
-        <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->salary }}" readonly>
-        </div>
-    </div>
-    <div class="form-group">
         <label class="col-sm-2 control-label">Tanggal Mulai</label>
 
         <div class="col-sm-10">

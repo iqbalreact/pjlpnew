@@ -29,7 +29,6 @@ class ContractRequest extends FormRequest
             'work_package_id'   => 'required|numeric',
             'location_id'       => 'required|numeric',
             'position_id'       => 'required|numeric',
-            'salary'            => 'required|numeric',
             'start_date'        => 'required|date',
             'end_date'          => 'required|date|after:start_date',
             'status'            => 'required',
