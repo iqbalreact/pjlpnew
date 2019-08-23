@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
 
     public function run()
     {
+        $this->call(SalaryComponentTableSeeder::class);
         $this->call(RoleTableSeeder::class);
         $this->call(PositionTableSeeder::class);
         $this->call(WorkDayTableSeeder::class);

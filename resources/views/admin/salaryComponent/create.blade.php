@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Buat SKPD | '.env('APP_NAME'))
+@section('title', 'Buat Komponen Gaji | '.env('APP_NAME'))
 
 @section('content_header')
     <h1>Komponen Gaji</h1>
