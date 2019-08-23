@@ -118,34 +118,6 @@ Breadcrumbs::for('location_show', function ($trail, $location) {
 });
 
 /**
- * SKPD ========================================================================
- */
-
-// Home > SKPD
-Breadcrumbs::for('skpd', function ($trail) {
-    $trail->parent('dashboard');
-    $trail->push('SKPD', route('skpd.index'));
-});
-
-// Home > SKPD > New
-Breadcrumbs::for('skpd_new', function ($trail) {
-    $trail->parent('skpd');
-    $trail->push('Tambah');
-});
-
-// Home > SKPD > Edit
-Breadcrumbs::for('skpd_edit', function ($trail) {
-    $trail->parent('skpd');
-    $trail->push('Edit');
-});
-
-// Home > SKPD > Show
-Breadcrumbs::for('skpd_show', function ($trail, $skpd) {
-    $trail->parent('skpd');
-    $trail->push($skpd->name, route('skpd.show', ['id' => $skpd->id]));
-});
-
-/**
  * Occupation =======================================================================
  * 
  */
@@ -397,4 +369,60 @@ Breadcrumbs::for('log', function ($trail) {
 Breadcrumbs::for('log_show', function ($trail) {
     $trail->parent('log');
     $trail->push('Detail');
+});
+
+/**
+ * SKPD ========================================================================
+ */
+
+// Home > Salary Component
+Breadcrumbs::for('salaryComponent', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Komponen Gaji', route('salaryComponent.index'));
+});
+
+// Home > Salary Component > New
+Breadcrumbs::for('salaryComponent_new', function ($trail) {
+    $trail->parent('salaryComponent');
+    $trail->push('Tambah');
+});
+
+// Home > Salary Component > Edit
+Breadcrumbs::for('salaryComponent_edit', function ($trail) {
+    $trail->parent('salaryComponent');
+    $trail->push('Edit');
+});
+
+// Home > Salary Component > Show
+Breadcrumbs::for('salaryComponent_show', function ($trail, $skpd) {
+    $trail->parent('salaryComponent');
+    $trail->push($skpd->name, route('skpd.show', ['id' => $skpd->id]));
+});
+
+/**
+ * SKPD ========================================================================
+ */
+
+// Home > SKPD
+Breadcrumbs::for('skpd', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('SKPD', route('skpd.index'));
+});
+
+// Home > SKPD > New
+Breadcrumbs::for('skpd_new', function ($trail) {
+    $trail->parent('skpd');
+    $trail->push('Tambah');
+});
+
+// Home > SKPD > Edit
+Breadcrumbs::for('skpd_edit', function ($trail) {
+    $trail->parent('skpd');
+    $trail->push('Edit');
+});
+
+// Home > SKPD > Show
+Breadcrumbs::for('skpd_show', function ($trail, $skpd) {
+    $trail->parent('skpd');
+    $trail->push($skpd->name, route('skpd.show', ['id' => $skpd->id]));
 });

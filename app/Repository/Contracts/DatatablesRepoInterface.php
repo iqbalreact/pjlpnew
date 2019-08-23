@@ -32,6 +32,8 @@ interface DatatablesRepoInterface
 
     public function fetchProgramDatas(Request $request);
 
+    public function fetchSalaryComponentDatas(Request $request);
+
     public function fetchSkpdDatas(Request $request);
 
     public function fetchWorkDayDatas(Request $request);

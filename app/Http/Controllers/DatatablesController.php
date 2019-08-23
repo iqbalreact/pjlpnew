@@ -82,6 +82,11 @@ class DatatablesController extends Controller
 		return $this->datatables->fetchProgramDatas($request);
 	}
 
+	public function fetchSalaryComponentDatas(Request $request)
+	{
+		return $this->datatables->fetchSalaryComponentDatas($request);
+	}
+
 	public function fetchSkpdDatas(Request $request)
 	{
 		return $this->datatables->fetchSkpdDatas($request);

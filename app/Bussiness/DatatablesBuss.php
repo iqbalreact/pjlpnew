@@ -257,6 +257,17 @@ class DatatablesBuss implements DatatablesBussInterface
                         ->make(true);
     }
 
+    public function fetchSalaryComponentDatas(Request $request)
+    {
+        $query = $this->datatablesRepo->fetchSalaryComponentDatas($request);
+
+        return Datatables::of($query)
+                        ->addColumn('actions', 
+                                ' <a href="{{ URL::route( \'salaryComponent.edit\', array( $id )) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')
+                        ->rawColumns(['actions'])
+                        ->make(true);
+    }
+
     public function fetchSkpdDatas(Request $request)
     {
         $query = $this->datatablesRepo->fetchSkpdDatas($request);

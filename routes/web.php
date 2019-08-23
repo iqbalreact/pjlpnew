@@ -41,6 +41,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('position', 'PositionController');
     Route::resource('positionCategory', 'PositionCategoryController');
     Route::resource('skpd', 'SkpdController');
+    Route::resource('salaryComponent', 'SalaryComponentController');
     Route::resource('workDay', 'WorkDayController');
     Route::resource('workPackage', 'WorkPackageController');
 
@@ -61,6 +62,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::get('program', 'DatatablesController@fetchProgramDatas')->name('fetch.program');
         Route::get('position', 'DatatablesController@fetchPositionDatas')->name('fetch.position');
         Route::get('positionCategory', 'DatatablesController@fetchPositionCategoryDatas')->name('fetch.positionCategory');
+        Route::get('salaryComponent', 'DatatablesController@fetchSalaryComponentDatas')->name('fetch.salaryComponent');
         Route::get('skpd', 'DatatablesController@fetchSkpdDatas')->name('fetch.skpd');
         Route::get('workDay', 'DatatablesController@fetchWorkDayDatas')->name('fetch.workDay');
         Route::get('workPackage', 'DatatablesController@fetchWorkPackageDatas')->name('fetch.workPackage');
@@ -80,6 +82,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::get('occupation', 'OccupationController@selectList')->name('select.occupation');
         Route::get('position', 'PositionController@selectList')->name('select.position');
         Route::get('program', 'ProgramController@selectList')->name('select.program');
+        Route::get('salaryComponent', 'SalaryComponentController@selectList')->name('select.salaryComponent');
         Route::get('skpd', 'SkpdController@selectList')->name('select.skpd');
         Route::get('workPackage', 'WorkPackageController@selectList')->name('select.workPackage');
     });

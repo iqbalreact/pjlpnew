@@ -17,6 +17,7 @@ use App\Models\Occupation;
 use App\Models\Position;
 use App\Models\PositionCategory;
 use App\Models\Program;
+use App\Models\SalaryComponent;
 use App\Models\Skpd;
 use App\Models\User;
 use App\Models\WorkDay;
@@ -186,6 +187,13 @@ class DatatablesRepo implements DatatablesRepoInterface
         }
 
         $datas->with('skpd');
+
+        return $datas;
+    }
+
+    public function fetchSalaryComponentDatas(Request $request)
+    {
+    	$datas = SalaryComponent::query();
 
         return $datas;
     }

@@ -46,6 +46,9 @@ use App\Bussiness\ProgramBuss;
 use App\Bussiness\Contracts\SkpdBussInterface;
 use App\Bussiness\SkpdBuss;
 
+use App\Bussiness\Contracts\SalaryComponentBussInterface;
+use App\Bussiness\SalaryComponentBuss;
+
 use App\Bussiness\Contracts\WorkDayBussInterface;
 use App\Bussiness\WorkDayBuss;
 
@@ -84,6 +87,7 @@ class BussinessServiceProvider extends ServiceProvider
         $this->app->bind(PositionBussInterface::class, PositionBuss::class);
         $this->app->bind(PositionCategoryBussInterface::class, PositionCategoryBuss::class);
         $this->app->bind(ProgramBussInterface::class, ProgramBuss::class);
+        $this->app->bind(SalaryComponentBussInterface::class, SalaryComponentBuss::class);
         $this->app->bind(SkpdBussInterface::class, SkpdBuss::class);
         $this->app->bind(WorkDayBussInterface::class, WorkDayBuss::class);
         $this->app->bind(WorkPackageBussInterface::class, WorkPackageBuss::class);

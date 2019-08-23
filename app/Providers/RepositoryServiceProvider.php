@@ -40,6 +40,9 @@ use App\Repository\PositionCategoryRepo;
 use App\Repository\Contracts\ProgramRepoInterface;
 use App\Repository\ProgramRepo;
 
+use App\Repository\Contracts\SalaryComponentRepoInterface;
+use App\Repository\SalaryComponentRepo;
+
 use App\Repository\Contracts\SkpdRepoInterface;
 use App\Repository\SkpdRepo;
 
@@ -80,6 +83,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(ProgramRepoInterface::class, ProgramRepo::class);    
         $this->app->bind(PositionRepoInterface::class, PositionRepo::class);    
         $this->app->bind(PositionCategoryRepoInterface::class, PositionCategoryRepo::class);    
+        $this->app->bind(SalaryComponentRepoInterface::class, SalaryComponentRepo::class);    
         $this->app->bind(SkpdRepoInterface::class, SkpdRepo::class);    
         $this->app->bind(WorkDayRepoInterface::class, WorkDayRepo::class);    
         $this->app->bind(WorkPackageRepoInterface::class, WorkPackageRepo::class);    

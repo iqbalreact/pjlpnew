@@ -189,6 +189,10 @@ return [
                 [
                     'text' => 'Hari Kerja',
                     'url'  => 'admin/workDay'
+                ],
+                [
+                    'text' => 'Komponen Gaji',
+                    'url'  => 'admin/salaryComponent'
                 ]
             ]
         ],
