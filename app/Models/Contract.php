@@ -13,6 +13,7 @@ use App\Models\Employee;
 use App\Models\Location;
 use App\Models\Position;
 use App\Models\Program;
+use App\Models\Salary;
 use App\Models\Skdp;
 use App\Models\WorkPackage;
 
@@ -80,6 +81,11 @@ class Contract extends Model
     public function program()
     {
         return $this->belongsTo(Program::class);
+    }
+
+    public function salaries()
+    {
+        return $this->belongsTo(Salary::class);
     }
 
     public function skpd()

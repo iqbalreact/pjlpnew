@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\Traits\CausesActivity;
 
+use App\Models\Salary;
+
 class SalaryComponent extends Model
 {
     use LogsActivity, CausesActivity;
@@ -18,4 +20,9 @@ class SalaryComponent extends Model
     protected static $logAttributes = [
         'name'
     ];
+
+    public function salaries()
+    {
+        return $this->hasMany(Salary::class);
+    }
 }
