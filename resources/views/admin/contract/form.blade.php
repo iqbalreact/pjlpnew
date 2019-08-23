@@ -3,7 +3,7 @@
         <label for="inputNumber" class="col-sm-2 control-label">Nomer @include('components.required')</label>
 
         <div class="col-sm-10">
-            {!! Form::text('number', $edit ? $data->number : old('number'), ['class' => 'form-control', 'placeholder'=> __('Nomer Kontrak')] ) !!}
+            {!! Form::text('number', $edit ? $data->number : old('number'), ['class' => 'form-control', 'placeholder'=> __('017.001/SPK/PET/DISKOMINFO/IX/2019')] ) !!}
             
             @if ($errors->has('nipj'))
                 <span class="help-block">{{ $errors->first('number') }}</span>
