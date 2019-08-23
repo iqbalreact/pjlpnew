@@ -1,5 +1,12 @@
 <form class="form-horizontal">
     <div class="form-group">
+        <label class="col-sm-2 control-label">No Kontrak</label>
+
+        <div class="col-sm-10">
+            <input class="form-control" value="{{ $data->number }}" readonly>
+        </div>
+    </div>
+    <div class="form-group">
         <label class="col-sm-2 control-label">NIPJ</label>
 
         <div class="col-sm-10">
