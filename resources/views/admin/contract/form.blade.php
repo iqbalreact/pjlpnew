@@ -182,6 +182,26 @@
             @endif
         </div>
     </div>
+
+    <br>
+
+    <div class="form-group">
+        <label for="inputStatus" class="col-sm-2 control-label">Gaji @include('components.required')</label>
+
+        <div class="col-sm-10">
+            <div class="table-responsive">  
+                <table class="table" id="dynamic_field">  
+                    <tr>  
+                        <td><select name="salaries[component][]" id="" class="form-control salaryComponent" required></select></td>  
+                        <td><input type="number" name="salaries[nominal][]" placeholder="Masukan nominal" class="form-control name_list" required></td>  
+                        <td><button type="button" name="add" id="add" class="btn btn-success">Tambah</button></td>  
+                    </tr>  
+                </table>
+            </div>
+        </div>
+    </div>
+
+    
     
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
@@ -203,7 +223,50 @@
 <script>
     var workPackageId = '';
 
+    function salarySelectLoad() {
+        $(".salaryComponent").select2({
+            dropdownAutoWidth : true,
+            width: '100%',
+            placeholder: "Ketik dan pilih komponen gaji",
+            ajax: {
+                url: "{{ route('select.salaryComponent') }}",
+                dataType: 'json',
+                data: function (params) {
+                    return {
+                        q: params.term,
+                    };
+                },
+                processResults: function (data) {
+
+                    var res = data.map(function (item) {
+                        return {id: item.id, text: item.name};
+                    });
+                    
+                    return {
+                        results: res
+                    };
+                }
+            }
+        });
+    }
+
     $(function() {
+
+        salarySelectLoad();
+
+        var i=1;  
+
+        $('#add').click(function(){  
+            i++;  
+            $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added"><td><select name="salaries[component][]" id="" class="form-control salaryComponent" required></select></td><td><input type="number" name="salaries[nominal][]" placeholder="Masukan nominal" class="form-control name_list" required></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
+            salarySelectLoad();
+        });  
+
+        $(document).on('click', '.btn_remove', function(){  
+            var button_id = $(this).attr("id");   
+            $('#row'+button_id+'').remove();  
+        });
+
 
         //Date picker
         $('.datepicker').datepicker({
@@ -211,6 +274,8 @@
             orientation: 'bottom',
             format: 'dd-mm-yyyy'
         });
+
+        
 
         $("#employeeSelect").select2({
             dropdownAutoWidth : true,

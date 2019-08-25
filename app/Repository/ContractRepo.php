@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Repository\Contracts\ContractRepoInterface;
 
 use App\Models\Contract;
+use App\Models\Salary;
 
 use Carbon\Carbon;
 
@@ -62,6 +63,14 @@ class ContractRepo implements ContractRepoInterface
         $data->status           = $request->status;
         $data->occupation_id    = $request->occupation_id;
         $data->save();
+
+        for ($i = 0; $i < count($request->salaries['component']); $i++) { 
+            $salary = new Salary();
+            $salary->salary_component_id    = $request->salaries['component'][$i];
+            $salary->nominal                = $request->salaries['nominal'][$i];
+            $salary->contract_id            = $data->id;
+            $salary->save();
+        }
 
         return $data;
     }
