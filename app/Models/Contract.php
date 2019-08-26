@@ -85,7 +85,7 @@ class Contract extends Model
 
     public function salaries()
     {
-        return $this->belongsTo(Salary::class);
+        return $this->hasMany(Salary::class);
     }
 
     public function skpd()

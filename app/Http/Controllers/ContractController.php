@@ -163,7 +163,7 @@ class ContractController extends Controller
         $workPackage    = $this->workPackage->find($data->work_package_id);
         $status         = $this->status->statusTransform;
 
-        return view('admin.contract.edit', compact('data', 'employee', 'location', 'workPackage', 'activity', 'program', 'skpd', 'position', 'functionary', 'status'));
+        return view('admin.contract.edit', compact('data', 'employee', 'occupation', 'location', 'workPackage', 'activity', 'program', 'skpd', 'position', 'functionary', 'status'));
     }
 
     /**

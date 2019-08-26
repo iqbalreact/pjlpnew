@@ -38,114 +38,70 @@
         </div>
     @endif
 
-    @if(isset($workPackage))
-        <div class="form-group {{ $errors->has('work_package_id') ? 'has-error' : '' }}">
-            <label for="inputWorkPackage" class="col-sm-2 control-label">Paket Pekerjaan @include('components.required')</label>
+    <div class="form-group {{ $errors->has('work_package_id') ? 'has-error' : '' }}">
+        <label for="inputWorkPackage" class="col-sm-2 control-label">Paket Pekerjaan @include('components.required')</label>
 
-            <div class="col-sm-10">
-                <input type="text" value="{{ $workPackage->name }}" class="form-control" readonly>
-                <input name="work_package_id" type="hidden" value="{{ $workPackage->id }}">
-
-                @if ($errors->has('work_package_id'))
-                    <span class="help-block">{{ $errors->first('work_package_id') }}</span>
+        <div class="col-sm-10">
+            <select name="work_package_id" id="workPackageSelect" class="form-control">
+                @if($edit)
+                    <option value="{{ $workPackage->id }}">{{ $workPackage->name }}</option>
                 @endif
-            </div>
+            </select>
+            
+            @if ($errors->has('work_package_id'))
+                <span class="help-block">{{ $errors->first('work_package_id') }}</span>
+            @endif
         </div>
-    @else
-        <div class="form-group {{ $errors->has('work_package_id') ? 'has-error' : '' }}">
-            <label for="inputWorkPackage" class="col-sm-2 control-label">Paket Pekerjaan @include('components.required')</label>
-    
-            <div class="col-sm-10">
-                <select name="work_package_id" id="workPackageSelect" class="form-control"></select>
-                
-                @if ($errors->has('work_package_id'))
-                    <span class="help-block">{{ $errors->first('work_package_id') }}</span>
+    </div>
+
+    <div class="form-group {{ $errors->has('occupation_id') ? 'has-error' : '' }} hidden" id="occupationArea">
+        <label for="inputFunctionary" class="col-sm-2 control-label">Pejabat @include('components.required')</label>
+
+        <div class="col-sm-10">
+            <select name="occupation_id" id="occupationSelect" class="form-control">
+                @if($edit)
+                    <option value="{{ $functionary->id }}">{{ $functionary->name }}</option>
                 @endif
-            </div>
+            </select>
+            
+            @if ($errors->has('occupation_id'))
+                <span class="help-block">{{ $errors->first('occupation_id') }}</span>
+            @endif
         </div>
-    @endif
+    </div>
 
-    @if(isset($functionary))
-        <div class="form-group {{ $errors->has('occupation_id') ? 'has-error' : '' }}">
-            <label for="inputFunctionary" class="col-sm-2 control-label">Pejabat @include('components.required')</label>
+    <div class="form-group {{ $errors->has('location_id') ? 'has-error' : '' }} hidden" id="locationArea">
+        <label for="inputLocation" class="col-sm-2 control-label">Lokasi @include('components.required')</label>
 
-            <div class="col-sm-10">
-                <input type="text" value="{{ $functionary->name }}" class="form-control" readonly>
-                <input name="occupation_id" type="hidden" value="{{ $functionary->id }}">
-
-                @if ($errors->has('occupation_id'))
-                    <span class="help-block">{{ $errors->first('occupation_id') }}</span>
+        <div class="col-sm-10">
+            <select name="location_id" id="locationSelect" class="form-control">
+                @if($edit)
+                    <option value="{{ $location->id }}">{{ $location->name }}</option>
                 @endif
-            </div>
+            </select>
+            
+            @if ($errors->has('location_id'))
+                <span class="help-block">{{ $errors->first('location_id') }}</span>
+            @endif
         </div>
-    @else
-        <div class="form-group {{ $errors->has('occupation_id') ? 'has-error' : '' }} hidden" id="occupationArea">
-            <label for="inputFunctionary" class="col-sm-2 control-label">Pejabat @include('components.required')</label>
-    
-            <div class="col-sm-10">
-                <select name="occupation_id" id="occupationSelect" class="form-control"></select>
-                
-                @if ($errors->has('occupation_id'))
-                    <span class="help-block">{{ $errors->first('occupation_id') }}</span>
+    </div>
+
+
+    <div class="form-group {{ $errors->has('position_id') ? 'has-error' : '' }}">
+        <label for="inputPosition" class="col-sm-2 control-label">Posisi @include('components.required')</label>
+
+        <div class="col-sm-10">
+            <select name="position_id" id="positionSelect" class="form-control">
+                @if($edit)
+                    <option value="{{ $position->id }}">{{ $position->name }}</option>
                 @endif
-            </div>
+            </select>
+            
+            @if ($errors->has('position_id'))
+                <span class="help-block">{{ $errors->first('position_id') }}</span>
+            @endif
         </div>
-    @endif
-
-    @if(isset($location))
-        <div class="form-group {{ $errors->has('location_id') ? 'has-error' : '' }}">
-            <label for="inputLocation" class="col-sm-2 control-label">Lokasi @include('components.required')</label>
-
-            <div class="col-sm-10">
-                <input type="text" value="{{ $location->name }}" class="form-control" readonly>
-                <input name="location_id" type="hidden" value="{{ $location->id }}">
-
-                @if ($errors->has('location_id'))
-                    <span class="help-block">{{ $errors->first('location_id') }}</span>
-                @endif
-            </div>
-        </div>
-    @else
-        <div class="form-group {{ $errors->has('location_id') ? 'has-error' : '' }} hidden" id="locationArea">
-            <label for="inputLocation" class="col-sm-2 control-label">Lokasi @include('components.required')</label>
-    
-            <div class="col-sm-10">
-                <select name="location_id" id="locationSelect" class="form-control"></select>
-                
-                @if ($errors->has('location_id'))
-                    <span class="help-block">{{ $errors->first('location_id') }}</span>
-                @endif
-            </div>
-        </div>
-    @endif
-
-
-    @if(isset($position))
-        <div class="form-group {{ $errors->has('position_id') ? 'has-error' : '' }}">
-            <label for="inputPosition" class="col-sm-2 control-label">Posisi @include('components.required')</label>
-
-            <div class="col-sm-10">
-                <input type="text" value="{{ $position->name }}" class="form-control" readonly>
-                <input name="position_id" type="hidden" value="{{ $position->id }}">
-
-                @if ($errors->has('position_id'))
-                    <span class="help-block">{{ $errors->first('position_id') }}</span>
-                @endif
-            </div>
-        </div>
-    @else
-        <div class="form-group {{ $errors->has('position_id') ? 'has-error' : '' }}">
-            <label for="inputPosition" class="col-sm-2 control-label">Posisi @include('components.required')</label>
-    
-            <div class="col-sm-10">
-                <select name="position_id" id="positionSelect" class="form-control"></select>
-                
-                @if ($errors->has('position_id'))
-                    <span class="help-block">{{ $errors->first('position_id') }}</span>
-                @endif
-            </div>
-        </div>
-    @endif
+    </div>
 
     <div class="form-group {{ $errors->has('start_date') ? 'has-error' : '' }}">
         <label for="inputStartDate" class="col-sm-2 control-label">Tanggal Mulai @include('components.required')</label>
@@ -191,17 +147,35 @@
         <div class="col-sm-10">
             <div class="table-responsive">  
                 <table class="table" id="dynamic_field">  
-                    <tr>  
-                        <td><select name="salaries[component][]" id="" class="form-control salaryComponent" required></select></td>  
-                        <td><input type="number" name="salaries[nominal][]" placeholder="Masukan nominal" class="form-control name_list" required></td>  
-                        <td><button type="button" name="add" id="add" class="btn btn-success">Tambah</button></td>  
-                    </tr>  
+                    @if($edit)
+                        @foreach ($data->salaries as $salary)
+                            <tr id="row{{$loop->index}}">  
+                                <td>
+                                    <select name="salaries[component][]" id="" class="form-control salaryComponent" required>
+                                        <option value="$salary->salaryComponent->name" selected>{{ $salary->salaryComponent->name }}</option>
+                                    </select>
+                                </td>  
+                                <td><input type="number" name="salaries[nominal][]" placeholder="Masukan nominal" class="form-control name_list" value="{{ $salary->nominal }}" required></td>  
+                                @if ($loop->first)
+                                    <td><button type="button" name="add" id="add" class="btn btn-success">Tambah</button></td>  
+                                @else
+                                <td>
+                                    <button type="button" name="remove" id="{{$loop->index}}" class="btn btn-danger btn_remove">X</button>
+                                </td>
+                                @endif
+                            </tr>
+                        @endforeach  
+                    @else
+                        <tr>  
+                            <td><select name="salaries[component][]" id="" class="form-control salaryComponent" required></select></td>  
+                            <td><input type="number" name="salaries[nominal][]" placeholder="Masukan nominal" class="form-control name_list" required></td>  
+                            <td><button type="button" name="add" id="add" class="btn btn-success">Tambah</button></td>  
+                        </tr>
+                    @endif
                 </table>
             </div>
         </div>
     </div>
-
-    
     
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
@@ -254,7 +228,11 @@
 
         salarySelectLoad();
 
-        var i=1;  
+        @if($edit) 
+            var i= "{{ count($data->salaries) }}";
+        @else
+            var i=1;
+        @endif
 
         $('#add').click(function(){  
             i++;  
@@ -404,7 +382,12 @@
             }
         });
 
-        onChangeWorkPackage();
+        @if($edit)
+            $('#workPackageSelect').val("{{ $workPackage->id }}").trigger('change');
+            $('#locationSelect').val("{{ $location->id }}").trigger('change');
+            $('#occupationSelect').val("{{ $occupation->id }}").trigger('change');
+            $('#positionSelect').val("{{ $position->id }}").trigger('change');
+        @endif
 
     });
 

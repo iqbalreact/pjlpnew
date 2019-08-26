@@ -39,6 +39,13 @@ class ContractTableSeeder extends Seeder
             $request->status           = 'active';
             $request->occupation_id    = rand(1, 50);
 
+            $component  = [1,2];
+            $nominal    = [1000000,2000000];
+
+            $salaries = ['component' => $component, 'nominal' => $nominal];
+
+            $request->salaries = $salaries;
+
             $this->contract->store($request);
         }
 
