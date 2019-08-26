@@ -147,8 +147,8 @@
         <div class="col-sm-10">
             <div class="table-responsive">  
                 <table class="table" id="dynamic_field">  
-                    @if($edit)
-                        @foreach ($data->salaries as $salary)
+                    @if($edit and count($data->salaries) > 0)
+                        @forelse ($data->salaries as $salary)
                             <tr id="row{{$loop->index}}">  
                                 <td>
                                     <select name="salaries[component][]" id="" class="form-control salaryComponent" required>
