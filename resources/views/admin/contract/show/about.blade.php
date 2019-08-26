@@ -69,6 +69,28 @@
             <input class="form-control" value="{{ $data->status }}" readonly>
         </div>
     </div>
+
+    <div class="form-group">
+        <label for="inputStatus" class="col-sm-2 control-label">Gaji</label>
+
+        <div class="col-sm-10">
+            <div class="table-responsive">  
+                <table class="table" id="dynamic_field">  
+                    @foreach ($data->salaries as $salary)
+                        <tr id="row{{$loop->index}}">  
+                            <td>
+                                <input type="text" class="form-control" value={{ $salary->salaryComponent->name }} readonly>
+                            </td>  
+                            <td>
+                                <input type="number" class="form-control" value="{{ $salary->nominal }}" readonly>
+                            </td>  
+                        </tr>
+                    @endforeach 
+                </table>
+            </div>
+        </div>
+    </div>
+        
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
             <a href="{{ route('contract.edit', ['id' => $data->id]) }}" class="btn btn-success"><i class="fa fa-pencil"></i> Edit</a>
