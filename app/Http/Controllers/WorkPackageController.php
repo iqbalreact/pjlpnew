@@ -147,6 +147,16 @@ class WorkPackageController extends Controller
     }
 
     /**
+     * Generate Code
+     */
+    public function code(Request $request)
+    {
+        $data = $this->workPackage->generateCode($request->activity_id);
+
+        return response()->json($data);
+    }
+
+    /**
      * Select2 API
      * 
      */

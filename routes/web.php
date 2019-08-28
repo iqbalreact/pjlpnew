@@ -68,6 +68,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::get('workPackage', 'DatatablesController@fetchWorkPackageDatas')->name('fetch.workPackage');
     });
 
+    Route::group(['prefix' => 'code'], function() {
+        Route::get('program', 'ProgramController@code')->name('code.program');
+        Route::get('activity', 'ActivityController@code')->name('code.activity');
+        Route::get('workPackage', 'WorkPackageController@code')->name('code.workPackage');
+    });
+
     //Chart
     Route::group(['prefix' => 'chart'], function() {
         Route::get('religion', 'EmployeeController@chartReligion')->name('chart.religion');

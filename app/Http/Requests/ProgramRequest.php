@@ -25,6 +25,7 @@ class ProgramRequest extends FormRequest
     {
         return [
             'name'      => 'required|max:255',
+            'code'      => 'required|unique:programs,code,'.$this->segment(3),
             'skpd_id'   => 'required'
         ];
     }

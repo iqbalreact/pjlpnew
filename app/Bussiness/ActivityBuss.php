@@ -38,8 +38,6 @@ class ActivityBuss implements ActivityBussInterface
 
     public function store(Request $request)
     {
-        $request->code = $this->generateCode($request->program_id);
-
         $data = $this->activityRepo->store($request);
         
         return $data;

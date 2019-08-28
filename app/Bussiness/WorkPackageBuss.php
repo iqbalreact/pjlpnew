@@ -42,8 +42,6 @@ class WorkPackageBuss implements WorkPackageBussInterface
 
     public function store(Request $request)
     {
-        $request->code = $this->generateCode($request->activity_id);
-
         $data = $this->workPackageRepo->store($request);
         
         return $data;

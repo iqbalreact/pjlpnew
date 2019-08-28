@@ -27,19 +27,17 @@
         </div>
     @endif
 
-    @if($edit)
-        <div class="form-group {{ $errors->has('code') ? 'has-error' : '' }}">
-            <label for="inputCode" class="col-sm-2 control-label">Kode @include('components.required')</label>
+    <div class="form-group {{ $errors->has('code') ? 'has-error' : '' }}">
+        <label for="inputCode" class="col-sm-2 control-label">Kode @include('components.required')</label>
 
-            <div class="col-sm-10">
-                {!! Form::text('code', $edit ? $data->code : old('code'), ['class' => 'form-control', 'placeholder'=> __('Kode kegiatan'), 'readonly' => true] ) !!}
-                
-                @if ($errors->has('code'))
-                    <span class="help-block">{{ $errors->first('code') }}</span>
-                @endif
-            </div>
+        <div class="col-sm-10">
+            {!! Form::text('code', $edit ? $data->code : old('code'), ['class' => 'form-control', 'placeholder'=> __('Kode kegiatan'), 'id' => 'activityCode'] ) !!}
+            
+            @if ($errors->has('code'))
+                <span class="help-block">{{ $errors->first('code') }}</span>
+            @endif
         </div>
-    @endif
+    </div>
 
     <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
         <label for="inputName" class="col-sm-2 control-label">Nama @include('components.required')</label>
@@ -96,6 +94,29 @@
                     }
                 }
             });
+
+            @if(isset($program))
+                getCode("{{ $program->id }}");
+            @endif
         });
+
+        @if(!$edit)
+            $('#programSelect').change(function() {
+                getCode($('#programSelect').val());
+            });
+        @endif
+
+        function getCode(programId) {
+            $.ajax( {
+                url: "{{ route('code.activity') }}",
+                dataType: 'json',
+                data:  {
+                    program_id: programId,
+                },
+                success: function (data) {
+                    $('#activityCode').val(data);
+                }
+            })
+        }
     </script>
 @endsection

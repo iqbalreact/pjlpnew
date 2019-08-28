@@ -27,20 +27,18 @@
         </div>
     @endif
 
-    @if($edit)
-        <div class="form-group {{ $errors->has('code') ? 'has-error' : '' }}">
-            <label for="inputCode" class="col-sm-2 control-label">Kode @include('components.required')</label>
+    <div class="form-group {{ $errors->has('code') ? 'has-error' : '' }}">
+        <label for="inputCode" class="col-sm-2 control-label">Kode @include('components.required')</label>
 
-            <div class="col-sm-10">
-                {!! Form::text('code', $edit ? $data->code : old('code'), ['class' => 'form-control', 'placeholder'=> __('Kode program'), 'readonly' => true] ) !!}
-                
-                @if ($errors->has('code'))
-                    <span class="help-block">{{ $errors->first('code') }}</span>
-                @endif
-            </div>
+        <div class="col-sm-10">
+            {!! Form::text('code', $edit ? $data->code : old('code'), ['class' => 'form-control', 'placeholder'=> __('Kode program'), 'id' => 'programCode'] ) !!}
+            
+            @if ($errors->has('code'))
+                <span class="help-block">{{ $errors->first('code') }}</span>
+            @endif
         </div>
-    @endif
-
+    </div>
+    
     <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
         <label for="inputName" class="col-sm-2 control-label">Nama @include('components.required')</label>
 
@@ -97,8 +95,29 @@
                 }
             });
 
-            onChangeSkpd();
+            @if(isset($skpd))
+                getCode("{{ $skpd->id }}");
+            @endif
         });
+
+        @if(!$edit)
+            $('#skpdSelect').change(function() {
+                getCode($('#skpdSelect').val());
+            });
+        @endif
+
+        function getCode(skpdId) {
+            $.ajax( {
+                url: "{{ route('code.program') }}",
+                dataType: 'json',
+                data:  {
+                    skpd_id: skpdId,
+                },
+                success: function (data) {
+                    $('#programCode').val(data);
+                }
+            })
+        }
 
     </script>
 @endsection

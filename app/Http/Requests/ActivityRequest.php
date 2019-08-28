@@ -25,6 +25,7 @@ class ActivityRequest extends FormRequest
     {
         return [
             'name'      => 'required|max:255',
+            'code'      => 'required|unique:activities,code,'.$this->segment(3),
             'program_id'=> 'required'
         ];
     }

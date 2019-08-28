@@ -38,8 +38,6 @@ class ProgramBuss implements ProgramBussInterface
 
     public function store(Request $request)
     {
-        $request->code = $this->generateCode($request->skpd_id);
-
         $data = $this->programRepo->store($request);
         
         return $data;

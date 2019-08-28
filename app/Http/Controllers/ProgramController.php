@@ -149,6 +149,16 @@ class ProgramController extends Controller
     }
 
     /**
+     * Generate Code
+     */
+    public function code(Request $request)
+    {
+        $data = $this->program->generateCode($request->skpd_id);
+
+        return response()->json($data);
+    }
+
+    /**
      * Select2 API
      * 
      */

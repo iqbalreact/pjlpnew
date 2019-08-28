@@ -146,7 +146,17 @@ class ActivityController extends Controller
         //
     }
 
-        /**
+    /**
+     * Generate Code
+     */
+    public function code(Request $request)
+    {
+        $data = $this->activity->generateCode($request->program_id);
+
+        return response()->json($data);
+    }
+
+    /**
      * Select2 API
      * 
      */

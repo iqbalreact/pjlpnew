@@ -27,20 +27,18 @@
         </div>
     @endif
 
-    @if($edit)
-        <div class="form-group {{ $errors->has('code') ? 'has-error' : '' }}">
-            <label for="inputCode" class="col-sm-2 control-label">Kode @include('components.required')</label>
+    <div class="form-group {{ $errors->has('code') ? 'has-error' : '' }}">
+        <label for="inputCode" class="col-sm-2 control-label">Kode @include('components.required')</label>
 
-            <div class="col-sm-10">
-                {!! Form::text('code', $edit ? $data->code : old('code'), ['class' => 'form-control', 'placeholder'=> __('Kode paket pekerjaan'), 'readonly' => true] ) !!}
-                
-                @if ($errors->has('code'))
-                    <span class="help-block">{{ $errors->first('code') }}</span>
-                @endif
-            </div>
+        <div class="col-sm-10">
+            {!! Form::text('code', $edit ? $data->code : old('code'), ['class' => 'form-control', 'placeholder'=> __('Kode paket pekerjaan'), 'id' => 'workPackageCode' ] ) !!}
+            
+            @if ($errors->has('code'))
+                <span class="help-block">{{ $errors->first('code') }}</span>
+            @endif
         </div>
-    @endif
-
+    </div>
+    
     <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
         <label for="inputName" class="col-sm-2 control-label">Nama @include('components.required')</label>
 
@@ -96,6 +94,30 @@
                     }
                 }
             });
+
+            @if(isset($activity))
+                getCode("{{ $activity->id }}");
+            @endif
+            
         });
+
+        @if(!$edit)
+            $('#activitySelect').change(function() {
+                getCode($('#activitySelect').val());
+            });
+        @endif
+
+        function getCode(activityId) {
+            $.ajax( {
+                url: "{{ route('code.workPackage') }}",
+                dataType: 'json',
+                data:  {
+                    activity_id: activityId,
+                },
+                success: function (data) {
+                    $('#workPackageCode').val(data);
+                }
+            })
+        }
     </script>
 @endsection
