@@ -75,11 +75,11 @@
 
         <div class="col-sm-10">
             <div class="table-responsive">  
-                <table class="table" id="dynamic_field">  
+                <table class="table">  
                     @foreach ($data->salaries as $salary)
-                        <tr id="row{{$loop->index}}">  
+                        <tr>  
                             <td>
-                                <input type="text" class="form-control" value={{ $salary->salaryComponent->name }} readonly>
+                                <input type="text" class="form-control" value="{{ $salary->salaryComponent->name }}" readonly>
                             </td>  
                             <td>
                                 <input type="number" class="form-control" value="{{ $salary->nominal }}" readonly>

@@ -64,13 +64,7 @@ class ContractRepo implements ContractRepoInterface
         $data->occupation_id    = $request->occupation_id;
         $data->save();
 
-        for ($i = 0; $i < count($request->salaries['component']); $i++) { 
-            $salary = new Salary();
-            $salary->salary_component_id    = $request->salaries['component'][$i];
-            $salary->nominal                = $request->salaries['nominal'][$i];
-            $salary->contract_id            = $data->id;
-            $salary->save();
-        }
+        $this->saveSalary($request->salaries, $data);
 
         return $data;
     }
@@ -97,6 +91,20 @@ class ContractRepo implements ContractRepoInterface
         $data->occupation_id    = $request->occupation_id;
         $data->update();
 
+        $data->salaries()->delete();
+        $this->saveSalary($request->salaries, $data);
+
         return $data;
+    }
+
+    public function saveSalary($salaries, $data)
+    {
+        for ($i = 0; $i < count($salaries['component']); $i++) { 
+            $salary = new Salary();
+            $salary->salary_component_id    = $salaries['component'][$i];
+            $salary->nominal                = $salaries['nominal'][$i];
+            $salary->contract_id            = $data->id;
+            $salary->save();
+        }
     }
 }

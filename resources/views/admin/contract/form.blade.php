@@ -152,7 +152,7 @@
                             <tr id="row{{$loop->index}}">  
                                 <td>
                                     <select name="salaries[component][]" id="" class="form-control salaryComponent" required>
-                                        <option value="$salary->salaryComponent->name" selected>{{ $salary->salaryComponent->name }}</option>
+                                        <option value="{{ $salary->salaryComponent->id }}" selected>{{ $salary->salaryComponent->name }}</option>
                                     </select>
                                 </td>  
                                 <td><input type="number" name="salaries[nominal][]" placeholder="Masukan nominal" class="form-control name_list" value="{{ $salary->nominal }}" required></td>  
@@ -185,7 +185,7 @@
                     {{ $edit ? 'Update' : 'Simpan' }}
             </button>
             
-            <a href="{{ route('employee.index') }}" 
+            <a href="{{ route('contract.index') }}" 
                 class="btn btn-danger">
                     Batal
             </a>
