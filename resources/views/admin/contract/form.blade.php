@@ -155,7 +155,7 @@
                                         <option value="{{ $salary->salaryComponent->id }}" selected>{{ $salary->salaryComponent->name }}</option>
                                     </select>
                                 </td>  
-                                <td><input type="number" name="salaries[nominal][]" placeholder="Masukan nominal" class="form-control name_list" value="{{ $salary->nominal }}" required></td>  
+                                <td><input type="text" name="salaries[nominal][]" placeholder="Masukan nominal" class="form-control name_list" value="{{ $salary->nominal }}" required></td>  
                                 @if ($loop->first)
                                     <td><button type="button" name="add" id="add" class="btn btn-success">Tambah</button></td>  
                                 @else
@@ -168,7 +168,7 @@
                     @else
                         <tr>  
                             <td><select name="salaries[component][]" id="" class="form-control salaryComponent" required></select></td>  
-                            <td><input type="number" name="salaries[nominal][]" placeholder="Masukan nominal" class="form-control name_list" required></td>  
+                            <td><input type="text" name="salaries[nominal][]" placeholder="Masukan nominal" class="form-control name_list" required></td>  
                             <td><button type="button" name="add" id="add" class="btn btn-success">Tambah</button></td>  
                         </tr>
                     @endif
@@ -222,6 +222,15 @@
                 }
             }
         });
+
+        $('.name_list').inputmask({ 
+            alias: 'decimal', 
+            groupSeparator: '.',
+            radixPoint: ',', 
+            autoGroup: true,
+            autoUnmask: true,
+            removeMaskOnSubmit: true
+        });
     }
 
     $(function() {
@@ -236,7 +245,7 @@
 
         $('#add').click(function(){  
             i++;  
-            $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added"><td><select name="salaries[component][]" id="" class="form-control salaryComponent" required></select></td><td><input type="number" name="salaries[nominal][]" placeholder="Masukan nominal" class="form-control name_list" required></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
+            $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added"><td><select name="salaries[component][]" id="" class="form-control salaryComponent" required></select></td><td><input type="text" name="salaries[nominal][]" placeholder="Masukan nominal" class="form-control name_list" required></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
             salarySelectLoad();
         });  
 

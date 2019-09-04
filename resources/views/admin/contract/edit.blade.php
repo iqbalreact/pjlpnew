@@ -14,7 +14,7 @@
         <h3 class="box-title">Edit</h3>
     </div>
 
-    {!! Form::open([ 'url' => route('contract.update', ['id' => $data->id ]), 'files' => true, 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
+    {!! Form::open([ 'url' => route('contract.update', ['id' => $data->id ]), 'files' => true, 'method' => 'PUT', 'class' => 'form-horizontal', 'id' => 'contractForm']) !!}
         @include('admin.contract.form', ['edit' => true, 'data' => $data])        
     {!! Form::close() !!}
 </div>

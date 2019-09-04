@@ -82,10 +82,20 @@
                                 <input type="text" class="form-control" value="{{ $salary->salaryComponent->name }}" readonly>
                             </td>  
                             <td>
-                                <input type="number" class="form-control" value="{{ $salary->nominal }}" readonly>
+                                <input type="text" class="form-control name_list" value="{{ $salary->nominal }}" readonly>
                             </td>  
                         </tr>
                     @endforeach 
+                    @if(count($data->salaries) > 0)
+                        <tr>
+                            <td class="pull-right">
+                                <label class="control-label">Total</label>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control name_list" value="{{ $data->salaries->sum('nominal') }}" readonly>
+                            </td>
+                        </tr>
+                    @endif
                 </table>
             </div>
         </div>
@@ -97,3 +107,18 @@
         </div>
     </div>
 </form>
+
+@section('js2')
+<script>    
+    $(function() {
+        $('.name_list').inputmask({ 
+            alias: 'decimal', 
+            groupSeparator: '.',
+            radixPoint: ',', 
+            autoGroup: true,
+            autoUnmask: true,
+            removeMaskOnSubmit: true
+        });
+    })
+</script>
+@stop

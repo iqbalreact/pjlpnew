@@ -14,7 +14,7 @@
         <h3 class="box-title">Buat Baru</h3>
     </div>
 
-    <form class="form-horizontal" action="{{ route('contract.store') }}" method="POST" enctype="multipart/form-data">
+    <form class="form-horizontal" action="{{ route('contract.store') }}" method="POST" enctype="multipart/form-data" id="contractForm">
         @csrf
         @include('admin.contract.form', ['edit' => false])        
     </form>
