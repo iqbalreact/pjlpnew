@@ -128,7 +128,7 @@ return [
         [
             'text' => 'Penilaian Kinerja',
             'icon' => 'check-circle-o',
-            'url'  => '#'
+            'url'  => '/admin/assessment'
         ],
         [
             'text' => 'Penggajian',

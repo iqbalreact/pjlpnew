@@ -1,11 +1,11 @@
 @extends('adminlte::page')
 
-@section('title', 'Absensi | '.env('APP_NAME'))
+@section('title', 'Penilaian Kinerja | '.env('APP_NAME'))
 
 @section('content_header')
-    <h1>Absensi</h1>
+    <h1>Penilaian</h1>
 
-    {{ Breadcrumbs::render('attendace') }}
+    {{ Breadcrumbs::render('assessment') }}
 @stop
 
 @section('content')
@@ -25,7 +25,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputNIPJ" class="col-sm-2 control-label">Tanggal @include('components.required')</label>
+                            <label for="inputMonth" class="col-sm-2 control-label">Bulan dan Tahun @include('components.required')</label>
     
                             <div class="col-sm-10">
                                 {!! Form::text('date', '', ['id' => 'date', 'class' => 'form-control datepicker', 'placeholder'=> __('Tanggal'), 'autocomplete' => 'off'] ) !!}
@@ -46,7 +46,7 @@
             </div>
             <div class="box box-primary" id="inputAttendace">
                 <div class="box-header">   
-                    <h3 class="box-title">Input Absensi</h3>
+                    <h3 class="box-title">Input Penilaian</h3>
                 </div>
                 <div class="box-body">
                     <table id="employee-table" class="table" width="100%">
@@ -56,10 +56,11 @@
                                 <th>Id</th>
                                 <th>NIPJ</th>
                                 <th>Name</th>
-                                <th>Masuk</th>
-                                <th>Pulang</th>
-                                <th>Apel</th>
-                                <th>Terlambat</th>
+                                <th>Tingkat Penyelesaian Pekerjaan</th>
+                                <th>Waktu Penyelesaian Pekerjaan</th>
+                                <th>Kualitas Hasil Pekerjaan</th>
+                                <th>Kepatuhan Dalam Menjalankan Kewajiban</th>
+                                <th>Kepatuhan terhadap Larangan</th>
                                 <th>Aksi</th>
                                 <th>Status</th>
                             </tr>
@@ -68,7 +69,7 @@
                     
                     <div class="row">
                         <div class="col-md-2">
-                            <button type="button" class="btn btn-primary btn-block" id="btn-submit">Bulk Insert Absensi</button>
+                            <button type="button" class="btn btn-primary btn-block" id="btn-submit">Bulk Insert Penilaian</button>
                         </div>
                         <div class="col-md-10">
                                 <div class="callout callout-info">
@@ -91,7 +92,9 @@
     $('.datepicker').datepicker({
         autoclose: true,
         orientation: 'bottom',
-        format: 'dd-mm-yyyy'
+        format: 'MM yyyy',
+        viewMode: "months", 
+        minViewMode: "months"
     });    
 
     $( '.datepicker' ).datepicker( 'setDate', today );
@@ -103,7 +106,7 @@
         order: [[ 2, 'asc' ]],
         deferRender:    true,
         ajax: {
-            url: '{!! route('fetch.attendance') !!}',
+            url: '{!! route('fetch.assessment') !!}',
             data: function (d) {
                 d.workPackageId = $('#workPackageSelect').val(),
                 d.date = $('#date').val()
@@ -113,8 +116,12 @@
             {
                 'targets': 0,
                 'checkboxes': {
-                'selectRow': true
+                    'selectRow': true
                 }
+            },
+            {
+                'targets': [4, 5, 6, 7, 8],
+                'className': 'text-center'
             }
         ],
         'select': {
@@ -125,16 +132,14 @@
             { data: 'id', name: 'id', class:'hide' },
             { data: 'employee_nipj', name: 'employee.nipj', searchable:'true'},
             { data: 'employee_name', name: 'employee.name', searchable:'true'},
-            { data: 'from', name: 'from', searchable:'false', orderable:'false', "width": "80px"},
-            { data: 'to', name: 'to', searchable:'false', orderable:'false', "width": "80px"},
-            { data: 'ceremony', name: 'ceremony', searchable:'false', orderable:'false', "width": "10%"},
-            { data: 'late', name: 'late', searchable:'false', orderable:'false', "width": "10%"},
+            { data: 'work_completion_rate', name: 'work_completion_rate', searchable:'false', orderable:'false', "width": "10%"},
+            { data: 'work_completion_time', name: 'work_completion_time', searchable:'false', orderable:'false', "width": "10%"},
+            { data: 'work_quality', name: 'work_quality', searchable:'false', orderable:'false', "width": "10%"},
+            { data: 'obidence_on_obligation', name: 'obidence_on_obligation', searchable:'false', orderable:'false', "width": "10%"},
+            { data: 'obidence_on_rule', name: 'obidence_on_rule', searchable:'false', orderable:'false', "width": "10%"},
             { data: 'save', name: 'save', searchable:'false', orderable:'false', "width": "5%"},
             { data: 'status', name: 'status', searchable:'false', orderable:'false', "width": "5%"}
-        ],
-        fnDrawCallback: function( oSettings ) {
-            $('.time').inputmask("hh:mm");
-        }
+        ]
     });
 
     // Handle form submission event
@@ -165,27 +170,29 @@
         
         var employee_id = data.employee.id;
         var contract_id = data.id;
-        var from        = oTable.api().cell(idx,4).nodes().to$().find('input').val();
-        var to          = oTable.api().cell(idx,5).nodes().to$().find('input').val();
-        var ceremony    = oTable.api().cell(idx,6).nodes().to$().find('select').val();
-        var late        = oTable.api().cell(idx,7).nodes().to$().find('select').val();
+        var work_completion_rate    = oTable.api().cell(idx,4).nodes().to$().find('select').val();
+        var work_completion_time    = oTable.api().cell(idx,5).nodes().to$().find('select').val();
+        var work_quality            = oTable.api().cell(idx,6).nodes().to$().find('select').val();
+        var obidence_on_obligation  = oTable.api().cell(idx,7).nodes().to$().find('select').val();
+        var obidence_on_rule        = oTable.api().cell(idx,8).nodes().to$().find('select').val();
                
-        oTable.api().cell(idx, (9)).nodes().to$().find('.stateStatus').html("<img src='/img/spinner.gif'>");
+        oTable.api().cell(idx, (10)).nodes().to$().find('.stateStatus').html("<img src='/img/spinner.gif'>");
 
-        $.post('{{ route('attendance.store') }}', {
+        $.post('{{ route('assessment.store') }}', {
             employee_id: employee_id, 
             contract_id: contract_id, 
             work_package_id: $('#workPackageSelect').val(), 
             date: $('#date').val(), 
-            from: from,
-            to: to,
-            ceremony: ceremony,
-            late: late
+            work_completion_rate: work_completion_rate,
+            work_completion_time: work_completion_time,
+            work_quality: work_quality,
+            obidence_on_obligation: obidence_on_obligation,
+            obidence_on_rule: obidence_on_rule
         }, function(data, status) {
             if (status == 'success') {
-                oTable.api().cell(idx, 9).nodes().to$().find('.stateStatus').html("<img src='/img/checked.png'>");
+                oTable.api().cell(idx, 10).nodes().to$().find('.stateStatus').html("<img src='/img/checked.png'>");
             } else {
-                oTable.api().cell(idx, 9).nodes().to$().find('.stateStatus').html("<img src='/img/cancel.png'>");
+                oTable.api().cell(idx, 10).nodes().to$().find('.stateStatus').html("<img src='/img/cancel.png'>");
             }
         });
     }

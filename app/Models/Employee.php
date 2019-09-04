@@ -10,6 +10,7 @@ use Spatie\Activitylog\Traits\CausesActivity;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
+use App\Models\Assessment;
 use App\Models\Attendance;
 use App\Models\Contract;
 use App\Models\Skpd;
@@ -57,6 +58,11 @@ class Employee extends Model implements HasMedia
         parent::boot();
 
         static::addGlobalScope(new OwnEmployeeScope);
+    }
+
+    public function assessments()
+    {
+        return $this->hasMany(Assessment::class);
     }
 
     public function attendances()

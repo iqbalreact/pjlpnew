@@ -6,6 +6,27 @@ Breadcrumbs::for('dashboard', function ($trail) {
 });
 
 /**
+ * Assessment ====================================================================
+ */
+
+// Home > Attendace
+Breadcrumbs::for('assessment', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Penilaian', route('assessment.index'));
+});
+
+
+/**
+ * Attendance ====================================================================
+ */
+
+// Home > Attendace
+Breadcrumbs::for('attendace', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Absensi', route('attendance.index'));
+});
+
+/**
  * Contract ====================================================================
  */
 

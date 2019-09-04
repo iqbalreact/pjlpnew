@@ -12,6 +12,8 @@ interface DatatablesRepoInterface
 
     public function fetchActivityLog(Request $request);
 
+    public function fetchAssessmentData(Request $request);
+
     public function fetchAttendanceData(Request $request);
 
     public function fetchContractIndexDatas(Request $request);

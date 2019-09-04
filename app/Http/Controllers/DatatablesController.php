@@ -5,19 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Bussiness\Contracts\DatatablesBussInterface;
+use App\Bussiness\Contracts\AssessmentDatatablesBussInterface;
 use App\Bussiness\Contracts\AttendanceDatatablesBussInterface;
 
 class DatatablesController extends Controller
 {
     public function __construct(
+		AssessmentDatatablesBussInterface $assessment,
 		AttendanceDatatablesBussInterface $attendance,
 		DatatablesBussInterface $datatables
 	) {
 		$this->datatables = $datatables;
+		$this->assessment = $assessment;
 		$this->attendance = $attendance;
 	}
 	
-	public function fetchTemplateDatas(Request $request)
+	public function fetchAssessmentDatas(Request $request)
+	{
+		return $this->assessment->fetchTemplate($request);
+	}
+
+	public function fetchAttendanceDatas(Request $request)
 	{
 		return $this->attendance->fetchTemplate($request);
 	}

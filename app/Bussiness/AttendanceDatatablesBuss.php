@@ -68,8 +68,7 @@ class AttendanceDatatablesBuss implements AttendanceDatatablesBussInterface
                             'to', 
                             'ceremony',
                             'late',
-                            'status',
-                            'plainTest'
+                            'status'
                         ])
                         ->make(true);
     }

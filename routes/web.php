@@ -27,10 +27,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/about', function () {
         return view('dashboard');
     })->name('about');
-
-    Route::resource('attendance', 'AttendanceController');
+    
     Route::resource('activity', 'ActivityController');
     Route::resource('account', 'AccountController');
+    Route::resource('assessment', 'AssessmentController');
+    Route::resource('attendance', 'AttendanceController');
     Route::resource('contract', 'ContractController');
     Route::resource('employee', 'EmployeeController');
     Route::resource('functionary', 'FunctionaryController');
@@ -49,7 +50,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     // Datatables
     Route::group(['prefix' => 'data'], function() {
-        Route::get('template', 'DatatablesController@fetchTemplateDatas')->name('fetch.template');
+        Route::get('assessment', 'DatatablesController@fetchAssessmentDatas')->name('fetch.assessment');
+        Route::get('attendance', 'DatatablesController@fetchAttendanceDatas')->name('fetch.attendance');
         Route::get('account', 'DatatablesController@fetchAccountDatas')->name('fetch.account');
         Route::get('activity', 'DatatablesController@fetchActivityDatas')->name('fetch.activity');
         Route::get('activitylog', 'DatatablesController@fetchActivityLog')->name('fetch.activityLog');
