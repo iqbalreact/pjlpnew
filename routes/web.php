@@ -78,6 +78,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     //Chart
     Route::group(['prefix' => 'chart'], function() {
+        Route::get('bank', 'EmployeeController@chartBank')->name('chart.bank');
+        Route::get('gender', 'EmployeeController@chartGender')->name('chart.gender');
         Route::get('religion', 'EmployeeController@chartReligion')->name('chart.religion');
     });
 

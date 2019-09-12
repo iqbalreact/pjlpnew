@@ -13,6 +13,7 @@ use App\Services\Contracts\ReligionServiceInterface;
 use App\Models\Employee;
 
 use Carbon\Carbon;
+use DB;
 
 class EmployeeRepo implements EmployeeRepoInterface
 {
@@ -30,6 +31,33 @@ class EmployeeRepo implements EmployeeRepoInterface
     {
         $data = Employee::whereYear('created_at', Carbon::now()->year)
                         ->where('skpd_id', $skpd_id)->count();
+
+        return $data;
+    }
+
+    public function countByBank()
+    {
+        $data = Employee::select('bank_name', DB::raw('count(*) as total'))
+                        ->groupBy('bank_name')
+                        ->get();
+
+        return $data;
+    }
+
+    public function countByGender()
+    {
+        $data = Employee::select('gender', DB::raw('count(*) as total'))
+                        ->groupBy('gender')
+                        ->get();
+
+        return $data;
+    }
+
+    public function countByReligion()
+    {
+        $data = Employee::select('religion', DB::raw('count(*) as total'))
+                        ->groupBy('religion')
+                        ->get();
 
         return $data;
     }

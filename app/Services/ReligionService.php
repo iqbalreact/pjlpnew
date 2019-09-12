@@ -10,7 +10,7 @@ class ReligionService implements ReligionServiceInterface
 {
     public $religionTransform = [
         'islam'         => 'Islam', 
-        'katolik'       => 'Katolik', 
+        'katolik'       => 'Katolik',
         'protestan'     => 'Protestan',
         'hindu'         => 'Hindu', 
         'budha'         => 'Budha', 

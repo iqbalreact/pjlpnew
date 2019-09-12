@@ -165,8 +165,24 @@ class EmployeeController extends Controller
         return response()->json($res);
     }
 
+    public function chartBank()
+    {
+        $res = $this->employee->countByBank();
+
+        return response()->json($res);
+    }
+
+    public function chartGender()
+    {
+        $res = $this->employee->countByGender();
+
+        return response()->json($res);
+    }
+
     public function chartReligion()
     {
-        
+        $res = $this->employee->countByReligion();
+
+        return response()->json($res);
     }
 }

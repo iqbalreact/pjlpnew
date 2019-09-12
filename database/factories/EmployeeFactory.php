@@ -14,7 +14,7 @@ $factory->define(Employee::class, function (Faker $faker) {
         'npwp'                  => $faker->randomNumber($nbDigits = 7, $strict = false),
         'gender'                => $faker->randomElement(['laki-laki', 'perempuan']),
         'address'               => $faker->address,
-        'religion'              => $faker->randomElement(['budha', 'islam', 'kristen', 'katolik', 'khong_hu_cu', 'protestan']),
+        'religion'              => $faker->randomElement(['budha', 'islam', 'hindu', 'katolik', 'khong_hu_cu', 'protestan']),
         'phone_number'          => $faker->e164PhoneNumber,
         'bank_name'             => $faker->randomElement(['kalbar', 'pasar']),
         'account_number'        => $faker->bankAccountNumber,

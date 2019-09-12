@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Bussiness\Contracts\EmployeeBussInterface;
 use App\Repository\Contracts\EmployeeRepoInterface;
 use App\Bussiness\Contracts\SkpdBussInterface;
+use App\Services\Contracts\BankServiceInterface;
+use App\Services\Contracts\GenderServiceInterface;
+use App\Services\Contracts\ReligionServiceInterface;
 
 use Carbon\Carbon;
 
@@ -14,15 +17,57 @@ class EmployeeBuss implements EmployeeBussInterface
 {
     public function __construct(
         EmployeeRepoInterface $employeeRepo,
+        BankServiceInterface $bankService, 
+        GenderServiceInterface $genderService,
+        ReligionServiceInterface $religionService,       
         SkpdBussInterface $skpd
     ) {
-        $this->employeeRepo = $employeeRepo;
-        $this->skpd         = $skpd;
+        $this->employeeRepo         = $employeeRepo;
+        $this->bankService          = $bankService;
+        $this->genderService        = $genderService;
+        $this->religionService      = $religionService;        
+        $this->skpd                 = $skpd;
     }
 
     public function find($id)
     {
         return $this->employeeRepo->find($id);
+    }
+
+    public function countByBank()
+    {
+        $data = $this->employeeRepo->countByBank(); 
+        
+        $data->map(function ($data) {
+            $data->bank_name = $this->bankService->bankNameTransform($data->bank_name);
+            return $data;
+        });
+
+        return $data;
+    }
+
+    public function countByGender()
+    {
+        $data = $this->employeeRepo->countByGender(); 
+        
+        $data->map(function ($data) {
+            $data->gender = $this->genderService->genderNameTransform($data->gender);
+            return $data;
+        });
+
+        return $data;
+    }
+
+    public function countByReligion()
+    {
+        $data = $this->employeeRepo->countByReligion(); 
+        
+        $data->map(function ($data) {
+            $data->religion = $this->religionService->religionNameTransform($data->religion);
+            return $data;
+        });
+
+        return $data;
     }
 
     public function getByName($name)
