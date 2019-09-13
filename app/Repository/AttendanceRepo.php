@@ -21,10 +21,11 @@ class AttendanceRepo implements AttendanceRepoInterface
                 'work_package_id'   => $request->work_package_id, 
                 'date'              => Carbon::parse($request->date)
             ],[
-                'from'      => $request->from,
-                'to'        => $request->to,
-                'ceremony'  => $request->ceremony,
-                'late'      => $request->late
+                'attendance'    => $request->attendance,
+                'from'          => $request->from,
+                'to'            => $request->to,
+                'ceremony'      => $request->ceremony,
+                'late'          => $request->late
             ]
         );
 
