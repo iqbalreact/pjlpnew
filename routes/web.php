@@ -27,6 +27,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('/about', function () {
         return view('dashboard');
     })->name('about');
+
+    Route::get('/account/updateProfile', 'AccountController@updateProfile')->name('account.updateProfile');
+    Route::put('/account/updateProfile/{id}', 'AccountController@postUpdateProfile')->name('account.updateProfile.post');
+
+    Route::get('/account/updatePassword', 'AccountController@updatePassword')->name('account.updatePassword');
+    Route::put('/account/updatePassword/{id}', 'AccountController@postUpdatePassword')->name('account.updatePassword.post');
     
     Route::resource('activity', 'ActivityController');
     Route::resource('account', 'AccountController');

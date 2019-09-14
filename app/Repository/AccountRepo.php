@@ -87,4 +87,41 @@ class AccountRepo implements AccountRepoInterface
 
         return $data;
     }
+
+    public function updateProfile(Request $request, $id)
+    {
+        $data = User::find($id);
+
+        if (is_null($data)) {
+            return false;
+        }
+
+        $data->name     = $request->name; 
+        $data->email    = $request->email;
+        $data->update();
+        
+        if (isset($request->avatar)) {
+            $data->addMediaFromRequest('avatar')->toMediaCollection('avatars');
+        }
+
+        return $data;
+    }
+
+    public function updatePassword(Request $request, $id)
+    {
+        $data = User::find($id);
+
+        if (is_null($data)) {
+            return false;
+        }
+
+        $data->password = bcrypt($request->password);
+        $data->update();
+        
+        if (isset($request->avatar)) {
+            $data->addMediaFromRequest('avatar')->toMediaCollection('avatars');
+        }
+
+        return $data;
+    }
 }

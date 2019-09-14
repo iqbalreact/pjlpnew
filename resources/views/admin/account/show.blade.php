@@ -26,8 +26,16 @@
                         </li>
                     </ul>
 
-                    <a href="{{ route('account.edit', ['id' => $data->id ]) }}" class="btn btn-success btn-block"><i class="fa fa-pencil"></i> <b>Edit</b></a>
-    
+                    @if(\Auth::user()->id == $data->id and $data->rolenametransform !== 'Superadmin')
+                        <a href="{{ route('account.updateProfile', ['id' => $data->id ]) }}" class="btn btn-success btn-block"><i class="fa fa-pencil"></i> <b>Edit</b></a>
+                    @else
+                        <a href="{{ route('account.edit', ['id' => $data->id ]) }}" class="btn btn-success btn-block"><i class="fa fa-pencil"></i> <b>Edit</b></a>
+                    @endif
+
+                    @if(\Auth::user()->id == $data->id)
+                        <a href="{{ route('account.updatePassword', ['id' => $data->id ]) }}" class="btn btn-primary btn-block"><i class="fa fa-key"></i> <b>Update Password</b></a>
+                    @endif
+
                     </div>
             </div>
         </div>
@@ -37,7 +45,6 @@
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#about" data-toggle="tab" aria-expanded="true">Tentang</a></li>
                     <li class=""><a href="#log" data-toggle="tab" aria-expanded="false">Log</a></li>
-                    <li class=""><a href="#settings" data-toggle="tab" aria-expanded="false">Settings</a></li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="about">
@@ -45,10 +52,6 @@
                     </div>
                     <div class="tab-pane" id="log">
                         @include('admin.partials.userActivityLog', ['causer_id' => $data->id, 'models' => ''])
-                    </div>
-        
-                    <div class="tab-pane" id="settings">
-                        
                     </div>
                 </div>
             </div>

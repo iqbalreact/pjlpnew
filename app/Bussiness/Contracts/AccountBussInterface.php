@@ -15,4 +15,8 @@ interface AccountBussInterface
     public function store(Request $request);
 
     public function update(Request $request, $id);
+
+    public function updateProfile(Request $request, $id);
+
+    public function updatePassword(Request $request, $id);
 }

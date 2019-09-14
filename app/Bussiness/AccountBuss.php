@@ -38,4 +38,14 @@ class AccountBuss implements AccountBussInterface
     {
         return $this->accountRepo->update($request, $id);
     }
+
+    public function updateProfile(Request $request, $id)
+    {
+        return $this->accountRepo->updateProfile($request, $id);
+    }
+
+    public function updatePassword(Request $request, $id)
+    {
+        return $this->accountRepo->updatePassword($request, $id);
+    }
 }

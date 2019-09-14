@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\AccountRequest;
+use App\Http\Requests\UpdateProfileRequest;
+use App\Http\Requests\UpdatePasswordRequest;
 
 use App\Bussiness\Contracts\AccountBussInterface;
 use App\Bussiness\Contracts\SkpdBussInterface;
@@ -118,5 +120,51 @@ class AccountController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function updateProfile()
+    {
+        $id = \Auth::user()->id;
+
+        $data = $this->account->find($id);
+
+        if (!$data) {
+            notify()->warning('Profile tidak ditemukan');
+            return redirect()->back();
+        }
+
+        return view('admin.account.updateProfile', compact('data'));
+    }
+
+    public function postUpdateProfile(UpdateProfileRequest $request)
+    {
+        $id = \Auth::user()->id;
+
+        $data = $this->account->updateProfile($request, $id);
+
+        return redirect()->route('account.show', ['id' => $data->id]);        
+    }
+
+    public function updatePassword()
+    {
+        $id = \Auth::user()->id;
+
+        $data = $this->account->find($id);
+
+        if (!$data) {
+            notify()->warning('Profile tidak ditemukan');
+            return redirect()->back();
+        }
+
+        return view('admin.account.updatePassword', compact('data'));
+    }
+
+    public function postUpdatePassword(UpdatePasswordRequest $request)
+    {
+        $id = \Auth::user()->id;
+
+        $data = $this->account->updatePassword($request, $id);
+
+        return redirect()->route('account.show', ['id' => $data->id]);        
     }
 }
