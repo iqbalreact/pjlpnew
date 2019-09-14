@@ -44,6 +44,9 @@ class AttendanceDatatablesBuss implements AttendanceDatatablesBussInterface
                         ->addColumn('employee_name', function(Contract $contract) {
                             return $contract->employee->name;
                         })
+                        ->addColumn('attendance',  function($data) { 
+                            return $this->attendance($data);  
+                        })
                         ->addColumn('from',  function($data) { 
                             return $this->from($data);  
                         })
@@ -63,6 +66,7 @@ class AttendanceDatatablesBuss implements AttendanceDatatablesBussInterface
                             return $this->status($data);  
                         })
                         ->rawColumns([
+                            'attendance',
                             'save', 
                             'from',
                             'to', 
@@ -71,6 +75,31 @@ class AttendanceDatatablesBuss implements AttendanceDatatablesBussInterface
                             'status'
                         ])
                         ->make(true);
+    }
+
+    private function attendance($data)
+    {
+        $data = $data->employee->attendances->first();
+        
+        $select = '<select name="attendance" type="checkbox" class="form-control">';
+        
+        if (is_null($data) || $data->attendance == 'attend') {
+            $select .= '<option value="attend" selected>Hadir</option>';  
+            $select .= '<option value="sick">Sakit</option>';
+            $select .= '<option value="leave">Cuti</option>';
+        } elseif ($data->attendance == 'sick') {
+            $select .= '<option value="attend">Hadir</option>';  
+            $select .= '<option value="sick" selected>Sakit</option>';
+            $select .= '<option value="leave">Cuti</option>';
+        } elseif ($data->attendance == 'leave') {
+            $select .= '<option value="attend">Hadir</option>';  
+            $select .= '<option value="sick">Sakit</option>';
+            $select .= '<option value="leave" selected>Cuti</option>';
+        }
+
+        $select .= '</select>';
+
+        return $select;
     }
 
     private function ceremony($data)
