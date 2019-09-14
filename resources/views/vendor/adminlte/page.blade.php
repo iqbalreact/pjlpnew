@@ -75,7 +75,11 @@
                             <a href="#">
                                 {{ \Auth::user()->getSKPD() }}
                             </a>
-
+                        </li>
+                        <li>
+                            <a href={{ route('account.show', ['id' => \Auth::user()->id]) }}>
+                                Profile
+                            </a>
                         </li>
                         <li>
                             @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
