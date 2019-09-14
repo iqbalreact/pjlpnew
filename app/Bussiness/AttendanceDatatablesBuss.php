@@ -87,14 +87,22 @@ class AttendanceDatatablesBuss implements AttendanceDatatablesBussInterface
             $select .= '<option value="attend" selected>Hadir</option>';  
             $select .= '<option value="sick">Sakit</option>';
             $select .= '<option value="leave">Cuti</option>';
+            $select .= '<option value="not_present">Tidak Hadir</option>';
         } elseif ($data->attendance == 'sick') {
             $select .= '<option value="attend">Hadir</option>';  
             $select .= '<option value="sick" selected>Sakit</option>';
             $select .= '<option value="leave">Cuti</option>';
+            $select .= '<option value="not_present">Tidak Hadir</option>';
         } elseif ($data->attendance == 'leave') {
             $select .= '<option value="attend">Hadir</option>';  
             $select .= '<option value="sick">Sakit</option>';
             $select .= '<option value="leave" selected>Cuti</option>';
+            $select .= '<option value="not_present">Tidak Hadir</option>';
+        } elseif ($data->attendance == 'not_present') {
+            $select .= '<option value="attend">Hadir</option>';  
+            $select .= '<option value="sick">Sakit</option>';
+            $select .= '<option value="leave">Cuti</option>';
+            $select .= '<option value="not_present" selected>Tidak Hadir</option>';
         }
 
         $select .= '</select>';
