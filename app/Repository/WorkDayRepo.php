@@ -23,6 +23,13 @@ class WorkDayRepo implements WorkDayRepoInterface
         return $data;
     }
 
+    public function findByYear($year)
+    {
+        $data = WorkDay::where('year', $year)->first();
+    
+        return $data;
+    }
+
     public function store(Request $request)
     {
         $data = new WorkDay();

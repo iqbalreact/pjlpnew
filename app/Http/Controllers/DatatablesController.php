@@ -7,17 +7,20 @@ use Illuminate\Http\Request;
 use App\Bussiness\Contracts\DatatablesBussInterface;
 use App\Bussiness\Contracts\AssessmentDatatablesBussInterface;
 use App\Bussiness\Contracts\AttendanceDatatablesBussInterface;
+use App\Bussiness\Contracts\PayrollDatatablesBussInterface;
 
 class DatatablesController extends Controller
 {
     public function __construct(
 		AssessmentDatatablesBussInterface $assessment,
 		AttendanceDatatablesBussInterface $attendance,
-		DatatablesBussInterface $datatables
+		DatatablesBussInterface $datatables,
+		PayrollDatatablesBussInterface $payroll
 	) {
-		$this->datatables = $datatables;
-		$this->assessment = $assessment;
-		$this->attendance = $attendance;
+		$this->datatables 	= $datatables;
+		$this->assessment 	= $assessment;
+		$this->attendance 	= $attendance;
+		$this->payroll 		= $payroll;
 	}
 	
 	public function fetchAssessmentDatas(Request $request)
@@ -73,6 +76,11 @@ class DatatablesController extends Controller
 	public function fetchOccupationDatas(Request $request)
 	{
 		return $this->datatables->fetchOccupationDatas($request);
+	}
+
+	public function fetchPayrollDatas(Request $request)
+	{
+		return $this->payroll->fetchTemplate($request);
 	}
 
 	public function fetchPositionDatas(Request $request)

@@ -64,16 +64,19 @@ class AttendanceRepo implements AttendanceRepoInterface
         $year   = Carbon::parse($request->date)->format('Y');
 
         $recap = $this->findRecap($request);
-
-        if ($status == 'new' || is_null($recap)) {
+        
+        if (is_null($recap)) {
             $recap = new RecapAttendance();
             $recap->month           = $month;
             $recap->year            = $year;
             $recap->employee_id     = $request->employee_id;
             $recap->contract_id     = $request->contract_id;
             $recap->work_package_id = $request->work_package_id;
-            $recap->$newStatus      = is_null($recap) ? 1 : $recap->newStatus + 1;
+            $recap->$newStatus      = 1;
             $recap->save();
+        } elseif($status == 'new') {
+            $recap->$newStatus = $recap->$newStatus + 1;
+            $recap->update();
         } elseif ($oldStatus !== $newStatus) {
             $oldValue = $recap->$oldStatus; 
             $newValue = $recap->$newStatus;

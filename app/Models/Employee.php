@@ -13,6 +13,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use App\Models\Assessment;
 use App\Models\Attendance;
 use App\Models\Contract;
+use App\Models\RecapAttendance;
 use App\Models\Skpd;
 
 use App\Scopes\OwnEmployeeScope;
@@ -73,6 +74,11 @@ class Employee extends Model implements HasMedia
     public function contracts()
     {
         return $this->hasMany(Contract::class);
+    }
+
+    public function recapAttendances()
+    {
+        return $this->hasMany(RecapAttendance::class);
     }
 
     public function skpd()

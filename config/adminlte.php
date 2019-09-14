@@ -133,7 +133,7 @@ return [
         [
             'text' => 'Penggajian',
             'icon' => 'dollar',
-            'url'  => '#'
+            'url'  => '/admin/payroll'
         ],
         [
             'text' => 'Absensi',

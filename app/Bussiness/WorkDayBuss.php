@@ -19,6 +19,11 @@ class WorkDayBuss implements WorkDayBussInterface
         return $this->workDayRepo->find($id);
     }
 
+    public function findByYear($year)
+    {
+        return $this->workDayRepo->findByYear($year);
+    }
+
     public function store(Request $request)
     {
         $data = $this->workDayRepo->store($request);

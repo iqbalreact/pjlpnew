@@ -17,6 +17,7 @@ use App\Models\Occupation;
 use App\Models\Position;
 use App\Models\PositionCategory;
 use App\Models\Program;
+use App\Models\RecapAttendance;
 use App\Models\SalaryComponent;
 use App\Models\Skpd;
 use App\Models\User;
@@ -173,6 +174,26 @@ class DatatablesRepo implements DatatablesRepoInterface
         $datas = Occupation::query();
         
         $datas->with('functionary', 'skpd');
+
+        return $datas;
+    }
+
+    public function fetchPayrollData(Request $request)
+    {
+        $datas = Contract::with(['employee' => function($q) use ($request) {
+                    $q->with(['assessments' => function ($q) use ($request) {
+                        $q->where('work_package_id', $request->workPackageId)
+                        ->where('month', Carbon::parse($request->date)->format('m'))
+                        ->where('year', Carbon::parse($request->date)->format('Y'));
+                    }])
+                    ->with(['recapAttendances' => function ($q) use ($request) {
+                        $q->where('work_package_id', $request->workPackageId)
+                        ->where('month', Carbon::parse($request->date)->format('m'))
+                        ->where('year', Carbon::parse($request->date)->format('Y'));
+                    }]);
+                }])
+                ->where('status', 'active')
+                ->where('work_package_id', $request->workPackageId);
 
         return $datas;
     }
