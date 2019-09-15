@@ -56,8 +56,10 @@
                                 <th>Id</th>
                                 <th>NIPJ</th>
                                 <th>Nama</th>
-                                <th>Total Absen</th>
                                 <th>Hari Kerja</th>
+                                <th>Total Absen</th>
+                                <th>Status Absensi</th>
+                                <th>Penilaian Kerja</th>
                                 <th>Aksi</th>
                                 <th>Status</th>
                             </tr>
@@ -129,8 +131,10 @@
             { data: 'id', name: 'id', class:'hide' },
             { data: 'employee_nipj', name: 'employee.nipj', searchable:'true'},
             { data: 'employee_name', name: 'employee.name', searchable:'true'},
-            { data: 'total_attendance', name: 'total_attendance', searchable:'false', orderable:'false', "width": "10%"},
             { data: 'total_day', name: 'total_day', searchable:'false', orderable:'false', "width": "10%"},
+            { data: 'total_attendance', name: 'total_attendance', searchable:'false', orderable:'false', "width": "10%"},
+            { data: 'checkAttendance', name: 'checkAttendance', searchable:'false', orderable:'false', "width": "10%"},
+            { data: 'assessment', name: 'assessment', searchable:'false', orderable:'false', "width": "10%"},
             { data: 'save', name: 'save', searchable:'false', orderable:'false', "width": "5%"},
             { data: 'status', name: 'status', searchable:'false', orderable:'false', "width": "5%"}
         ]

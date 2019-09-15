@@ -30,6 +30,8 @@ class PayrollDatatablesBuss implements PayrollDatatablesBussInterface
         '12'  => 'december'
     ];
 
+    private $totalAttendance;
+
 
     public function __construct(
         DatatablesRepoInterface $datatablesRepo,
@@ -60,14 +62,22 @@ class PayrollDatatablesBuss implements PayrollDatatablesBussInterface
                         })
                         ->addColumn('total_day', function($data) {
                             return $this->totalDay;
+                        })
+                        ->addColumn('assessment', function($data) {
+                            return $this->checkAssessment($data);
+                        }) 
+                        ->addColumn('checkAttendance', function($data) {
+                            return $this->checkAttendance($data);
                         }) 
                         ->addColumn('save',  function($data) { 
-                            return $this->saveButton();  
+                            return $this->saveButton($data);  
                         })
                         ->addColumn('status',  function($data) { 
                             return $this->status($data);  
                         })
                         ->rawColumns([
+                            'assessment',
+                            'checkAttendance',
                             'save', 
                             'status',
                         ])
@@ -85,8 +95,37 @@ class PayrollDatatablesBuss implements PayrollDatatablesBussInterface
         return $data->attend + $data->sick + $data->leave + $data->not_present;
     }
 
-    private function saveButton()
+    private function checkAttendance($data) 
     {
+        $attendance = $this->totalAttendance($data);
+
+        if ($attendance < $this->totalDay) {
+            return '<label class="label label-danger">Belum Lengkap</label>';
+        }
+
+        return '<label class="label label-success">Lengkap</label>';
+    }
+
+    private function checkAssessment($data)
+    {
+        $data = $data->employee->assessments->first();
+
+        if (is_null($data)) {
+            return '<label class="label label-danger">Belum Lengkap</label>';
+        }
+
+        return '<label class="label label-success">Lengkap</label>';
+    }
+
+    private function saveButton($data)
+    {
+        $attendance = $this->totalAttendance($data);
+        $assessment = $data->employee->assessments->first();
+
+        if ($attendance < $this->totalDay && is_null($assessment)) {
+            return '<button class="btn btn-sm btn-primary" disabled><i class="fa fa-save"></i></button>';
+        }
+
         return '<button class="btn btn-sm btn-primary"><i class="fa fa-save"></i></button>';
     }
 
