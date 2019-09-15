@@ -16,6 +16,21 @@ class AttendanceBuss implements AttendanceBussInterface
         $this->attendanceRepo = $attendanceRepo;
     }
 
+    public function findRecap(Request $request)
+    {
+        return $this->attendanceRepo->findRecap($request);
+    }
+
+    public function totalAttendance($recapAttendance)
+    {
+        $attend     = isset($recapAttendance->attend) ? $recapAttendance->attend : 0;
+        $leave      = isset($recapAttendance->leave) ? $recapAttendance->leave : 0;
+        $sick       = isset($recapAttendance->sick) ? $recapAttendance->sick : 0;
+        $notPresent = isset($recapAttendance->not_present) ? $recapAttendance->not_present : 0;
+
+        return $attend + $leave + $sick + $notPresent;
+    }
+
     public function store(Request $request)
     {
         $checkData  = $this->attendanceRepo->checkData($request); 

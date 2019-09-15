@@ -4,9 +4,7 @@ namespace App\Bussiness\Contracts;
 
 use Illuminate\Http\Request;
 
-interface AttendanceBussInterface
+interface PayrollBussInterface
 {
-    public function findRecap(Request $request);
-    
     public function store(Request $request);
 }

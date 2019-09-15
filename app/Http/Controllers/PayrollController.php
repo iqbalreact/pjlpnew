@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Bussiness\Contracts\AssessmentBussInterface;
+use App\Bussiness\Contracts\PayrollBussInterface;
 
 use Carbon\Carbon;
 
 class PayrollController extends Controller
 {
-    public function __construct(AssessmentBussInterface $assessment)
+    public function __construct(PayrollBussInterface $payroll)
     {
-        $this->assessment = $assessment;
+        $this->payroll = $payroll;
     }
 
     /**
@@ -43,7 +43,12 @@ class PayrollController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $this->assessment->store($request);
+        $data = $this->payroll->store($request);
+
+        if (!$data) {
+            $data = ['status' => false];
+            return response()->json($data);
+        }
 
         return response()->json($data);
     }

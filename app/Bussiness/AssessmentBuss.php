@@ -16,6 +16,11 @@ class AssessmentBuss implements AssessmentBussInterface
         $this->assessmentRepo = $assessmentRepo;
     }
 
+    public function findAssessment(Request $request)
+    {
+        return $this->assessmentRepo->findAssessment($request);
+    }
+
     public function store(Request $request)
     {
         $data = $this->assessmentRepo->store($request);

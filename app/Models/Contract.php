@@ -11,6 +11,7 @@ use App\Models\Activity;
 use App\Models\Attendance;
 use App\Models\Employee;
 use App\Models\Location;
+use App\Models\Payroll;
 use App\Models\Position;
 use App\Models\Program;
 use App\Models\Salary;
@@ -71,6 +72,11 @@ class Contract extends Model
     public function location()
     {
         return $this->belongsTo(Location::class);
+    }
+
+    public function payrolls()
+    {
+        return $this->hasMany(Payroll::class);
     }
 
     public function position()

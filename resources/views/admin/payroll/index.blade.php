@@ -46,7 +46,7 @@
             </div>
             <div class="box box-primary" id="inputAttendace">
                 <div class="box-header">   
-                    <h3 class="box-title">Input Penilaian</h3>
+                    <h3 class="box-title">Input Gaji</h3>
                 </div>
                 <div class="box-body">
                     <table id="employee-table" class="table" width="100%">
@@ -61,6 +61,7 @@
                                 <th>Status Absensi</th>
                                 <th>Penilaian Kerja</th>
                                 <th>Aksi</th>
+                                <th>Detail</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -117,11 +118,7 @@
                 'checkboxes': {
                     'selectRow': true
                 }
-            },
-            // {
-            //     'targets': [4, 5, 6, 7, 8],
-            //     'className': 'text-center'
-            // }
+            }
         ],
         'select': {
             'style': 'multi'
@@ -136,6 +133,7 @@
             { data: 'checkAttendance', name: 'checkAttendance', searchable:'false', orderable:'false', "width": "10%"},
             { data: 'assessment', name: 'assessment', searchable:'false', orderable:'false', "width": "10%"},
             { data: 'save', name: 'save', searchable:'false', orderable:'false', "width": "5%"},
+            { data: 'detail', name: 'detail', searchable:'false', orderable:'false', "width": "5%"},
             { data: 'status', name: 'status', searchable:'false', orderable:'false', "width": "5%"}
         ]
     });
@@ -150,7 +148,7 @@
             var idx =  oTable.api().row( '#row-'+rowId ).index(); 
             var data = oTable.api().row( '#row-'+rowId ).data();
             
-            submitAttendace(idx, data);
+            submitPayroll(idx, data);
 
             $('#row-'+rowId+' input[type="checkbox"]:checked').trigger('click');
         });
@@ -161,36 +159,26 @@
         var idx =  oTable.api().row( $(this).parents('tr') ).index();
         var data = oTable.api().row( $(this).parents('tr') ).data();
 
-        submitAttendace(idx, data);
+        submitPayroll(idx, data);
     } );
 
-    function submitAttendace(idx, data) {
+    function submitPayroll(idx, data) {
         
         var employee_id = data.employee.id;
         var contract_id = data.id;
-        var work_completion_rate    = oTable.api().cell(idx,4).nodes().to$().find('select').val();
-        var work_completion_time    = oTable.api().cell(idx,5).nodes().to$().find('select').val();
-        var work_quality            = oTable.api().cell(idx,6).nodes().to$().find('select').val();
-        var obidence_on_obligation  = oTable.api().cell(idx,7).nodes().to$().find('select').val();
-        var obidence_on_rule        = oTable.api().cell(idx,8).nodes().to$().find('select').val();
                
         oTable.api().cell(idx, (10)).nodes().to$().find('.stateStatus').html("<img src='/img/spinner.gif'>");
 
-        $.post('{{ route('assessment.store') }}', {
+        $.post('{{ route('payroll.store') }}', {
             employee_id: employee_id, 
             contract_id: contract_id, 
             work_package_id: $('#workPackageSelect').val(), 
-            date: $('#date').val(), 
-            work_completion_rate: work_completion_rate,
-            work_completion_time: work_completion_time,
-            work_quality: work_quality,
-            obidence_on_obligation: obidence_on_obligation,
-            obidence_on_rule: obidence_on_rule
+            date: $('#date').val()
         }, function(data, status) {
-            if (status == 'success') {
-                oTable.api().cell(idx, 10).nodes().to$().find('.stateStatus').html("<img src='/img/checked.png'>");
-            } else {
+            if (data.status === false) {
                 oTable.api().cell(idx, 10).nodes().to$().find('.stateStatus').html("<img src='/img/cancel.png'>");
+            } else if (status == 'success') {
+                oTable.api().cell(idx, 10).nodes().to$().find('.stateStatus').html("<img src='/img/checked.png'>");
             }
         });
     }

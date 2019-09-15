@@ -34,6 +34,9 @@ use App\Repository\LocationRepo;
 use App\Repository\Contracts\OccupationRepoInterface;
 use App\Repository\OccupationRepo;
 
+use App\Repository\Contracts\PayrollRepoInterface;
+use App\Repository\PayrollRepo;
+
 use App\Repository\Contracts\PositionRepoInterface;
 use App\Repository\PositionRepo;
 
@@ -84,6 +87,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(FunctionaryRepoInterface::class, FunctionaryRepo::class);    
         $this->app->bind(LocationRepoInterface::class, LocationRepo::class);    
         $this->app->bind(OccupationRepoInterface::class, OccupationRepo::class);    
+        $this->app->bind(PayrollRepoInterface::class, PayrollRepo::class);    
         $this->app->bind(ProgramRepoInterface::class, ProgramRepo::class);    
         $this->app->bind(PositionRepoInterface::class, PositionRepo::class);    
         $this->app->bind(PositionCategoryRepoInterface::class, PositionCategoryRepo::class);    

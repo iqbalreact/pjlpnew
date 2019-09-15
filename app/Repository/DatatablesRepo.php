@@ -192,6 +192,11 @@ class DatatablesRepo implements DatatablesRepoInterface
                         ->where('year', Carbon::parse($request->date)->format('Y'));
                     }]);
                 }])
+                ->with(['payrolls' => function ($q) use ($request) {
+                    $q->where('work_package_id', $request->workPackageId)
+                    ->where('month', Carbon::parse($request->date)->format('m'))
+                    ->where('year', Carbon::parse($request->date)->format('Y'));
+                }])
                 ->where('status', 'active')
                 ->where('work_package_id', $request->workPackageId);
 

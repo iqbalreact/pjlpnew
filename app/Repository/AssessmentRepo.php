@@ -12,6 +12,20 @@ use Carbon\Carbon;
 
 class AssessmentRepo implements AssessmentRepoInterface
 {
+    public function findAssessment(Request $request)
+    {
+        $month  = Carbon::parse($request->date)->format('m');
+        $year   = Carbon::parse($request->date)->format('Y');
+
+        $data = Assessment::where('month', $month)
+                            ->where('year', $year)
+                            ->where('employee_id', $request->employee_id)
+                            ->where('contract_id', $request->contract_id)
+                            ->where('work_package_id', $request->work_package_id)
+                            ->first();
+        return $data;
+    }
+
     public function store(Request $request)
     {
         $month  = Carbon::parse($request->date)->format('m');

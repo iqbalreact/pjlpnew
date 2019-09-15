@@ -72,12 +72,16 @@ class PayrollDatatablesBuss implements PayrollDatatablesBussInterface
                         ->addColumn('save',  function($data) { 
                             return $this->saveButton($data);  
                         })
+                        ->addColumn('detail',  function($data) { 
+                            return $this->checkDetail($data);  
+                        })
                         ->addColumn('status',  function($data) { 
                             return $this->status($data);  
                         })
                         ->rawColumns([
                             'assessment',
                             'checkAttendance',
+                            'detail',
                             'save', 
                             'status',
                         ])
@@ -117,6 +121,17 @@ class PayrollDatatablesBuss implements PayrollDatatablesBussInterface
         return '<label class="label label-success">Lengkap</label>';
     }
 
+    private function checkDetail($data)
+    {
+        $data = $data->payrolls->first();
+        
+        if (is_null($data)) {
+            return '<button class="btn btn-success btn-sm" disabled><i class="fa fa-eye"></i></button>';
+        }
+
+        return '<a href="'. route('payroll.show', ['id' => $data->id ]) .'" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></a>';
+    }
+
     private function saveButton($data)
     {
         $attendance = $this->totalAttendance($data);
@@ -131,9 +146,9 @@ class PayrollDatatablesBuss implements PayrollDatatablesBussInterface
 
     private function status($data)
     {
-        // if (!empty($data->employee->assessments->first())) {
-        //     return '<div class="stateStatus"><img src="/img/checked.png"></div>';
-        // }
+        if (!empty($data->payrolls->first())) {
+            return '<div class="stateStatus"><img src="/img/checked.png"></div>';
+        }
 
         return '<div class="stateStatus"></div>';
     }
