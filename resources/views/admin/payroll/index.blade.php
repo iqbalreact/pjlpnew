@@ -5,7 +5,7 @@
 @section('content_header')
     <h1>Penggajian</h1>
 
-    {{ Breadcrumbs::render('assessment') }}
+    {{ Breadcrumbs::render('payroll') }}
 @stop
 
 @section('content')

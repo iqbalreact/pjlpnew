@@ -4,8 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Contract;
 use App\Models\Employee;
 use App\Models\PayrollSalary;
+use App\Models\WorkPackage;
 
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\Traits\CausesActivity;
@@ -48,6 +50,11 @@ class Payroll extends Model
         'net_salary'
     ];
 
+    public function contract()
+    {
+        return $this->belongsTo(Contract::class);
+    }
+
     public function employee()
     {
         return $this->belongsTo(Employee::class);
@@ -56,6 +63,11 @@ class Payroll extends Model
     public function payrollSalaries()
     {
         return $this->hasMany(PayrollSalary::class);
+    }
+
+    public function workPackage()
+    {
+        return $this->belongsTo(WorkPackage::class);
     }
 
 

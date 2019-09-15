@@ -15,7 +15,12 @@ class PayrollRepo implements PayrollRepoInterface
 {
     public function findPayroll($id)
     {
-        $data = Payroll::with('payrolSalaries')->find($id);
+        $data = Payroll::with(
+                        'contract',
+                        'employee', 
+                        'payrollSalaries',
+                        'workPackage.activity.program.skpd'
+                    )->find($id);
 
         return $data;
     }

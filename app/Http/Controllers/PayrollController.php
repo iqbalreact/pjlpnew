@@ -61,7 +61,16 @@ class PayrollController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = $this->payroll->find($id);
+
+        if (!$data) {
+            notify()->warning('Gaji tidak ditemukan');
+            return redirect()->back();
+        }
+
+        // return response()->json($data);
+
+        return view('admin.payroll.show', compact('data'));
     }
 
     /**

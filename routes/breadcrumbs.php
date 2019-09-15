@@ -287,6 +287,23 @@ Breadcrumbs::for('activity', function ($trail) {
     $trail->push($activity->name, route('activity.show', ['id' => $activity->id]));
  });
 
+ /**
+ * Payroll ====================================================================
+ */
+
+// Home > payroll
+Breadcrumbs::for('payroll', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Penggajian', route('payroll.index'));
+});
+
+// Home > payroll > Detail
+Breadcrumbs::for('payroll_show', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Penggajian', route('payroll.index'));
+    $trail->push('Detail');
+});
+
 /**
  * Work Day =======================================================================
  * 

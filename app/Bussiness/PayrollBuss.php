@@ -46,6 +46,15 @@ class PayrollBuss implements PayrollBussInterface
         $this->payrollRepo  = $payrollRepo;
     }
 
+    public function find($id)
+    {
+        $data = $this->payrollRepo->findPayroll($id); 
+        $data->date = Carbon::createFromFormat("m Y", $data->month ." ".$data->year)->format("F Y");
+        $data->total_deduction = $data->deduction_attendance + $data->deduction_bpjs_healthcare + $data->deduction_bpjs_social_security;
+
+        return $data; 
+    }
+
     public function store(Request $request)
     {
         $month  = Carbon::parse($request->date)->format('m');
@@ -116,7 +125,7 @@ class PayrollBuss implements PayrollBussInterface
     {
         $total = 0;
         foreach($salaries as $salary) {
-            $total = $salary->nominal;
+            $total += $salary->nominal;
         }
         
         return $total;
