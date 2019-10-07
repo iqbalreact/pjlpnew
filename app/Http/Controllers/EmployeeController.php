@@ -193,10 +193,30 @@ class EmployeeController extends Controller
     {
         $res = $this->employee->all();
 
-        // return $res;
-
-        $pdf = PDF::loadView('admin.employee.export', compact('res'));
+        $pdf = PDF::loadView('admin.employee.export.list', compact('res'));
 
         return $pdf->download('pjlp.pdf');
+    }
+
+    public function exportDetailEmployee($id)
+    {
+        $data = $this->employee->find($id);
+
+        if (!$data) {
+            notify()->warning('PJLP tidak ditemukan');
+            return redirect()->back();
+        }
+
+        $contract = $this->contract->findActiveContract($data->id);
+
+        $contractInformation = null;
+        if ($contract) {
+            $contractInformation = $this->contract->contractInformation($contract->id);
+        }
+
+        // return xview('admin.employee.export.detail', compact('data', 'contract', 'contractInformation'));
+        $pdf = PDF::loadView('admin.employee.export.detail', compact('data', 'contract', 'contractInformation'));
+
+        return $pdf->download($data->name.'.pdf');
     }
 }

@@ -93,7 +93,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     // Export
     Route::group(['prefix' => 'export'], function() {
-        Route::get('pjlp', 'EmployeeController@exportEmployee')->name('employee.export');
+        Route::get('pjlp', 'EmployeeController@exportEmployee')->name('export.employee');
+        Route::get('pjlp/{id}', 'EmployeeController@exportDetailEmployee')->name('export.employee.detail');
     });
 
     // Select2

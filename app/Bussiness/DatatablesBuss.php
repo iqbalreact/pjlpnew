@@ -158,7 +158,8 @@ class DatatablesBuss implements DatatablesBussInterface
                         })
                         ->addColumn('actions', 
                                 ' <a href="{{ URL::route( \'employee.show\', array( $id )) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
-                                <a href="{{ URL::route( \'employee.edit\', array( $id )) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')
+                                <a href="{{ URL::route( \'employee.edit\', array( $id )) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a>
+                                <a href="{{ URL::route( \'export.employee.detail\', array( $id )) }}" class="btn btn-danger btn-sm" ><i class="fa fa-download"></i> </a> ')
                         ->rawColumns(['actions', 'avatar'])
                         ->make(true);
     }

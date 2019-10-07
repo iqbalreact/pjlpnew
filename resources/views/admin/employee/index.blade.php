@@ -33,7 +33,7 @@
                 <div class="box-header">
                     <h3 class="box-title">List PJLP</h3>
                     <div class="pull-right">
-                        <a href="{{ route('employee.export') }}" class="btn btn-danger"><i class="fa fa-download"></i> Export</a>
+                        <a href="{{ route('export.employee') }}" class="btn btn-danger"><i class="fa fa-download"></i> Export</a>
                         <a href="{{ route('employee.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah</a>
                     </div>
                 </div>

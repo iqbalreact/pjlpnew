@@ -33,6 +33,7 @@
                     </ul>
 
                     <a href="{{ route('employee.edit', ['id' => $data->id ]) }}" class="btn btn-success btn-block"><i class="fa fa-pencil"></i> <b>Edit</b></a>
+                    <a href="{{ route('export.employee.detail', ['employee_id' => $data->id ]) }}" class="btn btn-danger btn-block"><i class="fa fa-download"></i> <b>Export</b></a>
 
                     @if(!$contract)
                         <a href="{{ route('contract.create', ['employee_id' => $data->id ]) }}" class="btn btn-primary btn-block"><i class="fa fa-plus"></i> <b>Tambah Kontrak</b></a>
