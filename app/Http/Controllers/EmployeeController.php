@@ -17,6 +17,8 @@ use App\Services\Contracts\ReligionServiceInterface;
 
 use Spatie\Activitylog\Models\Activity;
 
+use PDF;
+
 
 class EmployeeController extends Controller
 {

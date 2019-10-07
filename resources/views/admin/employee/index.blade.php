@@ -174,7 +174,7 @@
     function renderChart(title, ctx, data, labels) {
         
         var configGender = {
-            type: 'doughnut',
+            type: 'pie',
             data: {
                 datasets: [{
                     data: data,
@@ -204,7 +204,7 @@
             }
         };
 
-        window.PolarArea = new Chart.PolarArea(ctx, configGender);
+        window.Pie = new Chart(ctx, configGender);
     }
 </script>
 @stop
