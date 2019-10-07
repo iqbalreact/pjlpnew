@@ -91,6 +91,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::get('religion', 'EmployeeController@chartReligion')->name('chart.religion');
     });
 
+    // Export
+    Route::group(['prefix' => 'export'], function() {
+        Route::get('pjlp', 'EmployeeController@exportEmployee')->name('employee.export');
+    });
+
     // Select2
     Route::group(['prefix' => 'select'], function(){
         Route::get('activity', 'ActivityController@selectList')->name('select.activity');

@@ -29,6 +29,11 @@ class EmployeeBuss implements EmployeeBussInterface
         $this->skpd                 = $skpd;
     }
 
+    public function all()
+    {
+        return $this->employeeRepo->all();
+    }
+
     public function find($id)
     {
         return $this->employeeRepo->find($id);

@@ -27,17 +27,15 @@
                             <canvas id="bankChart"></canvas>
                         </div>
                     </div>
-                    {{-- <div class="row">
-                        <div class="col-md-12">
-                            <canvas id="stacked"></canvas>
-                        </div>
-                    </div> --}}
                 </div>
             </div>
             <div class="box box-primary">
                 <div class="box-header">
                     <h3 class="box-title">List PJLP</h3>
-                    <a href="{{ route('employee.create') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Tambah</a>
+                    <div class="pull-right">
+                        <a href="{{ route('employee.export') }}" class="btn btn-danger"><i class="fa fa-download"></i> Export</a>
+                        <a href="{{ route('employee.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah</a>
+                    </div>
                 </div>
                 <div class="box-body">
                     <table id="employee-table" class="table">

@@ -188,4 +188,15 @@ class EmployeeController extends Controller
 
         return response()->json($res);
     }
+
+    public function exportEmployee()
+    {
+        $res = $this->employee->all();
+
+        // return $res;
+
+        $pdf = PDF::loadView('admin.employee.export', compact('res'));
+
+        return $pdf->download('pjlp.pdf');
+    }
 }

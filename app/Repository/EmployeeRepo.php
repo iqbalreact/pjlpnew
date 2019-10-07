@@ -27,6 +27,13 @@ class EmployeeRepo implements EmployeeRepoInterface
         $this->religionService     = $religionService;
     }
 
+    public function all()
+    {
+        $data = Employee::all();
+
+        return $data;
+    }
+
     public function countEmployee($skpd_id)
     {
         $data = Employee::whereYear('created_at', Carbon::now()->year)

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 interface EmployeeBussInterface
 {
+    public function all();
+
     public function find($id);
 
     public function chartData();
