@@ -167,6 +167,7 @@ class EmployeeController extends Controller
 
     public function chartBank()
     {
+        // $res = $this->employee->chartData();
         $res = $this->employee->countByBank();
 
         return response()->json($res);

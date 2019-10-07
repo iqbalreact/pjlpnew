@@ -8,6 +8,8 @@ interface EmployeeBussInterface
 {
     public function find($id);
 
+    public function chartData();
+
     public function countByBank();
 
     public function countByGender();

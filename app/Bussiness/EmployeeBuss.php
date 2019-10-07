@@ -34,6 +34,52 @@ class EmployeeBuss implements EmployeeBussInterface
         return $this->employeeRepo->find($id);
     }
 
+    public function chartData()
+    {
+        $bank       = $this->countByBank();
+        $gender     = $this->countByGender();
+        $religion   = $this->countByReligion();
+
+        // count
+        $countBank      = count($bank);      
+        $countGender    = count($gender);
+        $countReligion  = count($religion);
+
+        // find total
+        $totalBank      = $bank->sum('total');
+        $totalGender    = $gender->sum('total');
+        $totalReligion  = $religion->sum('total');
+
+        // find percentage data
+        $percentageBank = [];
+        foreach($bank as $data) {
+            $percentage = ( $data['total'] / $totalBank ) * 100;
+            array_push($percentageBank, round($percentage));
+        }
+
+        $percentageGender = [];
+        foreach($gender as $data) {
+            $percentage = ( $data['total'] / $totalGender ) * 100;
+            array_push($percentageGender, round($percentage));
+        }
+
+        $percentageReligion = [];
+        foreach($religion as $data) {
+            $percentage = ( $data['total'] / $totalReligion ) * 100;
+            array_push($percentageReligion, round($percentage));
+        }
+
+        // find max count data
+        $maxData = max([$countBank, $countGender, $countReligion]);
+
+        $finalData = [];
+        for($i=0; $i<$maxData; $i++) {
+            array_push($finalData, $religion[$i]);
+        }
+
+        return $finalData;
+    }
+
     public function countByBank()
     {
         $data = $this->employeeRepo->countByBank(); 

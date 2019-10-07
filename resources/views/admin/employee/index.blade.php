@@ -27,6 +27,11 @@
                             <canvas id="bankChart"></canvas>
                         </div>
                     </div>
+                    {{-- <div class="row">
+                        <div class="col-md-12">
+                            <canvas id="stacked"></canvas>
+                        </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="box box-primary">
@@ -134,6 +139,38 @@
         }
     });
 
+    // var ctx = document.getElementById('chart');
+
+    var myChart = new Chart(document.getElementById('stacked'), {
+        type: 'bar',
+        data: {
+            labels: ['Gender', 'Bank'],
+            datasets: [
+            {
+                label: ['Low', 'hight'],
+                data: [67.8, 90],
+                backgroundColor: '#D6E9C6',
+            },
+            {
+                label: ['Low', 'hight'],
+                data: [20.7, 0],
+                backgroundColor: '#FAEBCC',
+            },
+            {
+                label: ['Low', 'hight', 'very'],
+                data: [11.4, 90],
+                backgroundColor: '#EBCCD1',
+            }
+            ]
+        },
+        options: {
+            scales: {
+                xAxes: [{ stacked: true }],
+                yAxes: [{ stacked: true }]
+            }
+        }
+    });
+
     function renderChart(title, ctx, data, labels) {
         
         var configGender = {
@@ -167,7 +204,7 @@
             }
         };
 
-        window.myDoughnut = new Chart(ctx, configGender);
+        window.PolarArea = new Chart.PolarArea(ctx, configGender);
     }
 </script>
 @stop
