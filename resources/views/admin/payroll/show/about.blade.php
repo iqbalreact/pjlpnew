@@ -83,9 +83,6 @@
             </div>
         </div>
         <div class="col-sm-6">
-            
-        
-            {{-- <hr> --}}
         
             <div class="form-group">
                 <label class="col-sm-3 control-label">Potongan Kehadiran</label>
@@ -125,12 +122,12 @@
 
     <hr>
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-offset-6 col-sm-6">
             <div class="form-group">
-                <label class="col-sm-1 control-label">Gaji Bersih</label>
+                <label class="col-sm-3 control-label">Gaji Bersih</label>
         
-                <div class="col-sm-11">
-                    <input class="form-control number_mask" value="{{ $data->net_salary }}" readonly>
+                <div class="col-sm-9">
+                    <input class="form-control number_mask input-lg" value="{{ $data->net_salary }}" readonly>
                 </div>
             </div>
         </div>
