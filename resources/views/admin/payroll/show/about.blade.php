@@ -127,7 +127,7 @@
                 <label class="col-sm-3 control-label">Gaji Bersih</label>
         
                 <div class="col-sm-9">
-                    <input class="form-control number_mask input-lg" value="{{ $data->net_salary }}" readonly>
+                    <input class="form-control number_mask input-lg" value="{{ $data->net_salary }}" readonly style="font-weight: bold;">
                 </div>
             </div>
         </div>
