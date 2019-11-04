@@ -35,36 +35,36 @@ class AttendanceDatatablesBuss implements AttendanceDatatablesBussInterface
         $query = $this->datatablesRepo->fetchAttendanceData($request);
         
         return Datatables::of($query)
-                        ->addColumn('DT_RowId', function($data) { 
-                            return 'row-'.$data->id;  
-                        })
-                        ->addColumn('employee_nipj', function(Contract $contract) {
-                            return $contract->employee->nipj;
-                        })
-                        ->addColumn('employee_name', function(Contract $contract) {
-                            return $contract->employee->name;
-                        })
-                        ->addColumn('attendance',  function($data) { 
-                            return $this->attendance($data);  
-                        })
-                        ->addColumn('from',  function($data) { 
-                            return $this->from($data);  
-                        })
-                        ->addColumn('to',  function($data) { 
-                            return $this->to($data);  
-                        })
-                        ->addColumn('ceremony',  function($data) { 
-                            return $this->ceremony($data);  
-                        })
-                        ->addColumn('late',  function($data) { 
-                            return $this->late($data);  
-                        })
-                        ->addColumn('save',  function($data) { 
-                            return $this->saveButton();  
-                        })
-                        ->addColumn('status',  function($data) { 
-                            return $this->status($data);  
-                        })
+                        // ->addColumn('DT_RowId', function($data) { 
+                        //     return 'row-'.$data->id;  
+                        // })
+                        // ->addColumn('employee_nipj', function(Contract $contract) {
+                        //     return $contract->employee->nipj;
+                        // })
+                        // ->addColumn('employee_name', function(Contract $contract) {
+                        //     return $contract->employee->name;
+                        // })
+                        // ->addColumn('attendance',  function($data) { 
+                        //     return $this->attendance($data);  
+                        // })
+                        // ->addColumn('from',  function($data) { 
+                        //     return $this->from($data);  
+                        // })
+                        // ->addColumn('to',  function($data) { 
+                        //     return $this->to($data);  
+                        // })
+                        // ->addColumn('ceremony',  function($data) { 
+                        //     return $this->ceremony($data);  
+                        // })
+                        // ->addColumn('late',  function($data) { 
+                        //     return $this->late($data);  
+                        // })
+                        // ->addColumn('save',  function($data) { 
+                        //     return $this->saveButton();  
+                        // })
+                        // ->addColumn('status',  function($data) { 
+                        //     return $this->status($data);  
+                        // })
                         ->rawColumns([
                             'attendance',
                             'save', 

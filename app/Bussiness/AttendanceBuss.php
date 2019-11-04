@@ -7,13 +7,16 @@ use Illuminate\Http\Request;
 use App\Bussiness\Contracts\AttendanceBussInterface;
 
 use App\Repository\Contracts\AttendanceRepoInterface;
+use App\Repository\Contracts\LeaveEmployeeRepoInterface;
 
 class AttendanceBuss implements AttendanceBussInterface
 {
     public function __construct(
-        AttendanceRepoInterface $attendanceRepo
+        AttendanceRepoInterface $attendanceRepo,
+        LeaveEmployeeRepoInterface $leaveEmployeeRepo
     ) {
-        $this->attendanceRepo = $attendanceRepo;
+        $this->attendanceRepo       = $attendanceRepo;
+        $this->leaveEmployeeRepo    = $leaveEmployeeRepo;
     }
 
     public function findRecap(Request $request)
@@ -41,6 +44,12 @@ class AttendanceBuss implements AttendanceBussInterface
         $newStatus  = $data->attendance;
 
         $this->attendanceRepo->storeRecap($request, $status, $oldStatus, $newStatus);
+
+        // Cek apakah sudah ada data cuti sebelumnya
+
+        if ($data->leave != 'attend') {
+            $this->leaveEmployeeRepo->storeHistoryLeave($data->date, $data->date, $data->contract_id, $data->employee_id);
+        }
 
         return $data;
     }

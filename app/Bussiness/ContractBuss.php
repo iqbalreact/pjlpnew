@@ -8,15 +8,18 @@ use App\Bussiness\Contracts\ContractBussInterface;
 use App\Bussiness\Contracts\WorkPackageBussInterface;
 
 use App\Repository\Contracts\ContractRepoInterface;
+use App\Repository\Contracts\LeaveEmployeeRepoInterface;
 
 class ContractBuss implements ContractBussInterface
 {
     public function __construct(
         ContractRepoInterface $contractRepo,
+        LeaveEmployeeRepoInterface $leaveEmployeeRepo,
         WorkPackageBussInterface $workPackage
     ) {
-        $this->contractRepo = $contractRepo;
-        $this->workPackage  = $workPackage;
+        $this->contractRepo         = $contractRepo;
+        $this->leaveEmployeeRepo    = $leaveEmployeeRepo;
+        $this->workPackage          = $workPackage;
     }
 
     public function find($id)
@@ -51,6 +54,10 @@ class ContractBuss implements ContractBussInterface
 
         // save contract
         $data = $this->contractRepo->store($request);
+
+        if ($data) {
+            $leave = $this->leaveEmployeeRepo->store($data->employee_id, $data->id);
+        }
         
         return $data;
     }

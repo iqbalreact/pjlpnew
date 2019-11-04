@@ -86,15 +86,16 @@ class DatatablesRepo implements DatatablesRepoInterface
 
     public function fetchAttendanceData(Request $request)
     {
-        $datas = Contract::with(['employee' => function($q) use ($request) {
+        $datas = Contract::where('status', 'active')
+                        ->where('work_package_id', $request->workPackageId)
+                        ->with(['employee' => function($q) use ($request) {
                             $q->with(['attendances' => function ($q) use ($request) {
                                 $q->where('work_package_id', $request->workPackageId)
                                 ->where('date', Carbon::parse($request->date));
                             }]);
-                        }])
-                        ->where('status', 'active')
-                        ->where('work_package_id', $request->workPackageId);
-
+                        }]);
+                        
+                        
         return $datas;
     }
 

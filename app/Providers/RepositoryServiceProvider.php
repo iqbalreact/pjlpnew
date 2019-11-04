@@ -28,6 +28,9 @@ use App\Repository\EmployeeRepo;
 use App\Repository\Contracts\FunctionaryRepoInterface;
 use App\Repository\FunctionaryRepo;
 
+use App\Repository\Contracts\LeaveEmployeeRepoInterface;
+use App\Repository\LeaveEmployeeRepo;
+
 use App\Repository\Contracts\LocationRepoInterface;
 use App\Repository\LocationRepo;
 
@@ -85,6 +88,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(DatatablesRepoInterface::class, DatatablesRepo::class);
         $this->app->bind(EmployeeRepoInterface::class, EmployeeRepo::class);    
         $this->app->bind(FunctionaryRepoInterface::class, FunctionaryRepo::class);    
+        $this->app->bind(LeaveEmployeeRepoInterface::class, LeaveEmployeeRepo::class);    
         $this->app->bind(LocationRepoInterface::class, LocationRepo::class);    
         $this->app->bind(OccupationRepoInterface::class, OccupationRepo::class);    
         $this->app->bind(PayrollRepoInterface::class, PayrollRepo::class);    
