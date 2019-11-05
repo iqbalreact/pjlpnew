@@ -119,7 +119,7 @@
         <label for="inputEndDate" class="col-sm-2 control-label">Tanggal Selesai @include('components.required')</label>
 
         <div class="col-sm-10">
-            {!! Form::text('end_date', $edit ? $data->end_date : old('start_date'), ['class' => 'form-control datepicker', 'placeholder'=> __('Tanggal mulai'), 'autocomplete' => 'off'] ) !!}
+            {!! Form::text('end_date', $edit ? $data->end_date : old('start_date'), ['class' => 'form-control datepicker', 'placeholder'=> __('Tanggal selesai'), 'autocomplete' => 'off'] ) !!}
             
             @if ($errors->has('end_date'))
                 <span class="help-block">{{ $errors->first('end_date') }}</span>

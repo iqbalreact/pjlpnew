@@ -34,6 +34,9 @@ use App\Bussiness\EmployeeBuss;
 use App\Bussiness\Contracts\FunctionaryBussInterface;
 use App\Bussiness\FunctionaryBuss;
 
+use App\Bussiness\Contracts\LeaveEmployeeBussInterface;
+use App\Bussiness\LeaveEmployeeBuss;
+
 use App\Bussiness\Contracts\LocationBussInterface;
 use App\Bussiness\LocationBuss;
 
@@ -96,6 +99,7 @@ class BussinessServiceProvider extends ServiceProvider
         $this->app->bind(DatatablesBussInterface::class, DatatablesBuss::class);
         $this->app->bind(EmployeeBussInterface::class, EmployeeBuss::class);
         $this->app->bind(FunctionaryBussInterface::class, FunctionaryBuss::class);
+        $this->app->bind(LeaveEmployeeBussInterface::class, LeaveEmployeeBuss::class);
         $this->app->bind(LocationBussInterface::class, LocationBuss::class);
         $this->app->bind(OccupationBussInterface::class, OccupationBuss::class);
         $this->app->bind(PayrollBussInterface::class, PayrollBuss::class);

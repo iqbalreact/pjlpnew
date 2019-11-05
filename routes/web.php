@@ -42,6 +42,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('employee', 'EmployeeController');
     Route::resource('functionary', 'FunctionaryController');
     Route::resource('location', 'LocationController');
+    Route::resource('leaveEmployee', 'LeaveEmployeeController');
     Route::resource('log', 'LogController')->only('index', 'show');
     Route::resource('occupation', 'OccupationController');
     Route::resource('payroll', 'PayrollController');
@@ -54,6 +55,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('workPackage', 'WorkPackageController');
 
     Route::get('/contract/detail/{id}', 'ContractController@detail')->name('contract.detail');
+
+    Route::post('/leave/generateDateRange', 'LeaveEmployeeController@generateDateRange')->name('leave.genereateDateRange');
 
     // Datatables
     Route::group(['prefix' => 'data'], function() {
