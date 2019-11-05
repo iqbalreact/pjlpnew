@@ -24,6 +24,17 @@ class LeaveEmployeeRepo implements LeaveEmployeeRepoInterface
         return $data;
     }
 
+    public function existLeave($start_date, $end_date, $contract_id, $employee_id)
+    {
+        $data = HistoryLeaveEmployee::whereDate('start_date', Carbon::parse($start_date))
+                                    ->whereDate('end_date', Carbon::parse($end_date))
+                                    ->where('contract_id', $contract_id)
+                                    ->where('employee_id', $employee_id)
+                                    ->first();
+
+        return $data;
+    }
+
     public function store($employee_id, $contract_id)
     {
         $data = new LeaveEmployee();
@@ -60,8 +71,6 @@ class LeaveEmployeeRepo implements LeaveEmployeeRepoInterface
     // Calculate Leave
     public function calculateLeave($employee_id, $contract_id, $diffDay)
     {
-        
-
         $leave = LeaveEmployee::where('employee_id', $employee_id)
                             ->where('contract_id', $contract_id)
                             ->first();
@@ -72,6 +81,33 @@ class LeaveEmployeeRepo implements LeaveEmployeeRepoInterface
 
             
         }
+
+        return true;
+    }
+
+    public function resetLeave($employee_id, $contract_id)
+    {
+        $leave = LeaveEmployee::where('employee_id', $employee_id)
+                            ->where('contract_id', $contract_id)
+                            ->first();
+
+        if (!is_null($leave)) {
+            $leave->remain_leave = $leave->remain_leave + 1;
+            $leave->update();
+        }
+
+        return true;
+    }
+
+    public function deleteHistoryLeave($start_date, $end_date, $contract_id, $employee_id)
+    {
+        $data = HistoryLeaveEmployee::whereDate('start_date', Carbon::parse($start_date))
+                                    ->whereDate('end_date', Carbon::parse($end_date))
+                                    ->where('contract_id', $contract_id)
+                                    ->where('employee_id', $employee_id)
+                                    ->first();
+        
+        $data->delete();
 
         return true;
     }

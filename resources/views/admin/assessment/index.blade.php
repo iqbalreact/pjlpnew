@@ -103,7 +103,6 @@
         processing: true,
         serverSide: true,
         responsive: true,
-        order: [[ 2, 'asc' ]],
         deferRender:    true,
         ajax: {
             url: '{!! route('fetch.assessment') !!}',
@@ -130,8 +129,8 @@
         columns: [
             { data: 'id', name: 'id' },
             { data: 'id', name: 'id', class:'hide' },
-            { data: 'employee_nipj', name: 'employee.nipj', searchable:'true'},
-            { data: 'employee_name', name: 'employee.name', searchable:'true'},
+            { data: 'employee_nipj', name: 'employee.nipj', searchable:'true', orderable:'false'},
+            { data: 'employee_name', name: 'employee.name', searchable:'true', orderable:'false'},
             { data: 'work_completion_rate', name: 'work_completion_rate', searchable:'false', orderable:'false', "width": "10%"},
             { data: 'work_completion_time', name: 'work_completion_time', searchable:'false', orderable:'false', "width": "10%"},
             { data: 'work_quality', name: 'work_quality', searchable:'false', orderable:'false', "width": "10%"},

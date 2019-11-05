@@ -101,7 +101,6 @@
         processing: true,
         serverSide: true,
         responsive: true,
-        order: [[ 2, 'asc' ]],
         deferRender:    true,
         ajax: {
             url: '{!! route('fetch.attendance') !!}',
@@ -124,8 +123,8 @@
         columns: [
             { data: 'id', name: 'id' },
             { data: 'id', name: 'id', class:'hide' },
-            { data: 'employee_nipj', name: 'employee.nipj', searchable:'true'},
-            { data: 'employee_name', name: 'employee.name', searchable:'true'},
+            { data: 'employee_nipj', name: 'employee.nipj', searchable:'true', orderable:'false'},
+            { data: 'employee_name', name: 'employee.name', searchable:'true', orderable:'false'},
             { data: 'attendance', name: 'attendance', searchable:'false', orderable:'false', "width": "80px"},
             { data: 'from', name: 'from', searchable:'false', orderable:'false', "width": "80px"},
             { data: 'to', name: 'to', searchable:'false', orderable:'false', "width": "80px"},
@@ -165,7 +164,9 @@
 
     function submitAttendace(idx, data) {
         
-        var employee_id = data.employee.id;
+        // console.log(data);
+
+        var employee_id = data.employee_id;
         var contract_id = data.id;
         var attendance  = oTable.api().cell(idx,4).nodes().to$().find('select').val();
         var from        = oTable.api().cell(idx,5).nodes().to$().find('input').val();

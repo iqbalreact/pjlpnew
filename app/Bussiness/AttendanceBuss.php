@@ -45,10 +45,23 @@ class AttendanceBuss implements AttendanceBussInterface
 
         $this->attendanceRepo->storeRecap($request, $status, $oldStatus, $newStatus);
 
-        // Cek apakah sudah ada data cuti sebelumnya
+        // Cek asalnya bukan cuti jadi cuti
 
-        if ($data->leave != 'attend') {
-            $this->leaveEmployeeRepo->storeHistoryLeave($data->date, $data->date, $data->contract_id, $data->employee_id);
+        if ($data->attendance != 'attend') {
+            $checkLeave = $this->leaveEmployeeRepo->existLeave($data->date, $data->date, $data->contract_id, $data->employee_id);
+            
+            if (is_null($checkLeave)) {
+                $this->leaveEmployeeRepo->storeHistoryLeave($data->date, $data->date, $data->contract_id, $data->employee_id);
+            }
+        } else if ($data->attendance == 'attend') {
+            if (!is_null($oldStatus) && $oldStatus != 'attend') {
+                $checkLeave = $this->leaveEmployeeRepo->existLeave($data->date, $data->date, $data->contract_id, $data->employee_id);
+                
+                if (!is_null($checkLeave)) {
+                    $this->leaveEmployeeRepo->resetLeave($data->employee_id, $data->contract_id);
+                    $this->leaveEmployeeRepo->deleteHistoryLeave($data->date, $data->date, $data->contract_id, $data->employee_id);
+                }
+            }
         }
 
         return $data;
