@@ -101,7 +101,7 @@ class LeaveEmployeeController extends Controller
 
     public function generateDateRange(Request $request)
     {
-        $data = $this->leaveEmployee->genereateDateRange($request->start_date, $request->end_date);
+        $data = $this->leaveEmployee->genereateDateRange($request->start_date, $request->end_date, $request->employee_id);
 
         return response()->json($data);
     }

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 interface LeaveEmployeeRepoInterface
 {
+    public function findRemainingLeave($employee_id);
+
     public function find($id);
 
     public function existLeave($start_date, $end_date, $contract_id, $employee_id);

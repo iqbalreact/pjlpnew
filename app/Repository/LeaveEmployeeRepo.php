@@ -8,11 +8,27 @@ use App\Repository\Contracts\LeaveEmployeeRepoInterface;
 
 use App\Models\LeaveEmployee;
 use App\Models\HistoryLeaveEmployee;
+use App\Models\Contract;
 
 use Carbon\Carbon;
 
 class LeaveEmployeeRepo implements LeaveEmployeeRepoInterface
 {
+    public function findRemainingLeave($employee_id)
+    {
+        $data = Contract::where('employee_id', $employee_id)
+                        ->where('status', 'active')
+                        ->first();
+
+        if (!is_null($data)) {
+            $data = LeaveEmployee::where('employee_id', $employee_id)
+                                ->where('contract_id', $data->id)
+                                ->first();
+        }
+
+        return $data;
+    }
+
     public function find($id)
     {
         $data = LeaveEmployee::find($id);

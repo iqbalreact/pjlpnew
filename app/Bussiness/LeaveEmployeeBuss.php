@@ -18,7 +18,7 @@ class LeaveEmployeeBuss implements LeaveEmployeeBussInterface
         $this->leaveEmployeeRepo = $leaveEmployeeRepo;
     }
 
-    public function genereateDateRange($start_date, $end_date)
+    public function genereateDateRange($start_date, $end_date, $employee_id)
     {
         $startDate  = Carbon::parse($start_date);
         $endDate    = Carbon::parse($end_date);
@@ -26,16 +26,23 @@ class LeaveEmployeeBuss implements LeaveEmployeeBussInterface
         $dates = [];
 
         for($d = $startDate; $d->lte($endDate); $d->addDay()) {
+            $labelWeekend = $d->isWeekEnd() ? '<label class="label label-danger"> Weekend <label>' : '<label class="label label-primary">Bukan Weekend<label>';
             $data = [
-                'weekend'   => $d->isWeekEnd(),
-                'date'      => $d->format('l d F Y')
+                'weekend'       => $labelWeekend,
+                'day'           => $d->format('l'),
+                'dateTransform' => $d->format('d F Y'),
+                'date'          => $d
+
             ];
 
             array_push($dates, $data);
-            // $dates[]['date']    = $d->format('d F Y');
-            // $dates[]['weekend'] = $d->isWeekEnd();
         }
+
+        $result = [
+            'dates'             => $dates,
+            'remaining_leave'   => $this->leaveEmployeeRepo->findRemainingLeave($employee_id)
+        ];
     
-        return $dates;
+        return $result;
     }
 }
