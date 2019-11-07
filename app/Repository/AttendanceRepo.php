@@ -26,6 +26,8 @@ class AttendanceRepo implements AttendanceRepoInterface
 
     public function store(Request $request)
     {
+        $status = $request->attendance;
+
         $data = Attendance::updateOrCreate(
             [
                 'employee_id'       => $request->employee_id, 
@@ -33,11 +35,11 @@ class AttendanceRepo implements AttendanceRepoInterface
                 'work_package_id'   => $request->work_package_id, 
                 'date'              => Carbon::parse($request->date)
             ],[
-                'attendance'    => $request->attendance,
-                'from'          => $request->from,
-                'to'            => $request->to,
-                'ceremony'      => $request->ceremony,
-                'late'          => $request->late
+                'attendance'    => $status,
+                'from'          => $status == 'attend' ? $request->from : "00:00",
+                'to'            => $status == 'attend' ? $request->to : "00:00",
+                'ceremony'      => $status == 'attend' ? $request->ceremony : 0,
+                'late'          => $status == 'attend' ? $request->late : 0
             ]
         );
 

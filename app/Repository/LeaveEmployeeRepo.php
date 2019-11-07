@@ -62,21 +62,27 @@ class LeaveEmployeeRepo implements LeaveEmployeeRepoInterface
         return $data;
     }
 
-    public function storeHistoryLeave($start_date, $end_date, $contract_id, $employee_id)
+    public function storeHistoryLeave($start_date, $end_date, $contract_id, $employee_id, $diffDay = null)
     {
+        $start_date = Carbon::parse($start_date);
+        $end_date   = Carbon::parse($end_date);
+
+        if (is_null($diffDay)) {
+            if ($start_date == $end_date) {
+                $diffDay = 1;
+            } else {
+                $diffDay = $start_date->diffindays($end_date);
+            } 
+        }        
+
         // Store History Leave
         $data = new HistoryLeaveEmployee();
         $data->start_date   = Carbon::parse($start_date);
         $data->end_date     = Carbon::parse($end_date);
         $data->contract_id  = $contract_id;
         $data->employee_id  = $employee_id;
+        $data->total_day    = $diffDay;
         $data->save();
-
-        if ($data->start_date == $data->end_date) {
-            $diffDay = 1;
-        } else {
-            $diffDay = $data->start_date->diffindays($data->end_date);
-        } 
 
         // Calculate Leave
         $this->calculateLeave($employee_id, $contract_id, $diffDay);
@@ -93,9 +99,7 @@ class LeaveEmployeeRepo implements LeaveEmployeeRepoInterface
 
         if (!is_null($leave)) {
             $leave->remain_leave = $leave->remain_leave - $diffDay;
-            $leave->update();
-
-            
+            $leave->update();            
         }
 
         return true;

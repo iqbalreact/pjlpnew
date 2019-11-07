@@ -20,6 +20,7 @@ class CreateHistoryLeaveEmployeesTable extends Migration
             $table->date('end_date');
             $table->integer('contract_id');
             $table->integer('employee_id');
+            $table->integer('total_day');
             $table->integer('leave_type')->default(0);
         });
     }

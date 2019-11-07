@@ -19,7 +19,8 @@ class HistoryLeaveEmployee extends Model
         'end_date', 
         'contract_id', 
         'employee_id',
-        'leave_type'
+        'leave_type',
+        'total_day'
     ];
     
     protected static $logAttributes = [
@@ -27,7 +28,8 @@ class HistoryLeaveEmployee extends Model
         'end_date', 
         'contract_id', 
         'employee_id',
-        'leave_type'
+        'leave_type',
+        'total_day'
     ];
 
     public function contract()

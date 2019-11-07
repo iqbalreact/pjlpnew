@@ -8,5 +8,5 @@ interface AttendanceBussInterface
 {
     public function findRecap(Request $request);
     
-    public function store(Request $request);
+    public function store(Request $request, $fromLeaveRequest = false);
 }

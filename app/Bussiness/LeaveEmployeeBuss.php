@@ -5,6 +5,8 @@ namespace App\Bussiness;
 use Illuminate\Http\Request;
 
 use App\Bussiness\Contracts\LeaveEmployeeBussInterface;
+use App\Bussiness\Contracts\AttendanceBussInterface;
+use App\Bussiness\Contracts\ContractBussInterface;
 use App\Repository\Contracts\LeaveEmployeeRepoInterface;
 
 use Carbon\Carbon;
@@ -13,9 +15,34 @@ use Carbon\CarbonPeriod;
 class LeaveEmployeeBuss implements LeaveEmployeeBussInterface
 {
     public function __construct(
-        LeaveEmployeeRepoInterface $leaveEmployeeRepo
+        LeaveEmployeeRepoInterface $leaveEmployeeRepo,
+        AttendanceBussInterface $attendance,
+        ContractBussInterface $contract
     ) {
-        $this->leaveEmployeeRepo = $leaveEmployeeRepo;
+        $this->leaveEmployeeRepo    = $leaveEmployeeRepo;
+        $this->attendance           = $attendance;
+        $this->contract             = $contract;
+    }
+
+    public function saveRangeLeave(Request $request)
+    {
+        $contract = $this->contract->find($request->contract_id);
+
+        $leave = $this->leaveEmployeeRepo->storeHistoryLeave($request->start_date, $request->end_date, $request->contract_id, $request->employee_id, $request->diffDay);
+        
+        // Save attendance
+        foreach($request->rangeDate as $date) {
+            $attendanceData = new Request();
+            $attendanceData->attendance         = 'leave';
+            $attendanceData->employee_id        = $request->employee_id; 
+            $attendanceData->contract_id        = $contract->id; 
+            $attendanceData->work_package_id    = $contract->work_package_id; 
+            $attendanceData->date               = $date;
+            
+            $attendance = $this->attendance->store($attendanceData, $fromLeaveRequest = true)
+        }
+
+        return $leave;
     }
 
     public function genereateDateRange($start_date, $end_date, $employee_id)

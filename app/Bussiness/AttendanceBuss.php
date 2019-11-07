@@ -34,7 +34,7 @@ class AttendanceBuss implements AttendanceBussInterface
         return $attend + $leave + $sick + $notPresent;
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $fromLeaveRequest = false)
     {
         $checkData  = $this->attendanceRepo->checkData($request); 
         $data       = $this->attendanceRepo->store($request);
