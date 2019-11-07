@@ -10,21 +10,19 @@ use Spatie\Activitylog\Traits\CausesActivity;
 use App\Models\Contract;
 use App\Models\Employee;
 
-class HistoryLeaveEmployee extends Model
+class HistoryLeavePerDayEmployee extends Model
 {
     use LogsActivity, CausesActivity;
 
     protected $fillable = [
-        'start_date', 
-        'end_date', 
+        'date', 
         'contract_id', 
         'employee_id',
         'leave_type'
     ];
     
     protected static $logAttributes = [
-        'start_date', 
-        'end_date', 
+        'date', 
         'contract_id', 
         'employee_id',
         'leave_type'

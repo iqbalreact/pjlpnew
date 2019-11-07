@@ -6,14 +6,18 @@ use Illuminate\Database\Seeder;
 use App\Models\Employee;
 
 use App\Bussiness\Contracts\ContractBussInterface;
+use App\Repository\Contracts\LeaveEmployeeRepoInterface;
 
 use Carbon\Carbon;
 
 class ContractTableSeeder extends Seeder
 {
-    public function __construct(ContractBussInterface $contract)
-    {
-        $this->contract = $contract;
+    public function __construct(
+        ContractBussInterface $contract,
+        LeaveEmployeeRepoInterface $leaveEmployee
+    ) {
+        $this->contract         = $contract;
+        $this->leaveEmployee    = $leaveEmployee;
     }
 
     /**
@@ -46,7 +50,8 @@ class ContractTableSeeder extends Seeder
 
             $request->salaries = $salaries;
 
-            $this->contract->store($request);
+            $contractEmployee   = $this->contract->store($request);
+            $leaveEmployee      = $this->leaveEmployee->store($request->employee_id, $contractEmployee->id);
         }
 
         

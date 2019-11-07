@@ -27,12 +27,13 @@ class LeaveEmployeeBuss implements LeaveEmployeeBussInterface
 
         for($d = $startDate; $d->lte($endDate); $d->addDay()) {
             $labelWeekend = $d->isWeekEnd() ? '<label class="label label-danger"> Weekend <label>' : '<label class="label label-primary">Bukan Weekend<label>';
+            $checkBoxWeekend = $d->isWeekEnd() ? '<input type="checkbox" name="dateLeave" class="checkbox" value="'.$d->format('d-m-Y').'">' : '<input type="checkbox" name="dateLeave" class="checkbox" value="'.$d->format('d-m-Y').'" checked>';
             $data = [
+                'date'          => $d->format('d-m-Y'),
                 'weekend'       => $labelWeekend,
                 'day'           => $d->format('l'),
                 'dateTransform' => $d->format('d F Y'),
-                'date'          => $d
-
+                'checkbox'      => $checkBoxWeekend
             ];
 
             array_push($dates, $data);
@@ -40,7 +41,8 @@ class LeaveEmployeeBuss implements LeaveEmployeeBussInterface
 
         $result = [
             'dates'             => $dates,
-            'remaining_leave'   => $this->leaveEmployeeRepo->findRemainingLeave($employee_id)
+            'remaining_leave'   => $this->leaveEmployeeRepo->findRemainingLeave($employee_id),
+            'totaLeave'         => count($dates)
         ];
     
         return $result;

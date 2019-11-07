@@ -68,27 +68,63 @@
 <div class="box box-primary">
     <div class="box-body">
         <div class="form-horizontal" id="contractForm">
-            <label for="inputEndDate" class="col-sm-2 control-label">Sisa Cuti</label>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Sisa Cuti</label>
+    
+                <div class="col-sm-10">
+                    {!! Form::text('remain_leave', '', ['id' => 'remain_leave', 'class' => 'form-control', 'placeholder'=> __('Sisa Cuti'), 'autocomplete' => 'off', 'readonly' => true] ) !!}
+                </div>
+            </div>
 
-            <div class="col-sm-10">
-                {!! Form::text('end_date', '', ['id' => 'remain_leave', 'class' => 'form-control datepicker', 'placeholder'=> __('Sisa Cuti'), 'autocomplete' => 'off', 'readonly' => true] ) !!}
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Cuti yang diajukan</label>
+        
+                <div class="col-sm-10">
+                    {!! Form::text('proposed_leave', '', ['id' => 'proposed_leave', 'class' => 'form-control', 'placeholder'=> __('Cuti yang diajukan'), 'autocomplete' => 'off', 'readonly' => true] ) !!}
+                </div>
+            </div>
+
+            <div class="form-group hidden" id="text-leave">
+                <label class="col-sm-2 control-label"></label>
+        
+                <div class="col-sm-10">
+                    <p class="text-red"> Cuti yang diajukan melebihi sisa cuti </p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button 
+                        id="saveLeaveButton"
+                        type="button" 
+                        class="btn btn-success">
+                            <i class="fa fa-save"></i> Simpan
+                    </button>
+                </div>
             </div>
         </div>
-        <div id="table-date">
-            <table class="table" id="dateRangeTable">
-                <tr>
-                    <th>Hari</th>
-                    <th>Tanggal</th>
-                    <th>Weekend</th>
-                </tr>
-            </table>
-        </div>
+
+        <br>
+        <br>
+
+        <table class="table" id="dateRangeTable">
+            <tr>
+                <th>Hari</th>
+                <th>Tanggal</th>
+                <th>Weekend</th>
+                <th>Action</th>
+            </tr>
+        </table>
     </div>
 </div>
 @stop
 
 @section('js')
 <script>
+
+    var dateValue       = [];
+    var remainingLeave  = 0;
+
     $(function(){
         //Date picker
         $('.datepicker').datepicker({
@@ -123,6 +159,32 @@
         }
     });
 
+    function collectDate() {
+        $("input[type='checkbox']").change(function() {
+            countChecked();
+        });
+    }
+
+    function countChecked() {
+        dateValue = [];
+        $("input[type='checkbox']:checked").each(function(){
+            dateValue.push($(this).val());
+        });
+        
+        $('#proposed_leave').val(dateValue.length);
+        disableSaveButton();
+    }
+
+    function disableSaveButton()
+    {
+        if (remainingLeave < dateValue.length) {
+            $('#saveLeaveButton').prop('disabled', true);
+            $('#text-leave').removeClass('hidden');
+        } else {
+            $('#saveLeaveButton').prop('disabled', false);
+            $('#text-leave').addClass('hidden');
+        }
+    }
 
     $('#generateDateButton').click(function() {
         $.post('{{ route('leave.genereateDateRange') }}', {
@@ -132,24 +194,29 @@
             }, function(data, status) {
 
                 if (status == 'success') {
-                
-                    // if (data.remaining_leave !== '') {
-                    //     $('')
-                    // }
+                    
+                    if (data.remaining_leave !== '') {
+                        remainingLeave = data.remaining_leave.remain_leave;
+                        $('#remain_leave').val(remainingLeave);
+                    }
                 
                     $("tr:has(td)").remove();
 
                     $.each(data.dates, function (i, item) {
-                        console.log(item.day);
                         $('<tr>').append(
                             $('<td>').text(item.day),
                             $('<td>').text(item.dateTransform),
-                            $('<td>').html(item.weekend)
+                            $('<td>').html(item.weekend),
+                            $('<td>').html(item.checkbox)
                         ).appendTo('#dateRangeTable');
                         
                     });
+
+                    collectDate();
+                    countChecked();
+
                 } else {
-                    // console.log('not success');
+
                 }
             });
     })
