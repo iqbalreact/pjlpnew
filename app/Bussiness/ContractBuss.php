@@ -10,6 +10,8 @@ use App\Bussiness\Contracts\WorkPackageBussInterface;
 use App\Repository\Contracts\ContractRepoInterface;
 use App\Repository\Contracts\LeaveEmployeeRepoInterface;
 
+use Carbon\Carbon;
+
 class ContractBuss implements ContractBussInterface
 {
     public function __construct(
@@ -30,6 +32,19 @@ class ContractBuss implements ContractBussInterface
     public function findActiveContract($employee_id)
     {
         return $this->contractRepo->findActiveContract($employee_id);
+    }
+
+    public function checkBeforeSixMonth($id, $date)
+    {
+        $contract = $this->find($id);
+
+        if (!is_null($contract)) {
+            if(Carbon::parse($contract->start_date)->addMonth(6) > Carbon::parse($date)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function distinctYear()

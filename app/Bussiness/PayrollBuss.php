@@ -71,7 +71,12 @@ class PayrollBuss implements PayrollBussInterface
 
         $contract               = $this->contract->find($request->contract_id);
         $grossSalary            = $this->grossSalary($contract->salaries);
-        $deductionAttendance    = $this->deductionAttendance($recapAttendance->not_present, $grossSalary, $workDay);
+        $deductionAttendance    = $this->deductionAttendance(
+                                        $request,
+                                        $contract,
+                                        $grossSalary,  // Gaji kotor
+                                        $workDay // Total hari kerja
+                                    );
 
         $salaryAfterAttendanceDeduction = $grossSalary - $deductionAttendance;
         $deductionHealthcare            = $this->deductionHealthcare($salaryAfterAttendanceDeduction);
@@ -131,11 +136,34 @@ class PayrollBuss implements PayrollBussInterface
         return $total;
     }
 
-    public function deductionAttendance($totalNotPresent, $grossSalary, $workDay)
+    public function deductionAttendance($request, $contract, $grossSalary, $workDay)
     {
-        $salaryAfterAttendanceDeduction = 1.2 * ($totalNotPresent/$workDay) * $grossSalary;
+        // Cuti Sebelum 6 Bulan Type 0 = Potong Gaji
+        $leaveBeforeSixMonth = $this->attendance->findRecapLeave(
+                                            $request, 
+                                            $contract, 
+                                            $leaveType = 0, 
+                                            $sixMonth = true
+                                        );
+
+        $leaveAfterSixMonth = $this->attendance->findRecapLeave(
+                                            $request, 
+                                            $contract, 
+                                            $leaveType = 0, 
+                                            $sixMonth = false
+                                        );
+
+        $total = $leaveBeforeSixMonth + $leaveAfterSixMonth;
+        // Sakit - Izin - Tidak Hadir = Potong Gaji
+
+        $salaryAfterAttendanceDeduction = 1.2 * ($total/$workDay) * $grossSalary;
 
         return $salaryAfterAttendanceDeduction;
+    }
+
+    public function deductionAttendanceLeaveSpecial()
+    {
+
     }
 
     public function deductionHealthcare($salaryAfterAttendanceDeduction)

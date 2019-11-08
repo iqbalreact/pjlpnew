@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use Illuminate\Http\Request;
 
+use App\Bussiness\Contracts\ContractBussInterface;
 use App\Repository\Contracts\AttendanceRepoInterface;
 
 use App\Models\Attendance;
@@ -13,6 +14,12 @@ use Carbon\Carbon;
 
 class AttendanceRepo implements AttendanceRepoInterface
 {
+    public function __construct(
+        ContractBussInterface $contract
+    ) {
+        $this->contract = $contract;
+    }
+
     public function checkData(Request $request)
     {
         $data = Attendance::where('employee_id', $request->employee_id)
@@ -28,6 +35,11 @@ class AttendanceRepo implements AttendanceRepoInterface
     {
         $status = $request->attendance;
 
+        $cut_leave = 0;
+        if ($this->contract->checkBeforeSixMonth($request->contract_id, $request->date) && $status != 'attend') {
+            $cut_leave = 1;
+        }
+
         $data = Attendance::updateOrCreate(
             [
                 'employee_id'       => $request->employee_id, 
@@ -40,7 +52,8 @@ class AttendanceRepo implements AttendanceRepoInterface
                 'to'            => $status == 'attend' ? $request->to : "00:00",
                 'ceremony'      => $status == 'attend' ? $request->ceremony : 0,
                 'late'          => $status == 'attend' ? $request->late : 0,
-                'leave_type'    => isset($request->leave_type) ? $request->leave_type : 0
+                'leave_type'    => isset($request->leave_type) ? $request->leave_type : 0,
+                'cut_leave'     => $cut_leave
             ]
         );
 
@@ -58,6 +71,48 @@ class AttendanceRepo implements AttendanceRepoInterface
                             ->where('contract_id', $request->contract_id)
                             ->where('work_package_id', $request->work_package_id)
                             ->first();
+        return $data;
+    }
+    
+    public function findRecapLeave(Request $request, $contract, $leaveType = 0, $sixMonth = false)
+    {
+        $month  = Carbon::parse($request->date)->format('m');
+        $year   = Carbon::parse($request->date)->format('Y');
+
+        $data = Attendance::query();
+
+        $data = $data
+                    ->whereMonth('date', $month)
+                    ->whereYear('date', $year)
+                    ->where('employee_id', $request->employee_id)
+                    ->where('contract_id', $request->contract_id)
+                    ->where('work_package_id', $request->work_package_id)
+                    ->where('attendance', 'leave')
+                    ->where('leave_type', $leaveType);
+
+        if ($leaveType = 0) {
+            if ($sixMonth) {
+                $data = $data->where(function($query){
+                            $query->where('attendance', 'leave')
+                                ->orWhere('attendance', 'sick')
+                                ->orWhere('attendance', 'not_present');
+                        });
+            } else {
+                $data = $data->where(function($query){
+                            $query->orWhere('attendance', 'sick')
+                                ->orWhere('attendance', 'not_present');
+                        })->where('cut_leave', 0);
+            }
+        }
+
+        if ($sixMonth) {
+            $sixMonthDate = Carbon::parse($contract->start_date)->addMonth(6);
+
+            $data = $data->where('date', '<', $sixMonthDate );
+        }
+
+        $data = $data->count();
+
         return $data;
     }
 
