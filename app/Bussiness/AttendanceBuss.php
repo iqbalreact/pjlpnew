@@ -49,6 +49,10 @@ class AttendanceBuss implements AttendanceBussInterface
 
     public function store(Request $request, $fromLeaveRequest = false)
     {
+        if ($request->attendance == 'leave') {
+            return;
+        }
+        
         $checkData  = $this->attendanceRepo->checkData($request); 
         $data       = $this->attendanceRepo->store($request);
         
