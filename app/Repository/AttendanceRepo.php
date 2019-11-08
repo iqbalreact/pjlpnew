@@ -39,7 +39,8 @@ class AttendanceRepo implements AttendanceRepoInterface
                 'from'          => $status == 'attend' ? $request->from : "00:00",
                 'to'            => $status == 'attend' ? $request->to : "00:00",
                 'ceremony'      => $status == 'attend' ? $request->ceremony : 0,
-                'late'          => $status == 'attend' ? $request->late : 0
+                'late'          => $status == 'attend' ? $request->late : 0,
+                'leave_type'    => isset($request->leave_type) ? $request->leave_type : 0
             ]
         );
 

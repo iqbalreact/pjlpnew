@@ -27,6 +27,17 @@
                 </div>
             </div>
 
+            <div class="form-group {{ $errors->has('leave_type') ? 'has-error' : '' }}">
+                <label for="inputStartDate" class="col-sm-2 control-label">Jenis Cuti @include('components.required')</label>
+
+                <div class="col-sm-10">
+                    <select name="" id="leaveType" class="form-control">
+                        <option value="0">Cuti Regular</option>
+                        <option value="1">Cuti Melahirkan / Kecelakaan Kerja</option>
+                    </select>
+                </div>
+            </div>
+
             <div class="form-group {{ $errors->has('start_date') ? 'has-error' : '' }}">
                 <label for="inputStartDate" class="col-sm-2 control-label">Tanggal Mulai @include('components.required')</label>
 
@@ -124,6 +135,7 @@
 
     var dateValue       = [];
     var remainingLeave  = 0;
+    var contract_id     = "";
 
     $(function(){
         //Date picker
@@ -175,9 +187,13 @@
         disableSaveButton();
     }
 
+    $('#leaveType').change(function() {
+        disableSaveButton();
+    });
+
     function disableSaveButton()
     {
-        if (remainingLeave < dateValue.length) {
+        if (remainingLeave < dateValue.length && $('#leaveType').val() != 1) {
             $('#saveLeaveButton').prop('disabled', true);
             $('#text-leave').removeClass('hidden');
         } else {
@@ -186,39 +202,95 @@
         }
     }
 
+    function warningInput() {
+        if ($('#employeeSelect').val() == '') {
+            swal("Perhatian", "PJLP tidak boleh kosong", "warning");
+            return false;
+        }
+
+        if ($('#start_date').val() == '') {
+            swal("Perhatian", "Tanggal mulai tidak boleh kosong", "warning");
+            return false;
+        }
+
+        if ($('#end_date').val() == '') {
+            swal("Perhatian", "Tanggal selesai tidak boleh kosong", "warning");
+            return false; 
+        }
+
+        if ($('#start_date').val() > $('#end_date').val())  {
+            swal("Perhatian", "Tanggal mulai tidak boleh lebih dari tanggal selesai", "warning");
+            return false; 
+        }
+
+        return true;
+    }
+
+
+    $('#saveLeaveButton').click(function() {
+
+        if(!warningInput()) {
+            return;
+        };
+        
+        $.post('{{ route('leaveEmployee.store') }}', {
+            employee_id: $("#employeeSelect").val(),
+            contract_id: contract_id,
+            start_date: $('#start_date').val(), 
+            end_date: $('#end_date').val(),
+            rangeDate: dateValue,
+            diffday: dateValue.length,
+            leave_type: $('#leaveType').val()
+        }, function(data, status) {
+
+            if (status == 'success') {
+                swal("Sukses", "Cuti berhasil disimpan", "success");
+            } else {
+                swal("Gagal", "Cuti gagal disimpan", "error");
+            }
+
+        });
+    });
+
     $('#generateDateButton').click(function() {
+        
+        if(!warningInput()) {
+            return;
+        };
+        
         $.post('{{ route('leave.genereateDateRange') }}', {
-                start_date: $('#start_date').val(), 
-                end_date: $('#end_date').val(),
-                employee_id: $('#employeeSelect').val()
-            }, function(data, status) {
+            start_date: $('#start_date').val(), 
+            end_date: $('#end_date').val(),
+            employee_id: $('#employeeSelect').val()
+        }, function(data, status) {
 
-                if (status == 'success') {
-                    
-                    if (data.remaining_leave !== '') {
-                        remainingLeave = data.remaining_leave.remain_leave;
-                        $('#remain_leave').val(remainingLeave);
-                    }
+            if (status == 'success') {
                 
-                    $("tr:has(td)").remove();
-
-                    $.each(data.dates, function (i, item) {
-                        $('<tr>').append(
-                            $('<td>').text(item.day),
-                            $('<td>').text(item.dateTransform),
-                            $('<td>').html(item.weekend),
-                            $('<td>').html(item.checkbox)
-                        ).appendTo('#dateRangeTable');
-                        
-                    });
-
-                    collectDate();
-                    countChecked();
-
-                } else {
-
+                if (data.remaining_leave !== '') {
+                    remainingLeave  = data.remaining_leave.remain_leave;
+                    contract_id     = data.remaining_leave.contract_id;
+                    $('#remain_leave').val(remainingLeave);
                 }
-            });
+            
+                $("tr:has(td)").remove();
+
+                $.each(data.dates, function (i, item) {
+                    $('<tr>').append(
+                        $('<td>').text(item.day),
+                        $('<td>').text(item.dateTransform),
+                        $('<td>').html(item.weekend),
+                        $('<td>').html(item.checkbox)
+                    ).appendTo('#dateRangeTable');
+                    
+                });
+
+                collectDate();
+                countChecked();
+
+            } else {
+
+            }
+        });
     })
 </script>
 @endsection

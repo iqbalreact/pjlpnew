@@ -40,9 +40,11 @@ class LeaveEmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(LocationRequest $request)
+    public function store(Request $request)
     {
-        
+        $data = $this->leaveEmployee->saveRangeLeave($request);
+
+        return response()->json($data);
     }
 
     /**

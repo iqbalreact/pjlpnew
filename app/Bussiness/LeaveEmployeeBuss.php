@@ -28,7 +28,14 @@ class LeaveEmployeeBuss implements LeaveEmployeeBussInterface
     {
         $contract = $this->contract->find($request->contract_id);
 
-        $leave = $this->leaveEmployeeRepo->storeHistoryLeave($request->start_date, $request->end_date, $request->contract_id, $request->employee_id, $request->diffDay);
+        $leave = $this->leaveEmployeeRepo->storeHistoryLeave(
+                    $request->start_date, 
+                    $request->end_date, 
+                    $contract->id, 
+                    $request->employee_id, 
+                    $request->diffDay, 
+                    $request->leave_type
+                );
         
         // Save attendance
         foreach($request->rangeDate as $date) {
@@ -38,8 +45,9 @@ class LeaveEmployeeBuss implements LeaveEmployeeBussInterface
             $attendanceData->contract_id        = $contract->id; 
             $attendanceData->work_package_id    = $contract->work_package_id; 
             $attendanceData->date               = $date;
+            $attendanceData->leave_type         = $request->leave_type;
             
-            $attendance = $this->attendance->store($attendanceData, $fromLeaveRequest = true)
+            $attendance = $this->attendance->store($attendanceData, $fromLeaveRequest = true);
         }
 
         return $leave;

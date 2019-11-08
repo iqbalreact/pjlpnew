@@ -167,6 +167,7 @@
 @stop
 
 @section('adminlte_js')
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="{{ asset('vendor/adminlte/dist/js/adminlte.min.js') }}"></script>
     @stack('js')
     @yield('js')

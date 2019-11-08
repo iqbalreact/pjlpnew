@@ -23,7 +23,8 @@ class Attendance extends Model
         'from',
         'to',
         'ceremony',
-        'late'
+        'late',
+        'leave_type'
     ];
     
     protected static $logAttributes = [
@@ -35,7 +36,8 @@ class Attendance extends Model
         'from',
         'to',
         'ceremony',
-        'late'
+        'late',
+        'leave_type'
     ];
 
     public function contract()
