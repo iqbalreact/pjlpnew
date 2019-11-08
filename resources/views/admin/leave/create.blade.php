@@ -5,7 +5,7 @@
 @section('content_header')
     <h1>Cuti</h1>
 
-    {{ Breadcrumbs::render('employee_new') }}
+    {{ Breadcrumbs::render('leave_new') }}
 @stop
 
 @section('content')

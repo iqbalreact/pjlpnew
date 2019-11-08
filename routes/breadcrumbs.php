@@ -111,6 +111,34 @@ Breadcrumbs::for('functionary_show', function ($trail, $functionary) {
 });
 
 /**
+ * Leave ====================================================================
+ */
+
+// Home > Leave
+Breadcrumbs::for('leave', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Cuti', route('leaveEmployee.index'));
+});
+
+// Home > Leave > New
+Breadcrumbs::for('leave_new', function ($trail) {
+    $trail->parent('leave');
+    $trail->push('Tambah');
+});
+
+// Home > Leave > Edit
+Breadcrumbs::for('leave_edit', function ($trail) {
+    $trail->parent('leave');
+    $trail->push('Edit');
+});
+
+// Home > Leave > Show
+Breadcrumbs::for('leave__show', function ($trail) {
+    $trail->parent('leave');
+    $trail->push('detail');
+});
+
+/**
  * Location ====================================================================
  */
 
@@ -134,7 +162,7 @@ Breadcrumbs::for('location_edit', function ($trail) {
 
 // Home > Location > Show
 Breadcrumbs::for('location_show', function ($trail, $location) {
-    $trail->parent('functionary');
+    $trail->parent('location');
     $trail->push($location->name);
 });
 

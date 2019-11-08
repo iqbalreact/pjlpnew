@@ -140,6 +140,11 @@ return [
             'icon' => 'book',
             'url'  => '/admin/attendance'
         ],
+        [
+            'text' => 'Cuti',
+            'icon' => 'book',
+            'url'  => '/admin/leaveEmployee'
+        ],
         'SISTEM',
         [
             'text' => 'Pengguna',
