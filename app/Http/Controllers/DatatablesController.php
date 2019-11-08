@@ -68,6 +68,11 @@ class DatatablesController extends Controller
 		return $this->datatables->fetchFunctionaryDatas($request);
 	}
 
+	public function fetchHistoryLeaveEmployeeDatas(Request $request)
+	{
+		return $this->datatables->fetchHistoryLeaveEmployeeDatas($request);
+	}
+
 	public function fetchLocationDatas(Request $request)
 	{
 		return $this->datatables->fetchLocationDatas($request);

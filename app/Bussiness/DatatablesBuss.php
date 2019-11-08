@@ -12,6 +12,7 @@ use App\Services\Contracts\ActivityLogServiceInterface;
 
 use App\Models\Activity;
 use App\Models\Contract;
+use App\Models\HistoryLeaveEmployee;
 use App\Models\Location;
 use App\Models\Occupation;
 use App\Models\Position;
@@ -177,6 +178,30 @@ class DatatablesBuss implements DatatablesBussInterface
                         ->addColumn('actions', 
                                 ' <a href="{{ URL::route( \'functionary.show\', array( $id )) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
                                 <a href="{{ URL::route( \'functionary.edit\', array( $id )) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')
+                        ->rawColumns(['actions', 'avatar'])
+                        ->make(true);
+    }
+
+    public function fetchHistoryLeaveEmployeeDatas(Request $request)
+    {
+        $query = $this->datatablesRepo->fetchHistoryLeaveEmployeeDatas($request);
+
+        return Datatables::of($query)
+                        ->addColumn('employee_nipj', function(HistoryLeaveEmployee $leave) {
+                            return $leave->employee->nipj;
+                        })
+                        ->addColumn('employee_name', function(HistoryLeaveEmployee $leave) {
+                            return $leave->employee->name;
+                        })
+                        ->addColumn('type', function($data) {
+                            if($data->leave_type == 1) {
+                                return 'Cuti Melahirkan / Kecelakaan kerja';
+                            } 
+
+                            return 'Cuti Reguler';
+                        })
+                        ->addColumn('actions', 
+                                ' <a href="{{ URL::route( \'leaveEmployee.show\', array( $id )) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>')
                         ->rawColumns(['actions', 'avatar'])
                         ->make(true);
     }

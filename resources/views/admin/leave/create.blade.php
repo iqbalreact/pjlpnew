@@ -244,7 +244,9 @@
         }, function(data, status) {
 
             if (status == 'success') {
-                swal("Sukses", "Cuti berhasil disimpan", "success");
+                swal("Sukses!", "Cuti berhasil disimpan", "success").then(function() {
+                        window.location = "/admin/leaveEmployee";
+                    });
             } else {
                 swal("Gagal", "Cuti gagal disimpan", "error");
             }

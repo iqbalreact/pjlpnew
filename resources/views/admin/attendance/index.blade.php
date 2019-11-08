@@ -163,8 +163,6 @@
     } );
 
     function submitAttendace(idx, data) {
-        
-        // console.log(data);
 
         var employee_id = data.employee_id;
         var contract_id = data.id;

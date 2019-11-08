@@ -17,15 +17,17 @@
                     <a href="{{ route('leaveEmployee.create') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Tambah</a>
                 </div>
                 <div class="box-body">
-                    <table id="functionary-table" class="table">
+                    <table id="leave-table" class="table">
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th width="8%">Foto</th>
-                                <th width>NIP</th>
-                                <th>Name</th>
-                                <th>No Telepon</th>
-                                <th width="15%">Action</th>
+                                <th>NIPJ</th>
+                                <th>Nama</th>
+                                <th>Tanggal Mulai</th>
+                                <th>Tanggal Selesai</th>
+                                <th>Jumlah Hari</th>
+                                <th>Jenis Cuti</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                     </table>                
@@ -38,19 +40,21 @@
 @section('js')
 <script>
     $(function() {
-        var oTable = $('#functionary-table').dataTable({
+        var oTable = $('#leave-table').dataTable({
             processing: true,
             serverSide: true,
             responsive: true,
             order: [[ 0, 'desc' ]],
             deferRender:    true,
-            ajax: '{!! route('fetch.functionary') !!}',
+            ajax: '{!! route('fetch.historyLeaveEmployee') !!}',
             columns: [
                 { data: 'id', name: 'id', class:'hide' },
-                { data: 'avatar', name: 'avatar', searchable:'false', orderable: 'false'},
-                { data: 'nip', name: 'nip', searchable:'true'},
-                { data: 'name', name: 'name', searchable:'true'},
-                { data: 'phone_number', name: 'phone_number', searchable:'true'},
+                { data: 'employee_nipj', name: 'employee.nipj', searchable:'true'},
+                { data: 'employee_name', name: 'employee.name', searchable:'true'},
+                { data: 'start_date', name: 'start_date', searchable:'true'},
+                { data: 'end_date', name: 'end_date', searchable:'true'},
+                { data: 'total_day', name: 'total_day', searchable:'true'},
+                { data: 'type', name: 'leave_type', searchable:'true'},
                 { data: 'actions', name: 'actions', searchable: 'false', 'orderable': 'false', 'class': 'text-center'}
             ]
         });
