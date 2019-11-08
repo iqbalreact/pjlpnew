@@ -27,9 +27,14 @@ class AttendanceBuss implements AttendanceBussInterface
         return $this->attendanceRepo->findRecap($request);
     }
 
-    public function findRecapLeave(Request $request, $contract, $leaveType = 0, $sixMonth = false)
+    public function findRecapLeave(Request $request, $contract, $sixMonth = false)
     {
-        return $this->attendanceRepo->findRecapLeave($request, $contract, $leaveType, $sixMonth);
+        return $this->attendanceRepo->findRecapLeave($request, $contract, $sixMonth);
+    }
+
+    public function findRecapLeaveSpecial(Request $request)
+    {
+        return $this->attendanceRepo->findRecapLeaveSpecial($request);
     }
 
     public function totalAttendance($recapAttendance)

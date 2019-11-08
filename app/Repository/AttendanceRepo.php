@@ -11,6 +11,7 @@ use App\Models\Attendance;
 use App\Models\RecapAttendance;
 
 use Carbon\Carbon;
+use DB;
 
 class AttendanceRepo implements AttendanceRepoInterface
 {
@@ -74,36 +75,34 @@ class AttendanceRepo implements AttendanceRepoInterface
         return $data;
     }
     
-    public function findRecapLeave(Request $request, $contract, $leaveType = 0, $sixMonth = false)
+    public function findRecapLeave(Request $request, $contract, $sixMonth = false)
     {
         $month  = Carbon::parse($request->date)->format('m');
         $year   = Carbon::parse($request->date)->format('Y');
 
         $data = Attendance::query();
 
-        $data = $data
-                    ->whereMonth('date', $month)
+        $data = $data->whereMonth('date', $month)
                     ->whereYear('date', $year)
                     ->where('employee_id', $request->employee_id)
                     ->where('contract_id', $request->contract_id)
                     ->where('work_package_id', $request->work_package_id)
                     ->where('attendance', 'leave')
-                    ->where('leave_type', $leaveType);
+                    ->where('leave_type', 0);
 
-        if ($leaveType = 0) {
-            if ($sixMonth) {
-                $data = $data->where(function($query){
-                            $query->where('attendance', 'leave')
-                                ->orWhere('attendance', 'sick')
-                                ->orWhere('attendance', 'not_present');
-                        });
-            } else {
-                $data = $data->where(function($query){
-                            $query->orWhere('attendance', 'sick')
-                                ->orWhere('attendance', 'not_present');
-                        })->where('cut_leave', 0);
-            }
+        if ($sixMonth) {
+            $data = $data->where(function($query){
+                        $query->where('attendance', 'leave')
+                            ->orWhere('attendance', 'sick')
+                            ->orWhere('attendance', 'not_present');
+                    });
+        } else {
+            $data = $data->where(function($query){
+                        $query->orWhere('attendance', 'sick')
+                            ->orWhere('attendance', 'not_present');
+                    })->where('cut_leave', 0);
         }
+        
 
         if ($sixMonth) {
             $sixMonthDate = Carbon::parse($contract->start_date)->addMonth(6);
@@ -112,6 +111,22 @@ class AttendanceRepo implements AttendanceRepoInterface
         }
 
         $data = $data->count();
+
+        return $data;
+    }
+
+    public function findRecapLeaveSpecial(Request $request)
+    {
+        $data = Attendance::where('date', '<=', Carbon::parse($request->date))
+                        ->where('employee_id', $request->employee_id)
+                        ->where('contract_id', $request->contract_id)
+                        ->where('work_package_id', $request->work_package_id)
+                        ->where('attendance', 'leave')
+                        ->where('leave_type', 1)
+                        ->get()
+                        ->groupBy(function ($val) {
+                            return Carbon::parse($val->date)->format('m-Y');
+                        });
 
         return $data;
     }
