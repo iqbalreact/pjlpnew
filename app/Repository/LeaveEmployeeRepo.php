@@ -16,15 +16,21 @@ class LeaveEmployeeRepo implements LeaveEmployeeRepoInterface
 {
     public function findRemainingLeave($employee_id)
     {
-        $data = Contract::where('employee_id', $employee_id)
+        $contract = Contract::where('employee_id', $employee_id)
                         ->where('status', 'active')
                         ->first();
 
-        if (!is_null($data)) {
-            $data = LeaveEmployee::where('employee_id', $employee_id)
-                                ->where('contract_id', $data->id)
+        $leave = null;
+        if (!is_null($contract)) {
+            $leave = LeaveEmployee::where('employee_id', $employee_id)
+                                ->where('contract_id', $contract->id)
                                 ->first();
         }
+
+        $data = [
+            'contract' => Carbon::parse($contract->start_date)->addMonth(6) < Carbon::now() ? 1 : 0,
+            'leave' => $leave
+        ];
 
         return $data;
     }

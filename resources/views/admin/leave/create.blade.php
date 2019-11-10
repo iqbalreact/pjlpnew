@@ -135,6 +135,7 @@
 
     var dateValue       = [];
     var remainingLeave  = 0;
+    var sixMonth        = "";
     var contract_id     = "";
 
     $(function(){
@@ -232,6 +233,11 @@
         if(!warningInput()) {
             return;
         };
+
+        if (sixMonth == 0 && $('#leaveType').val() == 0)  {
+            swal("Perhatian", "PJLP belum bisa mengajukan cuti karena masa kerja kurang dari 6 bulan", "warning");
+            return false; 
+        }
         
         $.post('{{ route('leaveEmployee.store') }}', {
             employee_id: $("#employeeSelect").val(),
@@ -271,6 +277,7 @@
                 if (data.remaining_leave !== '') {
                     remainingLeave  = data.remaining_leave.remain_leave;
                     contract_id     = data.remaining_leave.contract_id;
+                    sixMonth        = data.contract;
                     $('#remain_leave').val(remainingLeave);
                 }
             

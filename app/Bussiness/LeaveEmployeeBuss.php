@@ -74,10 +74,13 @@ class LeaveEmployeeBuss implements LeaveEmployeeBussInterface
             array_push($dates, $data);
         }
 
+        $remainingLeave = $this->leaveEmployeeRepo->findRemainingLeave($employee_id);
+
         $result = [
             'dates'             => $dates,
-            'remaining_leave'   => $this->leaveEmployeeRepo->findRemainingLeave($employee_id),
-            'totaLeave'         => count($dates)
+            'remaining_leave'   => $remainingLeave['leave'],
+            'totaLeave'         => count($dates),
+            'contract'          => $remainingLeave['contract']
         ];
     
         return $result;
