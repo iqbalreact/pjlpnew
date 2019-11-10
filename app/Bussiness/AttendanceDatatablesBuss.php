@@ -80,18 +80,20 @@ class AttendanceDatatablesBuss implements AttendanceDatatablesBussInterface
     private function attendance($data)
     {
         $data = $data->employee->attendances->first();
+
+        if (!is_null($data) && $data->attendance == 'leave') {
+            return 'Cuti';
+        }
         
         $select = '<select name="attendance" type="checkbox" class="form-control">';
         
         if (is_null($data) || $data->attendance == 'attend') {
             $select .= '<option value="attend" selected>Hadir</option>';  
             $select .= '<option value="sick">Sakit</option>';
-            $select .= '<option value="leave">Cuti</option>';
             $select .= '<option value="not_present">Tidak Hadir</option>';
         } elseif ($data->attendance == 'sick') {
             $select .= '<option value="attend">Hadir</option>';  
             $select .= '<option value="sick" selected>Sakit</option>';
-            $select .= '<option value="leave">Cuti</option>';
             $select .= '<option value="not_present">Tidak Hadir</option>';
         } elseif ($data->attendance == 'leave') {
             $select .= '<option value="attend">Hadir</option>';  
@@ -101,7 +103,6 @@ class AttendanceDatatablesBuss implements AttendanceDatatablesBussInterface
         } elseif ($data->attendance == 'not_present') {
             $select .= '<option value="attend">Hadir</option>';  
             $select .= '<option value="sick">Sakit</option>';
-            $select .= '<option value="leave">Cuti</option>';
             $select .= '<option value="not_present" selected>Tidak Hadir</option>';
         }
 
