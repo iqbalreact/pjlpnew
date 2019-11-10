@@ -68,7 +68,7 @@ class LeaveEmployeeRepo implements LeaveEmployeeRepoInterface
         return $data;
     }
 
-    public function storeHistoryLeave($start_date, $end_date, $contract_id, $employee_id, $diffDay = null, $leaveType = 0)
+    public function storeHistoryLeave($start_date, $end_date, $contract_id, $employee_id, $diffDay = null, $leaveType = 0, $dates = null)
     {
         $start_date = Carbon::parse($start_date);
         $end_date   = Carbon::parse($end_date);
@@ -89,6 +89,7 @@ class LeaveEmployeeRepo implements LeaveEmployeeRepoInterface
         $data->employee_id  = $employee_id;
         $data->total_day    = $diffDay;
         $data->leave_type   = $leaveType;
+        $data->dates        = json_encode($dates);
         $data->save();
 
         // Calculate Leave

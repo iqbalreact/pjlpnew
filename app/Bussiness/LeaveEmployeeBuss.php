@@ -34,7 +34,8 @@ class LeaveEmployeeBuss implements LeaveEmployeeBussInterface
                     $contract->id, 
                     $request->employee_id, 
                     $request->diffDay, 
-                    $request->leave_type
+                    $request->leave_type,
+                    $request->rangeDate
                 );
         
         // Save attendance

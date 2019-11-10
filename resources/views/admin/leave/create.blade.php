@@ -234,10 +234,10 @@
             return;
         };
 
-        if (sixMonth == 0 && $('#leaveType').val() == 0)  {
-            swal("Perhatian", "PJLP belum bisa mengajukan cuti karena masa kerja kurang dari 6 bulan", "warning");
-            return false; 
-        }
+        // if (sixMonth == 0 && $('#leaveType').val() == 0)  {
+        //     swal("Perhatian", "PJLP belum bisa mengajukan cuti karena masa kerja kurang dari 6 bulan", "warning");
+        //     return false; 
+        // }
         
         $.post('{{ route('leaveEmployee.store') }}', {
             employee_id: $("#employeeSelect").val(),
