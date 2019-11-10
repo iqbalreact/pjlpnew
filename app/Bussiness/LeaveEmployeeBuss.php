@@ -45,11 +45,11 @@ class LeaveEmployeeBuss implements LeaveEmployeeBussInterface
                     $request->employee_id, 
                     $request->diffday, 
                     $request->leave_type,
-                    $request->rangeDate
+                    json_decode($request->rangeDate)
                 );
         
         // Save attendance
-        foreach($request->rangeDate as $date) {
+        foreach(json_decode($request->rangeDate) as $date) {
             $attendanceData = new Request();
             $attendanceData->attendance         = 'leave';
             $attendanceData->employee_id        = $request->employee_id; 
@@ -59,6 +59,10 @@ class LeaveEmployeeBuss implements LeaveEmployeeBussInterface
             $attendanceData->leave_type         = $request->leave_type;
             
             $attendance = $this->attendance->store($attendanceData, $fromLeaveRequest = true);
+        }
+
+        if (isset($request->picture) && $request->hasFile('picture')) {
+            $leave->addMediaFromRequest('picture')->toMediaCollection('pictures');
         }
 
         return $leave;

@@ -68,7 +68,7 @@ class LeaveEmployeeController extends Controller
         $data->end_date     = Carbon::parse($data->end_date)->format('j F Y');
 
         $dates = json_decode($data->dates);
-
+        
         $transformDate = [];
         if (!is_null($dates)) {
             foreach($dates as $date) {
@@ -76,6 +76,7 @@ class LeaveEmployeeController extends Controller
             }
         }
         
+        // return $data->getPicture();
 
         return view('admin.leave.show', compact('data', 'transformDate'));
     }

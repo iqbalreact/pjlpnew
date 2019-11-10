@@ -63,6 +63,14 @@
             </div>
 
             <div class="form-group">
+                <label for="inputEndDate" class="col-sm-2 control-label">Upload Surat Cuti</label>
+
+                <div class="col-sm-10">
+                    <input type="file" id="picture" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <button 
                         id="generateDateButton"
@@ -229,8 +237,7 @@
 
 
     $('#saveLeaveButton').click(function() {
-
-        if(!warningInput()) {
+        if(!warningInput()) {  
             return;
         };
 
@@ -238,30 +245,37 @@
         //     swal("Perhatian", "PJLP belum bisa mengajukan cuti karena masa kerja kurang dari 6 bulan", "warning");
         //     return false; 
         // }
-        
-        $.post('{{ route('leaveEmployee.store') }}', {
-            employee_id: $("#employeeSelect").val(),
-            contract_id: contract_id,
-            start_date: $('#start_date').val(), 
-            end_date: $('#end_date').val(),
-            rangeDate: dateValue,
-            diffday: dateValue.length,
-            leave_type: $('#leaveType').val()
-        }, function(data, status) {
 
-            if (status == 'success') {
-                swal("Sukses!", "Cuti berhasil disimpan", "success").then(function() {
-                        window.location = "/admin/leaveEmployee";
-                    });
-            } else {
-                swal("Gagal", "Cuti gagal disimpan", "error");
+        var myFormData = new FormData();
+        myFormData.append('picture', $('#picture')[0].files[0]);
+        myFormData.append('employee_id', $("#employeeSelect").val());
+        myFormData.append('start_date', $("#start_date").val());
+        myFormData.append('end_date', $("#end_date").val());
+        myFormData.append('leave_type', $("#leaveType").val());
+        myFormData.append('contract_id', contract_id);
+        myFormData.append('rangeDate', JSON.stringify(dateValue));
+        myFormData.append('diffday', dateValue.length);
+
+        $.ajax({
+            url: "{{ route('leaveEmployee.store') }}",
+            type: "POST",
+            data: myFormData,
+            processData: false, // important
+            contentType: false, // important
+            dataType : 'json',
+            success: function(data, status){
+                if (status == 'success') {
+                    swal("Sukses!", "Cuti berhasil disimpan", "success").then(function() {
+                            window.location = "/admin/leaveEmployee";
+                        });
+                } else {
+                    swal("Gagal", "Cuti gagal disimpan", "error");
+                }
             }
-
         });
     });
 
     $('#generateDateButton').click(function() {
-        
         if(!warningInput()) {
             return;
         };

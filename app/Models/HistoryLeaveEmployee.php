@@ -7,15 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\Traits\CausesActivity;
 
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+
 use App\Models\Contract;
 use App\Models\Employee;
 
 use App\Scopes\OwnLeaveScope;
 
 
-class HistoryLeaveEmployee extends Model
+class HistoryLeaveEmployee extends Model implements HasMedia
 {
-    use LogsActivity, CausesActivity;
+    use LogsActivity, CausesActivity, HasMediaTrait;
 
     protected $fillable = [
         'start_date', 
@@ -52,5 +55,10 @@ class HistoryLeaveEmployee extends Model
     public function employee()
     {
         return $this->belongsTo(Employee::class);
+    }
+
+    public function getPicture()
+    {
+        return $this->getMedia('pictures')->last() ? $this->getMedia('pictures')->last()->getFullUrl() : '';
     }
 }

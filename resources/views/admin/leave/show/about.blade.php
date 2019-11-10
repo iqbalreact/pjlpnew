@@ -52,4 +52,11 @@
             </ul>
         </div>
     </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Surat Izin Cuti</label>
+
+        <div class="col-sm-10">
+            <img src={{ $data->getPicture()}} alt="" class="img-thumbnail">
+        </div>
+    </div>
 </form>
