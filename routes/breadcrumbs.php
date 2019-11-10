@@ -133,7 +133,7 @@ Breadcrumbs::for('leave_edit', function ($trail) {
 });
 
 // Home > Leave > Show
-Breadcrumbs::for('leave__show', function ($trail) {
+Breadcrumbs::for('leave_show', function ($trail) {
     $trail->parent('leave');
     $trail->push('detail');
 });

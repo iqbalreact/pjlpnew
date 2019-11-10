@@ -11,19 +11,20 @@ use Spatie\Activitylog\Models\Activity;
 class ActivityLogService implements ActivityLogServiceInterface
 {
     protected $subjectRoute = [
-        'App\Models\Activity'           => '/admin/activity/',
-        'App\Models\Contract'           => '/admin/contract/detail/',
-        'App\Models\Employee'           => '/admin/employee/',
-        'App\Models\Functionary'        => '/admin/functionary/',
-        'App\Models\Location'           => '/admin/location/',
-        'App\Models\User'               => '/admin/account/',
-        'App\Models\Occupation'         => '/admin/occupation/',
-        'App\Models\Position'           => '/admin/position/',
-        'App\Models\PositionCategory'   => '/admin/positionCategory/',
-        'App\Models\Program'            => '/admin/program/',
-        'App\Models\Skpd'               => '/admin/skpd/',
-        'App\Models\WorkDay'            => '/admin/workDay/',
-        'App\Models\WorkPackage'        => '/admin/workPackage/',
+        'App\Models\Activity'               => '/admin/activity/',
+        'App\Models\Contract'               => '/admin/contract/detail/',
+        'App\Models\Employee'               => '/admin/employee/',
+        'App\Models\Functionary'            => '/admin/functionary/',
+        'App\Models\HistoryLeaveEmployee'   => '/admin/leaveEmployee/',
+        'App\Models\Location'               => '/admin/location/',
+        'App\Models\User'                   => '/admin/account/',
+        'App\Models\Occupation'             => '/admin/occupation/',
+        'App\Models\Position'               => '/admin/position/',
+        'App\Models\PositionCategory'       => '/admin/positionCategory/',
+        'App\Models\Program'                => '/admin/program/',
+        'App\Models\Skpd'                   => '/admin/skpd/',
+        'App\Models\WorkDay'                => '/admin/workDay/',
+        'App\Models\WorkPackage'            => '/admin/workPackage/',
         // 'App\Models\WorkPackage'    => '/admin/workpackage/',
     ]; 
 

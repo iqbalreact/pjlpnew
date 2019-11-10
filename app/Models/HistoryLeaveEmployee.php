@@ -10,6 +10,9 @@ use Spatie\Activitylog\Traits\CausesActivity;
 use App\Models\Contract;
 use App\Models\Employee;
 
+use App\Scopes\OwnLeaveScope;
+
+
 class HistoryLeaveEmployee extends Model
 {
     use LogsActivity, CausesActivity;
@@ -33,6 +36,13 @@ class HistoryLeaveEmployee extends Model
         'total_day',
         'dates'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new OwnLeaveScope);
+    }
 
     public function contract()
     {

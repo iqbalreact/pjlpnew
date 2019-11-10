@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Bussiness\Contracts\LeaveEmployeeBussInterface;
 
+use Carbon\Carbon;
+
 class LeaveEmployeeController extends Controller
 {
     public function __construct(
@@ -55,7 +57,27 @@ class LeaveEmployeeController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = $this->leaveEmployee->findLeaveHistory($id);
+
+        if (!$data) {
+            notify()->warning('Cuti tidak ditemukan');
+            return redirect()->back();
+        }
+        
+        $data->start_date   = Carbon::parse($data->start_date)->format('j F Y');
+        $data->end_date     = Carbon::parse($data->end_date)->format('j F Y');
+
+        $dates = json_decode($data->dates);
+
+        $transformDate = [];
+        if (!is_null($dates)) {
+            foreach($dates as $date) {
+                array_push($transformDate, Carbon::parse($date)->format('j F Y'));
+            }
+        }
+        
+
+        return view('admin.leave.show', compact('data', 'transformDate'));
     }
 
     /**

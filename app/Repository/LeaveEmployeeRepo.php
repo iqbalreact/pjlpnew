@@ -37,7 +37,20 @@ class LeaveEmployeeRepo implements LeaveEmployeeRepoInterface
 
     public function find($id)
     {
-        $data = LeaveEmployee::find($id);
+        $data = LeaveEmployee::with('employee', 'contract')
+                            ->find($id);
+        
+        if (is_null($data)) {
+            return false;
+        }
+        
+        return $data;
+    }
+
+    public function findLeaveHistory($id)
+    {
+        $data = HistoryLeaveEmployee::with('employee', 'contract')
+                            ->find($id);
         
         if (is_null($data)) {
             return false;
@@ -79,7 +92,8 @@ class LeaveEmployeeRepo implements LeaveEmployeeRepoInterface
             } else {
                 $diffDay = $start_date->diffindays($end_date);
             } 
-        }        
+        }       
+        
 
         // Store History Leave
         $data = new HistoryLeaveEmployee();

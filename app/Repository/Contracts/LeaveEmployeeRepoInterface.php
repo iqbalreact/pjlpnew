@@ -10,6 +10,8 @@ interface LeaveEmployeeRepoInterface
 
     public function find($id);
 
+    public function findLeaveHistory($id);
+
     public function existLeave($start_date, $end_date, $contract_id, $employee_id);
 
     public function store($employee_id, $contract_id);    

@@ -24,6 +24,16 @@ class LeaveEmployeeBuss implements LeaveEmployeeBussInterface
         $this->contract             = $contract;
     }
 
+    public function find($id)
+    {
+        return $this->leaveEmployeeRepo->find($id);
+    }
+
+    public function findLeaveHistory($id)
+    {
+        return $this->leaveEmployeeRepo->findLeaveHistory($id);
+    }
+
     public function saveRangeLeave(Request $request)
     {
         $contract = $this->contract->find($request->contract_id);
@@ -33,7 +43,7 @@ class LeaveEmployeeBuss implements LeaveEmployeeBussInterface
                     $request->end_date, 
                     $contract->id, 
                     $request->employee_id, 
-                    $request->diffDay, 
+                    $request->diffday, 
                     $request->leave_type,
                     $request->rangeDate
                 );
