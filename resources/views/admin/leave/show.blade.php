@@ -3,7 +3,7 @@
 @section('title', 'Detail Cuti | '.env('APP_NAME'))
 
 @section('content_header')
-    <h1>Detail Cut</h1>
+    <h1>Detail Cuti</h1>
 
     {{ Breadcrumbs::render('leave_show', $data) }}
 @stop
