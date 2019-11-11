@@ -21,4 +21,6 @@ interface LeaveEmployeeRepoInterface
     public function resetLeave($employee_id, $contract_id);
 
     public function deleteHistoryLeave($start_date, $end_date, $contract_id, $employee_id);
+
+    public function deleteLeave($id);
 }

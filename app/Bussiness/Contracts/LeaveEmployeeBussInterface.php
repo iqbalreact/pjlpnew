@@ -14,4 +14,5 @@ interface LeaveEmployeeBussInterface
 
     public function genereateDateRange($start_date, $end_date, $employee_id);
 
+    public function deleteLeave($id);
 }

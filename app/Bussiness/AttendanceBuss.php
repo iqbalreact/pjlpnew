@@ -49,7 +49,7 @@ class AttendanceBuss implements AttendanceBussInterface
 
     public function store(Request $request, $fromLeaveRequest = false)
     {
-        if ($request->attendance == 'leave' || is_null($request->attendance)) {
+        if (is_null($request->attendance)) {
             return;
         }
 

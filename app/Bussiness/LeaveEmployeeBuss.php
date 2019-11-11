@@ -100,4 +100,9 @@ class LeaveEmployeeBuss implements LeaveEmployeeBussInterface
     
         return $result;
     }
+
+    public function deleteLeave($id)
+    {
+        return $this->leaveEmployeeRepo->deleteLeave($id);
+    }
 }

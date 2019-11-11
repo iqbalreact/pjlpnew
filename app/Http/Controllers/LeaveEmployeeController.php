@@ -112,7 +112,16 @@ class LeaveEmployeeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $res = $this->leaveEmployee->deleteLeave($id);
+
+        if (!$res) {
+            notify()->warning('Cuti tidak ditemukan');
+            return redirect()->back();
+        }
+
+        notify()->success('Cuti berhasil dihapus');    
+
+        return redirect()->route('leaveEmployee.index');
     }
 
     /**

@@ -59,4 +59,34 @@
             <img src={{ $data->getPicture()}} alt="" class="img-thumbnail">
         </div>
     </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#deleteModal">Hapus</button>
+        </div>
+    </div>
 </form>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Konfirmasi hapus cuti</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                    Apakah anda yakin?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+
+                {!! Form::open(['method' => 'DELETE', 'route' =>  ['leaveEmployee.destroy', 'id' => $data->id]  ]) !!}
+                    <button type="submit" class="btn btn-danger">Ya, Hapus cuti ini</button>
+                {!! Form::close() !!}
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Repository\Contracts\LeaveEmployeeRepoInterface;
 
+use App\Models\Attendance;
 use App\Models\LeaveEmployee;
 use App\Models\HistoryLeaveEmployee;
 use App\Models\Contract;
+
 
 use Carbon\Carbon;
 
@@ -149,6 +151,46 @@ class LeaveEmployeeRepo implements LeaveEmployeeRepoInterface
                                     ->where('employee_id', $employee_id)
                                     ->first();
         
+        $data->delete();
+
+        return true;
+    }
+
+    public function deleteLeave($id)
+    {
+        $data = HistoryLeaveEmployee::find($id);
+
+        if (is_null($data)) {
+            return false;
+        }
+
+        if ($data->leave_type == 0) {
+            $leave = LeaveEmployee::where('contract_id', $data->contract_id)
+                                ->where('employee_id', $data->employee_id)
+                                ->first();
+
+            if (!is_null($leave)) {
+                $leave->remain_leave = $leave->remain_leave +  $data->total_day;
+                $leave->update();
+            }
+
+            $dates = json_decode($data->dates);
+        
+            $transformDate = [];
+            if (!is_null($dates)) {
+                foreach($dates as $date) {
+                    $attendance = Attendance::where('date', Carbon::parse($date))
+                                            ->where('employee_id', $data->employee_id)
+                                            ->where('contract_id', $data->contract_id)
+                                            ->first();
+                    
+                    if (!is_null($attendance)) {
+                        $attendance->delete();
+                    }
+                }
+            }
+        }
+
         $data->delete();
 
         return true;
