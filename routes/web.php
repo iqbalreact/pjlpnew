@@ -33,6 +33,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::get('/account/updatePassword', 'AccountController@updatePassword')->name('account.updatePassword');
     Route::put('/account/updatePassword/{id}', 'AccountController@postUpdatePassword')->name('account.updatePassword.post');
+
+    Route::get('/contract/detail/{id}', 'ContractController@detail')->name('contract.detail');
+    Route::get('/contract/findActiveContract', 'ContractController@findActiveContract')->name('contract.findActiveContract');
     
     Route::resource('activity', 'ActivityController');
     Route::resource('account', 'AccountController');
@@ -54,9 +57,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('workDay', 'WorkDayController');
     Route::resource('workPackage', 'WorkPackageController');
 
-    Route::get('/contract/detail/{id}', 'ContractController@detail')->name('contract.detail');
-
     Route::post('/leave/generateDateRange', 'LeaveEmployeeController@generateDateRange')->name('leave.genereateDateRange');
+
 
     // Datatables
     Route::group(['prefix' => 'data'], function() {

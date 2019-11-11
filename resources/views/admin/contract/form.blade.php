@@ -136,6 +136,14 @@
             @if ($errors->has('status'))
                 <span class="help-block">{{ $errors->first('status') }}</span>
             @endif
+
+            <div id="contract-notice" class="hide">
+                <br>
+                <div class="callout callout-danger">
+                    <h4>PERHATIAN!</h4>
+                    <p>PJLP memiliki kontrak yang aktif, Kontrak baru ini akan otomatis disimpan dengan status "Tidak Aktif"</p>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -287,6 +295,20 @@
                     };
                 }
             }
+        });
+
+        $("#employeeSelect").change(function() {
+            $.ajax({
+                url: "{{ route('contract.findActiveContract') }}?employee_id="+$(this).val(),
+                type: "GET",
+                success: function(data, status){
+                    if (data == 'true') {
+                        $('#contract-notice').addClass('hide');
+                    } else {
+                        $('#contract-notice').removeClass('hide');
+                    }
+                }
+            });
         });
 
         $("#locationSelect").select2({

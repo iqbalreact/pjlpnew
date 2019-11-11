@@ -59,6 +59,12 @@ class ContractBuss implements ContractBussInterface
 
     public function store(Request $request)
     {
+        $checkActiveContract = $this->findActiveContract($request->employee_id);
+
+        if (!is_null($checkActiveContract)) {
+            $request->status = 'non_active';
+        }
+
         $workPackageInfo = $this->workPackage->findWorkPackageInformation($request->work_package_id);
         
         // assign working package info

@@ -192,4 +192,13 @@ class ContractController extends Controller
     {
         //
     }
+
+    public function findActiveContract(Request $request)
+    {
+        $data = $this->contract->findActiveContract($request->employee_id);
+        
+        $data = is_null($data) ? 'true' : 'false'; 
+
+        return response()->json($data);
+    }
 }
