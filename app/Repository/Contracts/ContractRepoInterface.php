@@ -8,6 +8,8 @@ interface ContractRepoInterface
 {
     public function find($id);
 
+    public function findByEmployeeId($employee_id);
+
     public function findActiveContract($employee_id);
 
     public function distinctYear();

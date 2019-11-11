@@ -137,6 +137,10 @@
                 <span class="help-block">{{ $errors->first('status') }}</span>
             @endif
 
+            @if($edit)
+                <span class="help-block text-red">Jika mengubah status dari non-aktif ke Aktif. Maka selain kontrak ini, semua kontrak PJLP yang bersangkutan akan diset non aktif</span>
+            @endif
+
             <div id="contract-notice" class="hide">
                 <br>
                 <div class="callout callout-danger">

@@ -24,6 +24,14 @@ class ContractRepo implements ContractRepoInterface
         return $data;
     }
 
+    public function findByEmployeeId($employee_id)
+    {
+        $data = Contract::where('employee_id', $employee_id)
+                        ->get();
+
+        return $data;
+    }
+
     public function findActiveContract($employee_id)
     {
         $data = Contract::where('employee_id', $employee_id)

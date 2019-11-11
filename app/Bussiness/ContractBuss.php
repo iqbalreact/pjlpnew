@@ -93,9 +93,23 @@ class ContractBuss implements ContractBussInterface
         $request->program_id            = $workPackageInfo['program_id']; 
         $request->skpd_id               = $workPackageInfo['skpd_id']; 
 
+        if ($request->status == 'active'){
+            $this->SetContractToNonActive($request->employee_id);
+        }
+
         // update contract
         $data = $this->contractRepo->update($request, $id);
         
         return $data;
+    }
+
+    public function SetContractToNonActive($employee_id)
+    {
+        $contracts = $this->contractRepo->findByEmployeeId($employee_id);
+
+        foreach($contracts as $contract) {
+            $contract->status = 'non_active';
+            $contract->update();
+        }
     }
 }
