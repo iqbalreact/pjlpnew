@@ -127,6 +127,17 @@
         </div>
     </div>
 
+    @if(!$edit) 
+        <div class="form-group {{ $errors->has('position_id') ? 'has-error' : '' }}">
+            <label for="inputPosition" class="col-sm-2 control-label">Jatah Cuti @include('components.required')</label>
+    
+            <div class="col-sm-10">
+                {!! Form::text('remain_leave', 12, ['class' => 'form-control'] ) !!}
+                
+            </div>
+        </div>
+    @endif
+
     <div class="form-group {{ $errors->has('status') ? 'has-error' : '' }}">
         <label for="inputStatus" class="col-sm-2 control-label">Status @include('components.required')</label>
 

@@ -77,7 +77,7 @@ class ContractBuss implements ContractBussInterface
         $data = $this->contractRepo->store($request);
 
         if ($data) {
-            $leave = $this->leaveEmployeeRepo->store($data->employee_id, $data->id);
+            $leave = $this->leaveEmployeeRepo->store($data->employee_id, $data->id, $request->remain_leave);
         }
         
         return $data;

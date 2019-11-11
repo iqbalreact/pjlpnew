@@ -14,7 +14,7 @@ interface LeaveEmployeeRepoInterface
 
     public function existLeave($start_date, $end_date, $contract_id, $employee_id);
 
-    public function store($employee_id, $contract_id);    
+    public function store($employee_id, $contract_id, $remain_leave = 12);    
 
     public function storeHistoryLeave($start_date, $end_date, $contract_id, $employee_id, $diffDay = null, $leaveType = 0, $dates = null);    
 

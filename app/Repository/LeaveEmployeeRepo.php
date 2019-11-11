@@ -70,12 +70,12 @@ class LeaveEmployeeRepo implements LeaveEmployeeRepoInterface
         return $data;
     }
 
-    public function store($employee_id, $contract_id)
+    public function store($employee_id, $contract_id, $remain_leave = 12)
     {
         $data = new LeaveEmployee();
         $data->employee_id  = $employee_id;
         $data->contract_id  = $contract_id;
-        $data->remain_leave = 12;
+        $data->remain_leave = $remain_leave;
         $data->save();
 
         return $data;
