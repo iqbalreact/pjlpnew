@@ -43,7 +43,7 @@ class ContractRepo implements ContractRepoInterface
 
     public function findEmployeeByContract()
     {
-        $data = Contract::with('position', 'employee')
+        $data = Contract::with('position', 'employee', 'skpd')
                         ->where('status', 'active')
                         ->get();
 

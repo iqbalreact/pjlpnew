@@ -8,6 +8,8 @@ use App\Bussiness\Contracts\ContractBussInterface;
 
 use Carbon\Carbon;
 
+use PDF;
+
 class ReportController extends Controller
 {
     public function __construct(
@@ -39,6 +41,17 @@ class ReportController extends Controller
             $start->addDay();
         }
 
-        return view('admin.report.export.workInspection', compact('data', 'dates'));
+        $period = [
+            'month' => $start->format('F'),
+            'year'  => $start->format('Y')
+        ];
+
+        $skpdName = $data->first()->skpd->name ?? "";
+
+        $pdf = PDF::loadView('admin.report.export.workInspection', compact('data', 'dates', 'period', 'skpdName'))->setPaper('a4', 'landscape');
+
+        return $pdf->download('DataApel.pdf');
+
+        return view('admin.report.export.workInspection', compact('data', 'dates', 'period', 'skpdName'));
     }
 }
