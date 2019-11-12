@@ -145,6 +145,16 @@ return [
             'icon' => 'book',
             'url'  => '/admin/leaveEmployee'
         ],
+        [
+            'text' => 'Laporan',
+            'icon'    => 'book',
+            'submenu' => [
+                [
+                    'text' => 'Pemeriksaan Pekerjaan',
+                    'url'  => '/admin/report/workInspection'
+                ],
+            ]
+        ],
         'SISTEM',
         [
             'text' => 'Pengguna',

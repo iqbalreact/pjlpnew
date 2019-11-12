@@ -18,6 +18,8 @@ use App\Models\Salary;
 use App\Models\Skdp;
 use App\Models\WorkPackage;
 
+use App\Scopes\OwnContractScope;
+
 class Contract extends Model
 {
     use LogsActivity, CausesActivity;
@@ -53,6 +55,13 @@ class Contract extends Model
         'status',
         'occupation_id'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new OwnContractScope);
+    }
 
     public function activity()
     {

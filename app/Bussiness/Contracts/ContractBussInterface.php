@@ -10,6 +10,8 @@ interface ContractBussInterface
 
     public function findActiveContract($employee_id);
 
+    public function findEmployeeByContract();
+
     public function checkBeforeSixMonth($id, $date);
 
     public function distinctYear();

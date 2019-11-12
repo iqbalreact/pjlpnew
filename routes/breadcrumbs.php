@@ -256,6 +256,18 @@ Breadcrumbs::for('location_show', function ($trail, $location) {
  });
 
  /**
+ * Report =======================================================================
+ * 
+ */
+
+ // Home > Report
+ Breadcrumbs::for('report_workInspection', function ($trail) {
+    $trail->parent('dashboard');
+    $trail->push('Laporan');
+    $trail->push('Pemeriksaan Pekerjaan');
+});
+
+ /**
  * Position Category =======================================================================
  * 
  */

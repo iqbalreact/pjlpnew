@@ -41,6 +41,15 @@ class ContractRepo implements ContractRepoInterface
         return $data;
     }
 
+    public function findEmployeeByContract()
+    {
+        $data = Contract::with('position', 'employee')
+                        ->where('status', 'active')
+                        ->get();
+
+        return $data;
+    }
+
     public function distinctYear()
     {
         $data = Contract::selectRaw('YEAR(start_date) as year')->distinct()->get();

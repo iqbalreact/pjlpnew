@@ -28,7 +28,7 @@
                             <label for="inputMonth" class="col-sm-2 control-label">Bulan dan Tahun @include('components.required')</label>
     
                             <div class="col-sm-10">
-                                {!! Form::text('date', '', ['id' => 'date', 'class' => 'form-control datepicker', 'placeholder'=> __('Tanggal'), 'autocomplete' => 'off'] ) !!}
+                                {!! Form::text('date', '', ['id' => 'date', 'class' => 'form-control datepicker', 'placeholder'=> __('Bulan dan Tahun'), 'autocomplete' => 'off'] ) !!}
                             </div>
                         </div>
                          <div class="form-group">

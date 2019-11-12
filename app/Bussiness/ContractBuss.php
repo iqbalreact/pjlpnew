@@ -34,6 +34,11 @@ class ContractBuss implements ContractBussInterface
         return $this->contractRepo->findActiveContract($employee_id);
     }
 
+    public function findEmployeeByContract()
+    {
+        return $this->contractRepo->findEmployeeByContract();
+    }
+
     public function checkBeforeSixMonth($id, $date)
     {
         $contract = $this->find($id);
