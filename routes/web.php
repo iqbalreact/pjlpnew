@@ -59,7 +59,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::group(['prefix' => 'report'], function() {
         Route::get('workInspection', 'ReportController@workInspection')->name('report.workInspection');
-        Route::post('workInspection', 'ReportController@postWorkInspection')->name('report.workInspection.post');
+        Route::post('workInspection', 'ReportController@postWorkInspectionCeremony')->name('report.workInspection.post');
     });
 
     Route::post('/leave/generateDateRange', 'LeaveEmployeeController@generateDateRange')->name('leave.genereateDateRange');

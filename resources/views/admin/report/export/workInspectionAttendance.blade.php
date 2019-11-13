@@ -27,7 +27,7 @@
 </head>
 <body>
     <div class="header">
-        <p>DAFTAR KEHADIRAN APEL PAGI</p>
+        <p>DAFTAR KEHADIRAN KERJA</p>
         <p>PENYEDIA JASA LAINNYA ORANG-PERSEORANGAN</p>
     </div>
 
@@ -54,6 +54,7 @@
         <tr>
             <th rowspan="2"> No</th>
             <th width="5%" rowspan="2">Nama Penyedia Jasa/Pekerjaan</th>
+            <th width="5%" rowspan="2">Jam Kerja</th>
             <th colspan="{{ count($dates) }}" class="center-text"> Tanggal/Paraf </th>
         </tr>
         <tr>
@@ -73,6 +74,7 @@
                     <br> 
                     {{ $d->position->name }}
                 </td>
+                <td> 07.15 - 15.30 </td>
                 @foreach ($dates as $date)
                     @if($date['weekend'])
                         <td style="background-color:grey"> </td>

@@ -23,7 +23,7 @@ class ReportController extends Controller
         return view('admin.report.workInspection');
     }
 
-    public function postWorkInspection(Request $request)
+    public function postWorkInspectionCeremony(Request $request)
     {
         $data = $this->contract->findEmployeeByContract();
 
@@ -48,10 +48,14 @@ class ReportController extends Controller
 
         $skpdName = $data->first()->skpd->name ?? "";
 
-        $pdf = PDF::loadView('admin.report.export.workInspection', compact('data', 'dates', 'period', 'skpdName'))->setPaper('a4', 'landscape');
+        if ($request->type == 1) {
+            $pdf = PDF::loadView('admin.report.export.workInspection', compact('data', 'dates', 'period', 'skpdName'))->setPaper('a4', 'landscape');
 
-        return $pdf->download('DataApel.pdf');
+            return $pdf->download('Data Apel.pdf');
+        }
 
-        return view('admin.report.export.workInspection', compact('data', 'dates', 'period', 'skpdName'));
+        $pdf = PDF::loadView('admin.report.export.workInspectionAttendance', compact('data', 'dates', 'period', 'skpdName'))->setPaper('a4', 'landscape');
+
+        return $pdf->download('Data Kehadiran.pdf');
     }
 }

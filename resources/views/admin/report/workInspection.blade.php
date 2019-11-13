@@ -25,6 +25,16 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="inputMonth" class="col-sm-2 control-label">Jenis @include('components.required')</label>
+
+                <div class="col-sm-10">
+                    <select class="form-control" name="type">
+                        <option value="1">Apel</option>
+                        <option value="2">Kehadiran</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>  
