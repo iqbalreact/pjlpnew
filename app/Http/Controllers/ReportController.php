@@ -23,6 +23,40 @@ class ReportController extends Controller
         return view('admin.report.workInspection');
     }
 
+    public function workHandOverPage()
+    {
+        return view('admin.report.workHandover');
+    }
+
+    public function paymentPage()
+    {
+        return view('admin.report.payment');
+    }
+
+    public function workHandover()
+    {
+        $pdf = PDF::loadView('admin.report.export.workHandover')->setPaper('a4', 'potrait');
+        return $pdf->download('Serah Terima.pdf');
+
+        return view('admin.report.export.workHandover');
+    }
+
+    public function payment()
+    {
+        $pdf = PDF::loadView('admin.report.export.payment')->setPaper('a4', 'potrait');
+        return $pdf->download('Pembayaran.pdf');
+
+        return view('admin.report.export.payment');
+    }
+
+    public function workInspectionLetter()
+    {
+        $pdf = PDF::loadView('admin.report.export.workInspectionLetter')->setPaper('a4', 'potrait');
+        return $pdf->download('Surat Pemeriksaan.pdf');
+
+        return view('admin.report.export.payment');
+    }
+
     public function postWorkInspectionCeremony(Request $request)
     {
         $data = $this->contract->findEmployeeByContract();

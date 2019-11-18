@@ -153,6 +153,14 @@ return [
                     'text' => 'Pemeriksaan Pekerjaan',
                     'url'  => '/admin/report/workInspection'
                 ],
+                [
+                    'text' => 'Berita Acara',
+                    'url'  => '/admin/report/workHandoverPage'
+                ],
+                [
+                    'text' => 'Pembayaran',
+                    'url'  => '/admin/report/paymentPage'
+                ],
             ]
         ],
         'SISTEM',

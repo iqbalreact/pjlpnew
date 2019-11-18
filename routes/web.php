@@ -59,6 +59,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::group(['prefix' => 'report'], function() {
         Route::get('workInspection', 'ReportController@workInspection')->name('report.workInspection');
+        Route::get('workHandoverPage', 'ReportController@workHandOverPage')->name('report.workHandOverPage');
+        Route::get('paymentPage', 'ReportController@paymentPage')->name('report.paymentPage');
+
+
+        Route::get('workHandover', 'ReportController@workHandover')->name('report.workHandover');
+        Route::get('payment', 'ReportController@payment')->name('report.payment');
+        Route::get('workInspectionLetter', 'ReportController@workInspectionLetter')->name('report.workInspectionLetter');
         Route::post('workInspection', 'ReportController@postWorkInspectionCeremony')->name('report.workInspection.post');
     });
 

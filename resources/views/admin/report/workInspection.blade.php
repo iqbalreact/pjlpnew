@@ -42,6 +42,16 @@
         </form>
     </div>
 </div>
+
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">Surat Pemeriksaan</h3>
+    </div>
+
+    <div class="box-body">
+        <a href="{{ route('report.workInspectionLetter') }}" class="btn btn-primary">Download</a>
+    </div>
+</div>
 @stop
 
 @section('js2')
