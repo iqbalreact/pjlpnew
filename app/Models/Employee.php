@@ -76,6 +76,11 @@ class Employee extends Model implements HasMedia
         return $this->hasMany(Contract::class);
     }
 
+    public function activeContracts()
+    {
+        return $this->hasMany(Contract::class)->where('status', 'active');
+    }
+
     public function recapAttendances()
     {
         return $this->hasMany(RecapAttendance::class);

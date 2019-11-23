@@ -156,6 +156,8 @@ class DatatablesRepo implements DatatablesRepoInterface
             $datas->where('skpd_id', $request->skpdId);
         }
 
+        $datas->with('activeContracts.position');
+
         return $datas;
     }
 

@@ -157,6 +157,9 @@ class DatatablesBuss implements DatatablesBussInterface
 
                             return '<img src='.$avatar.' class="img-circle" height="50px">';
                         })
+                        ->addColumn('position', function($data) {
+                            return isset($data->activeContracts->first()->position->name) ? $data->activeContracts->first()->position->name : "";
+                        })
                         ->addColumn('actions', 
                                 ' <a href="{{ URL::route( \'employee.show\', array( $id )) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
                                 <a href="{{ URL::route( \'employee.edit\', array( $id )) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a>
