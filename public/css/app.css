@@ -1,4 +1,4 @@
-th.hide-order.sorting::after {
-  content: "" !important;
+th.hide-order.sorting {
+  visibility: hidden;
 }
 
