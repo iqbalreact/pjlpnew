@@ -28,7 +28,7 @@
         </div>
         
     @elseif($edit)
-        <div class="form-group {{ $errors->has('skpd_id') ? 'has-error' : '' }}"">
+        <div class="form-group {{ $errors->has('skpd_id') ? 'has-error' : '' }}">
             <label for="inputSKPD" class="col-sm-2 control-label">SKPD</label>
 
             <div class="col-sm-10">
