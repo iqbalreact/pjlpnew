@@ -69,8 +69,8 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th width="8%">Foto</th>
-                                <th width="10%">NIPJ</th>
+                                <th class="hide-order"></th>
+                                <th style="width:100px;">NIPJ</th>
                                 <th>Name</th>
                                 <th>Posisi</th>
                                 <th>Telepon</th>
