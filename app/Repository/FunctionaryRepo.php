@@ -12,7 +12,7 @@ class FunctionaryRepo implements FunctionaryRepoInterface
 {
     public function find($id)
     {
-        $data = Functionary::find($id);
+        $data = Functionary::with('occupations.skpd')->find($id);
         
         if (is_null($data)) {
             return false;

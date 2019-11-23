@@ -7,16 +7,29 @@ use Illuminate\Http\Request;
 use App\Bussiness\Contracts\FunctionaryBussInterface;
 use App\Repository\Contracts\FunctionaryRepoInterface;
 
+use App\Services\Contracts\OccupationServiceInterface;
+
 class FunctionaryBuss implements FunctionaryBussInterface
 {
-    public function __construct(FunctionaryRepoInterface $functionaryRepo)
-    {
-        $this->functionaryRepo = $functionaryRepo;
+    public function __construct(
+        FunctionaryRepoInterface $functionaryRepo,
+        OccupationServiceInterface $occupationService
+    ) {
+        $this->functionaryRepo      = $functionaryRepo;
+        $this->occupationService    = $occupationService;
     }
 
     public function find($id)
     {
-        return $this->functionaryRepo->find($id);
+        $data = $this->functionaryRepo->find($id);
+
+        if(isset($data->occupations) && $data->occupations != null) {
+            foreach($data->occupations as $occupation) {
+                $occupation->position_transform = $this->occupationService->occupationTransform($occupation->position);
+            }
+        }
+
+        return $data;
     }
 
     public function getByName($name)
