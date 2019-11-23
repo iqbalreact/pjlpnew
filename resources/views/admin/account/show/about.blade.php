@@ -3,7 +3,7 @@
         <label class="col-sm-2 control-label">NIP</label>
 
         <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->NIP }}" readonly>
+            <input class="form-control" value="{{ $data->nip }}" readonly>
         </div>
     </div>
     <div class="form-group">
