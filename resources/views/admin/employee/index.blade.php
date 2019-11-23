@@ -11,7 +11,7 @@
 @section('content')
     <div class="row">
         <div class="col-xs-12">
-            <div class="box box-danger">
+            <div class="box box-default">
                 <div class="box-header with-border">
                     <h3 class="box-title">Chart</h3>
                 </div>
@@ -29,28 +29,27 @@
                     </div>
                 </div>
             </div>
-            <div class="box box-primary">
+            <div class="box box-default">
                 <div class="box-header">
                     <h3 class="box-title">List PJLP</h3>
                     <div class="pull-right">
                         <a href="{{ route('export.employee') }}" class="btn btn-danger"><i class="fa fa-download"></i> Export</a>
-                        <a href="{{ route('employee.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah</a>
+                        <a href="{{ route('employee.create') }}" class="btn btn-success"><i class="fa fa-plus"></i> Tambah</a>
                     </div>
-                </div>
-                <div class="box-body">
+
                     @if(\Auth::user()->getRoles() == 'superadmin')
-                        <div class="form-horizontal">
+                        <div class="form-horizontal" style="margin-top:20px;">
                             <div class="form-group {{ $errors->has('skpd_id') ? 'has-error' : '' }}">
                                 <!-- <label class="col-md-1 control-label">SKPD @include('components.required')</label> -->
                     
-                                <div class="col-md-6">
+                                <div class="col-md-5">
                                     <select name="skpd_id" id="skpdSelect" class="form-control" required></select>
                                 </div>
 
                                     <button
                                         id="findData" 
                                         type="button" 
-                                        class="btn btn-default ">
+                                        class="btn btn-primary ">
                                             <i class="fa fa-filter"></i> Filter
                                     </button>
                                     <button class="btn btn-default" id="clearSkpd" type="button">
@@ -63,11 +62,16 @@
 
                     @endif
 
+
+                </div>
+                <div class="box-body">
+
+
                     <table id="employee-table" class="table">
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th class="hide-order"></th>
+                                <th></th>
                                 <th style="width:100px;">NIPJ</th>
                                 <th>Name</th>
                                 <th>Posisi</th>

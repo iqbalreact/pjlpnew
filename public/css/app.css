@@ -1,3 +1,23 @@
+.content-wrapper {
+  background: #fafafa;
+}
+
+.box {
+  border-top: 0;
+  border: 1px solid #dededf;
+  border-radius: 0;
+  box-shadow: 0 1px 3px 0px rgba(0, 0, 0, 0.1);
+}
+
+.box-header {
+  background: #f7f7f7;
+}
+
+.box-body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
 th.hide-order.sorting {
   visibility: hidden;
 }
