@@ -29,6 +29,38 @@
                     </div>
                 </div>
             </div>
+            @if(\Auth::user()->getRoles() == 'superadmin')
+            <div class="box box-primary">
+                <div class="box-header">
+                    Filter
+                </div>
+                <div class="box-body">
+                    <div class="form-horizontal">
+                        <div class="form-group {{ $errors->has('skpd_id') ? 'has-error' : '' }}">
+                            <label for="inputEmail" class="col-sm-2 control-label">SKPD @include('components.required')</label>
+                
+                            <div class="col-sm-9">
+                                <select name="skpd_id" id="skpdSelect" class="form-control" required></select>
+                            </div>
+
+                            <div class="col-sm-1">
+                                <button class="btn btn-danger" id="clearSkpd" type="button"><i class="fa fa-close"></i></button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button
+                                    id="findData" 
+                                    type="button" 
+                                    class="btn btn-primary">
+                                        <i class="fa fa-search"></i> Cari
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
             <div class="box box-primary">
                 <div class="box-header">
                     <h3 class="box-title">List PJLP</h3>
@@ -38,6 +70,7 @@
                     </div>
                 </div>
                 <div class="box-body">
+                    
                     <table id="employee-table" class="table">
                         <thead>
                             <tr>
@@ -60,13 +93,45 @@
 @section('js')
 <script>
     $(function() {
+        $(function() {
+            $("#skpdSelect").select2({
+                dropdownAutoWidth : true,
+                width: '100%',
+                placeholder: "Ketik dan pilih nama SKPD",
+                ajax: {
+                    url: "{{ route('select.skpd') }}",
+                    dataType: 'json',
+                    data: function (params) {
+                        return {
+                            q: params.term,
+                        };
+                    },
+                    processResults: function (data) {
+
+                        var res = data.map(function (item) {
+                            return {id: item.id, text: item.name};
+                        });
+                        
+                        return {
+                            results: res
+                        };
+                    }
+                }
+            });
+        });
+
         var oTable = $('#employee-table').dataTable({
             processing: true,
             serverSide: true,
             responsive: true,
             order: [[ 0, 'desc' ]],
             deferRender:    true,
-            ajax: '{!! route('fetch.employee') !!}',
+            ajax: {
+                url: '{!! route('fetch.employee') !!}',
+                data: function (d) {
+                    d.skpdId = $('#skpdSelect').val()
+                }
+            },
             columns: [
                 { data: 'id', name: 'id', class:'hide' },
                 { data: 'avatar', name: 'avatar', searchable:'false', orderable: 'false'},
@@ -78,10 +143,20 @@
             ]
         });
 
+        $('#clearSkpd').click(function() {
+            $('#skpdSelect').val(null).trigger('change');
+            reloadTable();    
+        });
+   
         function reloadTable(){
-            oTable.ajax.reload();
+            oTable.api().ajax.reload();
         }
+
+        $('#findData').click(function() {
+            reloadTable();
+        });
     });
+
 
     var colors = ['red', 'blue', 'orange', 'green', 'yellow', 'purple'];
 

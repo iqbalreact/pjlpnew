@@ -150,7 +150,11 @@ class DatatablesRepo implements DatatablesRepoInterface
 
     public function fetchEmployeeDatas(Request $request)
     {
-    	$datas = Employee::query();
+        $datas = Employee::query();
+        
+        if (!is_null($request->skpdId)) {
+            $datas->where('skpd_id', $request->skpdId);
+        }
 
         return $datas;
     }
