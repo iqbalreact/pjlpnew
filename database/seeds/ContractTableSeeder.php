@@ -42,6 +42,7 @@ class ContractTableSeeder extends Seeder
             $request->end_date         = Carbon::now()->addYear(1);
             $request->status           = 'active';
             $request->occupation_id    = rand(1, 50);
+            $request->remain_leave     = 12;
 
             $component  = [1,2];
             $nominal    = [1000000,2000000];
@@ -51,7 +52,7 @@ class ContractTableSeeder extends Seeder
             $request->salaries = $salaries;
 
             $contractEmployee   = $this->contract->store($request);
-            $leaveEmployee      = $this->leaveEmployee->store($request->employee_id, $contractEmployee->id);
+            // $leaveEmployee      = $this->leaveEmployee->store($request->employee_id, $contractEmployee->id);
         }
 
         
