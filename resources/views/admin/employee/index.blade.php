@@ -74,7 +74,7 @@
                                 <th>Name</th>
                                 <th>Posisi</th>
                                 <th>Telepon</th>
-                                <th width="15%">Action</th>
+                                <th style="width: 140px;">Action</th>
                             </tr>
                         </thead>
                     </table>                

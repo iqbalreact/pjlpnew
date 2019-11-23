@@ -155,15 +155,17 @@ class DatatablesBuss implements DatatablesBussInterface
                         ->addColumn('avatar', function($data) {
                             $avatar = $data->getAvatar();
 
-                            return '<img src='.$avatar.' class="img-circle" height="50px">';
+                            return '<img src='.$avatar.' class="img-circle" height="30px">';
                         })
                         ->addColumn('position', function($data) {
                             return isset($data->activeContracts->first()->position->name) ? $data->activeContracts->first()->position->name : "";
                         })
                         ->addColumn('actions', 
-                                ' <a href="{{ URL::route( \'employee.show\', array( $id )) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
-                                <a href="{{ URL::route( \'employee.edit\', array( $id )) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a>
-                                <a href="{{ URL::route( \'export.employee.detail\', array( $id )) }}" class="btn btn-danger btn-sm" ><i class="fa fa-download"></i> </a> ')
+                                '<div class="btn-group" role="group" aria-label="EmployeeActions">
+                                    <a href="{{ URL::route( \'employee.show\', array( $id )) }}" class="btn btn-default btn-xs" ><i class="fa fa-eye"></i> View </a>
+                                    <a href="{{ URL::route( \'employee.edit\', array( $id )) }}" class="btn btn-default btn-xs" ><i class="fa fa-pencil"></i> Edit</a>
+                                    <a href="{{ URL::route( \'export.employee.detail\', array( $id )) }}" class="btn btn-default btn-xs" ><i class="fa fa-download"></i> Export</a>
+                                </div>')
                         ->rawColumns(['actions', 'avatar'])
                         ->make(true);
     }
