@@ -29,38 +29,6 @@
                     </div>
                 </div>
             </div>
-            @if(\Auth::user()->getRoles() == 'superadmin')
-            <div class="box box-primary">
-                <div class="box-header">
-                    <h3 class="box-title">Filter</h3>
-                </div>
-                <div class="box-body">
-                    <div class="form-horizontal">
-                        <div class="form-group {{ $errors->has('skpd_id') ? 'has-error' : '' }}">
-                            <label for="inputEmail" class="col-sm-2 control-label">SKPD @include('components.required')</label>
-                
-                            <div class="col-sm-9">
-                                <select name="skpd_id" id="skpdSelect" class="form-control" required></select>
-                            </div>
-
-                            <div class="col-sm-1">
-                                <button class="btn btn-danger" id="clearSkpd" type="button"><i class="fa fa-close"></i></button>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button
-                                    id="findData" 
-                                    type="button" 
-                                    class="btn btn-primary">
-                                        <i class="fa fa-search"></i> Cari
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @endif
             <div class="box box-primary">
                 <div class="box-header">
                     <h3 class="box-title">List PJLP</h3>
@@ -70,7 +38,33 @@
                     </div>
                 </div>
                 <div class="box-body">
+                    @if(\Auth::user()->getRoles() == 'superadmin')
+                        <div class="form-horizontal">
+                            <div class="form-group {{ $errors->has('skpd_id') ? 'has-error' : '' }}">
+                                <label for="inputEmail" class="col-sm-2 control-label">SKPD @include('components.required')</label>
                     
+                                <div class="col-sm-7">
+                                    <select name="skpd_id" id="skpdSelect" class="form-control" required></select>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button
+                                        id="findData" 
+                                        type="button" 
+                                        class="btn btn-primary">
+                                            <i class="fa fa-search"></i> Cari
+                                    </button>
+                                    <button class="btn btn-danger" id="clearSkpd" type="button">
+                                        <i class="fa fa-close"></i> Reset
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        </br></br>
+                    @endif
+
                     <table id="employee-table" class="table">
                         <thead>
                             <tr>
