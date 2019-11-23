@@ -32,7 +32,7 @@
             @if(\Auth::user()->getRoles() == 'superadmin')
             <div class="box box-primary">
                 <div class="box-header">
-                    Filter
+                    <h3 class="box-title">Filter</h3>
                 </div>
                 <div class="box-body">
                     <div class="form-horizontal">
