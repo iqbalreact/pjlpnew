@@ -41,28 +41,26 @@
                     @if(\Auth::user()->getRoles() == 'superadmin')
                         <div class="form-horizontal">
                             <div class="form-group {{ $errors->has('skpd_id') ? 'has-error' : '' }}">
-                                <label for="inputEmail" class="col-sm-2 control-label">SKPD @include('components.required')</label>
+                                <!-- <label class="col-md-1 control-label">SKPD @include('components.required')</label> -->
                     
-                                <div class="col-sm-7">
+                                <div class="col-md-6">
                                     <select name="skpd_id" id="skpdSelect" class="form-control" required></select>
                                 </div>
 
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
                                     <button
                                         id="findData" 
                                         type="button" 
-                                        class="btn btn-primary">
-                                            <i class="fa fa-search"></i> Cari
+                                        class="btn btn-default ">
+                                            <i class="fa fa-filter"></i> Filter
                                     </button>
-                                    <button class="btn btn-danger" id="clearSkpd" type="button">
+                                    <button class="btn btn-default" id="clearSkpd" type="button">
                                         <i class="fa fa-close"></i> Reset
-                                    </button>
-                                </div>
+                                    </button>                                    
+
                             </div>
+
                         </div>
-                        </br></br>
+
                     @endif
 
                     <table id="employee-table" class="table">
@@ -91,7 +89,7 @@
             $("#skpdSelect").select2({
                 dropdownAutoWidth : true,
                 width: '100%',
-                placeholder: "Ketik dan pilih nama SKPD",
+                placeholder: "Ketik atau pilih SKPD untuk menyaring data",
                 ajax: {
                     url: "{{ route('select.skpd') }}",
                     dataType: 'json',
