@@ -137,7 +137,7 @@ class PayrollDatatablesBuss implements PayrollDatatablesBussInterface
         $attendance = $this->totalAttendance($data);
         $assessment = $data->employee->assessments->first();
 
-        if ($attendance < $this->totalDay && is_null($assessment)) {
+        if ($attendance < $this->totalDay or is_null($assessment)) {
             return '<button class="btn btn-sm btn-primary" disabled><i class="fa fa-save"></i></button>';
         }
 

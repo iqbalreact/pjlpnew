@@ -48,6 +48,7 @@
                                     </div>
                                 </div>                                
                             </div>
+                            @if(\Auth::user()->getRoles() == 'superadmin')
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="inputProgram" class="col-sm-2 control-label">Kegiatan @include('components.required')</label>
@@ -74,6 +75,7 @@
                                     </div>
                                 </div>                                
                             </div>
+                            @endif
                         </div>
 
                         <div class="form-group">
@@ -85,7 +87,6 @@
                             </button>
                         </div>
                     </form>
-
 
                 </div>
                 <div class="box-body">
