@@ -118,6 +118,11 @@ class DatatablesController extends Controller
 		return $this->datatables->fetchSkpdDatas($request);
 	}
 
+	public function fetchStartWorkingLetterDatas(Request $request)
+	{
+		return $this->datatables->fetchStartWorkingLetterDatas($request);
+	}
+
 	public function fetchWorkDayDatas(Request $request)
 	{
 		return $this->datatables->fetchWorkDayDatas($request);
@@ -126,6 +131,11 @@ class DatatablesController extends Controller
 	public function fetchWorkHandoverDatas(Request $request)
 	{
 		return $this->datatables->fetchWorkHandoverDatas($request);
+	}
+
+	public function fetchWorkInspectionDatas(Request $request)
+	{
+		return $this->datatables->fetchWorkInspectionDatas($request);
 	}
 
 	public function fetchWorkPackageDatas(Request $request)

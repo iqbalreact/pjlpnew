@@ -151,7 +151,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Pemeriksaan Pekerjaan',
-                    'url'  => '/admin/report/workInspection'
+                    'url'  => '/admin/workInspection'
                 ],
                 [
                     'text' => 'Serah Terima',
@@ -160,6 +160,10 @@ return [
                 [
                     'text' => 'Pembayaran',
                     'url'  => '/admin/paymentLetter'
+                ],
+                [
+                    'text' => 'Surat Perintah Mulai Kerja',
+                    'url'  => '/admin/startWorkingLetter'
                 ],
             ]
         ],
