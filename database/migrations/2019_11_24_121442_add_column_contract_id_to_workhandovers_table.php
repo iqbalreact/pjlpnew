@@ -25,7 +25,7 @@ class AddColumnContractIdToWorkhandoversTable extends Migration
      */
     public function down()
     {
-        Schema::table('workhandovers', function (Blueprint $table) {
+        Schema::table('work_handovers', function (Blueprint $table) {
             $table->dropColumn('contract_id');
         });
     }
