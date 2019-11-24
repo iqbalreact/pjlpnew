@@ -55,8 +55,8 @@
                                 <th></th>
                                 <th>Id</th>
                                 <th style="width:150px;">NIPJ</th>
-                                <th style="width:250px;">Name</th>
-                                <th>Status</th>
+                                <th style="width:300px;">Name</th>
+                                <th>Status Penilaian</th>
                                 <th style="font-size:80%;">Tingkat Penyelesaian Pekerjaan</th>
                                 <th style="font-size:80%;">Waktu Penyelesaian Pekerjaan</th>
                                 <th style="font-size:80%;">Kualitas Hasil Pekerjaan</th>
@@ -191,9 +191,9 @@
             obidence_on_rule: obidence_on_rule
         }, function(data, status) {
             if (status == 'success') {
-                oTable.api().cell(idx, 4).nodes().to$().find('.stateStatus').html("<img src='/img/checked.png'>");
+                oTable.api().cell(idx, 4).nodes().to$().find('.stateStatus').html("<span class='label label-success'>sudah</span>");
             } else {
-                oTable.api().cell(idx, 4).nodes().to$().find('.stateStatus').html("<img src='/img/cancel.png'>");
+                oTable.api().cell(idx, 4).nodes().to$().find('.stateStatus').html("<span class='label label-danger'>belum</span>");
             }
         });
     }
