@@ -161,6 +161,10 @@ return [
                     'text' => 'Pembayaran',
                     'url'  => '/admin/paymentLetter'
                 ],
+                [
+                    'text' => 'Surat Perintah Mulai Kerja',
+                    'url'  => '/admin/startWorkingLetter'
+                ],
             ]
         ],
         'SISTEM',

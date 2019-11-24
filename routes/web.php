@@ -55,6 +55,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('positionCategory', 'PositionCategoryController');
     Route::resource('skpd', 'SkpdController');
     Route::resource('salaryComponent', 'SalaryComponentController');
+    Route::resource('startWorkingLetter', 'StartWorkingLetterController');
     Route::resource('workDay', 'WorkDayController');
     Route::resource('workHandover', 'WorkHandoverController');
     Route::resource('workInspection', 'WorkInspectionController');
@@ -96,6 +97,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::get('positionCategory', 'DatatablesController@fetchPositionCategoryDatas')->name('fetch.positionCategory');
         Route::get('salaryComponent', 'DatatablesController@fetchSalaryComponentDatas')->name('fetch.salaryComponent');
         Route::get('skpd', 'DatatablesController@fetchSkpdDatas')->name('fetch.skpd');
+        Route::get('startWorkingLetter', 'DatatablesController@fetchStartWorkingLetterDatas')->name('fetch.startWorkingLetter');
         Route::get('workDay', 'DatatablesController@fetchWorkDayDatas')->name('fetch.workDay');
         Route::get('workHandover', 'DatatablesController@fetchWorkHandoverDatas')->name('fetch.workHandover');
         Route::get('workInspection', 'DatatablesController@fetchWorkInspectionDatas')->name('fetch.workInspection');
@@ -120,6 +122,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::get('workHandover/{id}', 'WorkHandoverController@export')->name('export.workHandover');
         Route::get('workInspection/{id}', 'WorkInspectionController@export')->name('export.workInspection');
         Route::get('paymentLetter/{id}', 'PaymentLetterController@export')->name('export.paymentLetter');
+        Route::get('startWorkingLetter/{id}', 'StartWorkingLetterController@export')->name('export.startWorkingLetter');
         Route::get('pjlp', 'EmployeeController@exportEmployee')->name('export.employee');
         Route::get('pjlp/{id}', 'EmployeeController@exportDetailEmployee')->name('export.employee.detail');
     });

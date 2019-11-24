@@ -58,6 +58,9 @@ use App\Repository\SalaryComponentRepo;
 use App\Repository\Contracts\SkpdRepoInterface;
 use App\Repository\SkpdRepo;
 
+use App\Repository\Contracts\StartWorkingLetterRepoInterface;
+use App\Repository\StartWorkingLetterRepo;
+
 use App\Repository\Contracts\WorkPackageRepoInterface;
 use App\Repository\WorkPackageRepo;
 
@@ -107,6 +110,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(PositionCategoryRepoInterface::class, PositionCategoryRepo::class);    
         $this->app->bind(SalaryComponentRepoInterface::class, SalaryComponentRepo::class);    
         $this->app->bind(SkpdRepoInterface::class, SkpdRepo::class);    
+        $this->app->bind(StartWorkingLetterRepoInterface::class, StartWorkingLetterRepo::class);    
         $this->app->bind(WorkDayRepoInterface::class, WorkDayRepo::class);    
         $this->app->bind(WorkPackageRepoInterface::class, WorkPackageRepo::class);    
         $this->app->bind(WorkHandoverRepoInterface::class, WorkHandoverRepo::class);    

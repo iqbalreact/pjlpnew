@@ -22,6 +22,7 @@ use App\Models\Program;
 use App\Models\RecapAttendance;
 use App\Models\SalaryComponent;
 use App\Models\Skpd;
+use App\Models\StartWorkingLetter;
 use App\Models\User;
 use App\Models\WorkDay;
 use App\Models\WorkHandover;
@@ -271,6 +272,15 @@ class DatatablesRepo implements DatatablesRepoInterface
     public function fetchSkpdDatas(Request $request)
     {
     	$datas = Skpd::query();
+
+        return $datas;
+    }
+
+    public function fetchStartWorkingLetterDatas(Request $request)
+    {
+        $datas = StartWorkingLetter::query();
+
+        $datas->with('employee', 'contract.position');
 
         return $datas;
     }

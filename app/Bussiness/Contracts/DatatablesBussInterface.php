@@ -38,6 +38,8 @@ interface DatatablesBussInterface
 
     public function fetchSkpdDatas(Request $request);    
 
+    public function fetchStartWorkingLetterDatas(Request $request);
+
     public function fetchWorkDayDatas(Request $request);
 
     public function fetchWorkHandoverDatas(Request $request);
