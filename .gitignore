@@ -3,6 +3,7 @@
 /public/storage
 /storage/*.key
 /storage/framework
+/storage/fonts
 /vendor
 .env
 .phpunit.result.cache

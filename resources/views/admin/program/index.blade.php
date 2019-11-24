@@ -22,7 +22,7 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Kode Program</th>
-                                <th>Nama</th>
+                                <th>Nama Program</th>
                                 <th>SKPD</th>
                                 <th width="15%">Action</th>
                             </tr>

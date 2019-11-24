@@ -33,8 +33,8 @@
                 <div class="box-header">
                     <h3 class="box-title">List PJLP</h3>
                     <div class="pull-right">
-                        <a href="{{ route('export.employee') }}" class="btn btn-danger"><i class="fa fa-download"></i> Export</a>
-                        <a href="{{ route('employee.create') }}" class="btn btn-success"><i class="fa fa-plus"></i> Tambah</a>
+                        <a href="{{ route('employee.create') }}" class="btn btn-success"><i class="fa fa-plus"></i> Tambah PJLP Baru</a>                        
+                        <a href="{{ route('export.employee') }}" class="btn btn-danger"><i class="fa fa-download"></i> Export Data</a>
                     </div>
 
                     @if(\Auth::user()->getRoles() == 'superadmin')
