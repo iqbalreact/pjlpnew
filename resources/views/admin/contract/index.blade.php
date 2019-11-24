@@ -26,62 +26,67 @@
 
     <div class="row">
         <div class="col-xs-12">
-            <div class="box box-primary">
-                <div class="box-header">   
-                    <h3 class="box-title">Filter Kontrak Kerja</h3>
-                </div>
-                <div class="box-body">
-                    <form class="form-horizontal">
-                        <div class="form-group">
-                            <label for="inputProgram" class="col-sm-2 control-label">Program @include('components.required')</label>
-                
-                            <div class="col-sm-9">
-                                <select name="program_id" id="programSelect" class="form-control"></select>
-                            </div>
 
-                            <div class="col-sm-1">
-                                <button class="btn btn-danger" id="clearProgram" type="button"><i class="fa fa-close"></i></button>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputProgram" class="col-sm-2 control-label">Kegiatan @include('components.required')</label>
-                
-                            <div class="col-sm-9">
-                                <select name="activity_id" id="activitySelect" class="form-control"></select>
-                            </div>
-
-                            <div class="col-sm-1">
-                                <button class="btn btn-danger" id="clearActivity" type="button"><i class="fa fa-close"></i></button>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputWorkPackage" class="col-sm-2 control-label">Paket Pekerjaan @include('components.required')</label>
-                    
-                            <div class="col-sm-9">
-                                <select name="work_package_id" id="workPackageSelect" class="form-control"></select>
-                            </div>
-
-                            <div class="col-sm-1">
-                                <button class="btn btn-danger" id="clearWorkPackage" type="button"><i class="fa fa-close"></i></button>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button
-                                    id="findData" 
-                                    type="button" 
-                                    class="btn btn-primary">
-                                        <i class="fa fa-search"></i> Cari
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
             <div class="box box-primary">
                 <div class="box-header">
                     <h3 class="box-title">List Kontrak</h3>
                     <a href="{{ route('contract.create') }}" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Kontrak Baru</a>
+
+
+                    <form class="form-horizontal" style="margin-top:40px;">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="inputProgram" class="col-sm-2 control-label">Program @include('components.required')</label>
+                        
+                                    <div class="col-sm-9">
+                                        <select name="program_id" id="programSelect" class="form-control"></select>
+                                    </div>
+
+                                    <div class="col-sm-1">
+                                        <button class="btn btn-danger" id="clearProgram" type="button"><i class="fa fa-close"></i></button>
+                                    </div>
+                                </div>                                
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="inputProgram" class="col-sm-2 control-label">Kegiatan @include('components.required')</label>
+                        
+                                    <div class="col-sm-9">
+                                        <select name="activity_id" id="activitySelect" class="form-control"></select>
+                                    </div>
+
+                                    <div class="col-sm-1">
+                                        <button class="btn btn-danger" id="clearActivity" type="button"><i class="fa fa-close"></i></button>
+                                    </div>
+                                </div>                                
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="inputWorkPackage" class="col-sm-2 control-label">Paket Pekerjaan @include('components.required')</label>
+                            
+                                    <div class="col-sm-9">
+                                        <select name="work_package_id" id="workPackageSelect" class="form-control"></select>
+                                    </div>
+
+                                    <div class="col-sm-1">
+                                        <button class="btn btn-danger" id="clearWorkPackage" type="button"><i class="fa fa-close"></i></button>
+                                    </div>
+                                </div>                                
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <button
+                                id="findData" 
+                                type="button" 
+                                class="btn btn-primary">
+                                    <i class="fa fa-search"></i> Cari
+                            </button>
+                        </div>
+                    </form>
+
+
                 </div>
                 <div class="box-body">
                     <table id="contract-table" class="table">

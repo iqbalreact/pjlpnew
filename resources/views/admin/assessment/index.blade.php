@@ -10,43 +10,45 @@
 
 @section('content')
     <div class="row">
-        <div class="col-xs-12">
-            <div class="box box-primary">
+        <div class="col-md-12">
+            <div class="box box-default" id="inputAttendace">
                 <div class="box-header">   
-                    <h3 class="box-title">Filter</h3>
-                </div>
-                <div class="box-body">
-                    <form class="form-horizontal">
-                        <div class="form-group">
-                            <label for="inputWorkPackage" class="col-sm-2 control-label">Paket Pekerjaan @include('components.required')</label>
-                    
-                            <div class="col-sm-10">
-                                <select name="work_package_id" id="workPackageSelect" class="form-control"></select>
+                    <h3 class="box-title">Input Penilaian</h3>
+
+                    <form class="form-horizontal" style="margin-top:20px;">
+
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <label for="inputWorkPackage" class="col-sm-3 control-label">Paket Pekerjaan @include('components.required')</label>
+                            
+                                    <div class="col-sm-9">
+                                        <select name="work_package_id" id="workPackageSelect" class="form-control"></select>
+                                    </div>
+                                </div>                                
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputMonth" class="col-sm-2 control-label">Bulan dan Tahun @include('components.required')</label>
-    
-                            <div class="col-sm-10">
-                                {!! Form::text('date', '', ['id' => 'date', 'class' => 'form-control datepicker', 'placeholder'=> __('Tanggal'), 'autocomplete' => 'off'] ) !!}
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="inputMonth" class="col-sm-4 control-label">Periode @include('components.required')</label>
+            
+                                    <div class="col-sm-8">
+                                        {!! Form::text('date', '', ['id' => 'date', 'class' => 'form-control datepicker', 'placeholder'=> __('Tanggal'), 'autocomplete' => 'off'] ) !!}
+                                    </div>
+                                </div>                                
                             </div>
-                        </div>
-                         <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button
-                                    id="findData" 
-                                    type="button" 
-                                    class="btn btn-primary">
-                                        <i class="fa fa-search"></i> Cari
-                                </button>
+                            <div class="col-md-2">
+                                 <div class="form-group">
+                                        <button
+                                            id="findData" 
+                                            type="button" 
+                                            class="btn btn-primary">
+                                                <i class="fa fa-search"></i> Tampilkan Data
+                                        </button>
+                                </div>                                
                             </div>
                         </div>
                     </form>
-                </div>
-            </div>
-            <div class="box box-primary" id="inputAttendace">
-                <div class="box-header">   
-                    <h3 class="box-title">Input Penilaian</h3>
+
                 </div>
                 <div class="box-body">
                     <table id="employee-table" class="table" width="100%">
@@ -54,28 +56,33 @@
                             <tr>
                                 <th></th>
                                 <th>Id</th>
-                                <th>NIPJ</th>
-                                <th>Name</th>
+                                <th style="width:120px;">NIPJ</th>
+                                <th style="width:300px;">Name</th>
+                                <th>Status Penilaian</th>
                                 <th style="font-size:80%;">Tingkat Penyelesaian Pekerjaan</th>
                                 <th style="font-size:80%;">Waktu Penyelesaian Pekerjaan</th>
                                 <th style="font-size:80%;">Kualitas Hasil Pekerjaan</th>
                                 <th style="font-size:80%;">Kepatuhan Menjalankan Kewajiban</th>
                                 <th style="font-size:80%;">Kepatuhan terhadap Larangan</th>
                                 <th>Aksi</th>
-                                <th>Status</th>
+                                
                             </tr>
                         </thead>
                     </table> 
                     
                     <div class="row">
-                        <div class="col-md-2">
-                            <button type="button" class="btn btn-primary btn-block" id="btn-submit">Bulk Insert Penilaian</button>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-success btn-lg btn-block" id="btn-submit"><i class="fa fa-check"></i> Penilaian Massal</button>
                         </div>
-                        <div class="col-md-10">
-                                <div class="callout callout-info">
-                                    <h4>PERHATIAN!</h4>
-                                    <p>Bulk insert hanya bisa dilakukan setiap satu halaman</p>
-                                </div>
+                        <div class="col-md-9">
+                            <div class="callout callout-default">
+                                <h4>Aturan penilaian massal</h4>
+                                <ul>
+                                    <li>Penilaian massal hanya bisa dilakukan dalam satu halaman data.</li>
+                                    <li>Centang kotak pada kolom paling kiri di setiap baris data, atau di bagian kiri atas untuk mencentang semua kotak sebagai penanda data yang akan dinilai.</li>
+                                    <li>Tekan tombol "Penilaian Massal" setelah data ditandai.</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -131,13 +138,14 @@
             { data: 'id', name: 'id', class:'hide' },
             { data: 'employee_nipj', name: 'employee.nipj', searchable:'true', orderable:'false'},
             { data: 'employee_name', name: 'employee.name', searchable:'true', orderable:'false'},
-            { data: 'work_completion_rate', name: 'work_completion_rate', searchable:'false', orderable:'false', "width": "10%"},
-            { data: 'work_completion_time', name: 'work_completion_time', searchable:'false', orderable:'false', "width": "10%"},
-            { data: 'work_quality', name: 'work_quality', searchable:'false', orderable:'false', "width": "10%"},
-            { data: 'obidence_on_obligation', name: 'obidence_on_obligation', searchable:'false', orderable:'false', "width": "10%"},
-            { data: 'obidence_on_rule', name: 'obidence_on_rule', searchable:'false', orderable:'false', "width": "10%"},
-            { data: 'save', name: 'save', searchable:'false', orderable:'false', "width": "5%"},
-            { data: 'status', name: 'status', searchable:'false', orderable:'false', "width": "5%"}
+            { data: 'status', name: 'status', searchable:'false', orderable:'false'},
+            { data: 'work_completion_rate', name: 'work_completion_rate', searchable:'false', orderable:'false'},
+            { data: 'work_completion_time', name: 'work_completion_time', searchable:'false', orderable:'false'},
+            { data: 'work_quality', name: 'work_quality', searchable:'false', orderable:'false'},
+            { data: 'obidence_on_obligation', name: 'obidence_on_obligation', searchable:'false', orderable:'false'},
+            { data: 'obidence_on_rule', name: 'obidence_on_rule', searchable:'false', orderable:'false'},
+            { data: 'save', name: 'save', searchable:'false', orderable:'false'}
+            
         ]
     });
 
@@ -169,13 +177,13 @@
         
         var employee_id = data.employee.id;
         var contract_id = data.id;
-        var work_completion_rate    = oTable.api().cell(idx,4).nodes().to$().find('select').val();
-        var work_completion_time    = oTable.api().cell(idx,5).nodes().to$().find('select').val();
-        var work_quality            = oTable.api().cell(idx,6).nodes().to$().find('select').val();
-        var obidence_on_obligation  = oTable.api().cell(idx,7).nodes().to$().find('select').val();
-        var obidence_on_rule        = oTable.api().cell(idx,8).nodes().to$().find('select').val();
+        var work_completion_rate    = oTable.api().cell(idx,5).nodes().to$().find('select').val();
+        var work_completion_time    = oTable.api().cell(idx,6).nodes().to$().find('select').val();
+        var work_quality            = oTable.api().cell(idx,7).nodes().to$().find('select').val();
+        var obidence_on_obligation  = oTable.api().cell(idx,8).nodes().to$().find('select').val();
+        var obidence_on_rule        = oTable.api().cell(idx,9).nodes().to$().find('select').val();
                
-        oTable.api().cell(idx, (10)).nodes().to$().find('.stateStatus').html("<img src='/img/spinner.gif'>");
+        oTable.api().cell(idx, (4)).nodes().to$().find('.stateStatus').html("<img src='/img/spinner.gif'>");
 
         $.post('{{ route('assessment.store') }}', {
             employee_id: employee_id, 
@@ -189,9 +197,9 @@
             obidence_on_rule: obidence_on_rule
         }, function(data, status) {
             if (status == 'success') {
-                oTable.api().cell(idx, 10).nodes().to$().find('.stateStatus').html("<img src='/img/checked.png'>");
+                oTable.api().cell(idx, 4).nodes().to$().find('.stateStatus').html("<span class='label label-success'>sudah</span>");
             } else {
-                oTable.api().cell(idx, 10).nodes().to$().find('.stateStatus').html("<img src='/img/cancel.png'>");
+                oTable.api().cell(idx, 4).nodes().to$().find('.stateStatus').html("<span class='label label-danger'>belum</span>");
             }
         });
     }

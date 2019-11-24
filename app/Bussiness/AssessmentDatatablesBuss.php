@@ -176,15 +176,15 @@ class AssessmentDatatablesBuss implements AssessmentDatatablesBussInterface
 
     private function saveButton()
     {
-        return '<button class="btn btn-sm btn-primary"><i class="fa fa-save"></i></button>';
+        return '<button class="btn btn-sm btn-default"><i class="fa fa-check"></i> Nilai</button>';
     }
 
     private function status($data)
     {
         if (!empty($data->employee->assessments->first())) {
-            return '<div class="stateStatus"><img src="/img/checked.png"></div>';
+            return '<div class="stateStatus"><span class="label label-success">sudah</span></div>';
         }
 
-        return '<div class="stateStatus"></div>';
+        return '<div class="stateStatus"><span class="label label-danger">belum</span></div>';
     }
 }
