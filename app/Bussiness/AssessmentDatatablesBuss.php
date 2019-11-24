@@ -176,7 +176,7 @@ class AssessmentDatatablesBuss implements AssessmentDatatablesBussInterface
 
     private function saveButton()
     {
-        return '<button class="btn btn-sm btn-success"><i class="fa fa-check"></i> Nilai</button>';
+        return '<button class="btn btn-sm btn-default"><i class="fa fa-check"></i> Nilai</button>';
     }
 
     private function status($data)
