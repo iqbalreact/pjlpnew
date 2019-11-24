@@ -85,7 +85,7 @@
         <label for="inputName" class="col-sm-2 control-label">Nomer @include('components.required')</label>
 
         <div class="col-sm-10">
-            {!! Form::text('number', $edit ? $data->number : old('number'), ['class' => 'form-control', 'placeholder'=> __('Nomer Surat'), 'required' => true] ) !!}
+            {!! Form::text('number', $edit ? $data->number : $initNumber, ['class' => 'form-control', 'placeholder'=> __('Nomer Surat'), 'required' => true] ) !!}
             
             @if ($errors->has('number'))
                 <span class="help-block">{{ $errors->first('number') }}</span>
@@ -97,7 +97,7 @@
         <label for="inputName" class="col-sm-2 control-label">Bagian 1 @include('components.required')</label>
 
         <div class="col-sm-10">
-            {!! Form::textArea('section_1', $edit ? $data->section_1 : old('section_1'), ['class' => 'form-control', 'placeholder'=> __('Bagian 1'), 'required' => true] ) !!}
+            {!! Form::textArea('section_1', $edit ? $data->section_1 : $initSection1, ['class' => 'form-control', 'placeholder'=> __('Bagian 1'), 'required' => true] ) !!}
             
             @if ($errors->has('section_1'))
                 <span class="help-block">{{ $errors->first('section_1') }}</span>
@@ -109,7 +109,7 @@
         <label for="inputName" class="col-sm-2 control-label">Bagian 2 @include('components.required')</label>
 
         <div class="col-sm-10">
-            {!! Form::textArea('section_2', $edit ? $data->section_2 : old('section_2'), ['class' => 'form-control', 'placeholder'=> __('Bagian 2'), 'required' => true] ) !!}
+            {!! Form::textArea('section_2', $edit ? $data->section_2 : $initSection2, ['class' => 'form-control', 'placeholder'=> __('Bagian 2'), 'required' => true] ) !!}
             
             @if ($errors->has('section_2'))
                 <span class="help-block">{{ $errors->first('section_2') }}</span>
@@ -121,7 +121,7 @@
         <label for="inputName" class="col-sm-2 control-label">Bagian 3 @include('components.required')</label>
 
         <div class="col-sm-10">
-            {!! Form::textArea('section_3', $edit ? $data->section_3 : old('section_3'), ['class' => 'form-control', 'placeholder'=> __('Bagian 3'), 'required' => true] ) !!}
+            {!! Form::textArea('section_3', $edit ? $data->section_3 : $initSection3, ['class' => 'form-control', 'placeholder'=> __('Bagian 3'), 'required' => true] ) !!}
             
             @if ($errors->has('section_3'))
                 <span class="help-block">{{ $errors->first('section_3') }}</span>
@@ -133,7 +133,7 @@
         <label for="inputName" class="col-sm-2 control-label">Bagian 4 @include('components.required')</label>
 
         <div class="col-sm-10">
-            {!! Form::textArea('section_4', $edit ? $data->section_4 : old('section_4'), ['class' => 'form-control', 'placeholder'=> __('Bagian 4'), 'required' => true] ) !!}
+            {!! Form::textArea('section_4', $edit ? $data->section_4 : $initSection4, ['class' => 'form-control', 'placeholder'=> __('Bagian 4'), 'required' => true] ) !!}
             
             @if ($errors->has('section_4'))
                 <span class="help-block">{{ $errors->first('section_4') }}</span>
