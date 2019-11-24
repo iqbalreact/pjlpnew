@@ -20,6 +20,7 @@ use App\Models\Position;
 use App\Models\Program;
 use App\Models\Skpd;
 use App\Models\WorkHandover;
+use App\Models\WorkInspection;
 use App\Models\WorkPackage;
 
 use Carbon\Carbon;
@@ -357,6 +358,24 @@ class DatatablesBuss implements DatatablesBussInterface
                         ->addColumn('actions', 
                                 ' <a href="{{ URL::route( \'workHandover.show\', array( $id)) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
                                 <a href="{{ URL::route( \'workHandover.edit\', array( $id)) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')
+                        ->rawColumns(['actions'])
+                        ->make(true);
+    }
+
+    public function fetchWorkInspectionDatas(Request $request)
+    {
+        $query = $this->datatablesRepo->fetchWorkInspectionDatas($request);
+
+        return Datatables::of($query)
+                        ->addColumn('employee', function (WorkInspection $workInspection) {
+                            return $workInspection->employee->name;
+                        })
+                        ->addColumn('position', function (WorkInspection $workInspection) {
+                            return $workInspection->contract->position->name ?? ''; 
+                        })
+                        ->addColumn('actions', 
+                                ' <a href="{{ URL::route( \'workInspection.show\', array( $id)) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
+                                <a href="{{ URL::route( \'workInspection.edit\', array( $id)) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')
                         ->rawColumns(['actions'])
                         ->make(true);
     }

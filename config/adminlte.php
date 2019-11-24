@@ -151,7 +151,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Pemeriksaan Pekerjaan',
-                    'url'  => '/admin/report/workInspection'
+                    'url'  => '/admin/workInspection'
                 ],
                 [
                     'text' => 'Serah Terima',

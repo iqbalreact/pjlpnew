@@ -25,6 +25,7 @@ use App\Models\Skpd;
 use App\Models\User;
 use App\Models\WorkDay;
 use App\Models\WorkHandover;
+use App\Models\WorkInspection;
 use App\Models\WorkPackage;
 
 use Carbon\Carbon;
@@ -284,6 +285,15 @@ class DatatablesRepo implements DatatablesRepoInterface
     public function fetchWorkHandoverDatas(Request $request)
     {
         $datas = WorkHandover::query();
+
+        $datas->with('employee', 'contract.position');
+
+        return $datas;
+    }
+
+    public function fetchWorkInspectionDatas(Request $request)
+    {
+        $datas = WorkInspection::query();
 
         $datas->with('employee', 'contract.position');
 

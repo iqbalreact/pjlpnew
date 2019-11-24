@@ -57,6 +57,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('salaryComponent', 'SalaryComponentController');
     Route::resource('workDay', 'WorkDayController');
     Route::resource('workHandover', 'WorkHandoverController');
+    Route::resource('workInspection', 'WorkInspectionController');
     Route::resource('workPackage', 'WorkPackageController');
 
     Route::group(['prefix' => 'report'], function() {
@@ -97,6 +98,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::get('skpd', 'DatatablesController@fetchSkpdDatas')->name('fetch.skpd');
         Route::get('workDay', 'DatatablesController@fetchWorkDayDatas')->name('fetch.workDay');
         Route::get('workHandover', 'DatatablesController@fetchWorkHandoverDatas')->name('fetch.workHandover');
+        Route::get('workInspection', 'DatatablesController@fetchWorkInspectionDatas')->name('fetch.workInspection');
         Route::get('workPackage', 'DatatablesController@fetchWorkPackageDatas')->name('fetch.workPackage');
     });
 
@@ -116,6 +118,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     // Export
     Route::group(['prefix' => 'export'], function() {
         Route::get('workHandover/{id}', 'WorkHandoverController@export')->name('export.workHandover');
+        Route::get('workInspection/{id}', 'WorkInspectionController@export')->name('export.workInspection');
         Route::get('paymentLetter/{id}', 'PaymentLetterController@export')->name('export.paymentLetter');
         Route::get('pjlp', 'EmployeeController@exportEmployee')->name('export.employee');
         Route::get('pjlp/{id}', 'EmployeeController@exportDetailEmployee')->name('export.employee.detail');

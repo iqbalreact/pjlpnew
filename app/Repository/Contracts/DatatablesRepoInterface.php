@@ -48,5 +48,7 @@ interface DatatablesRepoInterface
 
     public function fetchWorkHandoverDatas(Request $request);
 
+    public function fetchWorkInspectionDatas(Request $request);
+
     public function fetchWorkPackageDatas(Request $request);
 }
