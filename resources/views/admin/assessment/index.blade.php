@@ -69,13 +69,17 @@
                     </table> 
                     
                     <div class="row">
-                        <div class="col-md-2">
-                            <button type="button" class="btn btn-primary btn-block" id="btn-submit">Bulk Insert Penilaian</button>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-success btn-lg btn-block" id="btn-submit"><i class="fa fa-check"></i> Penilaian Massal</button>
                         </div>
-                        <div class="col-md-10">
-                                <div class="callout callout-info">
-                                    <h4>PERHATIAN!</h4>
-                                    <p>Bulk insert hanya bisa dilakukan setiap satu halaman</p>
+                        <div class="col-md-6">
+                                <div class="callout callout-default">
+                                    <h4>Aturan penilaian massal</h4>
+                                    <ul>
+                                        <li>Penilaian massal hanya bisa dilakukan dalam satu halaman data.</li>
+                                        <li>Centang kotak pada kolom paling kiri di setiap baris data, atau di bagian kiri atas untuk mencentang semua kotak sebagai penanda data yang akan dinilai.</li>
+                                        <li>Tekan tombol "Penilaian Massal" setelah data ditandai.</li>
+                                    </ul>
                                 </div>
                         </div>
                     </div>
