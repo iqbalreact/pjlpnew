@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\Traits\CausesActivity;
 
-use App\Models\Skpd;
+use App\Models\Contract;
 use App\Models\Employee;
 use App\Models\Functionary;
+use App\Models\Skpd;
 
 use App\Scopes\OwnWorkHandoverScope;
 
@@ -20,8 +21,10 @@ class WorkHandover extends Model
     protected $fillable = [
         'employee_id', 
         'skpd_id', 
-        'functionary_id', 
+        'functionary_id',
+        'contract_id', 
         'number',
+        'date',
         'section_1',
         'section_2',
         'section_3',
@@ -32,7 +35,9 @@ class WorkHandover extends Model
         'employee_id', 
         'skpd_id', 
         'functionary_id', 
+        'contract_id',
         'number',
+        'date',
         'section_1',
         'section_2',
         'section_3',
@@ -44,6 +49,11 @@ class WorkHandover extends Model
         parent::boot();
 
         static::addGlobalScope(new OwnWorkHandoverScope);
+    }
+
+    public function contract()
+    {
+        return $this->belongsTo(Contract::class);
     }
     
     public function skpd()

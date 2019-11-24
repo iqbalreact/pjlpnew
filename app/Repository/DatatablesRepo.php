@@ -275,7 +275,7 @@ class DatatablesRepo implements DatatablesRepoInterface
     {
         $datas = WorkHandover::query();
 
-        $datas->with('employee');
+        $datas->with('employee', 'contract.position');
 
         return $datas;
     }

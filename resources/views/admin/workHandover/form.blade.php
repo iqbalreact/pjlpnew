@@ -114,6 +114,18 @@
         </div>
     </div>
 
+    <div class="form-group {{ $errors->has('start_date') ? 'has-error' : '' }}">
+        <label for="inputStartDate" class="col-sm-2 control-label">Tanggal Terbit @include('components.required')</label>
+
+        <div class="col-sm-10">
+            {!! Form::text('date', $edit ? $data->date : old('start_date'), ['class' => 'form-control datepicker', 'placeholder'=> __('Tanggal terbit'), 'autocomplete' => 'off'] ) !!}
+            
+            @if ($errors->has('date'))
+                <span class="help-block">{{ $errors->first('date') }}</span>
+            @endif
+        </div>
+    </div>
+
     <div class="form-group {{ $errors->has('section_1') ? 'has-error' : '' }}">
         <label for="inputName" class="col-sm-2 control-label">Bagian 1 @include('components.required')</label>
 
@@ -192,6 +204,13 @@
         CKEDITOR.replace( 'section_2' );
         CKEDITOR.replace( 'section_3' );
         CKEDITOR.replace( 'section_4' );
+
+        //Date picker
+        $('.datepicker').datepicker({
+            autoclose: true,
+            orientation: 'bottom',
+            format: 'dd-mm-yyyy'
+        });
 
         $("#employeeSelect").select2({
             dropdownAutoWidth : true,
