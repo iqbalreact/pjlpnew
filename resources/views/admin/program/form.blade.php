@@ -40,7 +40,7 @@
     </div>
     
     <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
-        <label for="inputName" class="col-sm-2 control-label">Nama @include('components.required')</label>
+        <label for="inputName" class="col-sm-2 control-label">Nama Program @include('components.required')</label>
 
         <div class="col-sm-10">
             {!! Form::text('name', $edit ? $data->name : old('name'), ['class' => 'form-control', 'placeholder'=> __('Nama program')] ) !!}
@@ -55,8 +55,8 @@
         <div class="col-sm-offset-2 col-sm-10">
             <button 
                 type="submit" 
-                class="btn btn-primary">
-                    {{ $edit ? 'Update' : 'Simpan' }}
+                class="btn btn-success">
+                    {{ $edit ? 'Update' : 'Buat Program' }}
             </button>
             
             <a href="{{ URL::previous() }}" 
