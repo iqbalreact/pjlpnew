@@ -129,17 +129,7 @@
 
         {!! $data->section_3 !!}
 
-        {{-- <div class="row">
-            <div class="column sign-area">
-                <p>PIHAK PERTAMA</p>
-                <br>
-                <p>Pejabat Pembuat Komitmen</p>
-                <p>Dinas Komunikasi dan Informatika</p>
-                <p>Kota Pontianak</p>
-                <br><br><br><br>
-                <p>{{ $data->functionary->name ?? '' }}</p>
-                <p>NIP: {{ $data->functionary->nipj }}</p>
-            </div>
+        <div class="row">
             <div class="column sign-area">
                 <p>PIHAK KEDUA</p>
                 <br>
@@ -149,6 +139,14 @@
                 <p>{{ $data->employee->name }}</p>
                 <p>NIK: {{ $data->employee->nipj }}</p>
             </div>
-        </div> --}}
+            <div class="column sign-area">
+                <p>Yang Memeriksa</p>
+                <br>
+                <div style="text-align:left">
+                    <p>1. {{ $data->functionary->name }}  ........<p>
+                    <p>2. {{ $data->functionaryPPTK->name }} ........</p>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
