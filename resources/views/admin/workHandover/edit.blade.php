@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Edit Posisi | '.env('APP_NAME'))
+@section('title', 'Surat Serah Terima | '.env('APP_NAME'))
 
 @section('content_header')
     <h1>Surat Serah Terima</h1>

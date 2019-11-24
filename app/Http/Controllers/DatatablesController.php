@@ -83,6 +83,11 @@ class DatatablesController extends Controller
 		return $this->datatables->fetchOccupationDatas($request);
 	}
 
+	public function fetchPaymentLetterDatas(Request $request)
+	{
+		return $this->datatables->fetchPaymentLetterDatas($request);
+	}
+
 	public function fetchPayrollDatas(Request $request)
 	{
 		return $this->payroll->fetchTemplate($request);

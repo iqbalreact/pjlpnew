@@ -15,6 +15,7 @@ use App\Models\Functionary;
 use App\Models\HistoryLeaveEmployee;
 use App\Models\Location;
 use App\Models\Occupation;
+use App\Models\PaymentLetter;
 use App\Models\Position;
 use App\Models\PositionCategory;
 use App\Models\Program;
@@ -217,6 +218,15 @@ class DatatablesRepo implements DatatablesRepoInterface
                 }])
                 ->where('status', 'active')
                 ->where('work_package_id', $request->workPackageId);
+
+        return $datas;
+    }
+
+    public function fetchPaymentLetterDatas(Request $request)
+    {
+        $datas = PaymentLetter::query();
+
+        $datas->with('employee', 'contract.position');
 
         return $datas;
     }

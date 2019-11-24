@@ -159,7 +159,7 @@ return [
                 ],
                 [
                     'text' => 'Pembayaran',
-                    'url'  => '/admin/report/paymentPage'
+                    'url'  => '/admin/paymentLetter'
                 ],
             ]
         ],

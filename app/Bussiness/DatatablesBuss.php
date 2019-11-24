@@ -15,6 +15,7 @@ use App\Models\Contract;
 use App\Models\HistoryLeaveEmployee;
 use App\Models\Location;
 use App\Models\Occupation;
+use App\Models\PaymentLetter;
 use App\Models\Position;
 use App\Models\Program;
 use App\Models\Skpd;
@@ -243,6 +244,24 @@ class DatatablesBuss implements DatatablesBussInterface
                         ->addColumn('actions', 
                                 ' <a href="{{ URL::route( \'occupation.show\', array( $id )) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
                                 <a href="{{ URL::route( \'occupation.edit\', array( $id )) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')
+                        ->rawColumns(['actions'])
+                        ->make(true);
+    }
+
+    public function fetchPaymentLetterDatas(Request $request)
+    {
+        $query = $this->datatablesRepo->fetchPaymentLetterDatas($request);
+
+        return Datatables::of($query)
+                        ->addColumn('employee', function (PaymentLetter $paymentLetter) {
+                            return $paymentLetter->employee->name;
+                        })
+                        ->addColumn('position', function (PaymentLetter $paymentLetter) {
+                            return $paymentLetter->contract->position->name ?? ''; 
+                        })
+                        ->addColumn('actions', 
+                                ' <a href="{{ URL::route( \'paymentLetter.show\', array( $id)) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
+                                <a href="{{ URL::route( \'paymentLetter.edit\', array( $id)) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')
                         ->rawColumns(['actions'])
                         ->make(true);
     }

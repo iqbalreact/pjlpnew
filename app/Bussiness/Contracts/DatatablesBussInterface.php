@@ -26,6 +26,8 @@ interface DatatablesBussInterface
 
     public function fetchOccupationDatas(Request $request); 
         
+    public function fetchPaymentLetterDatas(Request $request);
+
     public function fetchPositionDatas(Request $request);
     
     public function fetchPositionCategoryDatas(Request $request);

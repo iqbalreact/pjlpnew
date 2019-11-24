@@ -30,6 +30,8 @@ interface DatatablesRepoInterface
 
     public function fetchOccupationDatas(Request $request);
 
+    public function fetchPaymentLetterDatas(Request $request);
+
     public function fetchPayrollData(Request $request);
 
     public function fetchPositionDatas(Request $request);

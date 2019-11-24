@@ -48,6 +48,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('leaveEmployee', 'LeaveEmployeeController');
     Route::resource('log', 'LogController')->only('index', 'show');
     Route::resource('occupation', 'OccupationController');
+    Route::resource('paymentLetter', 'PaymentLetterController');
     Route::resource('payroll', 'PayrollController');
     Route::resource('program', 'ProgramController');
     Route::resource('position', 'PositionController');
@@ -87,6 +88,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::get('historyLeaveEmployee', 'DatatablesController@fetchHistoryLeaveEmployeeDatas')->name('fetch.historyLeaveEmployee');
         Route::get('location', 'DatatablesController@fetchLocationDatas')->name('fetch.location');
         Route::get('occupation', 'DatatablesController@fetchOccupationDatas')->name('fetch.occupation');
+        Route::get('paymentLetter', 'DatatablesController@fetchPaymentLetterDatas')->name('fetch.paymentLetter');
         Route::get('payroll', 'DatatablesController@fetchPayrollDatas')->name('fetch.payroll');
         Route::get('program', 'DatatablesController@fetchProgramDatas')->name('fetch.program');
         Route::get('position', 'DatatablesController@fetchPositionDatas')->name('fetch.position');
@@ -114,6 +116,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     // Export
     Route::group(['prefix' => 'export'], function() {
         Route::get('workHandover/{id}', 'WorkHandoverController@export')->name('export.workHandover');
+        Route::get('paymentLetter/{id}', 'PaymentLetterController@export')->name('export.paymentLetter');
         Route::get('pjlp', 'EmployeeController@exportEmployee')->name('export.employee');
         Route::get('pjlp/{id}', 'EmployeeController@exportDetailEmployee')->name('export.employee.detail');
     });

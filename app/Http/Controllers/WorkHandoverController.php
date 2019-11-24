@@ -88,7 +88,7 @@ class WorkHandoverController extends Controller
             return redirect()->route('workHandover.index');
         }
 
-        notify()->success('Hari kerja berhasil dibuat');
+        notify()->success('Serah terima pekerjaan berhasil dibuat');
         
         return redirect()->route('workHandover.index');
     }
