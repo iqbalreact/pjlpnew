@@ -71,14 +71,18 @@
                     </table> 
                     
                     <div class="row">
-                        <div class="col-md-2">
-                            <button type="button" class="btn btn-primary btn-block" id="btn-submit">Bulk Insert Absensi</button>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-success btn-lg btn-block" id="btn-submit"><i class="fa fa-check"></i> Absensi Massal</button>
                         </div>
-                        <div class="col-md-10">
-                                <div class="callout callout-info">
-                                    <h4>PERHATIAN!</h4>
-                                    <p>Bulk insert hanya bisa dilakukan setiap satu halaman</p>
-                                </div>
+                        <div class="col-md-9">
+                            <div class="callout callout-default">
+                                <h4>Aturan absensi massal</h4>
+                                <ul>
+                                    <li>Absensi massal hanya bisa dilakukan dalam satu halaman data.</li>
+                                    <li>Centang kotak pada kolom paling kiri di setiap baris data, atau di bagian kiri atas untuk mencentang semua kotak sebagai penanda data yang akan diproses.</li>
+                                    <li>Tekan tombol "Absensi Massal" setelah data ditandai.</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
