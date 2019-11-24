@@ -35,29 +35,29 @@
 
                     <form class="form-horizontal" style="margin-top:40px;">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-7">
                                 <div class="form-group">
                                     <label for="inputProgram" class="col-sm-2 control-label">Program @include('components.required')</label>
                         
-                                    <div class="col-sm-9">
+                                    <div class="col-sm-10">
                                         <select name="program_id" id="programSelect" class="form-control"></select>
                                     </div>
-
-                                    <div class="col-sm-1">
-                                        <button class="btn btn-danger" id="clearProgram" type="button"><i class="fa fa-close"></i></button>
-                                    </div>
+                                </div>                                
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <button
+                                        id="findData" 
+                                        type="button" 
+                                        class="btn btn-primary">
+                                            <i class="fa fa-search"></i> Tampilkan Data
+                                    </button>
+                                    <button class="btn btn-danger" id="clearProgram" type="button"><i class="fa fa-close"></i> Reset</button>
                                 </div>                                
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <button
-                                id="findData" 
-                                type="button" 
-                                class="btn btn-primary">
-                                    <i class="fa fa-search"></i> Cari
-                            </button>
-                        </div>
+
                     </form>
 
                 </div>
