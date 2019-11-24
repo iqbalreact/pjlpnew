@@ -1,31 +1,51 @@
 <div class="box-body">
 
-    @if(isset($data->skpd))
+    @if(\Auth::user()->getRoles() == 'superadmin')
+
+        @if(isset($data->skpd))
+            <div class="form-group {{ $errors->has('skpd_id') ? 'has-error' : '' }}"">
+                <label for="inputSKPD" class="col-sm-2 control-label">SKPD @include('components.required')</label>
+
+                <div class="col-sm-10">
+                    <input type="text" value="{{ $data->skpd->name }}" class="form-control" readonly>
+                    <input name="skpd_id" type="hidden" value="{{ $data->skpd->id }}">
+
+                    @if ($errors->has('skpd_id'))
+                        <span class="help-block">{{ $errors->first('skpd_id') }}</span>
+                    @endif
+                </div>
+            </div>
+        @else
+            <div class="form-group {{ $errors->has('skpd_id') ? 'has-error' : '' }}">
+                <label for="inputSKPD" class="col-sm-2 control-label">SKPD @include('components.required')</label>
+        
+                <div class="col-sm-10">
+                    <select name="skpd_id" id="skpdSelect" class="form-control"></select>
+                    
+                    @if ($errors->has('skpd_id'))
+                        <span class="help-block">{{ $errors->first('skpd_id') }}</span>
+                    @endif
+                </div>
+            </div>
+        @endif
+
+    @else
+
         <div class="form-group {{ $errors->has('skpd_id') ? 'has-error' : '' }}"">
             <label for="inputSKPD" class="col-sm-2 control-label">SKPD @include('components.required')</label>
 
             <div class="col-sm-10">
-                <input type="text" value="{{ $data->skpd->name }}" class="form-control" readonly>
-                <input name="skpd_id" type="hidden" value="{{ $data->skpd->id }}">
+                <input type="text" value="{{ $skpd->name }}" class="form-control" readonly>
+                <input name="skpd_id" type="hidden" value="{{ $skpd->id }}">
 
                 @if ($errors->has('skpd_id'))
                     <span class="help-block">{{ $errors->first('skpd_id') }}</span>
                 @endif
             </div>
         </div>
-    @else
-        <div class="form-group {{ $errors->has('skpd_id') ? 'has-error' : '' }}">
-            <label for="inputSKPD" class="col-sm-2 control-label">SKPD @include('components.required')</label>
-    
-            <div class="col-sm-10">
-                <select name="skpd_id" id="skpdSelect" class="form-control"></select>
-                
-                @if ($errors->has('skpd_id'))
-                    <span class="help-block">{{ $errors->first('skpd_id') }}</span>
-                @endif
-            </div>
-        </div>
+
     @endif
+
 
     @if(isset($data->functionary))
         <div class="form-group {{ $errors->has('functionary_id') ? 'has-error' : '' }}"">
@@ -53,6 +73,7 @@
             </div>
         </div>
     @endif
+
 
     @if(isset($data->employee))
         <div class="form-group {{ $errors->has('employee_id') ? 'has-error' : '' }}"">

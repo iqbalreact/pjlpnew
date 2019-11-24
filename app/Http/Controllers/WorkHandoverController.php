@@ -7,14 +7,18 @@ use Illuminate\Http\Request;
 use App\Http\Requests\WorkHandoverRequest;
 
 use App\Bussiness\Contracts\WorkHandoverBussInterface;
+use App\Bussiness\Contracts\SkpdBussInterface;
 
 use PDF;
 
 class WorkHandoverController extends Controller
 {
-    public function __construct(WorkHandoverBussInterface $workHandover)
-    {
+    public function __construct(
+        WorkHandoverBussInterface $workHandover,
+        SkpdBussInterface $skpd
+    ) {
         $this->workHandover = $workHandover;
+        $this->skpd         = $skpd;
     }
 
     /**
@@ -60,7 +64,13 @@ class WorkHandoverController extends Controller
 
         $initSection4   = "<p>Demikian Berita Acara Serah Terima Hail Pekerjaan ini dibuat dalam 5 (lima) rangkap dapat dipergunakan sebagaimana mestinya.</p>";
 
-        return view('admin.workHandover.create', compact('initNumber', 'initSection1', 'initSection2', 'initSection3', 'initSection4'));                        
+
+        $skpd = '';
+        if (\Auth::user()->getRoles() != 'superadmin') {
+            $skpd = $this->skpd->find(\Auth::user()->skpd_id);
+        }
+
+        return view('admin.workHandover.create', compact('initNumber', 'initSection1', 'initSection2', 'initSection3', 'initSection4', 'skpd'));                        
     }
 
     /**

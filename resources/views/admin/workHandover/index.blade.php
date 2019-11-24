@@ -46,7 +46,7 @@
             columns: [
                 { data: 'id', name: 'id', class:'hide' },
                 { data: 'number', name: 'number', searchable:'true', orderable: 'true'},
-                { data: 'employee', name: 'employee_id', searchable:'true', orderable: 'true'},
+                { data: 'employee', name: 'employee', searchable:'false', orderable: 'false'},
                 { data: 'actions', name: 'actions', searchable: 'false', 'orderable': 'false', 'class': 'text-center'}
             ]
         });

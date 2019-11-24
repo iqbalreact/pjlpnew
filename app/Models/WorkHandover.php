@@ -11,6 +11,8 @@ use App\Models\Skpd;
 use App\Models\Employee;
 use App\Models\Functionary;
 
+use App\Scopes\OwnWorkHandoverScope;
+
 class WorkHandover extends Model
 {
     use LogsActivity, CausesActivity;
@@ -36,6 +38,13 @@ class WorkHandover extends Model
         'section_3',
         'section_4',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new OwnWorkHandoverScope);
+    }
     
     public function skpd()
     {
