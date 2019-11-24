@@ -18,6 +18,11 @@ class ProgramBuss implements ProgramBussInterface
         $this->skpd         = $skpd;
     }
 
+    public function count()
+    {
+        return $this->programRepo->count();
+    }
+
     public function find($id)
     {
         return $this->programRepo->find($id);

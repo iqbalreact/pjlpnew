@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 interface WorkPackageBussInterface
 {
+    public function count();
+    
     public function find($id);
 
     public function getByName($name, $activity_id = null);

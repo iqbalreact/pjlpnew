@@ -22,6 +22,11 @@ class WorkPackageBuss implements WorkPackageBussInterface
         $this->workPackageRepo  = $workPackageRepo;
     }
 
+    public function count()
+    {
+        return $this->workPackageRepo->count();
+    }
+
     public function find($id)
     {
         return $this->workPackageRepo->find($id);

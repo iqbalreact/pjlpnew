@@ -55,7 +55,12 @@ class ContractController extends Controller
      */
     public function index()
     {
-        return view('admin.contract.index');
+        $countProgram       = $this->program->count();
+        $countActivity      = $this->activity->count();
+        $countWorkPackage   = $this->workPackage->count();
+        $countContract      = $this->contract->count();
+
+        return view('admin.contract.index', compact('countProgram', 'countActivity', 'countWorkPackage', 'countContract'));
     }
 
     /**

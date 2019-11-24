@@ -18,6 +18,11 @@ class ActivityBuss implements ActivityBussInterface
         $this->program      = $program;
     }
 
+    public function count()
+    {
+        return  $this->activityRepo->count();
+    }
+
     public function find($id)
     {
         return $this->activityRepo->find($id);

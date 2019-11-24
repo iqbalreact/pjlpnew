@@ -14,10 +14,10 @@
         <div class="col-md-12">
             <div class="pull-right">
                 <ul class="list-inline">
-                    <li><h1>10</h1><span>Program</span></li>
-                    <li><h1>10</h1><span>Kegiatan</span></li>
-                    <li><h1>10</h1><span>Paket Pekerjaan</span></li>
-                    <li><h1>10</h1><span>Kontrak Aktif</span></li>
+                    <li><h1>{{ $countProgram }}</h1><span>Program</span></li>
+                    <li><h1>{{ $countActivity }}</h1><span>Kegiatan</span></li>
+                    <li><h1>{{ $countWorkPackage }}</h1><span>Paket Pekerjaan</span></li>
+                    <li><h1>{{ $countContract }}</h1><span>Kontrak Aktif</span></li>
                 </ul>
             </div>
         </div>

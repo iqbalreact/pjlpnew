@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 interface ProgramBussInterface
 {
+    public function count();
+
     public function find($id);
 
     public function generateCode($skpd_id);

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 interface ContractBussInterface
 {
+    public function count();
+    
     public function find($id);
 
     public function findActiveContract($employee_id);

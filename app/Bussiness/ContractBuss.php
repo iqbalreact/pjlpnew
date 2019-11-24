@@ -24,6 +24,11 @@ class ContractBuss implements ContractBussInterface
         $this->workPackage          = $workPackage;
     }
 
+    public function count()
+    {
+        return $this->contractRepo->countContract();
+    }
+
     public function find($id)
     {
         return $this->contractRepo->find($id);

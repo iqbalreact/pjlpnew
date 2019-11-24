@@ -13,6 +13,14 @@ use Carbon\Carbon;
 
 class ContractRepo implements ContractRepoInterface
 {
+    public function countContract()
+    {
+        $data = Contract::where('status', 'active')
+                        ->count();
+
+        return $data;
+    }
+
     public function find($id)
     {
         $data = Contract::with('salaries.salaryComponent')->find($id);

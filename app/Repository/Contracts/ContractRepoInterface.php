@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 interface ContractRepoInterface
 {
+    public function countContract();
+
     public function find($id);
 
     public function findByEmployeeId($employee_id);

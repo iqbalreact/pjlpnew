@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 interface ActivityBussInterface
 {
+    public function count();
+
     public function find($id);
 
     public function generateCode($program_id);
