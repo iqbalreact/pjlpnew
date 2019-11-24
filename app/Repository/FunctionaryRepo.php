@@ -36,6 +36,7 @@ class FunctionaryRepo implements FunctionaryRepoInterface
         $data->nip          = $request->nip;
         $data->name         = $request->name;
         $data->phone_number = $request->phone_number;
+        $data->address      = $request->address;
         $data->save();
 
         if (isset($request->avatar)) {
@@ -56,6 +57,7 @@ class FunctionaryRepo implements FunctionaryRepoInterface
         $data->nip          = $request->nip;
         $data->name         = $request->name;
         $data->phone_number = $request->phone_number;
+        $data->address      = $request->address;
         $data->update();
 
         if (isset($request->avatar)) {

@@ -15,7 +15,8 @@ $factory->define(Occupation::class, function (Faker $faker) {
     $functionary = Functionary::create([
         'nip'           => $faker->unique()->randomNumber($nbDigits = 7, $strict = false),
         'name'          => $faker->name,
-        'phone_number'  => $faker->e164PhoneNumber
+        'phone_number'  => $faker->e164PhoneNumber,
+        'address'       => $faker->address
     ]);
 
     return [

@@ -35,6 +35,17 @@
         </div>
     </div>
 
+    <div class="form-group {{ $errors->has('address') ? 'has-error' : '' }}">
+        <label for="inputAddress" class="col-sm-2 control-label">Address</label>
+
+        <div class="col-sm-10">
+            {!! Form::textarea('address', $edit ? $data->address : old('address'), ['class' => 'form-control', 'placeholder'=> __('Alamat'), 'rows' => 3] ) !!}
+            @if ($errors->has('address'))
+                <span class="help-block">{{ $errors->first('address') }}</span>
+            @endif
+        </div>
+    </div>
+
     <div class="form-group {{ $errors->has('avatar') ? 'has-error' : '' }}">
         <label for="inputAvatar" class="col-sm-2 control-label">Foto</label>
         
@@ -54,7 +65,7 @@
                     {{ $edit ? 'Update' : 'Simpan' }}
             </button>
             
-            <a href="{{ route('employee.index') }}" 
+            <a href="{{ route('functionary.index') }}" 
                 class="btn btn-danger">
                     Batal
             </a>

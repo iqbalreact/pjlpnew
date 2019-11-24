@@ -19,13 +19,15 @@ class Functionary extends Model implements HasMedia
     protected $fillable = [
         'nip', 
         'name', 
-        'phone_number'
+        'phone_number',
+        'address'
     ];
     
     protected static $logAttributes = [
         'nip', 
         'name', 
-        'phone_number'
+        'phone_number',
+        'address'
     ];
 
     public function getAvatar()
