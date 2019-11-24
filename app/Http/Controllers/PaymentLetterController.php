@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests\WorkHandoverRequest;
+use App\Http\Requests\PaymentLetterRequest;
 
 use App\Bussiness\Contracts\PaymentLetterBussInterface;
 use App\Bussiness\Contracts\SkpdBussInterface;
@@ -64,7 +64,7 @@ class PaymentLetterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PaymentLetterRequest $request)
     {
         $data = $this->paymentLetter->store($request);
 
@@ -134,7 +134,7 @@ class PaymentLetterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PaymentLetterRequest $request, $id)
     {
         $data = $this->paymentLetter->update($request, $id);
 

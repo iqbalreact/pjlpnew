@@ -114,7 +114,7 @@
         </div>
     </div>
 
-    <div class="form-group {{ $errors->has('start_date') ? 'has-error' : '' }}">
+    <div class="form-group {{ $errors->has('date') ? 'has-error' : '' }}">
         <label for="inputStartDate" class="col-sm-2 control-label">Tanggal Terbit @include('components.required')</label>
 
         <div class="col-sm-10">

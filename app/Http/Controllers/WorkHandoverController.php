@@ -79,7 +79,7 @@ class WorkHandoverController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(WorkHandoverRequest $request)
     {
         $data = $this->workHandover->store($request);
 
@@ -149,7 +149,7 @@ class WorkHandoverController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(WorkHandoverRequest $request, $id)
     {
         $data = $this->workHandover->update($request, $id);
 
