@@ -68,8 +68,7 @@ class AttendanceBuss implements AttendanceBussInterface
                 
                 if (is_null($checkLeave)) {            
                     $remain_leave = $this->leaveEmployeeRepo->findRemainingLeave($request->employee_id);
-    
-                    if (!is_null($remain_leave) && $remain_leave->remain_leave > 0) {
+                    if (isset($remain_leave['leave']) && $remain_leave['leave']->remain_leave > 0) {
                         $this->leaveEmployeeRepo->storeHistoryLeave($data->date, $data->date, $data->contract_id, $data->employee_id);
                     }
                 }
