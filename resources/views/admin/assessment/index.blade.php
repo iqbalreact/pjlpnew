@@ -56,11 +56,11 @@
                                 <th>Id</th>
                                 <th>NIPJ</th>
                                 <th>Name</th>
-                                <th>Tingkat Penyelesaian Pekerjaan</th>
-                                <th>Waktu Penyelesaian Pekerjaan</th>
-                                <th>Kualitas Hasil Pekerjaan</th>
-                                <th>Kepatuhan Dalam Menjalankan Kewajiban</th>
-                                <th>Kepatuhan terhadap Larangan</th>
+                                <th style="font-size:80%;">Tingkat Penyelesaian Pekerjaan</th>
+                                <th style="font-size:80%;">Waktu Penyelesaian Pekerjaan</th>
+                                <th style="font-size:80%;">Kualitas Hasil Pekerjaan</th>
+                                <th style="font-size:80%;">Kepatuhan Menjalankan Kewajiban</th>
+                                <th style="font-size:80%;">Kepatuhan terhadap Larangan</th>
                                 <th>Aksi</th>
                                 <th>Status</th>
                             </tr>
