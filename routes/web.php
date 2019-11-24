@@ -55,6 +55,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('skpd', 'SkpdController');
     Route::resource('salaryComponent', 'SalaryComponentController');
     Route::resource('workDay', 'WorkDayController');
+    Route::resource('workHandover', 'WorkHandoverController');
     Route::resource('workPackage', 'WorkPackageController');
 
     Route::group(['prefix' => 'report'], function() {
@@ -93,6 +94,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::get('salaryComponent', 'DatatablesController@fetchSalaryComponentDatas')->name('fetch.salaryComponent');
         Route::get('skpd', 'DatatablesController@fetchSkpdDatas')->name('fetch.skpd');
         Route::get('workDay', 'DatatablesController@fetchWorkDayDatas')->name('fetch.workDay');
+        Route::get('workHandover', 'DatatablesController@fetchWorkHandoverDatas')->name('fetch.workHandover');
         Route::get('workPackage', 'DatatablesController@fetchWorkPackageDatas')->name('fetch.workPackage');
     });
 

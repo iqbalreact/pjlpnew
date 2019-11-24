@@ -118,6 +118,11 @@ class DatatablesController extends Controller
 		return $this->datatables->fetchWorkDayDatas($request);
 	}
 
+	public function fetchWorkHandoverDatas(Request $request)
+	{
+		return $this->datatables->fetchWorkHandoverDatas($request);
+	}
+
 	public function fetchWorkPackageDatas(Request $request)
 	{
 		return $this->datatables->fetchWorkPackageDatas($request);

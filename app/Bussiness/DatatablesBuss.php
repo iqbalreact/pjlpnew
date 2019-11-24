@@ -18,6 +18,7 @@ use App\Models\Occupation;
 use App\Models\Position;
 use App\Models\Program;
 use App\Models\Skpd;
+use App\Models\WorkHandover;
 use App\Models\WorkPackage;
 
 use Carbon\Carbon;
@@ -319,6 +320,21 @@ class DatatablesBuss implements DatatablesBussInterface
                         ->addColumn('actions', 
                                 ' <a href="{{ URL::route( \'workDay.show\', array( $id)) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
                                 <a href="{{ URL::route( \'workDay.edit\', array( $id)) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')
+                        ->rawColumns(['actions'])
+                        ->make(true);
+    }
+
+    public function fetchWorkHandoverDatas(Request $request)
+    {
+        $query = $this->datatablesRepo->fetchWorkHandoverDatas($request);
+
+        return Datatables::of($query)
+                        ->addColumn('employee', function (WorkHandover $workHandover) {
+                            return $workHandover->employee->name;
+                        })
+                        ->addColumn('actions', 
+                                ' <a href="{{ URL::route( \'workHandover.show\', array( $id)) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
+                                <a href="{{ URL::route( \'workHandover.edit\', array( $id)) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')
                         ->rawColumns(['actions'])
                         ->make(true);
     }

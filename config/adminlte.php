@@ -154,8 +154,8 @@ return [
                     'url'  => '/admin/report/workInspection'
                 ],
                 [
-                    'text' => 'Berita Acara',
-                    'url'  => '/admin/report/workHandoverPage'
+                    'text' => 'Serah Terima',
+                    'url'  => '/admin/workHandover'
                 ],
                 [
                     'text' => 'Pembayaran',

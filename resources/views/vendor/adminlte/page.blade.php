@@ -18,6 +18,9 @@
             border: 3px solid #d2d6de;
         }
     </style>
+
+    {{-- CKEDITOR --}}
+    <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
 @stop
 
 @section('body_class', 'skin-' . config('adminlte.skin', 'blue') . ' sidebar-mini ' . (config('adminlte.layout') ? [
