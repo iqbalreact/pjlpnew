@@ -9,11 +9,26 @@
 @stop
 
 @section('content')
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pull-right">
+                <ul class="list-inline">
+                    <li><h1>10</h1><span>Program</span></li>
+                    <li><h1>10</h1><span>Kegiatan</span></li>
+                    <li><h1>10</h1><span>Paket Pekerjaan</span></li>
+                    <li><h1>10</h1><span>Kontrak Aktif</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
     <div class="row">
         <div class="col-xs-12">
             <div class="box box-primary">
                 <div class="box-header">   
-                    <h3 class="box-title">Filter</h3>
+                    <h3 class="box-title">Filter Kontrak Kerja</h3>
                 </div>
                 <div class="box-body">
                     <form class="form-horizontal">
