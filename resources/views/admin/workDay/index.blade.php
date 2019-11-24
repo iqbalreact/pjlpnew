@@ -22,19 +22,19 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Tahun</th>
-                                <th>Januari</th>
-                                <th>Februari</th>
-                                <th>Maret</th>
-                                <th>April</th>
+                                <th>Jan</th>
+                                <th>Feb</th>
+                                <th>Mar</th>
+                                <th>Apr</th>
                                 <th>Mei</th>
-                                <th>Juni</th>
-                                <th>Juli</th>
-                                <th>Agustus</th>
-                                <th>September</th>
-                                <th>Oktober</th>
-                                <th>November</th>
-                                <th>Desember</th>
-                                <th width="15%">Action</th>
+                                <th>Jun</th>
+                                <th>Jul</th>
+                                <th>Agu</th>
+                                <th>Sep</th>
+                                <th>Okt</th>
+                                <th>Nov</th>
+                                <th>Des</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                     </table>                
