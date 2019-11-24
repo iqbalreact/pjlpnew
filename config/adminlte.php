@@ -108,7 +108,7 @@ return [
     */
 
     'menu' => [
-        'MAIN NAVIGATION',
+        'MENU UTAMA',
         // [
         //     'text' => 'Dashboard',
         //     'icon' => 'dashboard',
