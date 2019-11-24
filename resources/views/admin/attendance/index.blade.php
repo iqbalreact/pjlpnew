@@ -11,42 +11,45 @@
 @section('content')
     <div class="row">
         <div class="col-xs-12">
-            <div class="box box-primary">
-                <div class="box-header">   
-                    <h3 class="box-title">Filter</h3>
-                </div>
-                <div class="box-body">
-                    <form class="form-horizontal">
-                        <div class="form-group">
-                            <label for="inputWorkPackage" class="col-sm-2 control-label">Paket Pekerjaan @include('components.required')</label>
-                    
-                            <div class="col-sm-10">
-                                <select name="work_package_id" id="workPackageSelect" class="form-control"></select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputNIPJ" class="col-sm-2 control-label">Tanggal @include('components.required')</label>
-    
-                            <div class="col-sm-10">
-                                {!! Form::text('date', '', ['id' => 'date', 'class' => 'form-control datepicker', 'placeholder'=> __('Tanggal'), 'autocomplete' => 'off'] ) !!}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button
-                                    id="findData" 
-                                    type="button" 
-                                    class="btn btn-primary">
-                                        <i class="fa fa-search"></i> Cari
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+
             <div class="box box-primary" id="inputAttendace">
                 <div class="box-header">   
                     <h3 class="box-title">Input Absensi</h3>
+
+                    <form class="form-horizontal" style="margin-top:20px;">
+
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                <label for="inputWorkPackage" class="col-sm-3 control-label">Paket Pekerjaan @include('components.required')</label>
+                        
+                                <div class="col-sm-9">
+                                    <select name="work_package_id" id="workPackageSelect" class="form-control"></select>
+                                </div>
+                            </div>                            
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="inputNIPJ" class="col-sm-4 control-label">Tanggal @include('components.required')</label>
+        
+                                <div class="col-sm-8">
+                                    {!! Form::text('date', '', ['id' => 'date', 'class' => 'form-control datepicker', 'placeholder'=> __('Tanggal'), 'autocomplete' => 'off'] ) !!}
+                                </div>
+                            </div>                            
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                    <button
+                                        id="findData" 
+                                        type="button" 
+                                        class="btn btn-primary">
+                                            <i class="fa fa-search"></i> Tampilkan Data
+                                    </button>
+                            </div>                            
+                        </div>
+                    </div>
+                </form>
+
                 </div>
                 <div class="box-body">
                     <table id="employee-table" class="table" width="100%">

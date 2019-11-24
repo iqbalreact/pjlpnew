@@ -44,7 +44,7 @@
                                         id="findData" 
                                         type="button" 
                                         class="btn btn-primary">
-                                            <i class="fa fa-search"></i> Cari
+                                            <i class="fa fa-search"></i> Tampilkan Data
                                     </button>
                                 </div>                               
                             </div>
@@ -58,8 +58,8 @@
                             <tr>
                                 <th></th>
                                 <th>Id</th>
-                                <th>NIPJ</th>
-                                <th>Nama</th>
+                                <th style="width:150px;">NIPJ</th>
+                                <th style="width:300px;">Nama</th>
                                 <th>Hari Kerja</th>
                                 <th>Total Absen</th>
                                 <th>Status Absensi</th>
@@ -72,14 +72,18 @@
                     </table> 
                     
                     <div class="row">
-                        <div class="col-md-2">
-                            <button type="button" class="btn btn-primary btn-block" id="btn-submit">Bulk Insert Penilaian</button>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-success btn-lg btn-block" id="btn-submit"><i class="fa fa-check"></i> Penggajian Massal</button>
                         </div>
-                        <div class="col-md-10">
-                                <div class="callout callout-info">
-                                    <h4>PERHATIAN!</h4>
-                                    <p>Bulk insert hanya bisa dilakukan setiap satu halaman</p>
-                                </div>
+                        <div class="col-md-9">
+                            <div class="callout callout-default">
+                                <h4>Aturan penggajian massal</h4>
+                                <ul>
+                                    <li>Penggajian massal hanya bisa dilakukan dalam satu halaman data.</li>
+                                    <li>Centang kotak pada kolom paling kiri di setiap baris data, atau di bagian kiri atas untuk mencentang semua kotak sebagai penanda data yang akan diproses.</li>
+                                    <li>Tekan tombol "Penggajian Massal" setelah data ditandai.</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
