@@ -7,14 +7,18 @@ use Illuminate\Http\Request;
 use App\Http\Requests\WorkHandoverRequest;
 
 use App\Bussiness\Contracts\WorkHandoverBussInterface;
+use App\Bussiness\Contracts\SkpdBussInterface;
 
 use PDF;
 
 class WorkHandoverController extends Controller
 {
-    public function __construct(WorkHandoverBussInterface $workHandover)
-    {
+    public function __construct(
+        WorkHandoverBussInterface $workHandover,
+        SkpdBussInterface $skpd
+    ) {
         $this->workHandover = $workHandover;
+        $this->skpd         = $skpd;
     }
 
     /**
@@ -34,7 +38,39 @@ class WorkHandoverController extends Controller
      */
     public function create()
     {
-        return view('admin.workHandover.create');                        
+        $initNumber     = "003.2.e/BASTP-PPK/Pontive/PET/DISKOMINFO/II/2019";
+        $initSection1   = "<p>Pada Hari ini <strong>Jumat</strong> tanggal <strong>Satu</strong> Bulan <strong>Februari</strong> tahun <strong>Dua Ribu Sembilan Belas</strong>, kami yang bertanda tangan dibawah ini:</p>";
+        $initSection2   = "<p>Berdasarkan Berita Acara Hasil Pemeriksaan Pekerjaan Nomor 003.1.e/BAHPP/Pontive/PET/DISKOMINFO/II/2019 tanggal 1 Februari 2019 beserta lampirannya, dengan ini menyatakan telah mengadakan Serah Terima Pekerjaan Belanja Jasa Tenaga IT (Informasi Teknologi) Jasa Admin Pontive Center (Pengelola Teknologi Informasi) Kegiatan Operasioanal Pontive Center Kota Pontianak dengan hasil sebagai berikut:</p>";
+        $initSection3   = "<p>Pasal 1</p>
+
+        <ol>
+            <li>PIHAK KEDUA telah melaksanakan pekerjaan dan menyerahkan hasilnya kepada PIHAK PERTAMA dengan kondisi baik serta sesuai dengan:
+            <ul>
+                <li>SPK Nomor 03.2.5/SPK/Pontive/PET/DISKOMINFO/I/2019 tanggal 14 Januari 2019</li>
+                <li>SPK Nomor 03.3.5/SPK/Pontive/PET/DISKOMINFO/I/2019 tanggal 14 Januari 2019</li>
+            </ul>
+            </li>
+            <li>PIHAK PERTAMA telah menerima hasil pekerjaan dari PIHAK KEDUA dengan kondisi baik sesuai dengan:
+            <ul>
+                <li>SPK Nomor 03.2.5/SPK/Pontive/PET/DISKOMINFO/I/2019 tanggal 14 Januari 2019</li>
+                <li>SPK Nomor 03.3.5/SPK/Pontive/PET/DISKOMINFO/I/2019 tanggal 14 Januari 2019</li>
+            </ul>
+            </li>
+        </ol>
+        
+        <p>Pasal 2</p>
+        
+        <p>Penyerahan sebagaimana dimaksud berupa: Jasa Tenaga IT (Informasi Teknologi) Jasa Admin Pontive Center (Pengelola Teknologi Informasi) selama 1 (satu) bulan (Januari) dengan rician pekerjaan sebagaimana tertuang dalam syarat Umum Perintah Kerja</p>";
+
+        $initSection4   = "<p>Demikian Berita Acara Serah Terima Hail Pekerjaan ini dibuat dalam 5 (lima) rangkap dapat dipergunakan sebagaimana mestinya.</p>";
+
+
+        $skpd = '';
+        if (\Auth::user()->getRoles() != 'superadmin') {
+            $skpd = $this->skpd->find(\Auth::user()->skpd_id);
+        }
+
+        return view('admin.workHandover.create', compact('initNumber', 'initSection1', 'initSection2', 'initSection3', 'initSection4', 'skpd'));                        
     }
 
     /**

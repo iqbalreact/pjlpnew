@@ -48,34 +48,6 @@
                                     </div>
                                 </div>                                
                             </div>
-                            @if(\Auth::user()->getRoles() == 'superadmin')
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="inputProgram" class="col-sm-2 control-label">Kegiatan @include('components.required')</label>
-                        
-                                    <div class="col-sm-9">
-                                        <select name="activity_id" id="activitySelect" class="form-control"></select>
-                                    </div>
-
-                                    <div class="col-sm-1">
-                                        <button class="btn btn-danger" id="clearActivity" type="button"><i class="fa fa-close"></i></button>
-                                    </div>
-                                </div>                                
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="inputWorkPackage" class="col-sm-2 control-label">Paket Pekerjaan @include('components.required')</label>
-                            
-                                    <div class="col-sm-9">
-                                        <select name="work_package_id" id="workPackageSelect" class="form-control"></select>
-                                    </div>
-
-                                    <div class="col-sm-1">
-                                        <button class="btn btn-danger" id="clearWorkPackage" type="button"><i class="fa fa-close"></i></button>
-                                    </div>
-                                </div>                                
-                            </div>
-                            @endif
                         </div>
 
                         <div class="form-group">
