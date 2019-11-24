@@ -25,6 +25,8 @@ use App\Services\RoleService;
 use App\Services\Contracts\StatusServiceInterface;
 use App\Services\StatusService;
 
+use Illuminate\Support\Facades\Schema;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
