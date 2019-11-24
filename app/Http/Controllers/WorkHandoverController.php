@@ -83,6 +83,11 @@ class WorkHandoverController extends Controller
     {
         $data = $this->workHandover->store($request);
 
+        if (!$data) {
+            notify()->warning('PJLP tidak mempunyai aktif kontrak');
+            return redirect()->route('workHandover.index');
+        }
+
         notify()->success('Hari kerja berhasil dibuat');
         
         return redirect()->route('workHandover.index');
@@ -103,12 +108,20 @@ class WorkHandoverController extends Controller
             return redirect()->back();
         }
 
-        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('admin.workHandover.show', compact('data'))->setPaper('a4', 'potrait');
-        return $pdf->download($data->number.'.pdf');
-
-        // return view('admin.report.export.workHandover');
-        
         return view('admin.workHandover.show', compact('data'));
+    }
+
+    public function export($id)
+    {
+        $data = $this->workHandover->find($id);
+
+        if (!$data) {
+            notify()->warning('Surat serah terima tidak ditemukan');
+            return redirect()->back();
+        }
+
+        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('admin.workHandover.export', compact('data'))->setPaper('a4', 'potrait');
+        return $pdf->download($data->number.'.pdf');
     }
 
     /**

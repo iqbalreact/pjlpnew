@@ -332,6 +332,9 @@ class DatatablesBuss implements DatatablesBussInterface
                         ->addColumn('employee', function (WorkHandover $workHandover) {
                             return $workHandover->employee->name;
                         })
+                        ->addColumn('position', function (WorkHandover $workHandover) {
+                            return $workHandover->contract->position->name ?? ''; 
+                        })
                         ->addColumn('actions', 
                                 ' <a href="{{ URL::route( \'workHandover.show\', array( $id)) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
                                 <a href="{{ URL::route( \'workHandover.edit\', array( $id)) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')

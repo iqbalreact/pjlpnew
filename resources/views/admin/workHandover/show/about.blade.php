@@ -1,98 +1,79 @@
 <form class="form-horizontal">
     <div class="form-group">
-        <label class="col-sm-2 control-label">Tahun</label>
+        <label class="col-sm-2 control-label">Nama</label>
 
         <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->year }}" readonly>
+            <input class="form-control" value="{{ $data->employee->name }}" readonly>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">Januari</label>
+        <label class="col-sm-2 control-label">SKPD</label>
 
         <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->january }}" readonly>
+            <input class="form-control" value="{{ $data->skpd->name }}" readonly>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">Februari</label>
+        <label class="col-sm-2 control-label">No Kontrak</label>
 
         <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->february }}" readonly>
+            <input class="form-control" value="{{ $data->contract->number }}" readonly>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">Maret</label>
+        <label class="col-sm-2 control-label">Tanggal Mulai Kontrak</label>
 
         <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->march }}" readonly>
+            <input class="form-control" value="{{ $data->contract->start_date }}" readonly>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">April</label>
+        <label class="col-sm-2 control-label">Tanggal Selesai Kontrak</label>
 
         <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->april }}" readonly>
+            <input class="form-control" value="{{ $data->contract->end_date }}" readonly>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">May</label>
+        <label class="col-sm-2 control-label">Jabatan</label>
 
         <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->may }}" readonly>
+            <input class="form-control" value="{{ $data->position->name }}" readonly>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">Juni</label>
+        <label class="col-sm-2 control-label">Pejabat</label>
 
         <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->june }}" readonly>
+            <input class="form-control" value="{{ $data->functionary->name }}" readonly>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">Juli</label>
+        <label class="col-sm-2 control-label">Posisi Pejabat</label>
 
         <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->july }}" readonly>
+            <input class="form-control" value="{{ $data->functionary->occupations->first()->name }}" readonly>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">Agustus</label>
+        <label class="col-sm-2 control-label">No Surat</label>
 
         <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->august }}" readonly>
+            <input class="form-control" value="{{ $data->number }}" readonly>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">September</label>
+        <label class="col-sm-2 control-label">Tanggal Terbit</label>
 
         <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->september }}" readonly>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label">Oktober</label>
-
-        <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->october }}" readonly>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label">November</label>
-
-        <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->november }}" readonly>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label">Desember</label>
-
-        <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->december }}" readonly>
+            <input class="form-control" value="{{ $data->date }}" readonly>
         </div>
     </div>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <a href="{{ route('workDay.edit', ['id' => $data->id]) }}" class="btn btn-success"><i class="fa fa-pencil"></i> Edit</a>
+            <a href="{{ route('export.workHandover', $data->id) }}" class="btn btn-primary">
+                Download Surat
+            </a>
         </div>
     </div>
 </form>

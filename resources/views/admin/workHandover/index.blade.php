@@ -23,6 +23,7 @@
                                 <th>Id</th>
                                 <th>Nomer</th>
                                 <th>Pihak Kedua</th>
+                                <th>Posisi</th>
                                 <th width="15%">Action</th>
                             </tr>
                         </thead>
@@ -47,6 +48,7 @@
                 { data: 'id', name: 'id', class:'hide' },
                 { data: 'number', name: 'number', searchable:'true', orderable: 'true'},
                 { data: 'employee', name: 'employee', searchable:'false', orderable: 'false'},
+                { data: 'position', name: 'contract.position.name', searchable:'false', orderable: 'false'},
                 { data: 'actions', name: 'actions', searchable: 'false', 'orderable': 'false', 'class': 'text-center'}
             ]
         });
