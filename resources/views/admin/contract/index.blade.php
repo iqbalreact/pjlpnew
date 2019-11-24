@@ -81,7 +81,7 @@
             <div class="box box-primary">
                 <div class="box-header">
                     <h3 class="box-title">List Kontrak</h3>
-                    <a href="{{ route('contract.create') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Tambah</a>
+                    <a href="{{ route('contract.create') }}" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Kontrak Baru</a>
                 </div>
                 <div class="box-body">
                     <table id="contract-table" class="table">
