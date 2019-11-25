@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $data->name }}</title>
-    <link rel="stylesheet" href="{{ asset('vendor/adminlte/vendor/bootstrap/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ public_path('vendor/adminlte/vendor/bootstrap/dist/css/bootstrap.min.css') }}">
 </head>
 <body>
     <center>  
-        <img src="{{ $data->getAvatar() }}" class="img-circle" height="250px" alt="">
+        <img src="{{ $data->getAvatarExport() }}" class="img-circle" height="250px" alt="">
         <h3>{{ $data->name }}</h3>
         <h4>NIPJ: {{ $data->nipj }}</h4>
     </center>  

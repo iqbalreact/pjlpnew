@@ -93,6 +93,11 @@ class Employee extends Model implements HasMedia
 
     public function getAvatar()
     {
-        return $this->getMedia('avatars')->last() ? $this->getMedia('avatars')->last()->getFullUrl() : env('APP_URL').'/img/avatar.png';
+        return $this->getMedia('avatars')->last() ? $this->getMedia('avatars')->last()->getUrl() : env('APP_URL').'/img/avatar.png';
+    }
+
+    public function getAvatarExport()
+    {
+        return $this->getMedia('avatars')->last() ? public_path($this->getMedia('avatars')->last()->getUrl()) : public_path('/img/avatar.png');
     }
 }

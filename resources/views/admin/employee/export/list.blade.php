@@ -7,14 +7,14 @@
     <title>Data PJLP</title>
 
     <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="{{ asset('vendor/adminlte/vendor/bootstrap/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ public_path('vendor/adminlte/vendor/bootstrap/dist/css/bootstrap.min.css') }}">
 </head>
 <body>
     <h1>Data PJLP</h1>
     <table class="table">
         <thead>
             <tr>
-                {{-- <th width="8%">Foto</th> --}}
+                <th width="8%">Foto</th>
                 <th width="10%">NIPJ</th>
                 <th>Name</th>
                 <th>KTP</th>
@@ -24,8 +24,7 @@
         <tbody>
             @foreach ($res as $data)
                 <tr>
-                    {{-- <td><img src="{{ $data->getAvatar() }}" alt="" class="img-circle" height="50px"></td> --}}
-                    {{-- <td>{{ $data->getAvatar() }}</td> --}}
+                    <td><img src="{{ $data->getAvatarExport() }}" alt="" class="img-circle" height="50px"></td>
                     <td>{{ $data->nipj }}</td>
                     <td>{{ $data->name }}</td>
                     <td>{{ $data->ktp }}</td>
