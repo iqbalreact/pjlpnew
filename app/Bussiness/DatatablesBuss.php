@@ -131,7 +131,7 @@ class DatatablesBuss implements DatatablesBussInterface
                             return $contract->employee->name;
                         })
                         ->addColumn('position', function(Contract $contract) {
-                            return $contract->position->name;
+                            return $contract->position->name ?? '' ;
                         })
                         ->addColumn('location', function(Contract $contract) {
                             return $contract->location->name;
@@ -165,7 +165,7 @@ class DatatablesBuss implements DatatablesBussInterface
                             return '<img src='.$avatar.' class="img-circle" height="30px">';
                         })
                         ->addColumn('position', function($data) {
-                            return isset($data->activeContracts->first()->position->name) ? $data->activeContracts->first()->position->name : "";
+                            return isset($data->activeContracts->first()->position->name) ? $data->activeContracts->first()->position->name : '<label class="label label-danger">Tidak Aktif</label>';
                         })
                         ->addColumn('actions', 
                                 '<div class="btn-group" role="group" aria-label="EmployeeActions">
@@ -173,7 +173,7 @@ class DatatablesBuss implements DatatablesBussInterface
                                     <a href="{{ URL::route( \'employee.edit\', array( $id )) }}" class="btn btn-default btn-xs" ><i class="fa fa-pencil"></i> Edit</a>
                                     <a href="{{ URL::route( \'export.employee.detail\', array( $id )) }}" class="btn btn-default btn-xs" ><i class="fa fa-download"></i> Export</a>
                                 </div>')
-                        ->rawColumns(['actions', 'avatar'])
+                        ->rawColumns(['actions', 'avatar', 'position'])
                         ->make(true);
     }
 
