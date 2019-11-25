@@ -185,7 +185,9 @@
             if (data.status === false) {
                 oTable.api().cell(idx, 10).nodes().to$().find('.stateStatus').html("<img src='/img/cancel.png'>");
             } else if (status == 'success') {
-                oTable.api().cell(idx, 10).nodes().to$().find('.stateStatus').html("<img src='/img/checked.png'>");
+                oTable.api().cell(idx, 9).nodes().to$().find('.detail-payroll').empty();
+                oTable.api().cell(idx, 9).nodes().to$().find('.detail-payroll').append('<a href="'+ "/admin/payroll/"+ data.id +'" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></a>');
+                oTable.api().cell(idx, 10).nodes().to$().find('.stateStatus').html("<img src='/img/checked.png'>");                ;
             }
         });
     }

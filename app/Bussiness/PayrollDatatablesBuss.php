@@ -127,10 +127,10 @@ class PayrollDatatablesBuss implements PayrollDatatablesBussInterface
         $data = $data->payrolls->first();
         
         if (is_null($data)) {
-            return '<button class="btn btn-success btn-sm" disabled><i class="fa fa-eye"></i></button>';
+            return '<div class="detail-payroll"><button class="btn btn-success btn-sm" disabled><i class="fa fa-eye"></i></button></div>';
         }
 
-        return '<a href="'. route('payroll.show', ['id' => $data->id ]) .'" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></a>';
+        return '<div class="detail-payroll"><a href="'. route('payroll.show', ['id' => $data->id ]) .'" class="btn btn-success btn-sm"><i class="fa fa-eye"></i></a></div>';
     }
 
     private function saveButton($data)
