@@ -18,7 +18,7 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="about">
-                        @include('admin.workHandOver.show.about')
+                        @include('admin.workHandover.show.about')
                     </div>
                 </div>
             </div>
