@@ -58,14 +58,14 @@
                                 <th></th>
                                 <th>Id</th>
                                 <th>NIPJ</th>
-                                <th>Name</th>
-                                <th>Status</th>
+                                <th style="width:300px;">Name</th>
+                                <th>Kehadiran</th>
                                 <th>Masuk</th>
                                 <th>Pulang</th>
                                 <th>Apel</th>
                                 <th>Terlambat</th>
                                 <th>Aksi</th>
-                                <th>Keterangan</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                     </table> 

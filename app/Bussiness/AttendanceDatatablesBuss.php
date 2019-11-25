@@ -171,7 +171,7 @@ class AttendanceDatatablesBuss implements AttendanceDatatablesBussInterface
 
     private function saveButton()
     {
-        return '<button class="btn btn-sm btn-primary"><i class="fa fa-save"></i></button>';
+        return '<button class="btn btn-sm btn-default"><i class="fa fa-check"></i> Proses</button>';
     }
 
     private function status($data)
