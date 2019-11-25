@@ -35,7 +35,7 @@
 
         <table class="header">
             <tr width="20%">
-                <td rowspan="3"><img src={{ url('/img/pontianak-logo.svg') }} width="200px"></td>
+                <td rowspan="3"><img src={{ public_path('/img/pontianak-logo.svg') }} width="200px"></td>
                 <td>PEMERINTAH KOTA PONTIANAK</td>
             </tr>
             <tr>
