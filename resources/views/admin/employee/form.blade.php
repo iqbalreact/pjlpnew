@@ -114,10 +114,10 @@
     </div>
 
     <div class="form-group {{ $errors->has('phone_number') ? 'has-error' : '' }}">
-        <label for="inputPhoneNumber" class="col-sm-2 control-label">No Telepon</label>
+        <label for="inputPhoneNumber" class="col-sm-2 control-label">No Telepon @include('components.required')</label>
 
         <div class="col-sm-10">
-            {!! Form::text('phone_number', $edit ? $data->phone_number : old('phone_number'), ['class' => 'form-control', 'placeholder'=> __('No Telepon')] ) !!}
+            {!! Form::text('phone_number', $edit ? $data->phone_number : old('phone_number'), ['class' => 'form-control', 'placeholder'=> __('No Telepon'), 'required' => true] ) !!}
             @if ($errors->has('phone_number'))
                 <span class="help-block">{{ $errors->first('phone_number') }}</span>
             @endif

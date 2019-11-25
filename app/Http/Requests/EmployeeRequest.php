@@ -24,11 +24,12 @@ class EmployeeRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'      => 'required|max:255',
-            'ktp'       => 'required|max:255|unique:employees,ktp,'.$this->segment(3),
-            'gender'    => 'required',
-            'religion'  => 'required',
-            'avatar'    => 'image',
+            'name'          => 'required|max:255',
+            'ktp'           => 'required|max:255|unique:employees,ktp,'.$this->segment(3),
+            'gender'        => 'required',
+            'religion'      => 'required',
+            'avatar'        => 'image',
+            'phone_number'  => 'required'
         ];
     }
 }
