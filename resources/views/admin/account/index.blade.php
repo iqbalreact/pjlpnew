@@ -24,6 +24,7 @@
                                 <th>NIP</th>
                                 <th>Name</th>
                                 <th>Role</th>
+                                <th>SKPD</th>
                                 <th width="15%">Action</th>
                             </tr>
                         </thead>
@@ -49,6 +50,7 @@
                 { data: 'nip', name: 'nip', searchable:'true'},
                 { data: 'name', name: 'name', searchable:'true'},
                 { data: 'role', name: 'role', searchable:'false', orderable: 'false'},
+                { data: 'skpd_name', name: 'skpd_name', searchable:'false', orderable: 'false'},
                 { data: 'actions', name: 'actions', searchable: 'false', 'orderable': 'false', 'class': 'text-center'}
             ]
         });

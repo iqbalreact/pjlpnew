@@ -35,7 +35,9 @@ class DatatablesRepo implements DatatablesRepoInterface
 {
     public function fetchAccountDatas(Request $request)
     {
-    	$datas = User::query();
+        $datas = User::query();
+        
+        $datas->with('skpd');
 
         return $datas;
     }

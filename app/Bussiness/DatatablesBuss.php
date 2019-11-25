@@ -92,6 +92,9 @@ class DatatablesBuss implements DatatablesBussInterface
 
                             return $this->roleService->roleNameTransform($roleName);
                         })
+                        ->addColumn('skpd_name', function($data) {
+                            return $data->skpd->name ?? '';
+                        })
                         ->addColumn('actions', 
                                 ' <a href="{{ URL::route( \'account.show\', array( $id )) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
                                 <a href="{{ URL::route( \'account.edit\', array( $id )) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')
