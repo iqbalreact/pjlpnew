@@ -60,6 +60,15 @@ class PayrollBuss implements PayrollBussInterface
         $month  = Carbon::parse($request->date)->format('m');
         $year   = Carbon::parse($request->date)->format('Y');
         
+
+        $activeContract = $this->contract->findActiveContract($request->employee_id);
+
+        if (is_null($activeContract)) {
+            return false;
+        }
+
+        $request->contract_id = $activeContract->id;
+
         $recapAttendance        = $this->attendance->findRecap($request);
         $totalAttendance        = $this->attendance->totalAttendance($recapAttendance);
         $workDay                = $this->getWorkDay($month, $year);

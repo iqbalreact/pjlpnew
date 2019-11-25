@@ -111,7 +111,7 @@
         processing: true,
         serverSide: true,
         responsive: true,
-        order: [[ 2, 'asc' ]],
+        // order: [[ 2, 'asc' ]],
         deferRender:    true,
         ajax: {
             url: '{!! route('fetch.payroll') !!}',
