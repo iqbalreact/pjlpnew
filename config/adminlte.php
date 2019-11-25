@@ -126,6 +126,16 @@ return [
             'url'  => 'admin/contract'
         ],
         [
+            'text' => 'Kehadiran',
+            'icon' => 'book',
+            'url'  => '/admin/attendance'
+        ],
+        [
+            'text' => 'Cuti',
+            'icon' => 'book',
+            'url'  => '/admin/leaveEmployee'
+        ],
+        [
             'text' => 'Penilaian Kinerja',
             'icon' => 'check-circle-o',
             'url'  => '/admin/assessment'
@@ -134,16 +144,6 @@ return [
             'text' => 'Penggajian',
             'icon' => 'dollar',
             'url'  => '/admin/payroll'
-        ],
-        [
-            'text' => 'Absensi',
-            'icon' => 'book',
-            'url'  => '/admin/attendance'
-        ],
-        [
-            'text' => 'Cuti',
-            'icon' => 'book',
-            'url'  => '/admin/leaveEmployee'
         ],
         [
             'text' => 'Laporan',
