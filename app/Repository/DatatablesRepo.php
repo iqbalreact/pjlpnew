@@ -116,12 +116,11 @@ class DatatablesRepo implements DatatablesRepoInterface
             });
         }
 
-        if (!is_null($request->activityId)) {
-            $datas->where('activity_id', $request->programId);
-        }
-
-        if (!is_null($request->workPackageId)) {
-            $datas->where('id', $request->workPackageId);
+        if (!is_null($request->skpdId)) {
+            $datas->whereHas('contracts', function($q) use ($request) {
+                $q->where('skpd_id', $request->skpdId);
+            });
+        
         }
 
         $datas->with('activity.program')

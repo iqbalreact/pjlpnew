@@ -32,33 +32,66 @@
                     <h3 class="box-title">List Kontrak</h3>
                     <a href="{{ route('contract.create') }}" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Kontrak Baru</a>
 
-
-                    <form class="form-horizontal" style="margin-top:40px;">
-                        <div class="row">
-                            <div class="col-md-7">
-                                <div class="form-group">
-                                    <label for="inputProgram" class="col-sm-2 control-label">Program @include('components.required')</label>
-                        
-                                    <div class="col-sm-10">
-                                        <select name="program_id" id="programSelect" class="form-control"></select>
-                                    </div>
-                                </div>                                
+                    @if(\Auth::user()->getRoles() != 'superadmin')
+                        <form class="form-horizontal" style="margin-top:40px;">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        <label for="inputProgram" class="col-sm-2 control-label">Program @include('components.required')</label>
+                            
+                                        <div class="col-sm-10">
+                                            <select name="program_id" id="programSelect" class="form-control"></select>
+                                        </div>
+                                    </div>                                
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <button
+                                            id="findData" 
+                                            type="button" 
+                                            class="btn btn-primary">
+                                                <i class="fa fa-search"></i> Tampilkan Data
+                                        </button>
+                                        <button class="btn btn-danger" id="clearProgram" type="button"><i class="fa fa-close"></i> Reset</button>
+                                    </div>                                
+                                </div>
                             </div>
-                            <div class="col-md-5">
-                                <div class="form-group">
-                                    <button
-                                        id="findData" 
-                                        type="button" 
-                                        class="btn btn-primary">
-                                            <i class="fa fa-search"></i> Tampilkan Data
-                                    </button>
-                                    <button class="btn btn-danger" id="clearProgram" type="button"><i class="fa fa-close"></i> Reset</button>
-                                </div>                                
+                        </form>
+                    @else
+                        <form class="form-horizontal" style="margin-top:40px;">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="inputProgram" class="col-sm-3 control-label">SKPD @include('components.required')</label>
+                            
+                                        <div class="col-sm-9">
+                                            <select name="skpd_id" id="skpdSelect" class="form-control"></select>
+                                        </div>
+                                    </div>                                
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="inputProgram" class="col-sm-3 control-label">Program @include('components.required')</label>
+                            
+                                        <div class="col-sm-9">
+                                            <select name="program_id" id="programSelect" class="form-control"></select>
+                                        </div>
+                                    </div>                                
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <button
+                                            id="findData" 
+                                            type="button" 
+                                            class="btn btn-primary">
+                                                <i class="fa fa-search"></i> Tampilkan Data
+                                        </button>
+                                        <button class="btn btn-danger" id="clearProgram" type="button"><i class="fa fa-close"></i> Reset</button>
+                                    </div>                                
+                                </div>
                             </div>
-                        </div>
-
-
-                    </form>
+                        </form>
+                    @endif
 
                 </div>
                 <div class="box-body">
@@ -91,9 +124,8 @@
         ajax: {
             url: '{!! route('fetch.contract') !!}',
             data: function (d) {
-                d.workPackageId = $('#workPackageSelect').val(),
-                d.programId = $('#programSelect').val(),
-                d.activityId = $('#activitySelect').val()
+                d.skpdId       = $('#skpdSelect').val(),
+                d.programId = $('#programSelect').val()
             }
         },
         columns: [
@@ -104,6 +136,31 @@
             { data: 'contracts_count', name: 'contracts_count', searchable:'false', orderable:'true'},
             { data: 'actions', name: 'actions', searchable: 'false', 'orderable': 'false', 'class': 'text-center'}
         ]
+    });
+
+    $("#skpdSelect").select2({
+        dropdownAutoWidth : true,
+        width: '100%',
+        placeholder: "Ketik dan pilih nama SKPD",
+        ajax: {
+            url: "{{ route('select.skpd') }}",
+            dataType: 'json',
+            data: function (params) {
+                return {
+                    q: params.term,
+                };
+            },
+            processResults: function (data) {
+
+                var res = data.map(function (item) {
+                    return {id: item.id, text: item.name};
+                });
+                
+                return {
+                    results: res
+                };
+            }
+        }
     });
 
     $("#programSelect").select2({
