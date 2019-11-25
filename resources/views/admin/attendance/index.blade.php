@@ -97,6 +97,7 @@
     var workPackageId = '';
 
     $('.datepicker').datepicker({
+        daysOfWeekDisabled: [0,6],
         autoclose: true,
         orientation: 'bottom',
         format: 'dd-mm-yyyy'
