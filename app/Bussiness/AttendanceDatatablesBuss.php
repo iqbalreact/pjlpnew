@@ -42,7 +42,7 @@ class AttendanceDatatablesBuss implements AttendanceDatatablesBussInterface
                             return $contract->employee->nipj;
                         })
                         ->addColumn('employee_name', function(Contract $contract) {
-                            return $contract->employee->name;
+                            return '<a href="'. route('employee.show', $contract->employee->id) .'" target="_blank">'. $contract->employee->name .'</a>';
                         })
                         ->addColumn('attendance',  function($data) { 
                             return $this->attendance($data);  
@@ -66,6 +66,7 @@ class AttendanceDatatablesBuss implements AttendanceDatatablesBussInterface
                             return $this->status($data);  
                         })
                         ->rawColumns([
+                            'employee_name',
                             'attendance',
                             'save', 
                             'from',

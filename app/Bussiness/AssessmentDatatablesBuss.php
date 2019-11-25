@@ -42,7 +42,7 @@ class AssessmentDatatablesBuss implements AssessmentDatatablesBussInterface
                             return $contract->employee->nipj;
                         })
                         ->addColumn('employee_name', function(Contract $contract) {
-                            return $contract->employee->name;
+                            return '<a href="'. route('employee.show', $contract->employee->id) .'" target="_blank">'. $contract->employee->name .'</a>';
                         })
                         ->addColumn('work_completion_rate',  function($data) { 
                             return $this->workCompletionRate($data);  
@@ -66,6 +66,7 @@ class AssessmentDatatablesBuss implements AssessmentDatatablesBussInterface
                             return $this->status($data);  
                         })
                         ->rawColumns([
+                            'employee_name',
                             'save', 
                             'work_completion_rate',
                             'work_completion_time',

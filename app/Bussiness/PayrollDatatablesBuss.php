@@ -55,7 +55,7 @@ class PayrollDatatablesBuss implements PayrollDatatablesBussInterface
                             return $contract->employee->nipj;
                         })
                         ->addColumn('employee_name', function(Contract $contract) {
-                            return $contract->employee->name;
+                            return '<a href="'. route('employee.show', $contract->employee->id) .'" target="_blank">'. $contract->employee->name .'</a>';
                         })
                         ->addColumn('total_attendance', function($data) {
                             return $this->totalAttendance($data);
@@ -79,6 +79,7 @@ class PayrollDatatablesBuss implements PayrollDatatablesBussInterface
                             return $this->status($data);  
                         })
                         ->rawColumns([
+                            'employee_name',
                             'assessment',
                             'checkAttendance',
                             'detail',

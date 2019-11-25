@@ -128,7 +128,7 @@ class DatatablesBuss implements DatatablesBussInterface
                             return $contract->employee->nipj;
                         })
                         ->addColumn('employee_name', function(Contract $contract) {
-                            return $contract->employee->name;
+                            return '<a href="'. route('employee.show', $contract->employee->id) .'" target="_blank">'. $contract->employee->name .'</a>';
                         })
                         ->addColumn('position', function(Contract $contract) {
                             return $contract->position->name ?? '' ;
@@ -150,7 +150,7 @@ class DatatablesBuss implements DatatablesBussInterface
                         ->addColumn('actions', 
                                 ' <a href="{{ URL::route( \'contract.detail\', array( $id )) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
                                 <a href="{{ URL::route( \'contract.edit\', array( $id )) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')
-                        ->rawColumns(['actions', 'status_transform'])
+                        ->rawColumns(['actions', 'status_transform', 'employee_name'])
                         ->make(true);
     }
 
@@ -159,6 +159,9 @@ class DatatablesBuss implements DatatablesBussInterface
         $query = $this->datatablesRepo->fetchEmployeeDatas($request);
 
         return Datatables::of($query)
+                        ->addColumn('employee_link', function($data) {
+                            return '<a href="'. route('employee.show', $data->id) .'" target="_blank">'. $data->name .'</a>';
+                        }) 
                         ->addColumn('avatar', function($data) {
                             $avatar = $data->getAvatar();
 
@@ -173,7 +176,7 @@ class DatatablesBuss implements DatatablesBussInterface
                                     <a href="{{ URL::route( \'employee.edit\', array( $id )) }}" class="btn btn-default btn-xs" ><i class="fa fa-pencil"></i> Edit</a>
                                     <a href="{{ URL::route( \'export.employee.detail\', array( $id )) }}" class="btn btn-default btn-xs" ><i class="fa fa-download"></i> Export</a>
                                 </div>')
-                        ->rawColumns(['actions', 'avatar', 'position'])
+                        ->rawColumns(['actions', 'avatar', 'position', 'employee_link'])
                         ->make(true);
     }
 
@@ -203,7 +206,7 @@ class DatatablesBuss implements DatatablesBussInterface
                             return $leave->employee->nipj;
                         })
                         ->addColumn('employee_name', function(HistoryLeaveEmployee $leave) {
-                            return $leave->employee->name;
+                            return '<a href="'. route('employee.show', $leave->employee->id) .'" target="_blank">'. $leave->employee->name .'</a>';
                         })
                         ->addColumn('type', function($data) {
                             if($data->leave_type == 1) {
@@ -214,7 +217,7 @@ class DatatablesBuss implements DatatablesBussInterface
                         })
                         ->addColumn('actions', 
                                 ' <a href="{{ URL::route( \'leaveEmployee.show\', array( $id )) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>')
-                        ->rawColumns(['actions', 'avatar'])
+                        ->rawColumns(['actions', 'avatar', 'employee_name'])
                         ->make(true);
     }
 

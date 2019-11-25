@@ -111,7 +111,6 @@
         processing: true,
         serverSide: true,
         responsive: true,
-        // order: [[ 2, 'asc' ]],
         deferRender:    true,
         ajax: {
             url: '{!! route('fetch.payroll') !!}',
@@ -134,8 +133,8 @@
         columns: [
             { data: 'id', name: 'id' },
             { data: 'id', name: 'id', class:'hide' },
-            { data: 'employee_nipj', name: 'employee.nipj', searchable:'true'},
-            { data: 'employee_name', name: 'employee.name', searchable:'true'},
+            { data: 'employee_nipj', name: 'employee.nipj', searchable:'true', orderable:'false'},
+            { data: 'employee_name', name: 'employee.name', searchable:'true', orderable:'false'},
             { data: 'total_day', name: 'total_day', searchable:'false', orderable:'false', "width": "10%"},
             { data: 'total_attendance', name: 'total_attendance', searchable:'false', orderable:'false', "width": "10%"},
             { data: 'checkAttendance', name: 'checkAttendance', searchable:'false', orderable:'false', "width": "10%"},
