@@ -23,6 +23,11 @@ class OccupationBuss implements OccupationBussInterface
         return $this->occupationRepo->find($id);
     }
 
+    public function getByOccupation($occupation)
+    {
+        return $this->occupationRepo->getByOccupation($occupation);
+    }
+
     public function getByName($name, $workPackageId = null)
     {
         $skpd_id = null;

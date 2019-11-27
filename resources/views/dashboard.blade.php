@@ -18,18 +18,19 @@
     				<h3 class="box-title">DINAS KOMUNIKASI DAN INFORMATIKA</h3>
     			</div>
     			<div class="box-body">
-	    			<h4>Hai, Syamsul Akbar</h4>
+					<h4>Hai, {{  \Auth::user()->name }}</h4>
 	    			<p class="lead">Silahkan pilih salah satu tombol dibawah ini untuk mulai beraktifitas di aplikasi PJLP Pontianak. Selamat bekerja, semoga lancar.</p>
 	    			<div>
-	    				<a href="#" class="btn btn-default"><i class="fa fa-plus"></i> Tambah PJLP Baru</a>
-	    				<a href="#" class="btn btn-default"><i class="fa fa-plus"></i> Tambah Kontrak Kerja</a>
-	    				<a href="#" class="btn btn-default"><i class="fa fa-check"></i> Absensi Pekerja</a>
+						<a href="{{ route('employee.create') }}" class="btn btn-default"><i class="fa fa-plus"></i> Tambah PJLP Baru</a>
+	    				<a href="{{ route('contract.create') }}" class="btn btn-default"><i class="fa fa-plus"></i> Tambah Kontrak Kerja</a>
+	    				<a href="{{ route('attendance.create') }}" class="btn btn-default"><i class="fa fa-check"></i> Absensi Pekerja</a>
 	    			</div>    				
     			</div>
 
     		</div>
     	</div>
 
+		@if(\Auth::user()->getRoles() != 'superadmin')
     	<div class="col-md-6">
     		<div class="box box-default">
     			<div class="box-header">
@@ -43,42 +44,39 @@
     						<h4>Profil SKPD</h4>
     						<dl>
     							<dt>Alamat Lengkap</dt>
-    							<dd>Jl. Rahadi Oesman No.3 Pontianak Kota</dd>
-    							<dt>No. Telpon</dt>
-    							<dd>0561 770888</dd>
-    							<dt>No. Fax</dt>
-    							<dd>0561 770888</dd>
-    							<dt>Kode Pos</dt>
-    							<dd><span class="text-danger">belum tersedia</span></dd>
-    							<dt>Email</dt>
-    							<dd>diskominfo@pontianakkota.go.id</dd>
-    							<dt>Website</dt>
-    							<dd>www.pontianakkota.go.id</dd>
-    						</dl>
-    						<a href="#" class="btn btn-default"><i class="fa fa-pencil"></i> lengkapi data profil</a>
+								<dd>{!! $skpd->address ?? '<span class="text-danger">belum tersedia</span>' !!}</dd>
+								<dt>No. Telpon</dt>
+								<dd>{!! $skpd->phone_number ?? '<span class="text-danger">belum tersedia</span>' !!}</dd>
+								<dt>No. Fax</dt>
+								<dd>{!! $skpd->fax ?? '<span class="text-danger">belum tersedia</span>' !!}</dd>
+								<dt>Kode Pos</dt>
+								<dd>{!! $skpd->post_code ?? '<span class="text-danger">belum tersedia</span>' !!}</dd>
+								<dt>Email</dt>
+								<dd>{!! $skpd->email ?? '<span class="text-danger">belum tersedia</span>' !!}</dd>
+								<dt>Website</dt>
+								<dd>{!! $skpd->website ?? '<span class="text-danger">belum tersedia</span>' !!}</dd>
+							</dl>
+							<a href="{{ route('skpd.edit', $skpd->id) }}" class="btn btn-default"><i class="fa fa-pencil"></i> Lengkapi data profil</a>
     					</div>
     					<div class="col-md-6">
     						<h4>Daftar Pejabat</h4>
 							<dl>
-							  <dt>Pengguna Anggaran</dt>
-							  <dd>Ir. Uray Indra Mulya</dd>
-							  <dt>Pejabat Pembuat Komitmen</dt>
-							  <dd>Syamsul Akbar, M.Eng, M.Sc</dd>
-							  <dt>Pejabat Pelaksana Teknis Kegiatan</dt>
-							  <dd>Sri Wulani Elida, M.Eng</dd>
-							  <dt>Pejabat Pemeriksa Hasil Pekerjaan</dt>
-							  <dd><span class="text-danger">belum tersedia</span></dd>
+								<dt>Pengguna Anggaran</dt>
+								<dd>{!! $pa->functionary->name ?? '<span class="text-danger">belum tersedia</span>' !!}</dd>
+								<dt>Pejabat Pembuat Komitmen</dt>
+								<dd>{!! $ppkom->functionary->name ?? '<span class="text-danger">belum tersedia</span>' !!}</dd>
+								<dt>Pejabat Pelaksana Teknis Kegiatan</dt>
+								<dd>{!! $pptk->functionary->name ?? '<span class="text-danger">belum tersedia</span>' !!}</dd>
+								<dt>Pejabat Pemeriksa Hasil Pekerjaan</dt>
+								<dd>{!! $pphp->functionary->name ?? '<span class="text-danger">belum tersedia</span>' !!}</dd>
 							</dl>
-							<a href="#" class="btn btn-default"><i class="fa fa-pencil"></i> lengkapi data pejabat</a>
+							<a href="{{ route('occupation.create') }}" class="btn btn-default"><i class="fa fa-pencil"></i> Lengkapi data pejabat</a>
     					</div>
     				</div>
-
-
-   				
     			</div>
-
     		</div>
-    	</div>   
+		</div>  
+		@endif 
     </div>
 @stop
 

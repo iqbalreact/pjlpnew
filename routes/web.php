@@ -20,9 +20,7 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', 'PageController@dashboard')->name('dashboard');
 
     Route::get('/about', function () {
         return view('dashboard');

@@ -24,6 +24,15 @@ class OccupationRepo implements OccupationRepoInterface
         return $data;
     }
 
+    public function getByOccupation($occupation)
+    {
+        $data = Occupation::with('functionary')
+                            ->where('position', $occupation)
+                            ->first();
+        
+        return $data;
+    }
+
     public function checkOccupation($functionary_id, $start_date, $end_date, $id = null)
     {
         $from = Carbon::parse($start_date);
