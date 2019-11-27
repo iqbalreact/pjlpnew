@@ -32,9 +32,9 @@ class FunctionaryBuss implements FunctionaryBussInterface
         return $data;
     }
 
-    public function getByName($name)
+    public function getByName($name, $occupation = null)
     {
-        return $this->functionaryRepo->getByName($name);
+        return $this->functionaryRepo->getByName($name, $occupation);
     }
 
     public function store(Request $request)
