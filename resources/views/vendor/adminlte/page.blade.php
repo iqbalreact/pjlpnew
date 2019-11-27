@@ -175,4 +175,5 @@
     @stack('js')
     @yield('js')
     @yield('js2')
+    @yield('js3')
 @stop
