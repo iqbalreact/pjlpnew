@@ -8,7 +8,7 @@ interface FunctionaryRepoInterface
 {
     public function find($id);
 
-    public function getByName($name);
+    public function getByName($name, $occupation = null);
     
     public function store(Request $request);    
 

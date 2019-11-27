@@ -20,7 +20,7 @@
     </style>
 
     {{-- CKEDITOR --}}
-    <script src="//cdn.ckeditor.com/4.13.0/full/ckeditor.js"></script>
+    <script src="/vendor/ckeditor/ckeditor.js"></script>
 @stop
 
 @section('body_class', 'skin-' . config('adminlte.skin', 'blue') . ' sidebar-mini ' . (config('adminlte.layout') ? [
@@ -175,4 +175,5 @@
     @stack('js')
     @yield('js')
     @yield('js2')
+    @yield('js3')
 @stop

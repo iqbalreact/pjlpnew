@@ -118,9 +118,10 @@ class FunctionaryController extends Controller
      */
     public function selectList(Request $request)
     {
-        $name = $request->q;
+        $name       = $request->q;
+        $occupation = $request->occupation ?? null;
 
-        $res = $this->functionary->getByName($name);
+        $res = $this->functionary->getByName($name, $occupation);
 
         return response()->json($res);
     }

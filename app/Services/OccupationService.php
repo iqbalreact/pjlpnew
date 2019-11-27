@@ -10,14 +10,25 @@ class OccupationService implements OccupationServiceInterface
 {
     public $occupationTransform = [
         'pa'        => 'PA', 
-        'kpa'       => 'KPA',
-        'ppk'       => 'PPK',
+        'ppkom'     => 'PPKOM',
         'pptk'      => 'PPTK',
-        'bendahara' => 'BENDAHARA'
+        'pphp'      => 'PPHP'
+    ];
+
+    public $occupationLongTransform = [
+        'pa'        => 'Pengguna Anggaran', 
+        'ppkom'     => 'Pejabat Pembuat Komitmen',
+        'pptk'      => 'Pejabat Pelaksana Teknik Kegiatan',
+        'pphp'      => 'Pejabat Pemeriksa Hasil Pekerjaan'
     ];
 
     public function occupationTransform($occupation)
     {
         return $this->occupationTransform[$occupation];
+    }
+
+    public function occupationLongTransform($occupation)
+    {
+        return $this->occupationLongTransform[$occupation];
     }
 }

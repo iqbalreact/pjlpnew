@@ -108,6 +108,7 @@ class WorkInspectionController extends Controller
             return redirect()->back();
         }
 
+        // return view('admin.workInspection.export', compact('data'));
         $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('admin.workInspection.export', compact('data'))->setPaper('a4', 'potrait');
         return $pdf->download($data->number.'.pdf');
     }

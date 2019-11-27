@@ -10,6 +10,8 @@ use Spatie\Activitylog\Traits\CausesActivity;
 use App\Models\Skpd;
 use App\Models\Functionary;
 
+use App\Scopes\OwnContractScope;
+
 class Occupation extends Model
 {
     use LogsActivity, CausesActivity;
@@ -31,6 +33,13 @@ class Occupation extends Model
         'position',
         'status'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new OwnContractScope);
+    }
 
     public function skpd()
     {

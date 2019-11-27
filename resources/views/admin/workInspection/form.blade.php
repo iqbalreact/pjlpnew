@@ -76,7 +76,7 @@
 
     @if(isset($data->functionaryPPTK))
         <div class="form-group {{ $errors->has('functionary_pptk_id') ? 'has-error' : '' }}"">
-            <label for="inputFuntionary" class="col-sm-2 control-label">Pejabat PPTK @include('components.required')</label>
+            <label for="inputFuntionary" class="col-sm-2 control-label">Pejabat PPKOM @include('components.required')</label>
 
             <div class="col-sm-10">
                 <input type="text" value="{{ $data->functionaryPPTK->name }}" class="form-control" readonly>
@@ -89,7 +89,7 @@
         </div>
     @else
         <div class="form-group {{ $errors->has('functionary_pptk_id') ? 'has-error' : '' }}">
-            <label for="inputFunctionaryId" class="col-sm-2 control-label">Pejabat PPTK @include('components.required')</label>
+            <label for="inputFunctionaryId" class="col-sm-2 control-label">Pejabat PPKOM @include('components.required')</label>
     
             <div class="col-sm-10">
                 <select name="functionary_pptk_id" id="functionaryPPTKSelect" class="form-control"></select>
@@ -103,7 +103,7 @@
 
     @if(isset($data->functionaryPPTK))
         <div class="form-group {{ $errors->has('functionary_pptk2_id') ? 'has-error' : '' }}"">
-            <label for="inputFuntionary" class="col-sm-2 control-label">Pejabat PPTK 2 @include('components.required')</label>
+            <label for="inputFuntionary" class="col-sm-2 control-label">Pejabat PPTK @include('components.required')</label>
 
             <div class="col-sm-10">
                 <input type="text" value="{{ $data->functionaryPPTK2->name }}" class="form-control" readonly>
@@ -116,7 +116,7 @@
         </div>
     @else
         <div class="form-group {{ $errors->has('functionary_pptk2_id') ? 'has-error' : '' }}">
-            <label for="inputFunctionaryId" class="col-sm-2 control-label">Pejabat PPTK 2 @include('components.required')</label>
+            <label for="inputFunctionaryId" class="col-sm-2 control-label">Pejabat PPTK @include('components.required')</label>
     
             <div class="col-sm-10">
                 <select name="functionary_pptk2_id" id="functionaryPPTK2Select" class="form-control"></select>
@@ -239,8 +239,15 @@
     $(function() {
 
         CKEDITOR.config.toolbar = [
-            ['FontSize', 'Bold','Italic','Underline','StrikeThrough','-','Undo','Redo','-','Cut','Copy','Paste','Find','Replace','-','Outdent','Indent','-','NumberedList','BulletedList'],
+            ['placeholder_select', 'FontSize', 'Bold','Italic','Underline','StrikeThrough','-','Undo','Redo','-','Cut','Copy','Paste','Find','Replace','-','Outdent','Indent','-','NumberedList','BulletedList'],
         ];
+
+        CKEDITOR.config.extraPlugins = 'placeholder';
+        CKEDITOR.config.extraPlugins = 'placeholder_select';
+
+        CKEDITOR.config.placeholder_select = {
+            placeholders: ['FirstName', 'LastName']
+        };
 
         CKEDITOR.replace( 'section_1' );
         CKEDITOR.replace( 'section_2' );
@@ -338,6 +345,7 @@
                 data: function (params) {
                     return {
                         q: params.term,
+                        occupation: 'ppkom'
                     };
                 },
                 processResults: function (data) {
@@ -363,6 +371,7 @@
                 data: function (params) {
                     return {
                         q: params.term,
+                        occupation: 'pptk'
                     };
                 },
                 processResults: function (data) {

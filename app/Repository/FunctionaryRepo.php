@@ -21,11 +21,21 @@ class FunctionaryRepo implements FunctionaryRepoInterface
         return $data;
     }
 
-    public function getByName($name)
+    public function getByName($name, $occupation = null)
     {
         $query = Functionary::query();
 
-        $query = $query->where('name', 'LIKE', '%'.$name.'%')->take(20)->get();
+        $query = $query->where('name', 'LIKE', '%'.$name.'%')->take(20);
+
+        if (!is_null($occupation)) {
+            $query = $query->whereHas('occupations', function($q) use ($occupation) {
+                $q->where('position', $occupation);
+            });
+        }
+
+        $query = $query->get();
+
+ 
 
         return $query;
     }

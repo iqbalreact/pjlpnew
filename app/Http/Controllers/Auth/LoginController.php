@@ -27,6 +27,8 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/admin/employee';
 
+    protected $nip;
+
     /**
      * Create a new controller instance.
      *
@@ -35,5 +37,22 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        $this->nip = $this->findUsername();
+    }
+
+    public function findUsername()
+    {
+        $login = request()->input('email');
+ 
+        $fieldType = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'nip';
+ 
+        request()->merge([$fieldType => $login]);
+ 
+        return $fieldType;
+    }
+
+    public function username()
+    {
+        return $this->nip;
     }
 }
