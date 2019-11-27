@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 interface ContractRepoInterface
 {
-    public function countContract();
+    public function countContract($status = 'active');
 
     public function find($id);
 

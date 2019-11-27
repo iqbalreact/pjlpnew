@@ -13,9 +13,9 @@ use Carbon\Carbon;
 
 class ContractRepo implements ContractRepoInterface
 {
-    public function countContract()
+    public function countContract($status = 'active')
     {
-        $data = Contract::where('status', 'active')
+        $data = Contract::where('status', $status)
                         ->count();
 
         return $data;

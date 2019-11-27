@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 interface ContractBussInterface
 {
-    public function count();
+    public function count($status = 'active');
     
     public function find($id);
 
