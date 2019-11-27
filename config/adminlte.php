@@ -85,7 +85,7 @@ return [
     |
     */
 
-    'dashboard_url' => '/admin/employee',
+    'dashboard_url' => '/admin/dashboard',
 
     'logout_url' => 'logout',
 
@@ -109,11 +109,12 @@ return [
 
     'menu' => [
         'MENU UTAMA',
-        // [
-        //     'text' => 'Dashboard',
-        //     'icon' => 'dashboard',
-        //     'url'  => 'admin/dashboard'
-        // ],
+        [
+            'text' => 'Dashboard',
+            'icon' => 'dashboard',
+            'route'=> 'dashboard',
+            'url'  => 'admin/dashboard'
+        ],
         [
             'text'  => 'PJLP',
             'icon'  => 'user',
