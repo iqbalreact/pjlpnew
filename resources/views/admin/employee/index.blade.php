@@ -11,24 +11,7 @@
 @section('content')
     <div class="row">
         <div class="col-xs-12">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Chart</h3>
-                </div>
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <canvas id="religionChart"></canvas>
-                        </div>
-                        <div class="col-md-4">
-                            <canvas id="genderChart"></canvas>
-                        </div>
-                        <div class="col-md-4">
-                            <canvas id="bankChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
             <div class="box box-default">
                 <div class="box-header">
                     <h3 class="box-title">List PJLP</h3>

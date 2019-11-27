@@ -112,6 +112,29 @@
     		</div>
     	</div>   
     </div>
+
+    <div class="row">
+    	<div class="col-md-12">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Chart</h3>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <canvas id="religionChart"></canvas>
+                        </div>
+                        <div class="col-md-4">
+                            <canvas id="genderChart"></canvas>
+                        </div>
+                        <div class="col-md-4">
+                            <canvas id="bankChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>    		
+    	</div>
+    </div>
 @stop
 
 @section('css')
@@ -119,5 +142,96 @@
 @stop
 
 @section('js')
-    {{-- <script> console.log('Hi!'); </script> --}}
+<script>
+
+    var colors = ['red', 'blue', 'orange', 'green', 'yellow', 'purple'];
+
+    $.ajax({
+        url: "{{ route('chart.bank') }}",
+        success: function (result) {
+
+            var data    = [];
+            var labels  = [];
+            // var
+
+            result.forEach(function(item){
+                data.push(item.total);
+                labels.push(item.bank_name);
+            });
+
+            var ctx = $('#bankChart');
+            renderChart('Chart Bank', ctx, data, labels);
+        }
+    });
+
+    $.ajax({
+        url: "{{ route('chart.gender') }}",
+        success: function (result) {
+
+            var data    = [];
+            var labels  = [];
+
+            result.forEach(function(item){
+                data.push(item.total);
+                labels.push(item.gender);
+            });
+
+            var ctx = $('#genderChart');
+            renderChart('Chart Gender', ctx, data, labels);
+        }
+    });
+
+    $.ajax({
+        url: "{{ route('chart.religion') }}",
+        success: function (result) {
+
+            var data    = [];
+            var labels  = [];
+
+            result.forEach(function(item, i){
+                data.push(item.total);
+                labels.push(item.religion);
+            });
+
+            var ctx = $('#religionChart');
+            renderChart('Chart Agama', ctx, data, labels);
+        }
+    });
+
+    function renderChart(title, ctx, data, labels) {
+        
+        var configGender = {
+            type: 'pie',
+            data: {
+                datasets: [{
+                    data: data,
+                    backgroundColor: colors
+                }],
+                labels: labels
+            },
+            options: {
+                showAllTooltips: true,
+                responsive: true,
+                legend: {
+                    position:'left',
+                    fullWidth: false,
+                    fontSize: 11
+                },
+                tooltips: {
+                    enabled: true
+                },
+                title: {
+                    display: true,
+                    text: title
+                },
+                animation: {
+                    animateScale: true,
+                    animateRotate: true
+                }
+            }
+        };
+
+        window.Pie = new Chart(ctx, configGender);
+    }
+</script>
 @stop
