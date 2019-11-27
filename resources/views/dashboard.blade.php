@@ -26,8 +26,40 @@
 	    				<a href="#" class="btn btn-default"><i class="fa fa-check"></i> Absensi Pekerja</a>
 	    			</div>    				
     			</div>
-
     		</div>
+
+    		<div class="box box-default">
+    			<div class="box-header">
+    				<h3 class="box-title">RINGKASAN ANGKA</h3>
+    			</div>
+    			<div class="box-body" style="padding-top:0;">
+					<div class="col-md-4">
+						<h1>30</h1>
+						<span>PJLP terdaftar</span>
+					</div>
+					<div class="col-md-4">
+						<h1>28</h1>
+						<span>Kontrak Aktif</span>
+					</div>   
+					<div class="col-md-4">
+						<h1>2</h1>
+						<span>Non Aktif</span>
+					</div>   
+					<div class="col-md-4">
+						<h1>5</h1>
+						<span>Program</span>
+					</div>   
+					<div class="col-md-4">
+						<h1>10</h1>
+						<span>Kegiatan</span>
+					</div>   
+					<div class="col-md-4">
+						<h1>20</h1>
+						<span>Paket Pekerjaan</span>
+					</div>    				
+    			</div>
+    		</div>
+
     	</div>
 
     	<div class="col-md-6">
