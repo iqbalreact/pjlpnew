@@ -49,8 +49,8 @@ class WorkInspectionRepo implements WorkInspectionRepoInterface
         $data->skpd_id              = $request->skpd_id;
         $data->employee_id          = $request->employee_id;
         $data->functionary_id       = $request->functionary_id;
-        $data->functionary_pptk_id  = 9999;
-        $data->functionary_pptk2_id = 'pptk2';
+        $data->functionary_pptk_id  = $request->functionary_pptk_id;
+        $data->functionary_pptk2_id = 9999;
         $data->number               = $request->number;
         $data->contract_id          = $contract->id;
         $data->date                 = Carbon::parse($request->date);
