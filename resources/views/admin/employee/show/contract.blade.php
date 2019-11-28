@@ -36,6 +36,17 @@
                 <input class="form-control" value="{{ $contractInformation->position->name }}" readonly>
             </div>
         </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Tanggal Mulai</label>
+            <div class="col-sm-4">
+                <input class="form-control" value="11-10-2017" readonly>
+            </div>
+            <label class="col-sm-2 control-label">Tanggal Selesai</label>
+            <div class="col-sm-4">
+                <input class="form-control" value="11-10-2018" readonly>
+            </div>            
+        </div>
+
 
         <br>
         <br>
