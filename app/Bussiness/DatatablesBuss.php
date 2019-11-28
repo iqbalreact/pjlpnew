@@ -88,7 +88,8 @@ class DatatablesBuss implements DatatablesBussInterface
 
         return Datatables::of($query)
                         ->addColumn('monthTransform', function($data) {
-                            return Carbon::parse($data->month)->format('F');
+                            $date = Carbon::createFromFormat('d/m/Y', '01/'.$data->month.'/'.Carbon::now()->year);
+                            return $date->format('F');
                         })
                         ->make(true);
     }
