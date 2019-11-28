@@ -9,6 +9,7 @@ use App\Repository\Contracts\DatatablesRepoInterface;
 use Spatie\Activitylog\Models\Activity as ActivityLog;
 
 use App\Models\Activity; 
+use App\Models\Assessment; 
 use App\Models\Employee;
 use App\Models\Contract;
 use App\Models\Functionary;
@@ -87,6 +88,13 @@ class DatatablesRepo implements DatatablesRepoInterface
                         }])
                         ->where('status', 'active')
                         ->where('work_package_id', $request->workPackageId);
+
+        return $datas;
+    }
+
+    public function fetchAssessmentByEmployeeIdData(Request $request)
+    {
+        $datas  = Assessment::where('employee_id', $request->employee_id);
 
         return $datas;
     }

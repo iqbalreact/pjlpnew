@@ -48,8 +48,6 @@
 
                 </div>
                 <div class="box-body">
-
-
                     <table id="employee-table" class="table">
                         <thead>
                             <tr>

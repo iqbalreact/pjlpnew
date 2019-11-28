@@ -28,6 +28,11 @@ class DatatablesController extends Controller
 		return $this->assessment->fetchTemplate($request);
 	}
 
+    public function fetchAssessmentByEmployeeIdData(Request $request)
+	{
+		return $this->datatables->fetchAssessmentByEmployeeIdData($request);
+	}
+
 	public function fetchAttendanceDatas(Request $request)
 	{
 		return $this->attendance->fetchTemplate($request);

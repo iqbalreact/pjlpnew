@@ -77,6 +77,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     // Datatables
     Route::group(['prefix' => 'data'], function() {
         Route::get('assessment', 'DatatablesController@fetchAssessmentDatas')->name('fetch.assessment');
+        Route::get('assessmentByEmployeeId', 'DatatablesController@fetchAssessmentByEmployeeIdData')->name('fetch.assessmentByEmployeeId');
         Route::get('attendance', 'DatatablesController@fetchAttendanceDatas')->name('fetch.attendance');
         Route::get('account', 'DatatablesController@fetchAccountDatas')->name('fetch.account');
         Route::get('activity', 'DatatablesController@fetchActivityDatas')->name('fetch.activity');

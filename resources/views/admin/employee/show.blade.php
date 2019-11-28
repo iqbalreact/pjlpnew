@@ -56,10 +56,10 @@
                     <div class="tab-pane active" id="contract">
                         @include('admin.employee.show.contract')
                     </div>
-                    <div class="tab-pane active" id="attendance">
+                    <div class="tab-pane" id="attendance">
                         @include('admin.employee.show.attendance')
                     </div>
-                    <div class="tab-pane active" id="assessment">
+                    <div class="tab-pane" id="assessment">
                         @include('admin.employee.show.assessment')
                     </div>                                                            
                     <div class="tab-pane" id="about">

@@ -82,6 +82,17 @@ class DatatablesBuss implements DatatablesBussInterface
                         ->make(true);
     }
 
+    public function fetchAssessmentByEmployeeIdData(Request $request)
+    {
+        $query = $this->datatablesRepo->fetchAssessmentByEmployeeIdData($request);
+
+        return Datatables::of($query)
+                        ->addColumn('monthTransform', function($data) {
+                            return Carbon::parse($data->month)->format('F');
+                        })
+                        ->make(true);
+    }
+
     public function fetchAccountDatas(Request $request)
     {
         $query = $this->datatablesRepo->fetchAccountDatas($request);

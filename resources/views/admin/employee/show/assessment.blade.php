@@ -7,12 +7,12 @@
 	}
 </style>
 
-<table class="table table-default table-bordered">
+<table id="assessment-table" class="table" width="100%">
 	<thead>
 		<tr>
+			<th>Id</th>
 			<th>Bulan</th>
 			<th>Tahun</th>
-			<th>Status</th>
 			<th>TPP</th>
 			<th>WPP</th>
 			<th>KHP</th>
@@ -20,68 +20,6 @@
 			<th>KTL</th>
 		</tr>
 	</thead>
-	<tbody>
-		<tr>
-			<td>November</td>
-			<td>2019</td>
-			<td class="text-success">Lengkap</td>
-			<td>4</td>
-			<td>4</td>
-			<td>3</td>
-			<td>4</td>
-			<td>4</td>
-		</tr>
-		<tr>
-			<td>Juli</td>
-			<td>2019</td>
-			<td class="text-success">Lengkap</td>
-			<td>4</td>
-			<td>4</td>
-			<td>3</td>
-			<td>4</td>
-			<td>4</td>
-		</tr>
-		<tr>
-			<td>Agustus</td>
-			<td>2019</td>
-			<td class="text-success">Lengkap</td>
-			<td>4</td>
-			<td>4</td>
-			<td>3</td>
-			<td>4</td>
-			<td>4</td>
-		</tr>
-		<tr>
-			<td>September</td>
-			<td>2019</td>
-			<td class="text-success">Lengkap</td>
-			<td>4</td>
-			<td>4</td>
-			<td>3</td>
-			<td>4</td>
-			<td>4</td>
-		</tr>
-		<tr>
-			<td>Oktober</td>
-			<td>2019</td>
-			<td class="text-success">Lengkap</td>
-			<td>4</td>
-			<td>4</td>
-			<td>3</td>
-			<td>4</td>
-			<td>4</td>
-		</tr>
-		<tr>
-			<td>November</td>
-			<td>2019</td>
-			<td class="text-success">Lengkap</td>
-			<td>4</td>
-			<td>4</td>
-			<td>3</td>
-			<td>4</td>
-			<td>4</td>
-		</tr>
-	</tbody>
 </table>
 
 <div class="row">
@@ -104,3 +42,33 @@
 		</dl>		
 	</div>
 </div>	
+
+@section('js2')
+<script>
+    $(function() {
+		var oTable = $('#assessment-table').dataTable({
+            processing: true,
+            serverSide: true,
+            responsive: true,
+            order: [[ 0, 'desc' ]],
+            deferRender:    true,
+            ajax: {
+                url: '{!! route('fetch.assessmentByEmployeeId') !!}',
+                data: function (d) {
+                    d.employee_id = "{{ $data->id }}"
+                }
+            },
+            columns: [
+                { data: 'id', name: 'id', class:'hide' },
+                { data: 'monthTransform', name: 'monthTransform', searchable:'true'},
+                { data: 'year', name: 'year', searchable:'true'},
+                { data: 'work_completion_rate', name: 'work_completion_rate', searchable:'true'},
+                { data: 'work_completion_time', name: 'work_completion_time', searchable:'true'},
+                { data: 'work_quality', name: 'work_quality', searchable:'true'},
+                { data: 'obidence_on_obligation', name: 'obidence_on_obligation', searchable:'true'},
+                { data: 'obidence_on_rule', name: 'obidence_on_rule', searchable:'true'},
+            ]
+        });
+	});
+</script>
+@endsection
