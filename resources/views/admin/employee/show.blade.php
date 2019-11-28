@@ -46,11 +46,23 @@
         <div class="col-md-9">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#about" data-toggle="tab" aria-expanded="true">Tentang</a></li>
+                    <li class="active"><a href="#contract" data-toggle="tab" aria-expanded="true">Kontrak Aktif</a></li>
+                    <li><a href="#attendance" data-toggle="tab" aria-expanded="true">Absensi</a></li>
+                    <li><a href="#assessment" data-toggle="tab" aria-expanded="true">Penilaian Kinerja</a></li>                                        
+                    <li><a href="#about" data-toggle="tab" aria-expanded="true">Profil</a></li>
                     <li class=""><a href="#log" data-toggle="tab" aria-expanded="false">Change Log</a></li>
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane active" id="about">
+                    <div class="tab-pane active" id="contract">
+                        @include('admin.employee.show.contract')
+                    </div>
+                    <div class="tab-pane active" id="attendance">
+                        @include('admin.employee.show.attendance')
+                    </div>
+                    <div class="tab-pane active" id="assessment">
+                        @include('admin.employee.show.assessment')
+                    </div>                                                            
+                    <div class="tab-pane" id="about">
                         @include('admin.employee.show.about')
                     </div>
                     <div class="tab-pane" id="log">
