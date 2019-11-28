@@ -49,7 +49,7 @@
 
     @if(isset($data->functionary))
         <div class="form-group {{ $errors->has('functionary_id') ? 'has-error' : '' }}"">
-            <label for="inputFuntionary" class="col-sm-2 control-label">Pihak Pertama @include('components.required')</label>
+            <label for="inputFuntionary" class="col-sm-2 control-label">Pejabat PPTK @include('components.required')</label>
 
             <div class="col-sm-10">
                 <input type="text" value="{{ $data->functionary->name }}" class="form-control" readonly>
@@ -62,7 +62,7 @@
         </div>
     @else
         <div class="form-group {{ $errors->has('functionary_id') ? 'has-error' : '' }}">
-            <label for="inputFunctionaryId" class="col-sm-2 control-label">Pihak Pertama @include('components.required')</label>
+            <label for="inputFunctionaryId" class="col-sm-2 control-label">Pejabat PPTK @include('components.required')</label>
     
             <div class="col-sm-10">
                 <select name="functionary_id" id="functionarySelect" class="form-control"></select>
@@ -101,7 +101,7 @@
         </div>
     @endif
 
-    @if(isset($data->functionaryPPTK))
+    {{-- @if(isset($data->functionaryPPTK))
         <div class="form-group {{ $errors->has('functionary_pptk2_id') ? 'has-error' : '' }}"">
             <label for="inputFuntionary" class="col-sm-2 control-label">Pejabat PPTK @include('components.required')</label>
 
@@ -126,12 +126,12 @@
                 @endif
             </div>
         </div>
-    @endif
+    @endif --}}
 
 
     @if(isset($data->employee))
         <div class="form-group {{ $errors->has('employee_id') ? 'has-error' : '' }}"">
-            <label for="inputEmployee" class="col-sm-2 control-label">Pihak Kedua @include('components.required')</label>
+            <label for="inputEmployee" class="col-sm-2 control-label">PJLP @include('components.required')</label>
 
             <div class="col-sm-10">
                 <input type="text" value="{{ $data->employee->name }}" class="form-control" readonly>
@@ -144,7 +144,7 @@
         </div>
     @else
         <div class="form-group {{ $errors->has('employee_id') ? 'has-error' : '' }}">
-            <label for="inputEmployee" class="col-sm-2 control-label">Pihak Kedua @include('components.required')</label>
+            <label for="inputEmployee" class="col-sm-2 control-label">PJLP @include('components.required')</label>
     
             <div class="col-sm-10">
                 <select name="employee_id" id="employeeSelect" class="form-control"></select>
@@ -320,6 +320,7 @@
                 data: function (params) {
                     return {
                         q: params.term,
+                        occupation: 'pptk'
                     };
                 },
                 processResults: function (data) {

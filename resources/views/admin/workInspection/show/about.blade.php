@@ -1,6 +1,6 @@
 <form class="form-horizontal">
     <div class="form-group">
-        <label class="col-sm-2 control-label">Nama</label>
+        <label class="col-sm-2 control-label">PJLP</label>
 
         <div class="col-sm-10">
             <input class="form-control" value="{{ $data->employee->name }}" readonly>
@@ -42,7 +42,7 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">Pejabat</label>
+        <label class="col-sm-2 control-label">Pejabat PPTK</label>
 
         <div class="col-sm-10">
             <input class="form-control" value="{{ $data->functionary->name }}" readonly>
@@ -52,37 +52,37 @@
         <label class="col-sm-2 control-label">Posisi Pejabat</label>
 
         <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->functionary->occupations->first()->name }}" readonly>
+            <input class="form-control" value="Pejabat Pelaksana Teknik Kegiatan pada {{ $data->skpd->name ?? '' }} Kota Pontianak" readonly>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">Pejabat PPTK</label>
+        <label class="col-sm-2 control-label">Pejabat PPKOM</label>
 
         <div class="col-sm-10">
             <input class="form-control" value="{{ $data->functionaryPPTK->name }}" readonly>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">Posisi Pejabat PPTK</label>
+        <label class="col-sm-2 control-label">Posisi Pejabat PPKOM</label>
 
         <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->functionaryPPTK->occupations->first()->name }}" readonly>
+            <input class="form-control" value="Pejabat Pembuat Komitmen pada {{ $data->skpd->name ?? '' }} Kota Pontianak" readonly>
         </div>
     </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label">Pejabat PPTK 2</label>
+    {{-- <div class="form-group">
+        <label class="col-sm-2 control-label">Pejabat PPTK</label>
 
         <div class="col-sm-10">
             <input class="form-control" value="{{ $data->functionaryPPTK2->name }}" readonly>
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">Posisi Pejabat PPTK2</label>
+        <label class="col-sm-2 control-label">Posisi Pejabat PPTK</label>
 
         <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->functionaryPPTK2->occupations->first()->name }}" readonly>
+            <input class="form-control" value="Pejabat Pelaksana Teknik Kegiatan pada {{ $data->skpd->name ?? '' }} Kota Pontianak" readonly>
         </div>
-    </div>
+    </div> --}}
     <div class="form-group">
         <label class="col-sm-2 control-label">No Surat</label>
 

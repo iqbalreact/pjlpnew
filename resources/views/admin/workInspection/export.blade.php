@@ -21,10 +21,10 @@
 
             <div class="col-xs-10 text-center">
                 <p>
-                    <h3>PEMERINTAH KOTA PONTIANAK</h3>
+                    <h4>PEMERINTAH KOTA PONTIANAK</h4>
                 </p>
                 <p>
-                    <h2>{{ strtoupper($data->skpd->name) }}</h2>
+                    <h3>{{ strtoupper($data->skpd->name) }}</h3>
                 </p>
                 <p>
                     {{ $data->skpd->address }} Telp: {{ $data->skpd->phone_number }} Fax: {{ $data->skpd->fax }} Pontianak {{ $data->skpd->postal_code }}  Website: {{ $data->skpd->website}}</td>
