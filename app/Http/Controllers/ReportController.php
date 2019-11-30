@@ -4,7 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Attendance;
+
+use App\Bussiness\Contracts\AssessmentBussInterface;
+use App\Bussiness\Contracts\AttendanceBussInterface;
 use App\Bussiness\Contracts\ContractBussInterface;
+use App\Bussiness\Contracts\EmployeeBussInterface;
+use App\Bussiness\Contracts\WorkDayBussInterface;
+use App\Bussiness\Contracts\WorkPackageBussInterface;
+use App\Bussiness\Contracts\WorkInspectionBussInterface;
 
 use Carbon\Carbon;
 
@@ -12,10 +20,37 @@ use PDF;
 
 class ReportController extends Controller
 {
+    private $month = [
+        '01'   => 'january',
+        '02'   => 'february',
+        '03'   => 'march',
+        '04'   => 'april',
+        '05'   => 'may',
+        '06'   => 'june',
+        '07'   => 'july',
+        '08'   => 'august',
+        '09'   => 'september',
+        '10'  => 'october',
+        '11'  => 'november',
+        '12'  => 'december'
+    ];
+
     public function __construct(
-        ContractBussInterface $contract
+        AssessmentBussInterface $assessment,
+        AttendanceBussInterface $attendance,
+        ContractBussInterface $contract,
+        EmployeeBussInterface $employee,
+        WorkDayBussInterface $workDay,
+        WorkInspectionBussInterface $workInspection,
+        WorkPackageBussInterface $workPackage
     ) {
-        $this->contract = $contract;
+        $this->assessment       = $assessment;
+        $this->attendance       = $attendance;
+        $this->contract         = $contract;
+        $this->employee         = $employee;
+        $this->workDay          = $workDay;
+        $this->workInspection   = $workInspection;
+        $this->workPackage      = $workPackage;
     }
 
     public function workInspection()
@@ -59,10 +94,23 @@ class ReportController extends Controller
 
     public function postWorkInspectionCeremony(Request $request)
     {
-        $data = $this->contract->findEmployeeByContract();
-
         $start  = Carbon::parse($request->date)->startOfMonth();
         $end    = Carbon::parse($request->date)->endOfMonth();
+
+        if ($request->type == 3) {
+            $request->date = $start;
+
+            $data = $this->assessmentReport($request);
+
+            if (!$data) {
+                notify()->error('Data tidak siap untuk digenerate');
+                return redirect()->back();
+            }
+
+            return $data;
+        }
+
+        $data = $this->contract->findEmployeeByContract();
 
         $dates = [];
         while ($start->lte($end)) {
@@ -91,5 +139,84 @@ class ReportController extends Controller
         $pdf = PDF::loadView('admin.report.export.workInspectionAttendance', compact('data', 'dates', 'period', 'skpdName'))->setPaper('a4', 'landscape');
 
         return $pdf->download('Data Kehadiran.pdf');
+    }
+
+    public function assessmentReport(Request $request)
+    {
+        $employee       = $this->employee->find($request->employee_id);
+        $contract       = $this->contract->find($request->contract_id);
+        $workPackage    = $this->workPackage->find($contract->work_package_id);
+        $workInspection = $this->workInspection->find($request->work_inspection_id);
+        $request->work_package_id = $workPackage->id;
+
+        $recapAssessment    = $this->assessment->findAssessment($request);
+        
+        if (is_null($recapAssessment)) {
+            return false;
+        }
+        
+        $recapAttendace     = $this->attendance->findRecap($request);
+
+        if (is_null($recapAttendace)) {
+            return false;
+        }
+        
+        $workDay            = $this->workDay->findByYear(Carbon::parse($request->date)->format('Y'));
+
+        $monthTranslate     = $this->month[Carbon::parse($request->date)->format('m')];
+
+        $totalDay           = $workDay->$monthTranslate;
+
+        $attend = $recapAttendace->attend + $recapAttendace->leave;
+
+        $attendPercentage = ($attend / $totalDay) * 100; 
+
+        $assessmentAttendance = $this->findValue($attendPercentage);
+
+        $ceremonyPercentage = ($this->countCeremony($request) / $totalDay) * 100;
+
+        $assessmentCeremony = $this->findValue($ceremonyPercentage);
+
+        $month  = Carbon::parse($request->date)->format('F');
+
+        $totalIndicator = $recapAssessment->work_completion_rate + $recapAssessment->work_completion_time + $recapAssessment->work_quality + $recapAssessment->obidence_on_obligation + $recapAssessment->obidence_on_rule + $assessmentAttendance + $assessmentCeremony;
+        $pdf = PDF::loadView('admin.report.export.workAssessment', compact('employee', 'workInspection', 'contract', 'assessmentAttendance', 'assessmentCeremony', 'month', 'workPackage', 'recapAssessment', 'totalIndicator'))->setPaper('a4', 'landscape');
+        return $pdf->download('Pemeriksaan Pekerjaan.pdf');
+    }
+
+    public function findValue($value) 
+    {
+        if ($value <= 64) {
+            return 1;
+        }
+
+        if ($value >= 65 && $value <= 74) {
+            return 2;
+        }
+
+        if ($value >= 75 && $value <= 84) {
+            return 3;
+        }
+
+        if ($value >= 85) {
+            return 4;
+        }
+        
+        return;
+    }
+
+    public function countCeremony(Request $request)
+    {
+        $month  = Carbon::parse($request->date)->format('m');
+        $year   = Carbon::parse($request->date)->format('Y');
+
+        $data = Attendance::whereMonth('date', $month)
+                            ->whereYear('date', $year)
+                            ->where('employee_id', $request->employee_id)
+                            ->where('contract_id', $request->contract_id)
+                            ->where('ceremony', 1)
+                            ->count();
+
+        return $data;
     }
 }

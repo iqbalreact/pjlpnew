@@ -23,7 +23,7 @@ class ContractRepo implements ContractRepoInterface
 
     public function find($id)
     {
-        $data = Contract::with('salaries.salaryComponent')->find($id);
+        $data = Contract::with('position', 'salaries.salaryComponent')->find($id);
         
         if (is_null($data)) {
             return false;

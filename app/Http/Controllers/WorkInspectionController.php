@@ -99,8 +99,7 @@ class WorkInspectionController extends Controller
             notify()->warning('Berita Acara Pemeriksaan terima tidak ditemukan');
             return redirect()->back();
         }
-
-
+        
         return view('admin.workInspection.show', compact('data'));
     }
 
