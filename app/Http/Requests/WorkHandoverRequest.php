@@ -29,7 +29,6 @@ class WorkHandoverRequest extends FormRequest
             'functionary_id'        => 'required',
             'number'                => 'required',
             'date'                  => 'required',
-            'section_1'             => 'required',
             'section_2'             => 'required',
             'section_3'             => 'required',
             'section_4'             => 'required'

@@ -52,7 +52,7 @@ class WorkHandoverRepo implements WorkHandoverRepoInterface
         $data->number           = $request->number;
         $data->contract_id      = $contract->id;
         $data->date             = Carbon::parse($request->date);
-        $data->section_1        = $request->section_1;
+        $data->section_1        = 'section1';
         $data->section_2        = $request->section_2;
         $data->section_3        = $request->section_3;
         $data->section_4        = $request->section_4;
@@ -74,7 +74,7 @@ class WorkHandoverRepo implements WorkHandoverRepoInterface
         $data->functionary_id   = $request->functionary_id;
         $data->number           = $request->number;
         $data->date             = Carbon::parse($request->date);
-        $data->section_1        = $request->section_1;
+        $data->section_1        = 'section1';
         $data->section_2        = $request->section_2;
         $data->section_3        = $request->section_3;
         $data->section_4        = $request->section_4;

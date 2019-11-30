@@ -155,7 +155,7 @@ return [
                     'url'  => '/admin/workInspection'
                 ],
                 [
-                    'text' => 'Serah Terima',
+                    'text' => 'Serah Terima PJLP ke PPKOM',
                     'url'  => '/admin/workHandover'
                 ],
                 [
