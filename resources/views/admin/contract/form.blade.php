@@ -199,6 +199,14 @@
             </div>
         </div>
     </div>
+
+    <div class="form-group {{ $errors->has('bonus') ? 'has-error' : '' }}">
+        <label for="inputPosition" class="col-sm-2 control-label">Bonus @include('components.required')</label>
+
+        <div class="col-sm-10">
+            <input type="text" name="bonus" placeholder="Masukan nominal" class="form-control name_list" value="{{ $edit ? $data->bonus : 0 }}" required>  
+        </div>
+    </div>
     
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
@@ -362,7 +370,8 @@
                 data: function (params) {
                     return {
                         q: params.term,
-                        work_package_id: workPackageId
+                        work_package_id: workPackageId,
+                        occupation: 'ppkom'
                     };
                 },
                 processResults: function (data) {

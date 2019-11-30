@@ -52,15 +52,21 @@ class OccupationRepo implements OccupationRepoInterface
         return $data;
     }
 
-    public function getByName($name, $skpd_id = null)
+    public function getByName($name, $skpd_id = null, $occupation = null)
     {
         $query = Functionary::query();
 
-        if (!is_null($skpd_id)) {
-            $query = $query->whereHas('occupations', function($q) use ($skpd_id) {
-                                $q->where('skpd_id', $skpd_id)
-                                ->where('status', 'active');
-                            });
+        // if (!is_null($skpd_id)) {
+        //     $query = $query->whereHas('occupations', function($q) use ($skpd_id) {
+        //                         $q->where('skpd_id', $skpd_id)
+        //                         ->where('status', 'active');
+        //                     });
+        // }
+
+        if (!is_null($occupation)) {
+            $query = $query->whereHas('occupations', function($q) use ($occupation) {
+                $q->where('position', $occupation);
+            });
         }
 
         $query = $query->where('name', 'LIKE', '%'.$name.'%')

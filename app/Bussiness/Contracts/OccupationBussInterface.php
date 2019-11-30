@@ -10,7 +10,7 @@ interface OccupationBussInterface
 
     public function getByOccupation($occupation);
 
-    public function getByName($name, $workPackageId = null);
+    public function getByName($name, $workPackageId = null, $occupation = null);
 
     public function checkOccupation($functionary_id, $start_date, $end_date, $id = null);
 

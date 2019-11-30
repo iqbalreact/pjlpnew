@@ -10,7 +10,7 @@ interface OccupationRepoInterface
 
     public function getByOccupation($occupation);
 
-    public function getByName($name, $skpd_id = null);
+    public function getByName($name, $skpd_id = null, $occupation = null);
 
     public function checkOccupation($functionary_id, $start_date, $end_date, $id = null);
 

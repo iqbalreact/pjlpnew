@@ -69,6 +69,13 @@
             <input class="form-control" value="{{ $data->status }}" readonly>
         </div>
     </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Bonus</label>
+
+        <div class="col-sm-10">
+            <input class="form-control name_list" value="{{ $data->bonus }}" readonly>
+        </div>
+    </div>
 
     <div class="form-group">
         <label for="inputStatus" class="col-sm-2 control-label">Gaji</label>

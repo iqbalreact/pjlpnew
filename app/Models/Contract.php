@@ -37,7 +37,8 @@ class Contract extends Model
         'start_date',
         'end_date',
         'status',
-        'occupation_id'
+        'occupation_id',
+        'bonus'
     ];
     
     protected static $logAttributes = [
@@ -53,7 +54,8 @@ class Contract extends Model
         'start_date',
         'end_date',
         'status',
-        'occupation_id'
+        'occupation_id',
+        'bonus'
     ];
 
     protected static function boot()

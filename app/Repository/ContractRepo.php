@@ -87,6 +87,7 @@ class ContractRepo implements ContractRepoInterface
         $data->end_date         = Carbon::parse($request->end_date);
         $data->status           = $request->status;
         $data->occupation_id    = $request->occupation_id;
+        $data->bonus            = $request->bonus;
         $data->save();
 
         $this->saveSalary($request->salaries, $data);
@@ -114,6 +115,7 @@ class ContractRepo implements ContractRepoInterface
         $data->end_date         = Carbon::parse($request->end_date);
         $data->status           = $request->status;
         $data->occupation_id    = $request->occupation_id;
+        $data->bonus            = $request->bonus ?? 0;
         $data->update();
 
         $data->salaries()->delete();

@@ -169,8 +169,9 @@ class OccupationController extends Controller
     {
         $name           = $request->q;
         $workPackageId  = $request->work_package_id;
+        $occupation     = $request->occupation;
 
-        $res = $this->occupation->getByName($name, $workPackageId);
+        $res = $this->occupation->getByName($name, $workPackageId, $occupation);
 
         return response()->json($res);
     }

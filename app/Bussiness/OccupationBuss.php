@@ -28,7 +28,7 @@ class OccupationBuss implements OccupationBussInterface
         return $this->occupationRepo->getByOccupation($occupation);
     }
 
-    public function getByName($name, $workPackageId = null)
+    public function getByName($name, $workPackageId = null, $occupation = null)
     {
         $skpd_id = null;
         if (!empty($workPackageId)) {
@@ -36,7 +36,7 @@ class OccupationBuss implements OccupationBussInterface
             $skpd_id    = $skpdInfo['skpd_id'];
         }
 
-        return $this->occupationRepo->getByName($name, $skpd_id);
+        return $this->occupationRepo->getByName($name, $skpd_id, $occupation);
     }
 
     public function checkOccupation($functionary_id, $start_date, $end_date, $id = null)
