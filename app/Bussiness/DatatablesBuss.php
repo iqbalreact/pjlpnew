@@ -20,6 +20,7 @@ use App\Models\Position;
 use App\Models\Program;
 use App\Models\Skpd;
 use App\Models\StartWorkingLetter;
+use App\Models\WorkAdministration;
 use App\Models\WorkHandover;
 use App\Models\WorkHandoverPpkom;
 use App\Models\WorkInspection;
@@ -366,6 +367,24 @@ class DatatablesBuss implements DatatablesBussInterface
                         ->addColumn('actions', 
                                 ' <a href="{{ URL::route( \'startWorkingLetter.show\', array( $id)) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
                                 <a href="{{ URL::route( \'startWorkingLetter.edit\', array( $id)) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')
+                        ->rawColumns(['actions'])
+                        ->make(true);
+    }
+
+    public function fetchWorkAdministrationDatas(Request $request)
+    {
+        $query = $this->datatablesRepo->fetchWorkAdministrationDatas($request);
+
+        return Datatables::of($query)
+                        ->addColumn('employee', function (WorkAdministration $workAdministration) {
+                            return $workAdministration->employee->name;
+                        })
+                        ->addColumn('position', function (WorkAdministration $workAdministration) {
+                            return $workAdministration->contract->position->name ?? ''; 
+                        })
+                        ->addColumn('actions', 
+                                ' <a href="{{ URL::route( \'workAdministration.show\', array( $id)) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
+                                <a href="{{ URL::route( \'workAdministration.edit\', array( $id)) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')
                         ->rawColumns(['actions'])
                         ->make(true);
     }

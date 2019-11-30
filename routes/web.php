@@ -54,6 +54,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('skpd', 'SkpdController');
     Route::resource('salaryComponent', 'SalaryComponentController');
     Route::resource('startWorkingLetter', 'StartWorkingLetterController');
+    Route::resource('workAdministration', 'WorkAdministrationController');
     Route::resource('workDay', 'WorkDayController');
     Route::resource('workHandover', 'WorkHandoverController');
     Route::resource('workHandoverPpkom', 'WorkHandoverPpkomController');
@@ -98,6 +99,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::get('salaryComponent', 'DatatablesController@fetchSalaryComponentDatas')->name('fetch.salaryComponent');
         Route::get('skpd', 'DatatablesController@fetchSkpdDatas')->name('fetch.skpd');
         Route::get('startWorkingLetter', 'DatatablesController@fetchStartWorkingLetterDatas')->name('fetch.startWorkingLetter');
+        Route::get('workAdministration', 'DatatablesController@fetchWorkAdministrationDatas')->name('fetch.workAdministration');
         Route::get('workDay', 'DatatablesController@fetchWorkDayDatas')->name('fetch.workDay');
         Route::get('workHandover', 'DatatablesController@fetchWorkHandoverDatas')->name('fetch.workHandover');
         Route::get('workHandoverPpkom', 'DatatablesController@fetchWorkHandoverPpkomDatas')->name('fetch.workHandoverPpkom');
@@ -120,6 +122,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     // Export
     Route::group(['prefix' => 'export'], function() {
+        Route::get('workAdministration/{id}', 'WorkAdministrationController@export')->name('export.workAdministration');
         Route::get('workHandover/{id}', 'WorkHandoverController@export')->name('export.workHandover');
         Route::get('workHandoverPpkom/{id}', 'WorkHandoverPpkomController@export')->name('export.workHandoverPpkom');
         Route::get('workInspection/{id}', 'WorkInspectionController@export')->name('export.workInspection');

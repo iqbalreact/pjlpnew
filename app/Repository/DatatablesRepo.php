@@ -25,6 +25,7 @@ use App\Models\SalaryComponent;
 use App\Models\Skpd;
 use App\Models\StartWorkingLetter;
 use App\Models\User;
+use App\Models\WorkAdministration;
 use App\Models\WorkDay;
 use App\Models\WorkHandover;
 use App\Models\WorkHandoverPpkom;
@@ -289,6 +290,15 @@ class DatatablesRepo implements DatatablesRepoInterface
     public function fetchStartWorkingLetterDatas(Request $request)
     {
         $datas = StartWorkingLetter::query();
+
+        $datas->with('employee', 'contract.position');
+
+        return $datas;
+    }
+
+    public function fetchWorkAdministrationDatas(Request $request)
+    {
+        $datas = WorkAdministration::query();
 
         $datas->with('employee', 'contract.position');
 

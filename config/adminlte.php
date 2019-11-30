@@ -159,6 +159,10 @@ return [
                     'url'  => '/admin/workHandover'
                 ],
                 [
+                    'text' => 'Pemeriksaan Administrasi',
+                    'url'  => '/admin/workAdministration'
+                ],
+                [
                     'text' => 'Serah Terima PPKOM ke PA',
                     'url'  => '/admin/workHandoverPpkom'
                 ],

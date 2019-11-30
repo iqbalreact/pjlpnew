@@ -42,6 +42,8 @@ interface DatatablesBussInterface
 
     public function fetchStartWorkingLetterDatas(Request $request);
 
+    public function fetchWorkAdministrationDatas(Request $request);
+
     public function fetchWorkDayDatas(Request $request);
 
     public function fetchWorkHandoverDatas(Request $request);

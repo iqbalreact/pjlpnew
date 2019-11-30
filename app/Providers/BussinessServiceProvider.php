@@ -70,6 +70,9 @@ use App\Bussiness\SalaryComponentBuss;
 use App\Bussiness\Contracts\StartWorkingLetterBussInterface;
 use App\Bussiness\StartWorkingLetterBuss;
 
+use App\Bussiness\Contracts\WorkAdministrationBussInterface;
+use App\Bussiness\WorkAdministrationBuss;
+
 use App\Bussiness\Contracts\WorkDayBussInterface;
 use App\Bussiness\WorkDayBuss;
 
@@ -126,6 +129,7 @@ class BussinessServiceProvider extends ServiceProvider
         $this->app->bind(SalaryComponentBussInterface::class, SalaryComponentBuss::class);
         $this->app->bind(SkpdBussInterface::class, SkpdBuss::class);
         $this->app->bind(StartWorkingLetterBussInterface::class, StartWorkingLetterBuss::class);
+        $this->app->bind(WorkAdministrationBussInterface::class, WorkAdministrationBuss::class);
         $this->app->bind(WorkDayBussInterface::class, WorkDayBuss::class);
         $this->app->bind(WorkHandoverBussInterface::class, WorkHandoverBuss::class);
         $this->app->bind(WorkHandoverPpkomBussInterface::class, WorkHandoverPpkomBuss::class);
