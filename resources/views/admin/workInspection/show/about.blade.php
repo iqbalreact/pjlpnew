@@ -69,20 +69,6 @@
             <input class="form-control" value="Pejabat Pembuat Komitmen pada {{ $data->skpd->name ?? '' }} Kota Pontianak" readonly>
         </div>
     </div>
-    {{-- <div class="form-group">
-        <label class="col-sm-2 control-label">Pejabat PPTK</label>
-
-        <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->functionaryPPTK2->name }}" readonly>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label">Posisi Pejabat PPTK</label>
-
-        <div class="col-sm-10">
-            <input class="form-control" value="Pejabat Pelaksana Teknik Kegiatan pada {{ $data->skpd->name ?? '' }} Kota Pontianak" readonly>
-        </div>
-    </div> --}}
     <div class="form-group">
         <label class="col-sm-2 control-label">No Surat</label>
 

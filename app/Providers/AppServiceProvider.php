@@ -25,6 +25,9 @@ use App\Services\RoleService;
 use App\Services\Contracts\StatusServiceInterface;
 use App\Services\StatusService;
 
+use App\Services\Contracts\TerbilangServiceInterface;
+use App\Services\TerbilangService;
+
 use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
@@ -43,6 +46,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ReligionServiceInterface::class, ReligionService::class);        
         $this->app->bind(RoleServiceInterface::class, RoleService::class);        
         $this->app->bind(StatusServiceInterface::class, StatusService::class);        
+        $this->app->bind(TerbilangServiceInterface::class, TerbilangService::class);        
     }
 
     /**

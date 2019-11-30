@@ -8,17 +8,21 @@ use App\Http\Requests\WorkInspectionRequest;
 
 use App\Bussiness\Contracts\WorkInspectionBussInterface;
 use App\Bussiness\Contracts\SkpdBussInterface;
+use App\Services\Contracts\TerbilangServiceInterface;
 
 use PDF;
+use Carbon\Carbon;
 
 class WorkInspectionController extends Controller
 {
     public function __construct(
         WorkInspectionBussInterface $workInspection,
-        SkpdBussInterface $skpd
+        SkpdBussInterface $skpd,
+        TerbilangServiceInterface $terbilang
     ) {
         $this->workInspection   = $workInspection;
         $this->skpd             = $skpd;
+        $this->terbilang        = $terbilang;
     }
 
     /**
@@ -96,6 +100,7 @@ class WorkInspectionController extends Controller
             return redirect()->back();
         }
 
+
         return view('admin.workInspection.show', compact('data'));
     }
 
@@ -108,8 +113,9 @@ class WorkInspectionController extends Controller
             return redirect()->back();
         }
 
-        // return view('admin.workInspection.export', compact('data'));
-        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('admin.workInspection.export', compact('data'))->setPaper('a4', 'potrait');
+        $date = $this->terbilang->convert($data->date);
+
+        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('admin.workInspection.export', compact('data', 'date'))->setPaper('a4', 'potrait');
         return $pdf->download($data->number.'.pdf');
     }
 

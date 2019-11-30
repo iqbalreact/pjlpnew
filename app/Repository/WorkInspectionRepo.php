@@ -54,7 +54,7 @@ class WorkInspectionRepo implements WorkInspectionRepoInterface
         $data->number               = $request->number;
         $data->contract_id          = $contract->id;
         $data->date                 = Carbon::parse($request->date);
-        $data->section_1            = $request->section_1;
+        $data->section_1            = 'section1';
         $data->section_2            = $request->section_2;
         $data->section_3            = $request->section_3;
         $data->save();
@@ -75,7 +75,7 @@ class WorkInspectionRepo implements WorkInspectionRepoInterface
         $data->functionary_id   = $request->functionary_id;
         $data->number           = $request->number;
         $data->date             = Carbon::parse($request->date);
-        $data->section_1        = $request->section_1;
+        $data->section_1        = 'section1';
         $data->section_2        = $request->section_2;
         $data->section_3        = $request->section_3;
         $data->update();

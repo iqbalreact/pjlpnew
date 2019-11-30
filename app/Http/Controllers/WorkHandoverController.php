@@ -8,17 +8,21 @@ use App\Http\Requests\WorkHandoverRequest;
 
 use App\Bussiness\Contracts\WorkHandoverBussInterface;
 use App\Bussiness\Contracts\SkpdBussInterface;
+use App\Services\Contracts\TerbilangServiceInterface;
 
 use PDF;
+use Carbon\Carbon;
 
 class WorkHandoverController extends Controller
 {
     public function __construct(
         WorkHandoverBussInterface $workHandover,
-        SkpdBussInterface $skpd
+        SkpdBussInterface $skpd,
+        TerbilangServiceInterface $terbilang
     ) {
         $this->workHandover = $workHandover;
         $this->skpd         = $skpd;
+        $this->terbilang        = $terbilang;
     }
 
     /**
@@ -120,7 +124,9 @@ class WorkHandoverController extends Controller
             return redirect()->back();
         }
 
-        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('admin.workHandover.export', compact('data'))->setPaper('a4', 'potrait');
+        $date = $this->terbilang->convert($data->date);
+
+        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('admin.workHandover.export', compact('data', 'date'))->setPaper('a4', 'potrait');
         return $pdf->download($data->number.'.pdf');
     }
 

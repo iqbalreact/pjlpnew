@@ -32,21 +32,6 @@
             </div>
         </div>
 
-        {{-- <table class="header">
-            <tr width="20%">
-                <td rowspan="3"><img src={{ public_path('/img/pontianak-logo.svg') }} width="200px"></td>
-                <td>PEMERINTAH KOTA PONTIANAK</td>
-            </tr>
-            <tr>
-                <td><h3>{{ $data->skpd->name }}</h3></td>
-            </tr>
-            <tr>
-                <td>
-                    {{ $data->skpd->address }} Telp: {{ $data->skpd->phone_number }} Fax: {{ $data->skpd->fax }} Pontianak {{ $data->skpd->postal_code }}  Website: {{ $data->skpd->website}}</td>
-            </tr>
-        </table> --}}
-        
-
         <hr>
 
         <div class="row text-center">
@@ -55,7 +40,9 @@
         </div>
         <br>
         <div class="row">
-            {!! $data->section_1 !!}
+            <p>
+                {!! $date !!}
+            </p>
         </div>
         <div class="row">
             <table>

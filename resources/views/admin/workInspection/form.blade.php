@@ -180,20 +180,8 @@
         </div>
     </div>
 
-    <div class="form-group {{ $errors->has('section_1') ? 'has-error' : '' }}">
-        <label for="inputName" class="col-sm-2 control-label">Bagian 1 @include('components.required')</label>
-
-        <div class="col-sm-10">
-            {!! Form::textArea('section_1', $edit ? $data->section_1 : $initSection1, ['class' => 'form-control', 'placeholder'=> __('Bagian 1'), 'required' => true] ) !!}
-            
-            @if ($errors->has('section_1'))
-                <span class="help-block">{{ $errors->first('section_1') }}</span>
-            @endif
-        </div>
-    </div>
-
     <div class="form-group {{ $errors->has('section_2') ? 'has-error' : '' }}">
-        <label for="inputName" class="col-sm-2 control-label">Bagian 2 @include('components.required')</label>
+        <label for="inputName" class="col-sm-2 control-label">Bagian 1 @include('components.required')</label>
 
         <div class="col-sm-10">
             {!! Form::textArea('section_2', $edit ? $data->section_2 : $initSection2, ['class' => 'form-control', 'placeholder'=> __('Bagian 2'), 'required' => true] ) !!}
@@ -205,7 +193,7 @@
     </div>
 
     <div class="form-group {{ $errors->has('section_3') ? 'has-error' : '' }}">
-        <label for="inputName" class="col-sm-2 control-label">Bagian 3 @include('components.required')</label>
+        <label for="inputName" class="col-sm-2 control-label">Bagian 2 @include('components.required')</label>
 
         <div class="col-sm-10">
             {!! Form::textArea('section_3', $edit ? $data->section_3 : $initSection3, ['class' => 'form-control', 'placeholder'=> __('Bagian 3'), 'required' => true] ) !!}

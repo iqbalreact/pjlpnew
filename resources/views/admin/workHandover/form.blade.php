@@ -49,7 +49,7 @@
 
     @if(isset($data->functionary))
         <div class="form-group {{ $errors->has('functionary_id') ? 'has-error' : '' }}"">
-            <label for="inputFuntionary" class="col-sm-2 control-label">Pihak Pertama @include('components.required')</label>
+            <label for="inputFuntionary" class="col-sm-2 control-label">Pejabat PPKOM @include('components.required')</label>
 
             <div class="col-sm-10">
                 <input type="text" value="{{ $data->functionary->name }}" class="form-control" readonly>
@@ -62,7 +62,7 @@
         </div>
     @else
         <div class="form-group {{ $errors->has('functionary_id') ? 'has-error' : '' }}">
-            <label for="inputFunctionaryId" class="col-sm-2 control-label">Pihak Pertama @include('components.required')</label>
+            <label for="inputFunctionaryId" class="col-sm-2 control-label">Pejabat PPKOM @include('components.required')</label>
     
             <div class="col-sm-10">
                 <select name="functionary_id" id="functionarySelect" class="form-control"></select>
@@ -77,7 +77,7 @@
 
     @if(isset($data->employee))
         <div class="form-group {{ $errors->has('employee_id') ? 'has-error' : '' }}"">
-            <label for="inputEmployee" class="col-sm-2 control-label">Pihak Kedua @include('components.required')</label>
+            <label for="inputEmployee" class="col-sm-2 control-label">PJLP @include('components.required')</label>
 
             <div class="col-sm-10">
                 <input type="text" value="{{ $data->employee->name }}" class="form-control" readonly>
@@ -90,7 +90,7 @@
         </div>
     @else
         <div class="form-group {{ $errors->has('employee_id') ? 'has-error' : '' }}">
-            <label for="inputEmployee" class="col-sm-2 control-label">Pihak Kedua @include('components.required')</label>
+            <label for="inputEmployee" class="col-sm-2 control-label">PJLP @include('components.required')</label>
     
             <div class="col-sm-10">
                 <select name="employee_id" id="employeeSelect" class="form-control"></select>
@@ -126,20 +126,8 @@
         </div>
     </div>
 
-    <div class="form-group {{ $errors->has('section_1') ? 'has-error' : '' }}">
-        <label for="inputName" class="col-sm-2 control-label">Bagian 1 @include('components.required')</label>
-
-        <div class="col-sm-10">
-            {!! Form::textArea('section_1', $edit ? $data->section_1 : $initSection1, ['class' => 'form-control', 'placeholder'=> __('Bagian 1'), 'required' => true] ) !!}
-            
-            @if ($errors->has('section_1'))
-                <span class="help-block">{{ $errors->first('section_1') }}</span>
-            @endif
-        </div>
-    </div>
-
     <div class="form-group {{ $errors->has('section_2') ? 'has-error' : '' }}">
-        <label for="inputName" class="col-sm-2 control-label">Bagian 2 @include('components.required')</label>
+        <label for="inputName" class="col-sm-2 control-label">Bagian 1 @include('components.required')</label>
 
         <div class="col-sm-10">
             {!! Form::textArea('section_2', $edit ? $data->section_2 : $initSection2, ['class' => 'form-control', 'placeholder'=> __('Bagian 2'), 'required' => true] ) !!}
@@ -151,7 +139,7 @@
     </div>
 
     <div class="form-group {{ $errors->has('section_3') ? 'has-error' : '' }}">
-        <label for="inputName" class="col-sm-2 control-label">Bagian 3 @include('components.required')</label>
+        <label for="inputName" class="col-sm-2 control-label">Bagian 2 @include('components.required')</label>
 
         <div class="col-sm-10">
             {!! Form::textArea('section_3', $edit ? $data->section_3 : $initSection3, ['class' => 'form-control', 'placeholder'=> __('Bagian 3'), 'required' => true] ) !!}
@@ -163,7 +151,7 @@
     </div>
 
     <div class="form-group {{ $errors->has('section_4') ? 'has-error' : '' }}">
-        <label for="inputName" class="col-sm-2 control-label">Bagian 4 @include('components.required')</label>
+        <label for="inputName" class="col-sm-2 control-label">Bagian 3 @include('components.required')</label>
 
         <div class="col-sm-10">
             {!! Form::textArea('section_4', $edit ? $data->section_4 : $initSection4, ['class' => 'form-control', 'placeholder'=> __('Bagian 4'), 'required' => true] ) !!}
@@ -272,6 +260,7 @@
                 data: function (params) {
                     return {
                         q: params.term,
+                        occupation: 'ppkom'
                     };
                 },
                 processResults: function (data) {
