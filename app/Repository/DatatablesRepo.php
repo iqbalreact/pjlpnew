@@ -27,6 +27,7 @@ use App\Models\StartWorkingLetter;
 use App\Models\User;
 use App\Models\WorkDay;
 use App\Models\WorkHandover;
+use App\Models\WorkHandoverPpkom;
 use App\Models\WorkInspection;
 use App\Models\WorkPackage;
 
@@ -306,6 +307,15 @@ class DatatablesRepo implements DatatablesRepoInterface
         $datas = WorkHandover::query();
 
         $datas->with('employee', 'contract.position');
+
+        return $datas;
+    }
+
+    public function fetchWorkHandoverPpkomDatas(Request $request)
+    {
+        $datas = WorkHandoverPpkom::query();
+
+        $datas->with('functionary.occupations', 'functionary2.occupations');
 
         return $datas;
     }

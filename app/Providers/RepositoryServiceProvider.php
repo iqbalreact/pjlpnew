@@ -70,6 +70,9 @@ use App\Repository\WorkDayRepo;
 use App\Repository\Contracts\WorkHandoverRepoInterface;
 use App\Repository\WorkHandoverRepo;
 
+use App\Repository\Contracts\WorkHandoverPpkomRepoInterface;
+use App\Repository\WorkHandoverPpkomRepo;
+
 use App\Repository\Contracts\WorkInspectionRepoInterface;
 use App\Repository\WorkInspectionRepo;
 
@@ -114,6 +117,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(WorkDayRepoInterface::class, WorkDayRepo::class);    
         $this->app->bind(WorkPackageRepoInterface::class, WorkPackageRepo::class);    
         $this->app->bind(WorkHandoverRepoInterface::class, WorkHandoverRepo::class);    
+        $this->app->bind(WorkHandoverPpkomRepoInterface::class, WorkHandoverPpkomRepo::class);    
         $this->app->bind(WorkInspectionRepoInterface::class, WorkInspectionRepo::class);    
     }
 }

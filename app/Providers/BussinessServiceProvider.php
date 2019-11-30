@@ -76,6 +76,9 @@ use App\Bussiness\WorkDayBuss;
 use App\Bussiness\Contracts\WorkHandoverBussInterface;
 use App\Bussiness\WorkHandoverBuss;
 
+use App\Bussiness\Contracts\WorkHandoverPpkomBussInterface;
+use App\Bussiness\WorkHandoverPpkomBuss;
+
 use App\Bussiness\Contracts\WorkInspectionBussInterface;
 use App\Bussiness\WorkInspectionBuss;
 
@@ -125,6 +128,7 @@ class BussinessServiceProvider extends ServiceProvider
         $this->app->bind(StartWorkingLetterBussInterface::class, StartWorkingLetterBuss::class);
         $this->app->bind(WorkDayBussInterface::class, WorkDayBuss::class);
         $this->app->bind(WorkHandoverBussInterface::class, WorkHandoverBuss::class);
+        $this->app->bind(WorkHandoverPpkomBussInterface::class, WorkHandoverPpkomBuss::class);
         $this->app->bind(WorkInspectionBussInterface::class, WorkInspectionBuss::class);
         $this->app->bind(WorkPackageBussInterface::class, WorkPackageBuss::class);
     }

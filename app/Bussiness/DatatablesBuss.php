@@ -21,6 +21,7 @@ use App\Models\Program;
 use App\Models\Skpd;
 use App\Models\StartWorkingLetter;
 use App\Models\WorkHandover;
+use App\Models\WorkHandoverPpkom;
 use App\Models\WorkInspection;
 use App\Models\WorkPackage;
 
@@ -395,6 +396,24 @@ class DatatablesBuss implements DatatablesBussInterface
                         ->addColumn('actions', 
                                 ' <a href="{{ URL::route( \'workHandover.show\', array( $id)) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
                                 <a href="{{ URL::route( \'workHandover.edit\', array( $id)) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')
+                        ->rawColumns(['actions'])
+                        ->make(true);
+    }
+
+    public function fetchWorkHandoverPpkomDatas(Request $request)
+    {
+        $query = $this->datatablesRepo->fetchWorkHandoverPpkomDatas($request);
+
+        return Datatables::of($query)
+                        ->addColumn('functionary_name', function (WorkHandoverPpkom $workHandover) {
+                            return $workHandover->functionary->name;
+                        })
+                        ->addColumn('functionary2_name', function (WorkHandoverPpkom $workHandover) {
+                            return $workHandover->functionary2->name;
+                        })
+                        ->addColumn('actions', 
+                                ' <a href="{{ URL::route( \'workHandoverPpkom.show\', array( $id)) }}" class="btn btn-primary btn-sm" ><i class="fa fa-eye"></i> </a>
+                                <a href="{{ URL::route( \'workHandoverPpkom.edit\', array( $id)) }}" class="btn btn-success btn-sm" ><i class="fa fa-pencil"></i> </a> ')
                         ->rawColumns(['actions'])
                         ->make(true);
     }

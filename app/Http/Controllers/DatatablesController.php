@@ -138,6 +138,11 @@ class DatatablesController extends Controller
 		return $this->datatables->fetchWorkHandoverDatas($request);
 	}
 
+	public function fetchWorkHandoverPpkomDatas(Request $request)
+	{
+		return $this->datatables->fetchWorkHandoverPpkomDatas($request);
+	}
+
 	public function fetchWorkInspectionDatas(Request $request)
 	{
 		return $this->datatables->fetchWorkInspectionDatas($request);

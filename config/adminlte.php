@@ -159,13 +159,18 @@ return [
                     'url'  => '/admin/workHandover'
                 ],
                 [
-                    'text' => 'Pembayaran',
-                    'url'  => '/admin/paymentLetter'
+                    'text' => 'Serah Terima PPKOM ke PA',
+                    'url'  => '/admin/workHandoverPpkom'
                 ],
                 [
-                    'text' => 'Surat Perintah Mulai Kerja',
-                    'url'  => '/admin/startWorkingLetter'
-                ],
+                    'text' => 'Pembayaran',
+                    'url'  => '/admin/paymentLetter'
+                ]
+                // ,
+                // [
+                //     'text' => 'Surat Perintah Mulai Kerja',
+                //     'url'  => '/admin/startWorkingLetter'
+                // ],
             ]
         ],
         'SISTEM',
