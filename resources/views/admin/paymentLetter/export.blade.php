@@ -1,154 +1,159 @@
 <html>
     <head>
+        <link rel="stylesheet" href="{{ public_path('vendor/adminlte/vendor/bootstrap/dist/css/bootstrap.min.css') }}">
         <style type="text/css" media="all">
-            .header {
-                text-align: center;
-                line-height: 0.1;
+            table {
+                border-collapse: separate;
+                border-spacing: 10px 0;
             }
 
-            .title {
-                font-size: 18px;
+            .bold {
                 font-weight: bold;
             }
 
-            .row:after {
-                content: "";
-                display: table;
-                clear: both;
-            }
-
-            /* Create two equal columns that sits next to each other */
-            .column {
-                float: left;
-                width: 50%;
-                padding: 10px;
-            }
-
-            .sign-area {
-                text-align: center;
-                line-height: 0.1;
-            }
-            
-        </style>
+        </style>        
     </head>
     <body>
 
-        <table class="header">
-            <tr width="20%">
-                <td rowspan="3"><img src={{ public_path('/img/pontianak-logo.svg') }} width="200px"></td>
-                <td>PEMERINTAH KOTA PONTIANAK</td>
-            </tr>
-            <tr>
-                <td><h3>{{ $data->skpd->name }}</h3></td>
-            </tr>
-            <tr>
-                <td>
+        <div class="row">
+            <div class="col-xs-2">
+                    <img src={{ public_path('/img/pontianak-logo.svg') }} class="img-responsive" width="150px">
+            </div>
+
+            <div class="col-xs-10 text-center">
+                <p>
+                    <h4>PEMERINTAH KOTA PONTIANAK</h4>
+                </p>
+                <p>
+                    <h3>{{ strtoupper($data->skpd->name) }}</h3>
+                </p>
+                <p>
                     {{ $data->skpd->address }} Telp: {{ $data->skpd->phone_number }} Fax: {{ $data->skpd->fax }} Pontianak {{ $data->skpd->postal_code }}  Website: {{ $data->skpd->website}}</td>
-            </tr>
-        </table>
-        
+                </p>
+            </div>
+        </div>
 
         <hr>
 
-        <div class="header">
-            <p class="title">BERITA ACARA PEMBAYARAN</p>
+        <div class="row text-center">
+            <h4> <b>BERITA ACARA PEMBAYARAN</b> </h4>
             <p>Nomor: {!! $data->number !!}</p>
         </div>
 
-        <table class="bold">
-            <tr>
-                <td>Kegiatan</td>
-                <td>:</td>
-                <td>{{ $data->contract->activity->name }}</td>
-            </tr>
-            <tr>
-                <td>Pekerjaan</td>
-                <td>:</td>
-                <td>{{ $data->contract->workPackage->name }}</td>
-            </tr>
-            <tr>
-                <td>Sumber Dana</td>
-                <td>:</td>
-                <td>{{ $data->source_of_funds }}</td>
-            </tr>
-        </table>
-
-        {!! $data->section_1 !!}
-
-        <table>
-            <tr>
-                <td>1</td>
-                <td>Nama</td>
-                <td>:</td>
-                <td>{{ $data->functionary->name ?? '' }}</td>
-            </tr>
-            <tr>
-                <td rowspan="4"></td>
-                <td>NIP</td>
-                <td>:</td>
-                <td>{{ $data->functionary->nip ?? '' }}</td>
-            </tr>
-            <tr>
-                <td>Jabatan</td>
-                <td>:</td>
-                <td>{{ $data->functionary->occupations->first()->name ?? '' }}</td>
-            </tr>
-            <tr>
-                <td>Alamat</td>
-                <td>:</td>
-                <td>{{ $data->functionary->address ?? '' }}</td>
-            </tr>
-            <tr>
-                <td colspan="3">Selaku <b>PIHAK PERTAMA</b></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Nama Penyedia Jasa</td>
-                <td>:</td>
-                <td>{{ $data->employee->name }}</td>
-            </tr>
-            <tr>
-                <td rowspan="3"></td>
-                <td>NIK</td>
-                <td>:</td>
-                <td>XXX{{ $data->employee->nipj }}XXXX</td>
-            </tr>
-            <tr>
-                <td>Alamat</td>
-                <td>:</td>
-                <td>{{ $data->employee->address }}</td>
-            </tr>
-            <tr>
-                <td colspan="3">Selaku <b>PIHAK PERTAMA</b></td>
-            </tr>
-        </table>
-
-        
-        {!! $data->body_letter !!}
-
-        {!! $data->section_3 !!}
-
-        {!! $data->section_4 !!}
-
+        <br>
         <div class="row">
-            <div class="column sign-area">
-                <p>PIHAK PERTAMA</p>
-                <br>
-                <p>Pejabat Pembuat Komitmen</p>
-                <p>Dinas Komunikasi dan Informatika</p>
-                <p>Kota Pontianak</p>
-                <br><br><br><br>
-                <p>{{ $data->functionary->name ?? '' }}</p>
-                <p>NIP: {{ $data->functionary->nipj }}</p>
+            <table class="bold">
+                <tr>
+                    <td>Kegiatan</td>
+                    <td>:</td>
+                    <td>{{ $data->contract->activity->name }}</td>
+                </tr>
+                <tr>
+                    <td>Pekerjaan</td>
+                    <td>:</td>
+                    <td>{{ $data->contract->workPackage->name }}</td>
+                </tr>
+                <tr>
+                    <td>Sumber Dana</td>
+                    <td>:</td>
+                    <td>{{ $data->source_of_funds }}</td>
+                </tr>
+            </table>
+        </div>
+
+        <br>
+        <div class="row">
+            <p>
+                {!! $date !!}
+            </p>
+        </div>
+        <div class="row">
+            <table>
+                <tr>
+                    <td>1</td>
+                    <td>Nama</td>
+                    <td>:</td>
+                    <td>{{ $data->functionary->name ?? '' }}</td>
+                </tr>
+                <tr>
+                    <td rowspan="4"></td>
+                    <td>NIP</td>
+                    <td>:</td>
+                    <td>{{ $data->functionary->nip ?? '' }}</td>
+                </tr>
+                <tr>
+                    <td>Jabatan</td>
+                    <td>:</td>
+                    <td>Pejabat Pembuat Komitmen pada {{ $data->skpd->name ?? '' }} Kota Pontianak</td>
+                </tr>
+                <tr>
+                    <td>Alamat</td>
+                    <td>:</td>
+                    <td>{{ $data->functionary->address ?? '' }}</td>
+                </tr>
+                <tr>
+                    <td colspan="3">Selaku <b>PIHAK PERTAMA</b></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Nama Penyedia Jasa</td>
+                    <td>:</td>
+                    <td>{{ $data->employee->name }}</td>
+                </tr>
+                <tr>
+                    <td rowspan="3"></td>
+                    <td>NIK</td>
+                    <td>:</td>
+                    <td>XXX{{ $data->employee->nipj }}XXXX</td>
+                </tr>
+                <tr>
+                    <td>Alamat</td>
+                    <td>:</td>
+                    <td>{{ $data->employee->address }}</td>
+                </tr>
+                <tr>
+                    <td colspan="3">Selaku <b>PIHAK KEDUA</b></td>
+                </tr>
+            </table>
+        </div>
+
+        <br>
+        <div class="row">
+            {!! $data->body_letter !!}
+        </div>
+
+        <div class="row text-center">
+            <div class="col-xs-6">
+                <div class="row">
+                    PIHAK PERTAMA <br>
+                    Pejabat Pembuat Komitmen <br>
+                    {{ $data->skpd->name }} <br>
+                    Kota Pontianak
+                </div>
+
+                <div class="row">
+                    <br>
+                </div>
+
+                <div class="row">
+                    {{ $data->functionary->name }} <br>
+                    NIP: {{ $data->functionary->nip }}
+                </div>
             </div>
-            <div class="column sign-area">
-                <p>PIHAK KEDUA</p>
-                <br>
-                <p>Penyedia Jasa</p>
-                <p>{{ $data->position->name ?? '' }}</p>
-                <br><br><br><br>
-                <p>{{ $data->employee->name }}</p>
-                <p>NIK: {{ $data->employee->nipj }}</p>
+
+            <div class="col-xs-6">
+                <div class="row">
+                    PIHAK KEDUA <br>
+                    Penyedia Jasa <br>
+                    {{ $data->position->name ?? '' }}
+                </div>
+                <div class="row">
+                    {{-- <br><br><br><br> --}}
+                </div>
+                <div class="row">
+                    {{ $data->employee->name }} <br>
+                    NIK: {{ $data->employee->nipj }}
+                </div>
             </div>
         </div>
     </body>

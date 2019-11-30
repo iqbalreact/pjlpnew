@@ -86,7 +86,7 @@
                     <td>{{ $data->employee->address }}</td>
                 </tr>
                 <tr>
-                    <td colspan="3">Selaku <b>PIHAK PERTAMA</b></td>
+                    <td colspan="3">Selaku <b>PIHAK KEDUA</b></td>
                 </tr>
             </table>
         </div>

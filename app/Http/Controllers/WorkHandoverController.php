@@ -22,7 +22,7 @@ class WorkHandoverController extends Controller
     ) {
         $this->workHandover = $workHandover;
         $this->skpd         = $skpd;
-        $this->terbilang        = $terbilang;
+        $this->terbilang    = $terbilang;
     }
 
     /**

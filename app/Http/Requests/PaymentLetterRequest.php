@@ -29,7 +29,6 @@ class PaymentLetterRequest extends FormRequest
             'functionary_id'        => 'required',
             'number'                => 'required',
             'date'                  => 'required',
-            'section_1'             => 'required',
             'body_letter'           => 'required',
             'source_of_funds'       => 'required'
         ];

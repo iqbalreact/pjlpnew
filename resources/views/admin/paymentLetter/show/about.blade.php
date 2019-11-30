@@ -1,6 +1,6 @@
 <form class="form-horizontal">
     <div class="form-group">
-        <label class="col-sm-2 control-label">Nama</label>
+        <label class="col-sm-2 control-label">PJLP</label>
 
         <div class="col-sm-10">
             <input class="form-control" value="{{ $data->employee->name }}" readonly>
@@ -11,6 +11,13 @@
 
         <div class="col-sm-10">
             <input class="form-control" value="{{ $data->skpd->name }}" readonly>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Jabatan</label>
+
+        <div class="col-sm-10">
+            <input class="form-control" value="{{ $data->position->name }}" readonly>
         </div>
     </div>
     <div class="form-group">
@@ -35,14 +42,7 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-2 control-label">Jabatan</label>
-
-        <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->position->name }}" readonly>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label">Pejabat</label>
+        <label class="col-sm-2 control-label">Pejabat PPKOM</label>
 
         <div class="col-sm-10">
             <input class="form-control" value="{{ $data->functionary->name }}" readonly>
@@ -52,7 +52,7 @@
         <label class="col-sm-2 control-label">Posisi Pejabat</label>
 
         <div class="col-sm-10">
-            <input class="form-control" value="{{ $data->functionary->occupations->first()->name }}" readonly>
+            <input class="form-control" value="Pejabat Pembuat Komitmen pada {{ $data->skpd->name ?? '' }} Kota Pontianak" readonly>
         </div>
     </div>
     <div class="form-group">

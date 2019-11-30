@@ -52,7 +52,7 @@ class PaymentLetterRepo implements PaymentLetterRepoInterface
         $data->number           = $request->number;
         $data->contract_id      = $contract->id;
         $data->date             = Carbon::parse($request->date);
-        $data->section_1        = $request->section_1;
+        $data->section_1        = 'section1';
         $data->body_letter      = $request->body_letter;
         $data->source_of_funds  = $request->source_of_funds;
         $data->save();
@@ -73,7 +73,7 @@ class PaymentLetterRepo implements PaymentLetterRepoInterface
         $data->functionary_id   = $request->functionary_id;
         $data->number           = $request->number;
         $data->date             = Carbon::parse($request->date);
-        $data->section_1        = $request->section_1;
+        $data->section_1        = 'section1';
         $data->body_letter      = $request->body_letter;
         $data->source_of_funds  = $request->source_of_funds;
         $data->update();

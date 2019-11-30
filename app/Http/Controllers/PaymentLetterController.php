@@ -8,6 +8,7 @@ use App\Http\Requests\PaymentLetterRequest;
 
 use App\Bussiness\Contracts\PaymentLetterBussInterface;
 use App\Bussiness\Contracts\SkpdBussInterface;
+use App\Services\Contracts\TerbilangServiceInterface;
 
 use PDF;
 
@@ -15,10 +16,12 @@ class PaymentLetterController extends Controller
 {
     public function __construct(
         PaymentLetterBussInterface $paymentLetter,
-        SkpdBussInterface $skpd
+        SkpdBussInterface $skpd,
+        TerbilangServiceInterface $terbilang
     ) {
         $this->paymentLetter = $paymentLetter;
         $this->skpd          = $skpd;
+        $this->terbilang    = $terbilang;
     }
 
     /**
@@ -105,7 +108,9 @@ class PaymentLetterController extends Controller
             return redirect()->back();
         }
 
-        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('admin.paymentLetter.export', compact('data'))->setPaper('a4', 'potrait');
+        $date = $this->terbilang->convert($data->date);
+
+        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('admin.paymentLetter.export', compact('data', 'date'))->setPaper('a4', 'potrait');
         return $pdf->download($data->number.'.pdf');
     }
 
