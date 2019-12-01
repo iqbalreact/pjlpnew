@@ -10,7 +10,7 @@ class RoleService implements RoleServiceInterface
 {
     protected $roleTransform = [
         'superadmin'    => 'Superadmin',
-        'adminppk'      => 'Admin PPK',
+        'adminppk'      => 'Admin PPKOM',
         'adminskpd'     => 'Admin SKPD',
         'operator'      => 'Operator'
     ]; 

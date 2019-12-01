@@ -176,4 +176,5 @@
     @yield('js')
     @yield('js2')
     @yield('js3')
+    @yield('jscalendar')
 @stop
