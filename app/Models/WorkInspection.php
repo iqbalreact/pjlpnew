@@ -27,6 +27,8 @@ class WorkInspection extends Model
         'contract_id', 
         'number',
         'date',
+        'spk_date',
+        'spk_number',
         'section_1',
         'section_2',
         'section_3',
@@ -41,6 +43,8 @@ class WorkInspection extends Model
         'contract_id',
         'number',
         'date',
+        'spk_date',
+        'spk_number',
         'section_1',
         'section_2',
         'section_3'

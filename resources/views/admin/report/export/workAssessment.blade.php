@@ -34,12 +34,12 @@
             <tr>
                 <td>No. SPK</td>
                 <td>:</td>
-                <td></td>
+                <td>{{ $workInspection->spk_number }}</td>
             </tr>
             <tr>
                 <td>Tanggal SPK</td>
                 <td>:</td>
-                <td></td>
+                <td>{{ $workInspection->spk_date }}</td>
             </tr>
             <tr>
                 <td>Instansi Tempat Tugas</td>

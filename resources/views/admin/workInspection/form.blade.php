@@ -101,34 +101,6 @@
         </div>
     @endif
 
-    {{-- @if(isset($data->functionaryPPTK))
-        <div class="form-group {{ $errors->has('functionary_pptk2_id') ? 'has-error' : '' }}"">
-            <label for="inputFuntionary" class="col-sm-2 control-label">Pejabat PPTK @include('components.required')</label>
-
-            <div class="col-sm-10">
-                <input type="text" value="{{ $data->functionaryPPTK2->name }}" class="form-control" readonly>
-                <input name="functionary_pptk2_id" type="hidden" value="{{ $data->functionaryPPTK2->id }}">
-
-                @if ($errors->has('functionary_pptk2_id'))
-                    <span class="help-block">{{ $errors->first('functionary_pptk2_id') }}</span>
-                @endif
-            </div>
-        </div>
-    @else
-        <div class="form-group {{ $errors->has('functionary_pptk2_id') ? 'has-error' : '' }}">
-            <label for="inputFunctionaryId" class="col-sm-2 control-label">Pejabat PPTK @include('components.required')</label>
-    
-            <div class="col-sm-10">
-                <select name="functionary_pptk2_id" id="functionaryPPTK2Select" class="form-control"></select>
-                
-                @if ($errors->has('functionary_pptk2_id'))
-                    <span class="help-block">{{ $errors->first('functionary_pptk2_id') }}</span>
-                @endif
-            </div>
-        </div>
-    @endif --}}
-
-
     @if(isset($data->employee))
         <div class="form-group {{ $errors->has('employee_id') ? 'has-error' : '' }}"">
             <label for="inputEmployee" class="col-sm-2 control-label">PJLP @include('components.required')</label>
@@ -180,6 +152,30 @@
         </div>
     </div>
 
+    <div class="form-group {{ $errors->has('number') ? 'has-error' : '' }}">
+        <label for="inputName" class="col-sm-2 control-label">Nomer SPK @include('components.required')</label>
+
+        <div class="col-sm-10">
+            {!! Form::text('spk_number', $edit ? $data->spk_number : old('spk_number'), ['class' => 'form-control', 'placeholder'=> __('Nomer SPK'), 'required' => true] ) !!}
+            
+            @if ($errors->has('spk_number'))
+                <span class="help-block">{{ $errors->first('spk_number') }}</span>
+            @endif
+        </div>
+    </div>
+
+    <div class="form-group {{ $errors->has('spk_date') ? 'has-error' : '' }}">
+        <label for="inputStartDate" class="col-sm-2 control-label">Tanggal SPK @include('components.required')</label>
+
+        <div class="col-sm-10">
+            {!! Form::text('spk_date', $edit ? $data->spk_date : old('spk_date'), ['class' => 'form-control datepicker', 'placeholder'=> __('Tanggal SPK'), 'autocomplete' => 'off'] ) !!}
+            
+            @if ($errors->has('spk_date'))
+                <span class="help-block">{{ $errors->first('spk_date') }}</span>
+            @endif
+        </div>
+    </div>
+
     <div class="form-group {{ $errors->has('section_2') ? 'has-error' : '' }}">
         <label for="inputName" class="col-sm-2 control-label">Bagian 1 @include('components.required')</label>
 
@@ -203,6 +199,7 @@
             @endif
         </div>
     </div>
+    
 
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
