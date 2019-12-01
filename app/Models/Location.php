@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\Traits\CausesActivity;
 
+use App\Scopes\OwnProgramScope;
+
 use App\Models\Skpd;
 
 class Location extends Model
@@ -22,6 +24,13 @@ class Location extends Model
         'name', 
         'skpd_id'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new OwnProgramScope);
+    }
 
     public function skpd()
     {
