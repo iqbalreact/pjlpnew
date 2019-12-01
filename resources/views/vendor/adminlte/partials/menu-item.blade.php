@@ -88,7 +88,7 @@
         </li>
     @endif
 
-@elseif(\Auth::user()->getRoles() == 'operator' && isset($item['text']) && !in_array($item['text'], ['Pengguna', 'API', 'Pengaturan', 'Log & Status', 'Master Data']))
+@elseif(\Auth::user()->getRoles() == 'operator' && isset($item['text']) && !in_array($item['text'], ['Pengguna', 'API', 'Pengaturan', 'Log & Status', 'Master Data', 'Penilaian Kinerja']))
 
     @if (is_string($item))
         <li class="header">{{ $item }}</li>
