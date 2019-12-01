@@ -195,7 +195,11 @@
                 <td>{{ $recapAssessment->obidence_on_rule == 3 ? 3 : '' }}</td>
                 <td>{{ $recapAssessment->obidence_on_rule == 4 ? 4 : '' }}</td>
                 <td>{{ $totalIndicator }}</td>
-                <td>BAIK</td>
+                @if($totalIndicator <= 17)
+                    <td>BURUK</td>
+                @else 
+                    <td>BAIK</td>
+                @endif
             </tr>
             <tr>
                 <td></td>
