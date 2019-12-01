@@ -28,7 +28,7 @@
         </li>
     @endif
 
-@elseif(\Auth::user()->getRoles() == 'adminskpd' && isset($item['text']) && !in_array($item['text'], ['Pengguna', 'API', 'Pengaturan', 'Log & Status', 'SKPD', 'Hari Kerja', 'Penilaian Kinerja']))
+@elseif(\Auth::user()->getRoles() == 'adminskpd' && isset($item['text']) && !in_array($item['text'], ['Pengguna', 'API', 'Pengaturan', 'Log & Status', 'SKPD', 'Hari Kerja', 'Penilaian Kinerja', 'Kategori Posisi', 'Posisi']))
 
     @if (is_string($item))
         <li class="header">{{ $item }}</li>

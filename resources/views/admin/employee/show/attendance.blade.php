@@ -10,22 +10,13 @@
 <script src='/vendor/fullcalendar/packages/core/main.js'></script>
 <script src='/vendor/fullcalendar/packages/daygrid/main.js'></script>
 
-{{-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js"></script> --}}
-{{-- <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/themes/redmond/jquery-ui.min.css"></script>
-<script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/themes/redmond/jquery-ui.min.css"></script> --}}
-{{-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.1/fullcalendar.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.1/fullcalendar.min.css"></script> --}}
-
 <script>
-
-// $(function(){
   document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
       plugins: [ 'dayGrid' ],
-			defaultView: 'month',
-      defaultDate: '2019-12-01',
+      defaultDate: '2019-12-02',
       events: [
 				{
 					title: 'All Day Event',
@@ -69,17 +60,5 @@
 
     calendar.render();
   });
-  // $('#calendar').fullCalendar({
-	// 		header: {
-	// 			left: 'prev,next today',
-	// 			center: 'title',
-	// 			right: 'month,agendaWeek,agendaDay'
-	// 		},
-	// 		defaultDate: '2014-06-12',
-	// 		defaultView: 'month',
-	// 		editable: true,
-			
-  // });
-// })
 </script>  
 @endsection
