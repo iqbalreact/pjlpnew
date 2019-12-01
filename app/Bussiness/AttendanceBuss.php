@@ -47,6 +47,78 @@ class AttendanceBuss implements AttendanceBussInterface
         return $attend + $leave + $sick + $notPresent;
     }
 
+    public function findAttendanceEmployee(Request $request)
+    {
+        $data = $this->attendanceRepo->findAttendanceEmployee($request);
+        // return $data;
+        if (!$data) {
+            return false;
+        }
+
+        $result = [];
+
+        foreach($data as $d) {
+
+            if ($d->attendance == 'attend') {
+                $tempResult = [
+                    'title' => 'Hadir',
+                    'start' => $d->date,
+                    'color' => 'blue',   
+                    'textColor' => 'black'
+                ];
+            } else if ($d->attendance == 'leave') {
+                $tempResult = [
+                    'title' => 'Cuti',
+                    'start' => $d->date,
+                    'color' => 'green',   
+                    'textColor' => 'black'
+                ];
+            } else if ($d->attendance == 'sick') {
+                $tempResult = [
+                    'title' => 'Sakit',
+                    'start' => $d->date,
+                    'color' => 'yellow',   
+                    'textColor' => 'black'
+                ];
+            } else if ($d->attendance == 'not_present') {
+                $tempResult = [
+                    'title' => 'Tidak Hadir',
+                    'start' => $d->date,
+                    'color' => 'red',   
+                    'textColor' => 'black'
+                ];
+            }
+
+            array_push($result, $tempResult);
+        }
+
+        return $result;
+    }
+
+    public function findCeremonyEmployee(Request $request)
+    {
+        $data = $this->attendanceRepo->findCeremonyEmployee($request);
+        
+        if (!$data) {
+            return false;
+        }
+
+        $result = [];
+
+        foreach($data as $d) {
+            $tempResult = [
+                'title' => 'Apel Pagi',
+                'start' => $d->date,
+                'color' => 'purple',   
+                'textColor' => 'black'
+            ];
+
+            array_push($result, $tempResult);
+        }
+
+        return $result;
+    }
+
     public function store(Request $request, $fromLeaveRequest = false)
     {
         if (is_null($request->attendance)) {

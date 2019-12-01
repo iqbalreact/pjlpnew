@@ -131,6 +131,42 @@ class AttendanceRepo implements AttendanceRepoInterface
         return $data;
     }
 
+    public function findAttendanceEmployee(Request $request)
+    {
+        $contract = $this->contract->findActiveContract($request->employee_id);
+
+        if (is_null($contract)) {
+            return false;
+        }
+
+        $attendance = Attendance::where('employee_id', $request->employee_id)
+                                ->where('contract_id', $contract->id)
+                                ->where('date', '>=', Carbon::parse($request->start))
+                                ->where('date', '<', Carbon::parse($request->end))
+                                ->get();
+
+        return $attendance;
+    }
+
+    public function findCeremonyEmployee(Request $request)
+    {
+        $contract = $this->contract->findActiveContract($request->employee_id);
+
+        if (is_null($contract)) {
+            return false;
+        }
+
+        $attendance = Attendance::where('employee_id', $request->employee_id)
+                                ->where('contract_id', $contract->id)
+                                ->where('attendance', 'attend')
+                                ->where('ceremony', 1)
+                                ->where('date', '>=', Carbon::parse($request->start))
+                                ->where('date', '<', Carbon::parse($request->end))
+                                ->get();
+
+        return $attendance;
+    }
+
     public function storeRecap(Request $request, $status, $oldStatus = null, $newStatus = null)
     {
         $month  = Carbon::parse($request->date)->format('m');

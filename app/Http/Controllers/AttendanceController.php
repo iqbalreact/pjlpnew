@@ -92,4 +92,18 @@ class AttendanceController extends Controller
     {
         //
     }
+
+    public function fetchCalendar(Request $request)
+    {
+        $data = $this->attendance->findAttendanceEmployee($request);
+
+        return response()->json($data);
+    }
+
+    public function fetchCeremony(Request $request)
+    {
+        $data = $this->attendance->findCeremonyEmployee($request);
+
+        return response()->json($data);
+    }
 }

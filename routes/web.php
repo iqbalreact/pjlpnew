@@ -146,6 +146,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::get('workPackage', 'WorkPackageController@selectList')->name('select.workPackage');
     });
 
+    Route::post('/calendar/attendance', 'AttendanceController@fetchCalendar')->name('calendar.attendance');
+    Route::post('/calendar/ceremony', 'AttendanceController@fetchCeremony')->name('calendar.ceremony');
+
     // Route::get('/home', 'HomeController@index')->name('home');
 });
 
