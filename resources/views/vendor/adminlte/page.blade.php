@@ -20,7 +20,8 @@
     </style>
 
     {{-- CKEDITOR --}}
-    <script src="/vendor/ckeditor/ckeditor.js"></script>
+    <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
+    {{-- <script src="/vendor/ckeditor/ckeditor.js"></script> --}}
 @stop
 
 @section('body_class', 'skin-' . config('adminlte.skin', 'blue') . ' sidebar-mini ' . (config('adminlte.layout') ? [
@@ -117,7 +118,7 @@
 
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
-                
+
                 @if (Auth::check())
                     <div class="user-panel">
                         <div class="pull-left image">

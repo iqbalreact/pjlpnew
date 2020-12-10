@@ -33,17 +33,17 @@ class WorkAdministrationRepo implements WorkAdministrationRepoInterface
 
         $data->contract     = $this->contractRepo->find($data->contract_id);
         $data->position     = $this->positionRepo->find($data->contract->position_id);
-        
+
         return $data;
     }
 
     public function store(Request $request)
     {
         $contract = $this->contractRepo->findActiveContract($request->employee_id);
-        
+
         if (is_null($contract)) {
             return false;
-        } 
+        }
 
         $data = new WorkAdministration();
         $data->skpd_id              = $request->skpd_id;
@@ -55,6 +55,9 @@ class WorkAdministrationRepo implements WorkAdministrationRepoInterface
         $data->section_1            = $request->section_1;
         $data->section_2            = $request->section_2;
         $data->section_3            = $request->section_3;
+        // Added
+        $data->section_4            = $request->section_4;
+        // -------
         $data->save();
 
         return $data;

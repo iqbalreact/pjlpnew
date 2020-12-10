@@ -19,15 +19,16 @@
     			</div>
     			<div class="box-body">
 					<h4>Hai, {{  \Auth::user()->name }}</h4>
+					{{-- <h4>Hai, {{  \Auth::user()->roles->pluck('name') }}</h4> --}}
 	    			<p class="lead">Silahkan pilih salah satu tombol dibawah ini untuk mulai beraktifitas di aplikasi PJLP Pontianak. Selamat bekerja, semoga lancar.</p>
 	    			<div>
 						<a href="{{ route('employee.create') }}" class="btn btn-default"><i class="fa fa-plus"></i> Tambah PJLP Baru</a>
 	    				<a href="{{ route('contract.create') }}" class="btn btn-default"><i class="fa fa-plus"></i> Tambah Kontrak Kerja</a>
 	    				<a href="{{ route('attendance.create') }}" class="btn btn-default"><i class="fa fa-check"></i> Absensi Pekerja</a>
-	    			</div>    				
+	    			</div>
     			</div>
     		</div>
-			
+
 			@if(\Auth::user()->getRoles() != 'superadmin')
 				<div class="box box-default">
 					<div class="box-header">
@@ -41,23 +42,23 @@
 						<div class="col-md-4">
 							<h1>{{ $countContract }}</h1>
 							<span>Kontrak Aktif</span>
-						</div>   
+						</div>
 						<div class="col-md-4">
 							<h1>{{ $countContractNonActive }}</h1>
 							<span>Non Aktif</span>
-						</div>   
+						</div>
 						<div class="col-md-4">
 							<h1>{{ $countProgram }}</h1>
 							<span>Program</span>
-						</div>   
+						</div>
 						<div class="col-md-4">
 							<h1>{{ $countActivity }}</h1>
 							<span>Kegiatan</span>
-						</div>   
+						</div>
 						<div class="col-md-4">
 							<h1>{{ $countWorkPackage }}</h1>
 							<span>Paket Pekerjaan</span>
-						</div>    				
+						</div>
 					</div>
 				</div>
 			@endif
@@ -108,7 +109,7 @@
 						</div>
 					</div>
 				</div>
-			</div>  
+			</div>
 		@else
 			<div class="col-md-6">
 				<div class="box box-default">
@@ -123,29 +124,29 @@
 						<div class="col-md-4">
 							<h1>{{ $countContract }}</h1>
 							<span>Kontrak Aktif</span>
-						</div>   
+						</div>
 						<div class="col-md-4">
 							<h1>{{ $countContractNonActive }}</h1>
 							<span>Non Aktif</span>
-						</div>   
+						</div>
 						<div class="col-md-4">
 							<h1>{{ $countProgram }}</h1>
 							<span>Program</span>
-						</div>   
+						</div>
 						<div class="col-md-4">
 							<h1>{{ $countActivity }}</h1>
 							<span>Kegiatan</span>
-						</div>   
+						</div>
 						<div class="col-md-4">
 							<h1>{{ $countWorkPackage }}</h1>
 							<span>Paket Pekerjaan</span>
-						</div>    				
+						</div>
 					</div>
 				</div>
 			</div>
-		@endif 
+		@endif
 	</div>
-	
+
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="box box-default">
@@ -178,61 +179,61 @@
 <script>
 $(function(){
 	var colors = ['red', 'blue', 'orange', 'green', 'yellow', 'purple'];
-	
+
 	$.ajax({
 		url: "{{ route('chart.bank') }}",
 		success: function (result) {
-	
+
 			var data    = [];
 			var labels  = [];
 			// var
-	
+
 			result.forEach(function(item){
 				data.push(item.total);
 				labels.push(item.bank_name);
 			});
-	
+
 			var ctx = $('#bankChart');
 			renderChart('Chart Bank', ctx, data, labels);
 		}
 	});
-	
+
 	$.ajax({
 		url: "{{ route('chart.gender') }}",
 		success: function (result) {
-	
+
 			var data    = [];
 			var labels  = [];
-	
+
 			result.forEach(function(item){
 				data.push(item.total);
 				labels.push(item.gender);
 			});
-	
+
 			var ctx = $('#genderChart');
 			renderChart('Chart Gender', ctx, data, labels);
 		}
 	});
-	
+
 	$.ajax({
 		url: "{{ route('chart.religion') }}",
 		success: function (result) {
-	
+
 			var data    = [];
 			var labels  = [];
-	
+
 			result.forEach(function(item, i){
 				data.push(item.total);
 				labels.push(item.religion);
 			});
-	
+
 			var ctx = $('#religionChart');
 			renderChart('Chart Agama', ctx, data, labels);
 		}
 	});
-	
+
 	function renderChart(title, ctx, data, labels) {
-		
+
 		var configGender = {
 			type: 'pie',
 			data: {
@@ -263,11 +264,11 @@ $(function(){
 				}
 			}
 		};
-	
+
 		window.Pie = new Chart(ctx, configGender);
 	}
 })
 
-	
+
 </script>
 @stop

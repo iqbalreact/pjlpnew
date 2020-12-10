@@ -94,7 +94,7 @@ class ReportController extends Controller
 
     public function postWorkInspectionCeremony(Request $request)
     {
-        $start  = Carbon::parse($request->date)->startOfMonth();
+        $start  = Carbon::parse($request->date)->firstOfMonth();
         $end    = Carbon::parse($request->date)->endOfMonth();
 
         if ($request->type == 3) {
@@ -124,14 +124,16 @@ class ReportController extends Controller
         }
 
         $period = [
-            'month' => $start->format('F'),
-            'year'  => $start->format('Y')
+            'month' => Carbon::parse($request->date)->translatedFormat('F'),
+            // 'month' => Carbon::parse($request->date)->format('F'),
+            'year'  => Carbon::parse($request->date)->format('Y')
         ];
 
         $skpdName = $data->first()->skpd->name ?? "";
 
         if ($request->type == 1) {
-            $pdf = PDF::loadView('admin.report.export.workInspection', compact('data', 'dates', 'period', 'skpdName'))->setPaper('a4', 'landscape');
+            // $pdf = PDF::loadView('admin.report.export.workInspection', compact('data', 'dates', 'period', 'skpdName'))->setPaper('a4', 'landscape');
+            $pdf = PDF::loadView('admin.report.export.workInspection', compact('data', 'dates', 'period', 'skpdName'))->setPaper(array(0, 0, 612, 935.433), 'landscape');
 
             return $pdf->download('Data Apel.pdf');
         }
@@ -150,17 +152,17 @@ class ReportController extends Controller
         $request->work_package_id = $workPackage->id;
 
         $recapAssessment    = $this->assessment->findAssessment($request);
-        
+
         if (is_null($recapAssessment)) {
             return false;
         }
-        
+
         $recapAttendace     = $this->attendance->findRecap($request);
 
         if (is_null($recapAttendace)) {
             return false;
         }
-        
+
         $workDay            = $this->workDay->findByYear(Carbon::parse($request->date)->format('Y'));
 
         $monthTranslate     = $this->month[Carbon::parse($request->date)->format('m')];
@@ -169,7 +171,7 @@ class ReportController extends Controller
 
         $attend = $recapAttendace->attend + $recapAttendace->leave;
 
-        $attendPercentage = ($attend / $totalDay) * 100; 
+        $attendPercentage = ($attend / $totalDay) * 100;
 
         $assessmentAttendance = $this->findValue($attendPercentage);
 
@@ -179,12 +181,16 @@ class ReportController extends Controller
 
         $month  = Carbon::parse($request->date)->format('F');
 
+        $end    = Carbon::parse($request->date)->endOfMonth();
+
         $totalIndicator = $recapAssessment->work_completion_rate + $recapAssessment->work_completion_time + $recapAssessment->work_quality + $recapAssessment->obidence_on_obligation + $recapAssessment->obidence_on_rule + $assessmentAttendance + $assessmentCeremony;
-        $pdf = PDF::loadView('admin.report.export.workAssessment', compact('employee', 'workInspection', 'contract', 'assessmentAttendance', 'assessmentCeremony', 'month', 'workPackage', 'recapAssessment', 'totalIndicator'))->setPaper('a4', 'landscape');
-        return $pdf->download('Pemeriksaan Pekerjaan.pdf');
+        // $pdf = PDF::loadView('admin.report.export.workAssessment', compact('employee', 'workInspection', 'contract', 'assessmentAttendance', 'assessmentCeremony', 'month', 'workPackage', 'recapAssessment', 'totalIndicator'))->setPaper('a4', 'landscape');
+        $pdf = PDF::loadView('admin.report.export.workAssessment', compact('employee', 'workInspection', 'contract', 'assessmentAttendance', 'assessmentCeremony', 'month', 'workPackage', 'recapAssessment', 'totalIndicator', 'end'))->setPaper(array(0, 0, 612, 935.433), 'landscape');
+        return $pdf->stream('Pemeriksaan Pekerjaan.pdf');
+        // return view('admin.report.export.workAssessment', compact('employee', 'workInspection', 'contract', 'assessmentAttendance', 'assessmentCeremony', 'month', 'workPackage', 'recapAssessment', 'totalIndicator'));
     }
 
-    public function findValue($value) 
+    public function findValue($value)
     {
         if ($value <= 64) {
             return 1;
@@ -201,7 +207,7 @@ class ReportController extends Controller
         if ($value >= 85) {
             return 4;
         }
-        
+
         return;
     }
 
@@ -219,4 +225,14 @@ class ReportController extends Controller
 
         return $data;
     }
+
+
+    // Added
+    // public function ceremonyRecap(Request $request){
+    //     $employee       = $this->employee->find($request->employee_id);
+    //     $contract       = $this->contract->find($request->contract_id);
+    //     $workPackage    = $this->workPackage->find($contract->work_package_id);
+    //     $request->work_package_id = $workPackage->id;
+    // }
+    // ---------
 }

@@ -32,7 +32,7 @@ class WorkHandoverController extends Controller
      */
     public function index()
     {
-        return view('admin.workHandover.index');                        
+        return view('admin.workHandover.index');
     }
 
     /**
@@ -44,37 +44,60 @@ class WorkHandoverController extends Controller
     {
         $initNumber     = "003.2.e/BASTP-PPK/Pontive/PET/DISKOMINFO/II/2019";
         $initSection1   = "<p>Pada Hari ini <strong>Jumat</strong> tanggal <strong>Satu</strong> Bulan <strong>Februari</strong> tahun <strong>Dua Ribu Sembilan Belas</strong>, kami yang bertanda tangan dibawah ini:</p>";
-        $initSection2   = "<p>Berdasarkan Berita Acara Hasil Pemeriksaan Pekerjaan Nomor 003.1.e/BAHPP/Pontive/PET/DISKOMINFO/II/2019 tanggal 1 Februari 2019 beserta lampirannya, dengan ini menyatakan telah mengadakan Serah Terima Pekerjaan Belanja Jasa Tenaga IT (Informasi Teknologi) Jasa Admin Pontive Center (Pengelola Teknologi Informasi) Kegiatan Operasioanal Pontive Center Kota Pontianak dengan hasil sebagai berikut:</p>";
+        // $initSection2   = "<p>Berdasarkan Berita Acara Hasil Pemeriksaan Pekerjaan Nomor 003.1.e/BAHPP/Pontive/PET/DISKOMINFO/II/2019 tanggal 1 Februari 2019 beserta lampirannya, dengan ini menyatakan telah mengadakan Serah Terima Pekerjaan Belanja Jasa Tenaga IT (Informasi Teknologi) Jasa Admin Pontive Center (Pengelola Teknologi Informasi) Kegiatan Operasioanal Pontive Center Kota Pontianak dengan hasil sebagai berikut:</p>";
+        $initSection2   = "<p>Berdasarkan Berita Acara Hasil Pemeriksaan Pekerjaan Nomor [isi Nomor BAHPP Bulan ini] tanggal [isi Tanggal BAHPP Bulan ini] beserta lampirannya, dengan ini menyatakan telah mengadakan Serah Terima Pekerjaan [isi Nama Paket Pekerjaan], Jasa [isi Nama Posisi] ([isi Keterangan Posisi]) Kegiatan [isi Nama Kegiatan] dengan hasil sebagai berikut:</p>";
+        // $initSection3   = "<p>Pasal 1</p>
+
+        // <ol>
+        //     <li>PIHAK KEDUA telah melaksanakan pekerjaan dan menyerahkan hasilnya kepada PIHAK PERTAMA dengan kondisi baik serta sesuai dengan:
+        //     <ul>
+        //         <li>SPK Nomor 03.2.5/SPK/Pontive/PET/DISKOMINFO/I/2019 tanggal 14 Januari 2019</li>
+        //         <li>SPK Nomor 03.3.5/SPK/Pontive/PET/DISKOMINFO/I/2019 tanggal 14 Januari 2019</li>
+        //     </ul>
+        //     </li>
+        //     <li>PIHAK PERTAMA telah menerima hasil pekerjaan dari PIHAK KEDUA dengan kondisi baik sesuai dengan:
+        //     <ul>
+        //         <li>SPK Nomor 03.2.5/SPK/Pontive/PET/DISKOMINFO/I/2019 tanggal 14 Januari 2019</li>
+        //         <li>SPK Nomor 03.3.5/SPK/Pontive/PET/DISKOMINFO/I/2019 tanggal 14 Januari 2019</li>
+        //     </ul>
+        //     </li>
+        // </ol>
+
+        // <p>Pasal 2</p>
+
+        // <p>Penyerahan sebagaimana dimaksud berupa: Jasa Tenaga IT (Informasi Teknologi) Jasa Admin Pontive Center (Pengelola Teknologi Informasi) selama 1 (satu) bulan (Januari) dengan rician pekerjaan sebagaimana tertuang dalam syarat Umum Perintah Kerja</p>";
+
         $initSection3   = "<p>Pasal 1</p>
 
         <ol>
-            <li>PIHAK KEDUA telah melaksanakan pekerjaan dan menyerahkan hasilnya kepada PIHAK PERTAMA dengan kondisi baik serta sesuai dengan:
+            <li>PIHAK KEDUA telah melaksanakan pekerjaan dan menyerahkan hasilnya kepada PIHAK PERTAMA dengan kondisi baik sesuai dengan :
             <ul>
-                <li>SPK Nomor 03.2.5/SPK/Pontive/PET/DISKOMINFO/I/2019 tanggal 14 Januari 2019</li>
-                <li>SPK Nomor 03.3.5/SPK/Pontive/PET/DISKOMINFO/I/2019 tanggal 14 Januari 2019</li>
+                <li>SPK Nomor [isi No.SPK] tanggal [isi Tanggal SPK]</li>
+                <li>SPMK Nomor [isi No.SPMK] tanggal [isi Tanggal SPMK]</li>
             </ul>
             </li>
-            <li>PIHAK PERTAMA telah menerima hasil pekerjaan dari PIHAK KEDUA dengan kondisi baik sesuai dengan:
+            <li>PIHAK PERTAMA telah menerima hasil pekerjaan dari PIHAK KEDUA dengan kondisi baik sesuai dengan :
             <ul>
-                <li>SPK Nomor 03.2.5/SPK/Pontive/PET/DISKOMINFO/I/2019 tanggal 14 Januari 2019</li>
-                <li>SPK Nomor 03.3.5/SPK/Pontive/PET/DISKOMINFO/I/2019 tanggal 14 Januari 2019</li>
+                <li>SPK Nomor [isi No.SPK] tanggal [isi Tanggal SPK]</li>
+                <li>SPMK Nomor [isi No.SPMK] tanggal [isi Tanggal SPMK]</li>
             </ul>
             </li>
         </ol>
-        
+
         <p>Pasal 2</p>
-        
-        <p>Penyerahan sebagaimana dimaksud berupa: Jasa Tenaga IT (Informasi Teknologi) Jasa Admin Pontive Center (Pengelola Teknologi Informasi) selama 1 (satu) bulan (Januari) dengan rician pekerjaan sebagaimana tertuang dalam syarat Umum Perintah Kerja</p>";
 
-        $initSection4   = "<p>Demikian Berita Acara Serah Terima Hail Pekerjaan ini dibuat dalam 5 (lima) rangkap dapat dipergunakan sebagaimana mestinya.</p>";
+        <p>Penyerahan sebagaimana dimaksud berupa : Jasa Petugas Bidang Komunikasi, Informatika dan Statistika, Jasa Admin Pontive Center (Programmer Web dan Aplikasi) selama 1 (satu) bulan (Januari) dengan rincian pekerjaan sebagaimana tertuang dalam Syarat Umum Surat Perintah Kerja</p>";
 
+        // $initSection4   = "<p>Demikian Berita Acara Serah Terima Hail Pekerjaan ini dibuat dalam 5 (lima) rangkap dapat dipergunakan sebagaimana mestinya.</p>";
+
+        $initSection4   = "<p>Demikian Berita Acara Serah Terima Hasil Pekerjaan ini dibuat dalam 5 (lima) rangkap untuk dapat dipergunakan sebagaimana mestinya.</p>";
 
         $skpd = '';
         if (\Auth::user()->getRoles() != 'superadmin') {
             $skpd = $this->skpd->find(\Auth::user()->skpd_id);
         }
 
-        return view('admin.workHandover.create', compact('initNumber', 'initSection1', 'initSection2', 'initSection3', 'initSection4', 'skpd'));                        
+        return view('admin.workHandover.create', compact('initNumber', 'initSection1', 'initSection2', 'initSection3', 'initSection4', 'skpd'));
     }
 
     /**
@@ -93,7 +116,7 @@ class WorkHandoverController extends Controller
         }
 
         notify()->success('Serah terima pekerjaan berhasil dibuat');
-        
+
         return redirect()->route('workHandover.index');
     }
 
@@ -126,8 +149,10 @@ class WorkHandoverController extends Controller
 
         $date = $this->terbilang->convert($data->date);
 
-        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('admin.workHandover.export', compact('data', 'date'))->setPaper('a4', 'potrait');
-        return $pdf->download($data->number.'.pdf');
+        // $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('admin.workHandover.export', compact('data', 'date'))->setPaper('a4', 'potrait');
+        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('admin.workHandover.export', compact('data', 'date'))->setPaper(array(0, 0, 612, 935.433), 'portrait');
+        // return $pdf->download($data->number.'.pdf');
+        return $pdf->stream($data->number.'.pdf');
     }
 
     /**
@@ -144,7 +169,7 @@ class WorkHandoverController extends Controller
             notify()->warning('Surat serah terima tidak ditemukan');
             return redirect()->back();
         }
-        
+
         return view('admin.workHandover.edit', compact('data'));
     }
 

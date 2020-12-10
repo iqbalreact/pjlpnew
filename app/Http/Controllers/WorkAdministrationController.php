@@ -8,6 +8,7 @@ use App\Http\Requests\WorkInspectionRequest;
 
 use App\Bussiness\Contracts\WorkAdministrationBussInterface;
 use App\Bussiness\Contracts\SkpdBussInterface;
+use App\Models\Contract;
 use App\Services\Contracts\TerbilangServiceInterface;
 
 use PDF;
@@ -32,7 +33,7 @@ class WorkAdministrationController extends Controller
      */
     public function index()
     {
-        return view('admin.workAdministration.index');                        
+        return view('admin.workAdministration.index');
     }
 
     /**
@@ -43,26 +44,36 @@ class WorkAdministrationController extends Controller
     public function create()
     {
         $initNumber     = "003.2.e/BASTP-PPK/Pontive/PET/DISKOMINFO/II/2019";
-        $initSection1   = "<p>Pada Hari ini <strong>Jumat</strong> tanggal <strong>Satu</strong> Bulan <strong>Februari</strong> tahun <strong>Dua Ribu Sembilan Belas</strong>, kami yang bertanda tangan dibawah ini:</p>";
-        $initSection2   = "<p>Dengan ini menyatakan dengan sebenar benarnya telah melaksanakan pemeriksaan dan penelitian terhadap pelaksanaan Pekerjaan Belanja Jasa Tenaga IT (Informasi Teknologi) Jasa Admin Pontive Center (Pengelola Teknologi Informasi) Kegiatan Operasional Pontive Center Kota Pontianak yang dilaksanakan oleh:</p>";
+        // $initSection1   = "<p>Pada Hari ini <strong>Jumat</strong> tanggal <strong>Satu</strong> Bulan <strong>Februari</strong> tahun <strong>Dua Ribu Sembilan Belas</strong>, yang bertanda tangan di bawah ini</p>";
+        $initSection1   = "Programmer Web dan Aplikasi";
+        // $initSection2   = "<p>Dengan ini menyatakan dengan sebenar benarnya telah melaksanakan pemeriksaan dan penelitian terhadap pelaksanaan Pekerjaan Belanja Jasa Tenaga IT (Informasi Teknologi) Jasa Admin Pontive Center (Pengelola Teknologi Informasi) Kegiatan Operasional Pontive Center Kota Pontianak yang dilaksanakan oleh:</p>";
+        $initSection2   = "<p>Dengan ini menyatakan dengan sebenarnya telah melaksanakan Pemeriksaan dan Penelitian terhadap berkas Administrasi dari mulai Proses Perencanaan Pengadaan sampai dengan Serah Terima Hasil Pekerjaan dari Penyedia Jasa Kepada PPK untuk paket pekerjaan berikut:</p>";
+        // $initSection3   = "<p>Berdasarkan :</p>
+
+        // <ol>
+        //     <li>Surat Perintah Kerja (SPK) Nomor 3.2.5/SPK/Pontive/PET/DISKOMINFO/I/2019 tanggal 14 Januari 2019</li>
+        //     <li>Surat Perintah Mulai Kerja (SPMK) Nomor 03.3.5/SPK/Pontive/PET/DISKOMINFO/I/2019 tanggal 14 Januari 2019</li>
+        // </ol>
+
+        // <p>Dari hasil pemeriksaan perkerjaan sudah dilaksanakan dengan baik sesuai hasil penilaian prestasi kerja terlampir.</p>
+
+        // <p>Demikian Berita Acara Hasil Pemeriksaan Pekerjaan ini dibuat dalam 5 (lima) rangkap untuk dipergunakan sebagaimana mestinya.</p>";
         $initSection3   = "<p>Berdasarkan :</p>
 
         <ol>
             <li>Surat Perintah Kerja (SPK) Nomor 3.2.5/SPK/Pontive/PET/DISKOMINFO/I/2019 tanggal 14 Januari 2019</li>
             <li>Surat Perintah Mulai Kerja (SPMK) Nomor 03.3.5/SPK/Pontive/PET/DISKOMINFO/I/2019 tanggal 14 Januari 2019</li>
-        </ol>
-        
-        <p>Dari hasil pemeriksaan perkerjaan sudah dilaksanakan dengan baik sesuai hasil penilaian prestasi kerja terlampir.</p>
-        
-        <p>Demikian Berita Acara Hasil Pemeriksaan Pekerjaan ini dibuat dalam 5 (lima) rangkap untuk dipergunakan sebagaimana mestinya.</p>";
+        </ol>";
+        $initSection4 = "<p>Berdasarkan Hasil Pemeriksaan Administratif, pelaksanaan pekerjaan sudah sesuai dengan Peraturan yang berlaku mulai dari proses Perencanaan sampai Serah Terima Hasil Pekerjaan, sehingga dapat ditindaklanjuti untuk proses selanjutnya.</p>
 
-        
+        <p>Demikian Berita Acara Hasil Pemeriksaan Administrasi ini dibuat dalam 5 (lima) rangkap untuk dapat dipergunakan sebagaimana mestinya.</p>";
+
         $skpd = '';
         if (\Auth::user()->getRoles() != 'superadmin') {
             $skpd = $this->skpd->find(\Auth::user()->skpd_id);
         }
 
-        return view('admin.workAdministration.create', compact('initNumber', 'initSection1', 'initSection2', 'initSection3', 'skpd'));                        
+        return view('admin.workAdministration.create', compact('initNumber', 'initSection1', 'initSection2', 'initSection3', 'initSection4', 'skpd'));
     }
 
     /**
@@ -81,7 +92,7 @@ class WorkAdministrationController extends Controller
         }
 
         notify()->success('Berita Acara Pemeriksaan pekerjaan berhasil dibuat');
-        
+
         return redirect()->route('workAdministration.index');
     }
 
@@ -112,13 +123,28 @@ class WorkAdministrationController extends Controller
             return redirect()->back();
         }
 
-        $diffMonth      = Carbon::parse($data->contract->start_date)->diffInMonths(Carbon::parse($data->contract->end_date));
-        $totalContract  = number_format(($data->contract->salaries->sum('nominal') * $diffMonth) + $data->contract->bonus);
-        
-        $date = $this->terbilang->convert($data->date);
+        $start = Carbon::parse($data->contract->start_date);
+        $end = Carbon::parse($data->contract->end_date);
+        $diffMonth      = $start->diffInMonths($end);
+        // $bonus = Contract::select('bonus')->where('id', $data->contract->id)->first();
+        $bonus = $data->contract->bonus;
+        // $bonus = $bonus->__toString();
+        $bonus = intval($bonus);
+        // $bonus_num = (int) $bonus;
+        // dd($bonus);
+        // dd(gettype($bonus));
 
-        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('admin.workAdministration.export', compact('data', 'date', 'totalContract'))->setPaper('a4', 'potrait');
-        return $pdf->download($data->number.'.pdf');
+        // $totalContract  = number_format(($data->contract->salaries->sum('nominal') * $diffMonth) + $data->contract->bonus, 0,0, '.');
+        $totalContract  = ($data->contract->salaries->sum('nominal') * ($diffMonth + 1)) + $bonus;
+        $totalContract  = number_format($totalContract, 0,0, '.');
+        // dd($totalContract);
+        // dd(gettype($bonus));
+
+        $date = $this->terbilang->convert($data->date);
+        // $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('admin.workAdministration.export', compact('data', 'date', 'totalContract'))->setPaper('a4', 'potrait');
+        // return $pdf->download($data->number.'.pdf');
+        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('admin.workAdministration.export', compact('data', 'date', 'totalContract'))->setPaper(array(0, 0, 612, 935.433), 'portrait');
+        return $pdf->stream($data->number.'.pdf');
     }
 
     /**
@@ -135,7 +161,7 @@ class WorkAdministrationController extends Controller
             notify()->warning('Berita Acara Pemeriksaan tidak ditemukan');
             return redirect()->back();
         }
-        
+
         return view('admin.workAdministration.edit', compact('data'));
     }
 

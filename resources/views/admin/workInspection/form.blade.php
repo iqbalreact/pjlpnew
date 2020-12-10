@@ -35,8 +35,8 @@
             <label for="inputSKPD" class="col-sm-2 control-label">SKPD @include('components.required')</label>
 
             <div class="col-sm-10">
-                <input type="text" value="{{ $skpd->name }}" class="form-control" readonly>
-                <input name="skpd_id" type="hidden" value="{{ $skpd->id }}">
+                <input type="text" value="{{ $data->skpd->name ?? '' }}" class="form-control" readonly>
+                <input name="skpd_id" type="hidden" value="{{ $data->skpd->id ?? '' }}">
 
                 @if ($errors->has('skpd_id'))
                     <span class="help-block">{{ $errors->first('skpd_id') }}</span>

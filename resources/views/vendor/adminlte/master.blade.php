@@ -16,7 +16,8 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/vendor/Ionicons/css/ionicons.min.css') }}">
 
-    <link rel="stylesheet" href="{{ '/vendor/datatable-checkbox/dataTables.checkboxes.css' }}">
+    <link rel="stylesheet" href="{{ asset('vendor/datatable-checkbox/dataTables.checkboxes.css') }}">
+    {{-- <link rel="stylesheet" href="{{ '/vendor/datatable-checkbox/dataTables.checkboxes.css' }}"> --}}
 
     @if(config('adminlte.plugins.select2'))
         <!-- Select2 -->
@@ -25,7 +26,7 @@
 
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/AdminLTE.min.css') }}">
-    
+
     @if(config('adminlte.plugins.datatables'))
         <!-- DataTables with bootstrap 3 style -->
         <link rel="stylesheet" href="//cdn.datatables.net/v/bs/dt-1.10.18/datatables.min.css">
@@ -76,8 +77,10 @@
 
 {{-- Datepicker --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-<script src="/js/inputmask.js"></script>
-<script src="/vendor/datatable-checkbox/dataTables.checkboxes.min.js"></script>
+<script src="{{ asset('js/inputmask.js') }}"></script>
+{{-- <script src="/js/inputmask.js"></script> --}}
+<script src="{{ asset('vendor/datatable-checkbox/dataTables.checkboxes.min.js') }}"></script>
+{{-- <script src="/vendor/datatable-checkbox/dataTables.checkboxes.min.js"></script> --}}
 
 <script>
 $(function() {

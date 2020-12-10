@@ -34,7 +34,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::get('/contract/detail/{id}', 'ContractController@detail')->name('contract.detail');
     Route::get('/contract/findActiveContract', 'ContractController@findActiveContract')->name('contract.findActiveContract');
-    
+
     Route::resource('activity', 'ActivityController');
     Route::resource('account', 'AccountController');
     Route::resource('assessment', 'AssessmentController');
@@ -54,12 +54,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::resource('skpd', 'SkpdController');
     Route::resource('salaryComponent', 'SalaryComponentController');
     Route::resource('startWorkingLetter', 'StartWorkingLetterController');
+    Route::resource('subPosition', 'SubPositionController');
     Route::resource('workAdministration', 'WorkAdministrationController');
     Route::resource('workDay', 'WorkDayController');
     Route::resource('workHandover', 'WorkHandoverController');
     Route::resource('workHandoverPpkom', 'WorkHandoverPpkomController');
     Route::resource('workInspection', 'WorkInspectionController');
     Route::resource('workPackage', 'WorkPackageController');
+
+
 
     Route::group(['prefix' => 'report'], function() {
         Route::get('workInspection', 'ReportController@workInspection')->name('report.workInspection');
@@ -71,6 +74,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
         Route::get('payment', 'ReportController@payment')->name('report.payment');
         Route::get('workInspectionLetter', 'ReportController@workInspectionLetter')->name('report.workInspectionLetter');
         Route::post('workInspection', 'ReportController@postWorkInspectionCeremony')->name('report.workInspection.post');
+
+         Route::resource('evaluation', 'EvaluationController');
     });
 
     Route::post('/leave/generateDateRange', 'LeaveEmployeeController@generateDateRange')->name('leave.genereateDateRange');

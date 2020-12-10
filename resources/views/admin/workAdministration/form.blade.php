@@ -18,10 +18,10 @@
         @else
             <div class="form-group {{ $errors->has('skpd_id') ? 'has-error' : '' }}">
                 <label for="inputSKPD" class="col-sm-2 control-label">SKPD @include('components.required')</label>
-        
+
                 <div class="col-sm-10">
                     <select name="skpd_id" id="skpdSelect" class="form-control"></select>
-                    
+
                     @if ($errors->has('skpd_id'))
                         <span class="help-block">{{ $errors->first('skpd_id') }}</span>
                     @endif
@@ -63,10 +63,10 @@
     @else
         <div class="form-group {{ $errors->has('functionary_id') ? 'has-error' : '' }}">
             <label for="inputFunctionaryId" class="col-sm-2 control-label">Pejabat PPHP @include('components.required')</label>
-    
+
             <div class="col-sm-10">
                 <select name="functionary_id" id="functionarySelect" class="form-control"></select>
-                
+
                 @if ($errors->has('functionary_id'))
                     <span class="help-block">{{ $errors->first('functionary_id') }}</span>
                 @endif
@@ -91,10 +91,10 @@
     @else
         <div class="form-group {{ $errors->has('employee_id') ? 'has-error' : '' }}">
             <label for="inputEmployee" class="col-sm-2 control-label">PJLP @include('components.required')</label>
-    
+
             <div class="col-sm-10">
                 <select name="employee_id" id="employeeSelect" class="form-control"></select>
-                
+
                 @if ($errors->has('employee_id'))
                     <span class="help-block">{{ $errors->first('employee_id') }}</span>
                 @endif
@@ -107,7 +107,7 @@
 
         <div class="col-sm-10">
             {!! Form::text('number', $edit ? $data->number : $initNumber, ['class' => 'form-control', 'placeholder'=> __('Nomer Surat'), 'required' => true] ) !!}
-            
+
             @if ($errors->has('number'))
                 <span class="help-block">{{ $errors->first('number') }}</span>
             @endif
@@ -119,19 +119,31 @@
 
         <div class="col-sm-10">
             {!! Form::text('date', $edit ? $data->date : old('start_date'), ['class' => 'form-control datepicker', 'placeholder'=> __('Tanggal terbit'), 'autocomplete' => 'off'] ) !!}
-            
+
             @if ($errors->has('date'))
                 <span class="help-block">{{ $errors->first('date') }}</span>
             @endif
         </div>
     </div>
 
-    <div class="form-group {{ $errors->has('section_1') ? 'has-error' : '' }}">
+    {{-- <div class="form-group {{ $errors->has('section_1') ? 'has-error' : '' }}">
         <label for="inputName" class="col-sm-2 control-label">Bagian 1 @include('components.required')</label>
 
         <div class="col-sm-10">
             {!! Form::textArea('section_1', $edit ? $data->section_1 : $initSection1, ['class' => 'form-control', 'placeholder'=> __('Bagian 1'), 'required' => true] ) !!}
-            
+
+            @if ($errors->has('section_1'))
+                <span class="help-block">{{ $errors->first('section_1') }}</span>
+            @endif
+        </div>
+    </div> --}}
+
+    <div class="form-group {{ $errors->has('section_1') ? 'has-error' : '' }}">
+        <label for="inputName" class="col-sm-2 control-label">Sub-Posisi @include('components.required')</label>
+
+        <div class="col-sm-10">
+            {!! Form::text('section_1', $edit ? $data->section_1 : $initSection1, ['class' => 'form-control', 'placeholder'=> __('Nama Sub-Posisi PJLP'), 'required' => true] ) !!}
+
             @if ($errors->has('section_1'))
                 <span class="help-block">{{ $errors->first('section_1') }}</span>
             @endif
@@ -143,7 +155,7 @@
 
         <div class="col-sm-10">
             {!! Form::textArea('section_2', $edit ? $data->section_2 : $initSection2, ['class' => 'form-control', 'placeholder'=> __('Bagian 2'), 'required' => true] ) !!}
-            
+
             @if ($errors->has('section_2'))
                 <span class="help-block">{{ $errors->first('section_2') }}</span>
             @endif
@@ -155,22 +167,34 @@
 
         <div class="col-sm-10">
             {!! Form::textArea('section_3', $edit ? $data->section_3 : $initSection3, ['class' => 'form-control', 'placeholder'=> __('Bagian 3'), 'required' => true] ) !!}
-            
+
             @if ($errors->has('section_3'))
                 <span class="help-block">{{ $errors->first('section_3') }}</span>
             @endif
         </div>
     </div>
 
+    <div class="form-group {{ $errors->has('section_4') ? 'has-error' : '' }}">
+        <label for="inputName" class="col-sm-2 control-label">Bagian 4 @include('components.required')</label>
+
+        <div class="col-sm-10">
+            {!! Form::textArea('section_4', $edit ? $data->section_4 : $initSection4, ['class' => 'form-control', 'placeholder'=> __('Bagian 4'), 'required' => true] ) !!}
+
+            @if ($errors->has('section_4'))
+                <span class="help-block">{{ $errors->first('section_4') }}</span>
+            @endif
+        </div>
+    </div>
+
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <button 
-                type="submit" 
+            <button
+                type="submit"
                 class="btn btn-primary">
                     {{ $edit ? 'Update' : 'Simpan' }}
             </button>
-            
-            <a href="{{ URL::previous() }}" 
+
+            <a href="{{ URL::previous() }}"
                 class="btn btn-danger">
                     Batal
             </a>
@@ -195,9 +219,12 @@
             placeholders: ['FirstName', 'LastName']
         };
 
-        CKEDITOR.replace( 'section_1' );
+        // CKEDITOR.replace( 'section_1' );
         CKEDITOR.replace( 'section_2' );
         CKEDITOR.replace( 'section_3' );
+        // Added
+        CKEDITOR.replace( 'section_4' );
+        // ---------
 
         //Date picker
         $('.datepicker').datepicker({
@@ -223,7 +250,7 @@
                     var res = data.map(function (item) {
                         return {id: item.id, text: item.name};
                     });
-                    
+
                     return {
                         results: res
                     };
@@ -248,7 +275,7 @@
                     var res = data.map(function (item) {
                         return {id: item.id, text: item.name};
                     });
-                    
+
                     return {
                         results: res
                     };
@@ -274,7 +301,7 @@
                     var res = data.map(function (item) {
                         return {id: item.id, text: item.name};
                     });
-                    
+
                     return {
                         results: res
                     };

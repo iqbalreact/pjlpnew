@@ -20,8 +20,8 @@ class TerbilangService implements TerbilangServiceInterface
 
         return 'Pada Hari ini <b>'.$date->locale('id')->dayName.
                 '</b> tanggal <b>'.ucWords(Terbilang::make($dateDay)).
-                '</b> Bulan <b>'.$date->locale('id')->monthName. 
-                '</b> Tahun <b>'.ucWords(Terbilang::make($dateYear)).
-                '</b> kami yang bertanda tangan dibawah ini:';
+                '</b> Bulan <b>'.$date->locale('id')->monthName.
+                '</b> tahun <b>'.ucWords(Terbilang::make($dateYear)).
+                '</b>, kami yang bertanda tangan di bawah ini:';
     }
 }

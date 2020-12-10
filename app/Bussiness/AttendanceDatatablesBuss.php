@@ -157,7 +157,7 @@ class AttendanceDatatablesBuss implements AttendanceDatatablesBussInterface
             return '<input type="textbox" name="from" class="form-control time" value="'.$data->from.'" style="width:60px;">';
         }
 
-        return '<input type="textbox" name="from" class="form-control time" value="08:00" style="width:60px;">';
+        return '<input type="textbox" name="from" class="form-control time" value="07:15" style="width:60px;">';
     }
 
     private function to($data)
@@ -167,7 +167,7 @@ class AttendanceDatatablesBuss implements AttendanceDatatablesBussInterface
             return '<input type="textbox" name="to" class="form-control time" value="'.$data->to.'" style="width:60px;">';
         }
 
-        return '<input type="textbox" name="to" class="form-control time" value="17:00" style="width:60px;">';
+        return '<input type="textbox" name="to" class="form-control time" value="15:30" style="width:60px;">';
     }
 
     private function saveButton()

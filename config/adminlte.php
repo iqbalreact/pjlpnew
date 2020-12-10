@@ -220,6 +220,10 @@ return [
                     'url'  => 'admin/position'
                 ],
                 [
+                    'text' => 'Sub-Posisi',
+                    'url'  => 'admin/subPosition'
+                ],
+                [
                     'text' => 'Lokasi',
                     'url'  => 'admin/location'
                 ],
@@ -286,5 +290,5 @@ return [
         'select2'    => true,
         'chartjs'    => true
     ],
-    
+
 ];

@@ -32,7 +32,7 @@ class WorkInspectionController extends Controller
      */
     public function index()
     {
-        return view('admin.workInspection.index');                        
+        return view('admin.workInspection.index');
     }
 
     /**
@@ -42,27 +42,27 @@ class WorkInspectionController extends Controller
      */
     public function create()
     {
-        $initNumber     = "003.2.e/BASTP-PPK/Pontive/PET/DISKOMINFO/II/2019";
+        $initNumber     = "003.2.e/BAHPP/Pontive/PET.DISKOMINFO/II/2019";
         $initSection1   = "<p>Pada Hari ini <strong>Jumat</strong> tanggal <strong>Satu</strong> Bulan <strong>Februari</strong> tahun <strong>Dua Ribu Sembilan Belas</strong>, kami yang bertanda tangan dibawah ini:</p>";
-        $initSection2   = "<p>Dengan ini menyatakan dengan sebenar benarnya telah melaksanakan pemeriksaan dan penelitian terhadap pelaksanaan Pekerjaan Belanja Jasa Tenaga IT (Informasi Teknologi) Jasa Admin Pontive Center (Pengelola Teknologi Informasi) Kegiatan Operasional Pontive Center Kota Pontianak yang dilaksanakan oleh:</p>";
-        $initSection3   = "<p>Berdasarkan :</p>
+        // $initSection2   = "<p>Dengan ini menyatakan dengan sebenar benarnya telah melaksanakan pemeriksaan dan penelitian terhadap pelaksanaan Pekerjaan Belanja Jasa Tenaga IT (Informasi Teknologi) Jasa Admin Pontive Center (Pengelola Teknologi Informasi) Kegiatan Operasional Pontive Center Kota Pontianak yang dilaksanakan oleh:</p>";
+        $initSection2   = "<p>Dengan ini menyatakan dengan sebenar-benarnya telah melaksanakan pemeriksaan dan penelitian terhadap pelaksanaan Pekerjaan [isi Nama Paket Pekerjaan], Jasa [isi Nama Posisi] ([isi Keterangan Posisi]) Kegiatan [isi Nama Kegiatan] yang dilaksanakan oleh:</p>";
+        $initSection3   = "<p>Berdasarkan:</p>
 
         <ol>
-            <li>Surat Perintah Kerja (SPK) Nomor 3.2.5/SPK/Pontive/PET/DISKOMINFO/I/2019 tanggal 14 Januari 2019</li>
-            <li>Surat Perintah Mulai Kerja (SPMK) Nomor 03.3.5/SPK/Pontive/PET/DISKOMINFO/I/2019 tanggal 14 Januari 2019</li>
+            <li>Surat Perintah Kerja (SPK) Nomor [isi No.SPK] tanggal [isi Tanggal SPK]</li>
+            <li>Surat Perintah Mulai Kerja (SPMK) Nomor [isi No.SPMK] tanggal [isi Tanggal SPMK].</li>
         </ol>
-        
-        <p>Dari hasil pemeriksaan perkerjaan sudah dilaksanakan dengan baik sesuai hasil penilaian prestasi kerja terlampir.</p>
-        
+
+        <p>Dari hasil pemeriksaan pekerjaan sudah dilaksanakan dengan baik sesuai hasil penilaian prestasi kerja terlampir.</p>
+
         <p>Demikian Berita Acara Hasil Pemeriksaan Pekerjaan ini dibuat dalam 5 (lima) rangkap untuk dipergunakan sebagaimana mestinya.</p>";
 
-        
         $skpd = '';
         if (\Auth::user()->getRoles() != 'superadmin') {
             $skpd = $this->skpd->find(\Auth::user()->skpd_id);
         }
 
-        return view('admin.workInspection.create', compact('initNumber', 'initSection1', 'initSection2', 'initSection3', 'skpd'));                        
+        return view('admin.workInspection.create', compact('initNumber', 'initSection1', 'initSection2', 'initSection3', 'skpd'));
     }
 
     /**
@@ -81,7 +81,7 @@ class WorkInspectionController extends Controller
         }
 
         notify()->success('Berita Acara Pemeriksaan  pekerjaan berhasil dibuat');
-        
+
         return redirect()->route('workInspection.index');
     }
 
@@ -99,7 +99,7 @@ class WorkInspectionController extends Controller
             notify()->warning('Berita Acara Pemeriksaan terima tidak ditemukan');
             return redirect()->back();
         }
-        
+
         return view('admin.workInspection.show', compact('data'));
     }
 
@@ -114,8 +114,10 @@ class WorkInspectionController extends Controller
 
         $date = $this->terbilang->convert($data->date);
 
-        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('admin.workInspection.export', compact('data', 'date'))->setPaper('a4', 'potrait');
-        return $pdf->download($data->number.'.pdf');
+        // $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('admin.workInspection.export', compact('data', 'date'))->setPaper('a4', 'potrait');
+        $pdf = PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadView('admin.workInspection.export', compact('data', 'date'))->setPaper(array(0, 0, 612, 935.433), 'potrait');
+        // return $pdf->download($data->number.'.pdf');
+        return $pdf->stream($data->number.'.pdf');
     }
 
     /**
@@ -132,7 +134,7 @@ class WorkInspectionController extends Controller
             notify()->warning('Berita Acara Pemeriksaan tidak ditemukan');
             return redirect()->back();
         }
-        
+
         return view('admin.workInspection.edit', compact('data'));
     }
 

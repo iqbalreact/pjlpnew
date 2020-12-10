@@ -4,18 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Bussiness\Contracts\LeaveEmployeeBussInterface;
 
 use Carbon\Carbon;
 
 class LeaveEmployeeController extends Controller
 {
-    public function __construct(
-        LeaveEmployeeBussInterface $leaveEmployee
-    ) {
-        $this->leaveEmployee = $leaveEmployee;
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +16,7 @@ class LeaveEmployeeController extends Controller
      */
     public function index()
     {
-        return view('admin.leave.index');        
+        return view('admin.leave.index');
     }
 
     /**
@@ -63,19 +56,19 @@ class LeaveEmployeeController extends Controller
             notify()->warning('Cuti tidak ditemukan');
             return redirect()->back();
         }
-        
+
         $data->start_date   = Carbon::parse($data->start_date)->format('j F Y');
         $data->end_date     = Carbon::parse($data->end_date)->format('j F Y');
 
         $dates = json_decode($data->dates);
-        
+
         $transformDate = [];
         if (!is_null($dates)) {
             foreach($dates as $date) {
                 array_push($transformDate, Carbon::parse($date)->format('j F Y'));
             }
         }
-        
+
         // return $data->getPicture();
 
         return view('admin.leave.show', compact('data', 'transformDate'));
@@ -101,7 +94,7 @@ class LeaveEmployeeController extends Controller
      */
     public function update(LocationRequest $request, $id)
     {
-        
+
     }
 
     /**
@@ -119,18 +112,18 @@ class LeaveEmployeeController extends Controller
             return redirect()->back();
         }
 
-        notify()->success('Cuti berhasil dihapus');    
+        notify()->success('Cuti berhasil dihapus');
 
         return redirect()->route('leaveEmployee.index');
     }
 
     /**
      * Select2 API
-     * 
+     *
      */
     public function selectList(Request $request)
     {
-        
+
     }
 
     public function generateDateRange(Request $request)
