@@ -101,8 +101,24 @@ class EvaluationController extends Controller
                 ->orderBy('month')
                 ->get();
 
-        $workInspection = $this->workInspection->find($pjlp);
-        return $workInspection;
+        $employee = DB::table('contracts')
+                    ->join('employees', 'employees.id', '=', 'contracts.employee_id')
+                    ->join('skpds', 'skpds.id', '=', 'contracts.skpd_id')
+                    ->where ('employee_id', $pjlp)
+                    ->select(
+                        'employees.name as pjlp',
+                        'contracts.number as number',
+                        'contracts.start_date as date_spk',
+                        'skpds.name as skpd'
+                        )
+                    ->get();
+
+        foreach ($employee as $d) {
+            $name = $d->pjlp;
+            $number = $d->number;
+            $date_spk = $d->date_spk;
+            $skpd = $d->skpd;
+        }
 
         $recap = collect();
         $prestasi = collect();
@@ -147,6 +163,8 @@ class EvaluationController extends Controller
             ]);
         }
 
+        return $prestasi;
+
         $totalNilai = $prestasi->sum('total');
         $totalPrestasi = count($prestasi);
         // return $totalPrestasi;
@@ -162,16 +180,19 @@ class EvaluationController extends Controller
         }
 
         $recap->push([
-            'nama'          => $workInspection->employee->name,
-            'spk'           => $workInspection->spk_number,
-            'skpd'          => $workInspection->skpd->name,
+            'nama'          => $name,
+            'spk'           => $number,
+            'skpd'          => $skpd,
             'totalNilai'    => $prestasi->sum('total'),
             'rataNilai'     => $rataNilai,
             'predikat'      => $predikat,
-            'tanggal'       => $workInspection->spk_date,
-            'prestasi'      => $prestasi
+            'tanggal'       => $date_spk,
+            'prestasi'      => $prestasi,
+            'year'          => $year
         ]);
-        return $recap;
+
+        // return $recap;
+        return view ('admin.evaluation.report', compact('recap'));
     }
 
     public function findValue($value)
