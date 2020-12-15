@@ -116,6 +116,7 @@ class EvaluationController extends Controller
 
         $recap = collect();
         $prestasi = collect();
+        $nilaitotal = collect();
 
         // return $data;
         for ($i=1; $i <13 ; $i++) {
@@ -132,7 +133,6 @@ class EvaluationController extends Controller
                 $kinerja = 0;
                 $total = 0;
             } else {
-                // return $k->work_quality;
                 $kinerja =  $k->work_completion_rate
                                 + $k->work_completion_time
                                 + $k->work_quality
@@ -165,6 +165,11 @@ class EvaluationController extends Controller
                 $assessmentCeremony = $this->findValue($ceremonyPercentage);
                 $total = $kinerja + $assessmentCeremony + $assessmentAttendance;
 
+                $nilaitotal->push([
+                    'bulan' => $this->month[$i],
+                    'nilai' => $total,
+                ]);
+
             }
 
             $prestasi->push(
@@ -181,8 +186,9 @@ class EvaluationController extends Controller
 
         }
 
-        $totalNilai = $prestasi->sum('total');
-        $totalPrestasi = count($prestasi);
+
+        $totalNilai = $nilaitotal->sum('nilai');
+        $totalPrestasi = count($nilaitotal);
         $rataNilai  = $totalNilai / $totalPrestasi;
 
         if ($rataNilai >= 18 &&  $rataNilai <= 28) {
@@ -194,20 +200,19 @@ class EvaluationController extends Controller
             $predikat = 'KOSONG';
         }
 
-
         $recap->push([
             'nama'          => $name,
             'spk'           => $number,
             'skpd'          => $skpd,
             'year'          => $year,
-            'totalNilai'    => $prestasi->sum('total'),
+            'totalNilai'    => $totalNilai,
             'rataNilai'     => $rataNilai,
             'predikat'      => $predikat,
             'tanggal'       => $date_spk,
             'prestasi'      => $prestasi,
         ]);
 
-        return $recap;
+        // return $recap;
         // $pdf = PDF::loadView('admin.evaluation.report', compact('recap'))->setPaper(array(0, 0, 612, 935.433), 'landscape');
         // return $pdf->stream('Evaluasi Prestasi Kerja.pdf');
         return view ('admin.evaluation.report', compact('recap'));

@@ -24,7 +24,8 @@
     </head>
     <body style="margin : 25px;">
         <div class="row text-center" style="font-weight: bold !important;">
-            EVALUASI PRESTASI KERJA
+            EVALUASI PRESTASI KERJA <br>
+            PENYEDIA JASA LAINNYA ORANG-PERORANGAN
         </div>
         <br>
         <div class="row" style="font-weight: bold">
@@ -83,7 +84,7 @@
                     <td class="assessment-table" style="word-wrap: break-word">Des</td>
                 </tr>
                 <tr>
-                    <td class="assessment-table" style="height: 25px"></td>
+                    <td class="assessment-table" style="height: 20px"></td>
                     <td class="assessment-table"></td>
                     <td class="assessment-table"></td>
                     <td class="assessment-table"></td>
@@ -104,29 +105,32 @@
                 </tr>
 
                 <tr>
-                    @for ($i = 1; $i < 13; $i++)
-                    <td class="assessment-table" style="15px">
-                        {{ $i }}
+                    @foreach ($recap as $item)
+                        @foreach ($item['prestasi'] as $k)
+                            @if ($k['total'] == 0)
+                            <td class="assessment-table">
+                                -
+                            </td>
+                            @else
+                            <td class="assessment-table">
+                                {{$k['total']}}
+                            </td>
+                            @endif
+                        @endforeach
+                    @endforeach
+                    <td class="assessment-table" style="widht : 25px">
+                        {{ $recap[0]['totalNilai'] }}
                     </td>
-                    @endfor
-                    {{-- @foreach ($recap[0]['prestasi'] as $item)
-                    <td class="assessment-table" style="15px">
-                        {{ $item['total'] }}
+                    <td class="assessment-table" style="widht : 25px">
+                        {{ $recap[0]['rataNilai'] }}
                     </td>
-                    @endforeach --}}
-                    <td class="assessment-table" style="15px">
-                        307
-                    </td>
-                    <td class="assessment-table" style="15px">
-                        26
-                    </td>
-                    <td class="assessment-table" style="15px">
-                        BAIK
+                    <td class="assessment-table" style="widht : 25px">
+                        {{ $recap[0]['predikat'] }}
                     </td>
                 </tr>
 
                 <tr>
-                    <td class="assessment-table" style="height: 45px">
+                    <td class="assessment-table" style="height: 50px">
                     </td>
                     <td class="assessment-table"></td>
                     <td class="assessment-table"></td>
