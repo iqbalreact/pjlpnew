@@ -95,12 +95,6 @@ class EvaluationController extends Controller
         $pjlp = $request->pjlp;
         $year = $request->year;
 
-        $data = DB::table('assessments')
-                ->where('employee_id', '=',  $pjlp)
-                ->where('year', '=',  $year)
-                ->orderBy('month')
-                ->get();
-
         $employee = DB::table('contracts')
                     ->join('employees', 'employees.id', '=', 'contracts.employee_id')
                     ->join('skpds', 'skpds.id', '=', 'contracts.skpd_id')
@@ -123,75 +117,99 @@ class EvaluationController extends Controller
         $recap = collect();
         $prestasi = collect();
 
-        foreach ($data as $k) {
-            $month = $k->month;
-            $kinerja = $k->work_completion_rate + $k->work_completion_time + $k->work_quality + $k->obidence_on_obligation + $k->obidence_on_rule;
+        // return $data;
+        for ($i=1; $i <13 ; $i++) {
 
-            $kehadiran  =   DB::table('recap_attendances')
-                            ->where ('month', $month)
-                            ->where ('employee_id', $k->employee_id)
-                            ->first();
+            $k = DB::table('assessments')
+                        ->where('employee_id', '=',  $pjlp)
+                        ->where('year', '=',  $year)
+                        ->where('month', '=',  $i)
+                        ->first();
 
-            $workDay            = $this->workDay->findByYear(Carbon::parse($year)->format('Y'));
+            if (is_null($k)) {
+                $assessmentAttendance = 0;
+                $assessmentCeremony = 0;
+                $kinerja = 0;
+                $total = 0;
+            } else {
+                // return $k->work_quality;
+                $kinerja =  $k->work_completion_rate
+                                + $k->work_completion_time
+                                + $k->work_quality
+                                + $k->obidence_on_obligation
+                                + $k->obidence_on_rule;
+                $kehadiran =   DB::table('recap_attendances')
+                                    ->where ('month', $k->month)
+                                    ->where ('employee_id',$k->employee_id)
+                                    ->first();
 
-            $monthTranslate     = $this->month[$month];
+                $workDay            = $this->workDay->findByYear(Carbon::parse($year)->format('Y'));
 
-            $totalDay           = $workDay->$monthTranslate;
+                $monthTranslate     = $this->month[$k->month];
 
-            $attend = $kehadiran->attend + $kehadiran->leave;
+                $totalDay           = $workDay->$monthTranslate;
 
-            $attendPercentage = ($attend / $totalDay) * 100;
+                $attend = $kehadiran->attend + $kehadiran->leave;
 
-            $assessmentAttendance = $this->findValue($attendPercentage);
+                $attendPercentage = ($attend / $totalDay) * 100;
 
-            $ceremony = Attendance::whereMonth('date', $month)
+                $assessmentAttendance = $this->findValue($attendPercentage);
+
+                $ceremony = Attendance::whereMonth('date', $k->month)
                             ->whereYear('date', $year)
                             ->where('employee_id', $k->employee_id)
                             ->where('ceremony', 1)
                             ->count();
-            // return $year;
-            $ceremonyPercentage  = ($ceremony / $totalDay) * 100;
-            $assessmentCeremony = $this->findValue($ceremonyPercentage);
 
-            $prestasi->push([
-                'month'         => $month,
-                'monthName'     => $monthTranslate,
-                'kehadiran'     => $assessmentAttendance,
-                'apel'          => $assessmentCeremony,
-                'kinerja'       => $kinerja,
-                'total'         => $kinerja + $assessmentCeremony + $assessmentAttendance,
-            ]);
+                $ceremonyPercentage  = ($ceremony / $totalDay) * 100;
+                $assessmentCeremony = $this->findValue($ceremonyPercentage);
+                $total = $kinerja + $assessmentCeremony + $assessmentAttendance;
+
+            }
+
+            $prestasi->push(
+                [
+                    'bulan'         => $i,
+                    'bulanName'     => $this->month[$i],
+                    'kinerja'       => $kinerja,
+                    'kehadiran'     => $assessmentAttendance,
+                    'apel'          => $assessmentCeremony,
+                    'kinerja'       => $kinerja,
+                    'total'         => $total,
+                ]
+            );
+
         }
-
-        return $prestasi;
 
         $totalNilai = $prestasi->sum('total');
         $totalPrestasi = count($prestasi);
-        // return $totalPrestasi;
         $rataNilai  = $totalNilai / $totalPrestasi;
 
         if ($rataNilai >= 18 &&  $rataNilai <= 28) {
             $predikat = 'BAIK';
+        }elseif ($rataNilai <= 7 && $rataNilai <= 17) {
+            $predikat = 'BURUK';
+            # code...
+        }else {
+            $predikat = 'KOSONG';
         }
 
-        if ($rataNilai <= 7 && $rataNilai <= 17) {
-            # code...
-            $predikat = 'BURUK';
-        }
 
         $recap->push([
             'nama'          => $name,
             'spk'           => $number,
             'skpd'          => $skpd,
+            'year'          => $year,
             'totalNilai'    => $prestasi->sum('total'),
             'rataNilai'     => $rataNilai,
             'predikat'      => $predikat,
             'tanggal'       => $date_spk,
             'prestasi'      => $prestasi,
-            'year'          => $year
         ]);
 
-        // return $recap;
+        return $recap;
+        // $pdf = PDF::loadView('admin.evaluation.report', compact('recap'))->setPaper(array(0, 0, 612, 935.433), 'landscape');
+        // return $pdf->stream('Evaluasi Prestasi Kerja.pdf');
         return view ('admin.evaluation.report', compact('recap'));
     }
 
@@ -221,7 +239,6 @@ class EvaluationController extends Controller
         $year   = Carbon::parse($request->date)->format('Y');
         $data   = Attendance:: whereYear('date', $year)
                             ->where('employee_id', $request->employee_id)
-
                             ->where('ceremony', 1)
                             ->count();
 

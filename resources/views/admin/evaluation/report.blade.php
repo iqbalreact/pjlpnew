@@ -83,7 +83,7 @@
                     <td class="assessment-table" style="word-wrap: break-word">Des</td>
                 </tr>
                 <tr>
-                    <td class="assessment-table" style="height: 10px"></td>
+                    <td class="assessment-table" style="height: 25px"></td>
                     <td class="assessment-table"></td>
                     <td class="assessment-table"></td>
                     <td class="assessment-table"></td>
@@ -126,7 +126,7 @@
                 </tr>
 
                 <tr>
-                    <td class="assessment-table" style="height: 30px">
+                    <td class="assessment-table" style="height: 45px">
                     </td>
                     <td class="assessment-table"></td>
                     <td class="assessment-table"></td>
